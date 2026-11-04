@@ -1,6 +1,25 @@
-# Ignorar tudo exceto skills docs
-*
+# Ignore personal/config files
+.claude/
+.scratch/
+.seg/
+.tmp_*/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+
+# Keep docs and skills
 !README.md
 !.gitignore
-
-# Manter apenas documentação de skills
+!skills/
+!docs/
+!.agents/
+!scripts/
+!AGENTS.md
+!CHANGELOG.md
+!CLAUDE.md
+!CONTRIBUTING.md
+!GLOSSARY.md
+!LICENSE
+!SCOPE.md
+!package.json

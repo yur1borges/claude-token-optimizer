@@ -1,0 +1,162 @@
+[
+  {
+    "file": "10_1_grat1800_633nm_4ac_t50s_300-1800cm-1_filter50__20x.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "10_2_grat1800_633nm_4ac_t50s_300-1800cm-1_filter25__20x_SATUROU A CCD.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "10_3_grat1800_633nm_4ac_t50s_300-1800cm-1_filter50__20x_1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "50_1_grat1800_633nm_4ac_t50s_300-1800cm-1_filter50__20x.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "50_4_grat1800_633nm_4ac_t50s_300-1800cm-1_filter50__20x.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "50_5_grat1800_633nm_4ac_t50s_300-1800cm-1_filter50__20x.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "A1_PONTO 2_633NM_t150s_3ac_FILTRO 25__X20_100_2000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "AA228_633NM_t40s_ac4_FILTRO 100__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "AA328_633NM_t40s_ac4_FILTRO 100__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "AA528_633NM_t40s_ac4_FILTRO 100__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "AA628_633NM_t40s_ac4_FILTRO 50__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "AA728_633NM_t40s_ac4_FILTRO 100__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "AA828_633NM_t40s_ac4_FILTRO 100__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "AutoCalibration - Laser 514nm_Edge - Grating 1800 (450-850nm) - Coeff 0.00201934  PASS_24-10-2022.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "C1_grat1800_633nm_4ac_t50s_300-1800cm-1_filter100__20x.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "C2_633NM_P100__L50X_t100S_AC3_100-200CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "C2_grat1800_633nm_4ac_t50s_300-1800cm-1_filter50__20x.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "C4_grat1800_633nm_4ac_t50s_300-1800cm-1_filter50__20x.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "CA228_633NM_t40s_ac4_FILTRO 100__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "CA328_633NM_t40s_ac4_FILTRO 100__X20_400_1800CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "Cu_633NM_t10s_6ac_FILTRO 10__X20_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "Dourado.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "LFMO 1000 MELHOR_.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "T1_633NM_t10s_6ac_FILTRO 10__X20_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "T1_633NM_t10s_6ac_FILTRO 3,2__X20_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "TA,Ni 0,5__633NM_t5s_6ac_FILTRO 10__X100_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "TA,Ni 1__633NM_t1s_4ac_FILTRO 10__X100_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "TA-NTC 0,1__633NM_t10s_6ac_FILTRO 10__X100_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "TA-NTC 0,5__0,5Ni_633NM_t10s_6ac_FILTRO 10__X100_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "TA-PURO_633NM_t10s_6ac_FILTRO 10__X100_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "TA-PURO_633NM_t10s_6ac_FILTRO 10__X20_100_3000CM-1.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  },
+  {
+    "file": "verde.txt",
+    "error": "'peak_heights'",
+    "trace": "Traceback (most recent call last):\n  File \"C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\process_raman.py\", line 152, in processar_espectro\n    'altura': props['peak_heights'],\n              ~~~~~^^^^^^^^^^^^^^^^\nKeyError: 'peak_heights'\n"
+  }
+]
