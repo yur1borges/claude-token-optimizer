@@ -23,6 +23,10 @@ codex plugin add claude-token-optimizer@yur1borges
 
 Updates at startup.
 
+## My setup
+
+How I organize skills, hooks and settings to save tokens: [docs/setup](./docs/setup/README.md).
+
 ## Skills
 
 Organized into buckets under `skills/`:

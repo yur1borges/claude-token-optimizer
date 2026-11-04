@@ -51,3 +51,5 @@ revisao_manual/
 !SCOPE.md
 !package.json
 !scripts/link-skills.sh
+!docs/setup/
+!docs/setup/**

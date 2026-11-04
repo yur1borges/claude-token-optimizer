@@ -10,13 +10,14 @@ This repository contains agent skills for Claude Code and compatible harnesses.
 - Documentation for promoted skills
 - ADRs recording architectural decisions
 - Installation and linking scripts
+- Sanitized setup docs and examples (`docs/setup/`): how skills, hooks and settings are organized
 
 ## Out of Scope
 
 - Personal/private skills (drx, dem, entrevista, lattes, rpa, softwares-do-yuri, etc.)
 - Personal configuration (settings.json with paths, env vars, personal hooks)
 - Project-specific code (omniroute proxy, etc.)
-- Non-skill automation (hooks, scripts not for skill management)
+- Personal hooks (only the sanitized examples in `docs/setup/` are shown)
 - Marketplace implementations (only references to public marketplaces)
 
 ## Evaluation

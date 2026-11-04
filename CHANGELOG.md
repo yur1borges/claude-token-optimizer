@@ -5,6 +5,7 @@ All notable changes to this skills repository.
 ## [Unreleased]
 
 ### Added
+- docs/setup: sanitized snapshot of skills layout, hooks (PreCompact, rtk) and token-saving settings
 - Initial skill bucket structure (engineering, productivity, misc, in-progress, deprecated)
 - 14 engineering skills: brainstorming, find-skills, graphify, humanizer, impeccable, llm-council, systematic-debugging, task-observer, taste-skill, test-driven-development, teste-leigo, ui-ux-pro-max, verification-before-completion, writing-plans
 - 2 productivity skills: caveman, ponytail

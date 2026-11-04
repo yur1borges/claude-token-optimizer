@@ -1,0 +1,30 @@
+{
+  "skillListingMaxDescChars": 150,
+  "skillListingBudgetFraction": 0.002,
+  "bashOutputMaxChars": 10000,
+  "promptCacheTtl": "1h",
+  "autoCompactEnabled": true,
+  "autoCompactWindow": 180000,
+  "alwaysThinkingEnabled": false,
+  "env": { "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6" },
+  "modelSettings": {
+    "claude-sonnet-5-5": { "effortLevel": "low" },
+    "claude-sonnet-4-6": { "effortLevel": "low" }
+  },
+  "skillOverrides": {
+    "some-plugin:rarely-used-skill": "user-invocable-only",
+    "some-plugin:never-used-skill": "off"
+  },
+  "enabledPlugins": {
+    "caveman@caveman": true,
+    "ponytail@ponytail": true
+  },
+  "hooks": {
+    "PreCompact": [
+      { "hooks": [ { "type": "command", "command": "python \"$HOME/.claude/hooks/pre-compact.py\"", "timeout": 10 } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Bash", "hooks": [ { "type": "command", "command": "rtk hook claude" } ] }
+    ]
+  }
+}
