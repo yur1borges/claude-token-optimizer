@@ -9,18 +9,7 @@ __pycache__/
 .DS_Store
 
 # Personal data folders
-.*.js
-.*.py
-*.txt
-*.md
-*.json
-*.pyc
-*.log
 .wf/
-__pycache__/
-.scratch/
-.seg/
-.tmp_*/
 arginine_data/
 arquivos_removidos/
 categoria_desconhecida/
@@ -33,6 +22,19 @@ pdfs_teste/
 relatorios/
 resultado_peaks/
 revisao_manual/
+
+# Ignore personal root files
+*.py
+*.js
+*.json
+*.txt
+*.md
+*.html
+*.pdf
+*.csv
+*.joblib
+*.out
+*.ps1
 
 # Keep docs and skills
 !README.md
@@ -49,3 +51,4 @@ revisao_manual/
 !LICENSE
 !SCOPE.md
 !package.json
+!scripts/link-skills.sh
