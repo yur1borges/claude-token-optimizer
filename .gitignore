@@ -8,6 +8,32 @@ __pycache__/
 *.log
 .DS_Store
 
+# Personal data folders
+.*.js
+.*.py
+*.txt
+*.md
+*.json
+*.pyc
+*.log
+.wf/
+__pycache__/
+.scratch/
+.seg/
+.tmp_*/
+arginine_data/
+arquivos_removidos/
+categoria_desconhecida/
+categorias/
+dados_limpos/
+dados_processados/
+graphify-out/
+originais_preservados/
+pdfs_teste/
+relatorios/
+resultado_peaks/
+revisao_manual/
+
 # Keep docs and skills
 !README.md
 !.gitignore

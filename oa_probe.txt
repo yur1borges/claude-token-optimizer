@@ -1,7 +1,0 @@
-=== japones
-   https://openalex.org/W7146304993 | 離散要素法を用いた粒状体の流動解析に及ぼす解析パラメータの寄与率の定量化
-   https://doi.org/10.2208/jscejam.76.2_i_369 | QUANTIFICATION OF PARAMETER CONTRUBUTION IN GRANULAR FLOW SI
-   https://openalex.org/W7146333040 | 地質環境データ解析・可視化システムにおける地下水流動解析コードの高度化
-   https://openalex.org/W7145759492 | 移動度スペクトル解析法を用いた歪シリコン及び歪ゲルマニウム中のキャリア散乱機構の解明(本文)
-   https://openalex.org/W7144675964 | [18F]F-Dopaを用いたPETデータ解析の高精度化に関する研究
-=== garbled

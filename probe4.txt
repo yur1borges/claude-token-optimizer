@@ -1,7 +1,0 @@
-OA 10.59490/seg23.2023.630        -> erro HTTP Error 404: Not Found
-OA 10.59490/seg.2023.630          -> https://doi.org/10.59490/seg.2023.630 | A Phase-Field Discrete Element Method to study chemo-mechani
-CR  10.59490/seg.2023.630          | A Phase-Field Discrete Element Method to study chemo-mechanical c
-CR  10.1016/j.cma.2024.116900      | A Phase-Field Discrete Element Method to study chemo-mechanical c
-CR  10.31274/etd-180810-5855       | Development and calibration of discrete element method inputs to 
-CR  10.1007/978-981-13-0125-4_100  | A Coupling Finite-Discrete Element Method for Mechanical Analysis
-CR  10.23889/suthesis.63751        | Wear and impact analysis of granular materials using Discrete Ele
