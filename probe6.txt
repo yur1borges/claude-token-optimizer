@@ -1,0 +1,4 @@
+publication_year: 2014
+type: dissertation
+title: Particle finite element methods for modelling granular material flows
+host: None

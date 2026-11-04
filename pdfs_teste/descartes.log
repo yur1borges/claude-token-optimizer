@@ -1,0 +1,25 @@
+# Descartes da montagem do conjunto de PDFs de teste (T4)
+# Gerado por montar_pdfs_teste3.py. Nenhum arquivo foi apagado: os PDFs
+# rejeitados de rodadas anteriores ficaram em _descartados/.
+
+DOI                                     tipo-alvo          motivo
+10.1016/j.powtec.2022.117864            artigo de revista  sem PDF de acesso aberto baixavel
+10.3390/pr13113522                      artigo de revista  sem PDF de acesso aberto baixavel
+10.31803/tg-20230513115809              artigo de revista  sem PDF de acesso aberto baixavel
+10.23689/fidgeo-321                     livro              CrossRef nao registra este DOI
+10.1201/b11059                          livro              fora do tema DEM/materiais
+10.1088/2053-2563/ab3b5f                livro              fora do tema DEM/materiais
+10.4233/uuid:b60cb231-222d-434d-b987-cf36605bc719  tese  CrossRef nao registra este DOI
+10.1061/40647(259)38                    proceedings        sem PDF de acesso aberto baixavel
+10.1061/9780784480021.019               proceedings        sem PDF de acesso aberto baixavel
+10.52460/issc.2024.014                  proceedings        sem PDF de acesso aberto baixavel
+10.1115/omae2020-18452                  proceedings        sem PDF de acesso aberto baixavel
+10.1063/1.5016742                       proceedings        sem PDF de acesso aberto baixavel
+10.1061/9780784478509.001               proceedings        sem PDF de acesso aberto baixavel
+10.1061/9780784413753.209               proceedings        sem PDF de acesso aberto baixavel
+10.13031/aim.201900413                  proceedings        sem PDF de acesso aberto baixavel
+10.1061/9780784479087.011               proceedings        sem PDF de acesso aberto baixavel
+10.1061/40647(259)48                    proceedings        sem PDF de acesso aberto baixavel
+10.1115/detc2015-46104                  proceedings        sem PDF de acesso aberto baixavel
+10.1111/j.1467-                         tese/dissertacao   DOI de identificador interno sem obra no CrossRef
+10.48550/arxiv.*                        preprint           arXiv nao registra DOI no CrossRef

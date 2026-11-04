@@ -1,0 +1,892 @@
+
+THE DISCOVERY OF
+GROUNDED THEORY
+
+
+THE DISCOVERY OF
+GROUNDED THEORY
+strategies for qualitative research
+Barney G. Glaser
+Anselm L. Strauss
+Routledge
+Taylor & Francis Group
+LONDON AND NEW YORK
+
+First published 1999 by Transaction Publishers 
+Published 2017 by Routledge 
+2 Park Square, Milton Park, Abingdon, Oxon OX14 4RN 
+711 Third Avenue, New York, NY 10017, USA 
+Routledge is an imprint of the Taylor & Francis Group, an informa 
+business 
+Copyright © 1999 by Barney G. Glaser and  Frances Strauss. 
+Copyright © 1967 by Barney G. Glaser and Anselm L. Strauss. 
+Renewed 1995.
+All rights reserved. No part of this book may be reprinted or 
+reproduced or utilised in any form or by any electronic, 
+mechanical, or other means, now known or hereafter invented, 
+including photocopying and recording, or in any information 
+storage or retrieval system, without permission in writing from 
+the publishers. 
+Notice: 
+Product or corporate names may be trademarks or registered 
+trademarks, and are used only for identification and 
+explanation without intent to infringe. 
+Library of Congress Catalog Number: 66-28314 
+ISBN 13: 978-0-202-30260-7 (pbk)
+
+Contents
+Preface 
+vii
+Acknowledgments 
+ix
+I   
+The Discovery of Grounded Theory 
+1
+part i: Generating Theory by Comparative Analysis
+II   Generating Th eory 
+21
+III Th eoretical Sampling 
+45
+IV From Substantive to Formal Theory 
+79
+V   The Constant Comparative Method of 
+   101
+ 
+Qualitative Analysis 
+VI   Clarifying and Assessing Comparative Studies 
+117
+part ii: The Flexible Use of Data
+VII  New Sources for Qualitative Data 
+161
+VIII Theoretical Elaboration of Quantitative Data 
+185
+part iii: Implications of Grounded Theory
+IX   The Credibility of Grounded Theory 
+223
+X   Applying Grounded Theory 
+237
+XI Insight and Theory Development 
+251
+ 
+Epilogue 
+259
+ 
+Index 
+265
+
+
+ vii 
+Preface
+Mentioning the Department of Sociology at Columbia Uni versity 
+brings to mind Merton’s middle-range theory and Lazarsfeld’s quantita-
+tive methodology. On the other hand, the “Chicago tradition” (from 
+the 1920’s to the 1950’s) is associated with down-to-earth qualitative 
+research, a less than rigorous method ology, and an unintegrated pre-
+sentation of theory. By an ironic conjunction of careers, the authors of 
+this book were trained, respectively, at Columbia and Chicago. The 
+point is noted only to emphasize our conviction that neither of 
+these traditions—nor any other in postwar sociology—has been 
+successful at closing the embarrassing gap between theory and em-
+pirical research. The gap is as wide today as it was in 1941, when 
+Blumer commented on it, and in 1949, when Merton optimis tically 
+suggested a solution.
+Attempts to close the gap between theory and research have concen-
+trated principally on the improvement of methods for testing theory, 
+and sociologists, as well as other social and be havioral scientists, have 
+been quite successful in that endeavor. Attempts to close the gap from 
+the “theory side” have not been nearly so successful. In fact, “grand 
+theory” is still so inﬂ uential and prevalent that for many researchers it 
+is synonymous with “theory”—and so they think of “theory” as hav-
+ing little rele vance to their research. Th ey have resolutely continued 
+to focus on their empirical studies and on their eﬀ orts to improve the 
+methodology of veriﬁ cation.
+Our book is directed toward improving social scientists’ capac-
+ ities for generating theory that will be relevant to their re-
+
+ viii    
+Preface 
+search. Not everyone can be equally skilled at discovering theory, 
+but neither do they need to be a genius to generate useful theory. 
+What is required, we believe, is a diﬀ erent per spective on the canons 
+derived from vigorous quantitative veri ﬁ cation on such issues as sam-
+pling, coding, reliability, validity, indicators, frequency distributions, 
+conceptual formulation, con struction of hypotheses, and presentation 
+of evidence. We need to develop canons more suited to the discovery 
+of theory. Th ese guides, along with associated rules of procedure, can 
+help re lease energies for theorizing that are now frozen by the undue 
+emphasis on veriﬁ cation.
+We argue in our book for grounding theory in social research itself—
+for generating it from the data. We have linked this position with 
+a general method of comparative analysis—dif ferent from the more 
+speciﬁ c comparative methods now current —and with various proce-
+dures designed to generate grounded theory. Although our emphasis 
+is on generating theory rather than verifying it, we take special pains 
+not to divorce those two activities, both necessary to the scientific 
+enterprise. Although our book is directed primarily at sociologists, 
+we believe it can be useful to anyone who is interested in studying 
+social phe nomena—political, educational, economic, industrial, or 
+what ever—especially if their studies are based on qualitative data.
+Barney G. Glaser
+Anselm L. Strauss
+
+Acknowledgments
+The Discovery of Grounded Theory was made possible by Public 
+Health Service Research Grant NU-00047 from the Divi sion of 
+Nursing, Bureau of State Services-Community Health. Other books 
+written under this grant and using the methods and position of this 
+book are Awareness of Dying by Barney G. Glaser and Anselm L. 
+Strauss (Aldine Publishing Company, 1965) and The Nurse and 
+the Dying Patient by Jeanne C. Quint (Macmillan, 1967). A fourth 
+book, Time for Dying (Aldine Publishing Company, forthcoming), 
+deals with the course, or trajectory, of dying.
+We wish to express our indebtedness to many colleagues for their 
+general support of our total enterprise, their encourage ment for 
+its publication, and their speciﬁ c commentaries and critiques, which 
+we found invaluable for ﬁ nal revisions of the manuscript. Their 
+comments indicated clearly that, while in general agreement, 
+these colleagues felt in some controversy with us on several speciﬁ c 
+issues—issues that will doubtless be controversial in sociology for 
+years to come. In short, we have taken their advice and support, but 
+at the same time are fully responsible for our own position.
+We wish to thank Howard S. Becker of Northwestern Uni versity, 
+editor of the “Observations” series; Fred Davis and Leonard 
+Schatzman of the University of California at San Fran cisco; 
+Julius Roth of the University of California at Davis; Amitai 
+Etzioni and Walter Klink of Columbia University; Her bert 
+Blumer, Neil J. Smelser, Sheldon Messinger, and Aaron 
+Cicourel of the University of California at Berkeley; George C.
+ ix 
+
+x    
+Acknowledgments 
+Homans of Harvard University; Charles Fisher of Princeton Uni-
+versity; and David Schneider of the University of Chicago. These 
+colleagues put in several laborious hours of study on the manuscript 
+in order to prepare their detailed comments. Other colleagues who 
+have given general support to our venture are Kai Erikson, Rue 
+Bucher, Berenice Fisher, Louis Schaw, Jeanne C. Quint, Virginia 
+Olesen, and Egon Bittner.
+We wish to express our gratitude to Bess Sonoda (now Mrs. H. 
+Chang), Mrs. Kathleen Williams, and Elaine McLarin, the heroines 
+who made possible two “rush jobs” of typing the manuscript.
+B. G. G. and A. L. S.
+
+I
+The Discovery 
+of Grounded Theory
+Most writing on sociological method has been concerned with 
+how accurate facts can be obtained and how theory can thereby 
+be more rigorously tested. In this book we address our selves to the 
+equally important enterprise of how the discovery of theory from 
+data—systematically obtained and analyzed in social research—can 
+be furthered. We believe that the discovery of theory from data—
+which we call grounded theory—is a major task confronting 
+sociology today, for, as we shall try to show, such a theory fits 
+empirical situations, and is under standable to sociologists and 
+layman alike. Most important, it works—provides us with relevant 
+predictions, explanations, in terpretations and applications.
+As sociologists engaged in research soon discover, there are as 
+yet few theories of this nature. And so we offer this book, which 
+we conceive as a beginning venture in the development of im-
+proved methods for discovering grounded theory. Because this is 
+only a beginning, we shall often state positions, counter-positions 
+and examples, rather than offering clear-cut proce dures and defi-
+nitions, because at many points we believe our slight knowledge 
+makes any formulation premature. A major strategy that we shall 
+emphasize for furthering the discovery of grounded theory is a 
+general method of comparative analysis.
+Previous books on methods of social research have focused 
+mainly on how to verify theories. This suggests an overempha-
+ sis in current sociology on the verification of theory, and a
+ 1 
+
+2   
+THE DISCOVERY OF GROUNDED THEORY
+resultant de-emphasis on the prior step of discovering what 
+concepts and hypotheses are relevant for the area that one 
+wishes to research. Testing theory is, of course, also a basic task 
+confronting sociology. We would all agree that in social research 
+generating theory goes hand in hand with verifying it; but many 
+sociologists have been diverted from this truism in their zeal to 
+test either existing theories or a theory that they have barely 
+started to generate.
+Surely no conflict between verifying and generating theory is 
+logically necessary during the course of any given research. For 
+many sociologists, however, undoubtedly there exists a con ﬂ ict 
+concerning primacy of purpose, reﬂ ecting the opposition between 
+a desire to generate theory and a trained need to verify it. Since 
+verification has primacy on the current sociological scene, the 
+desire to generate theory often becomes secondary, if not totally 
+lost, in specific researches.
+Our book—especially when we discuss the current emphasis on 
+veriﬁ cation—will indicate many facets and forms that the resolution 
+of this conﬂ ict takes among sociologists, but this dis cussion should 
+not be taken as indicating that we endorse the existence of such a 
+conﬂ ict. Rather, our position is that a con ﬂ ict is created when sociolo-
+gists do not clearly and consciously choose which will receive relative 
+emphasis in given researches because of too great an adherence to 
+veriﬁ cation as the chief mandate for excellent research.
+Grounded Theory
+The basic theme in our book is the discovery of theory from 
+data systematically obtained from social research.1 Every chap-
+ ter deals with our beginning formulation of some of the processes
+1. Merton never reached the notion of the discovery of grounded theory in 
+discussing the “theoretic functions of research.” The closest he came was with “ser-
+endipity”; that is, an unanticipated, anomalous, and strategic ﬁ nd ing gives rise to a 
+new hypothesis. This concept does not catch the idea of purposefully discovering 
+theory through social research. It puts the discov ery of a single hypothesis on a 
+surprise basis. Merton was preoccupied with how veriﬁ cations through research feed 
+back into and modify theory. Thus, he was concerned with grounded modifying 
+of theory, not grounded gen erating of theory. Social Theory and Social Structure 
+(Glencoe, 111.: Free Press, 1949), Chapter III.
+
+ The Discovery of Grounded Theory   
+3 
+of research for generating theory. Our basic position is that gen-
+erating grounded theory is a way of arriving at theory suited to its 
+supposed uses. We shall contrast this position with theory generated 
+by logical deduction from a priori assumptions. In Chapter II we 
+shall discuss what we mean by theory and compare it with 
+other conceptions of theory.
+The interrelated jobs of theory in sociology are: (1) to 
+enable prediction and explanation of behavior; (2) to be useful in 
+theoretical advance in sociology; (3) to be usable in prac tical applica-
+tions—prediction and explanation should be able to give the practi-
+tioner understanding and some control of situ ations; (4) to provide a 
+perspective on behavior—a stance to be taken toward data; and (5) to 
+guide and provide a style for research on particular areas of behavior. 
+Thus theory in soci ology is a strategy for handling data in research, 
+providing modes of conceptualization for describing and explaining. 
+The theory should provide clear enough categories and hypotheses 
+so that crucial ones can be veriﬁ ed in present and future re search; 
+they must be clear enough to be readily operationalized in quantita-
+tive studies when these are appropriate.2 The theory must also be 
+readily understandable to sociologists of any view point, to students 
+and to signiﬁ cant laymen. Theory that can meet these requirements 
+must ﬁ t the situation being researched, and work when put into 
+use. By “fit” we mean that the cate gories must be readily (not 
+forcibly) applicable to and indicated by the data under study; by 
+“work” we mean that they must be meaningfully relevant to and 
+be able to explain the behavior under study.
+To generate theory that fills this large order, we suggest as 
+the best approach an initial, systematic discovery of the theory 
+from the data of social research. Then one can be relatively sure 
+that the theory will fit and work.3 And since the categories are 
+discovered by examination of the data, laymen involved in the 
+area to which the theory applies will usually be able to under-
+2. In principle any concept can be operationalized in quantitative ways,
+but the sociologist should develop his concepts to facilitate this operation-
+alization.
+3. Of course, the researcher does not approach reality as a tabula rasa.
+He must have a perspective that will help him see relevant data and ab 
+stract significant categories from his scrutiny of the data. We shall discuss
+this issue more fully in Chapters II and XI.
+
+4   
+THE DISCOVERY OF GROUNDED THEORY
+stand it, while sociologists who work in other areas will recog nize 
+an understandable theory linked with the data of a given area.
+Theory based on data can usually not be completely refuted 
+by more data or replaced by another theory. Since it is too inti-
+mately linked to data, it is destined to last despite its inevi table 
+modiﬁ cation and reformulation. The most striking exam ples are 
+Weber’s theory of bureaucracy and Durkheim’s theory of suicide. 
+These theories have endured for decades, stimulating a variety of 
+research and study, constantly exciting students and professors alike 
+to try to modify them by clever ways of testing and reformulation. 
+In contrast, logically deduced theories based on ungrounded as-
+sumptions, such as some well-known ones on the “social system” 
+and on “social action” can lead their follow ers far astray in trying 
+to advance sociology.4 However, grounded theories—which take 
+hard study of much data—are worth the precious time and focus 
+of all of us in our research, study and teaching.
+Grounded theory can help to forestall the opportunistic 
+use of theories that have dubious fit and working capacity. 
+So often in journals we read a highly empirical study which 
+at its conclusion has a tacked-on explanation taken from a 
+logically deduced theory. The author tries to give his data a 
+more gen eral sociological meaning, as well as to account for 
+or interpret what he found. He uses this strategy because he has 
+not been trained to generate a theory from the data he is report-
+ing so that it will help interpret or explain the data in a general 
+man ner. He does this also because he has been trained only to 
+research and verify his facts, not also to research and generate 
+his explanation of them. The explanation is added afterward. 
+For instance, many papers dealing with deviance conclude with 
+an interpretation based on Merton’s anomie theory, a classic 
+example of this use of logically deduced theory. An author 
+could, of course, borrow the grounded theory of another soci o-
+logist for its general relevance, but—since this kind of theory 
+fits and works—it would readily be seen whether it is clearly 
+applicable and relevant in this new situation. It cannot be tenu-
+4. And also in trying to advance their personal careers, for one cannot em-
+pirically dissociate the need to generate theory from the need to advance careers 
+in sociology.
+
+ The Discovery of Grounded Theory   
+5 
+ously connected, omitting of many other possible explanations, as 
+a tacked-on explanation so often is.
+Another opportunistic use of theory that cannot occur with 
+grounded theory is what may be termed “exampling.” A re searcher 
+can easily find examples for dreamed-up, speculative, or logically 
+deduced theory after the idea has occurred. But since the idea 
+has not been derived from the example, seldom can the example 
+correct or change it (even if the author is willing), since the ex-
+ample was selectively chosen for its con firming power. Therefore, 
+one receives the image of a proof when there is none, and the 
+theory obtains a richness of detail that it did not earn.
+There is also a middle zone between grounded and logico-deductive 
+theorizing, in which the sociologist chooses examples systematically and 
+then allows them to feed back to give theo retical control over his formu-
+lations; but often it is hard to ﬁ g ure out when this is happening, even 
+when we are clearly told. Much of C. Wright Mills’ work, we believe, 
+is exampled with only little theoretical control, though he claimed that 
+data dis ciplined his theory. In contrast, grounded theory is derived from 
+data and then illustrated by characteristic examples of data.5
+In contrasting grounded theory with logico-deductive theory 
+and discussing and assessing their relative merits in ability to 
+fit and work (predict, explain, and be relevant), we have taken 
+the position that the adequacy of a theory for sociology today 
+cannot be divorced from the process by which it is generated. 
+Thus one canon for judging the usefulness of a theory is how 
+it was generated—and we suggest that it is likely to be a better 
+theory to the degree that it has been inductively developed from 
+social research. We also believe that other canons for assessing a 
+theory, such as logical consistency, clarity, parsi mony, density, 
+scope, integration, as well as its fit and its ability to work, are 
+also significantly dependent on how the theory was generated. 
+They are not, as some theorists of a logico-deductive persua-
+sion would claim, completely independent of the proc esses of 
+generation. This notion of independence too often ends up 
+being taken as a license to generate theory from any source—
+5. See, for example, Howard S. Becker et al., Boys in White (Chicago: University 
+of Chicago Press, 1961).
+
+6   
+THE DISCOVERY OF GROUNDED THEORY
+happenstance, fantasy, dream life, common sense, or conjecture 
+—and then dress it up as a bit of logical deduction.
+Probably we need to emphasize here what we shall discuss 
+later more explicitly. Generating a theory from data means that 
+most hypotheses and concepts not only come from the data, but 
+are systematically worked out in relation to the data during 
+the course of the research. Generating a theory involves a process of 
+research. By contrast, the source of certain ideas, or even “models,” 
+can come from sources other than the data. The biographies of 
+scientists are replete with stories of occasional ﬂ ashes of insight, 
+of seminal ideas, garnered from sources out side the data. But the 
+generation of theory from such insights must then be brought 
+into relation to the data, or there is great danger that theory and 
+empirical world will mismatch. We shall discuss this issue again 
+more fully, particularly in Chapter XI on “Insight, Theory De-
+velopment, and Reality.”
+For many colleagues, our position will be at best a hypothe sis, 
+to be tested in the years to come; while for many others it is 
+proven fact, and for still others an article of faith. However colleagues 
+may respond, our position is not logical; it is phenomenological. We 
+could not suggest a process of generating theory if we did not 
+believe that people who might use it would arrive at results that 
+potentially may be judged as suc cessful. Furthermore, we believe 
+that grounded theory will be more successful than theories logically 
+deduced from a priori assumptions. Our position, we hasten to 
+add, does not at all imply that the generation of new theory 
+should proceed in isolation from existing grounded theory. (We 
+shall discuss this in Chapter II.)
+Purposes of This Book
+This book is intended to underscore the basic sociological ac-
+tivity that only sociologists can do: generating sociological theory. 
+Description, ethnography, fact-ﬁ nding, veriﬁ cation (call them 
+what you will) are all done well by professionals in other fields 
+and by layman in various investigatory agencies. But these 
+people cannot generate sociological theory from their 
+
+ The Discovery of Grounded Theory   
+7 
+work. Only sociologists are trained to want it, to look for it, 
+and to generate it.
+Besides reminding colleagues of a somewhat slighted task, we 
+also are trying, through this book, to strengthen the man date 
+for generating theory, to help provide a defense against doctrinaire 
+approaches to verification, and to reawaken and broaden the 
+picture of what sociologists can do with their time and efforts. 
+It should also help students to defend them selves against verifiers 
+who would teach them to deny the validity of their own scientiﬁ c 
+intelligence. By making genera tion a legitimate enterprise, and 
+suggesting methods for it, we hope to provide the ingredients of a 
+defense against internalized professional mandates dictating that 
+sociologists research and write in the veriﬁ cation rhetoric, and 
+against the protests of colleagues who object to their freedom in 
+research from the rigorous rules of veriﬁ cation (so stiﬂ ing to the 
+creative energies required for discovering theory).
+In trying to stimulate all sociologists to discover grounded 
+theory—from those who are only at the dissertation stage of 
+their careers to those who are already “retired” professors—we hope 
+to contribute toward the equalizing of efforts in gen erating 
+theory, which are now often limited to the earlier stages of a 
+sociological career. For example, Hammon, in presenting us with 
+chronicles of some of the best sociological research (those with the 
+highest theoretical yield), has chosen mainly chronicles of disserta-
+tions or studies done as soon as the dissertation was ﬁ nished.6 Similar 
+studies could be done by mature sociologists, and with more speed 
+(less fumbling, clearer purpose) and more sophisticated theoretical 
+yields. Indeed, that the growth of a theorist is linked to the increas-
+ing sophistication of his output is clearly seen in the work of men 
+like Goffman, Lipset and Wilbert Moore. Yet many sociologists 
+as they mature disregard whatever ﬂ edgling potential for generat-
+ing theory they showed in their dissertations and early monographs. 
+They cease or slow up their research and writing of monographs 
+and turn to scholarship and the mastery of others’ works, par-
+ticularly earlier “great man” theories. One respected scholar, by
+6. Philip E. Hammond (Ed.), Sociologists at Work (New York: Basic 
+Books, 1964).
+
+8   
+THE DISCOVERY OF GROUNDED THEORY
+virtue of his position and prominence, has encouraged this trend, by 
+saying, in effect, at a recent sociological meeting, that he would like to 
+see older sociologists cease writing their mono graphs and start worry-
+ing about teaching the next generation of students. We urge them to 
+continue writing monographs and to try to generate theory!
+Throughout this book we call for more theory, but not just any 
+theory. The general comparative method for generating grounded 
+theory that will be discussed in Part I provides criteria for judg-
+ing the worth of all theory, as well as grounded theory. This theme 
+pervades the whole book. It is our intent to give colleagues an 
+effective means for evaluating the worth of any theory that they 
+will teach, apply or use in research, for describing, explaining, 
+predicting, interpreting and testing.
+What about this book’s usefulness for those sociologists who al-
+ready are deeply involved in generating theory? Many may be 
+able to use it effectively to help systematize their theoriz ing; for 
+until they proceed with a bit more method their theo ries will 
+tend to end up thin, unclear in purpose, and not well integrated 
+(see Chapter VI). Our suggestions for systematizing should not 
+curb anyone’s creativity for generating theory; in contrast to the 
+ways of verification, they should encourage it. Our strategies do 
+not insist that the analyst engage in a degree of explicitness and 
+overdrawn explanation in an effort to coerce the theory’s accep-
+tance by “drugging the reader’s imagination and beating him into 
+intellectual submission.”7 Our suggestions for systematizing the 
+rendition of theory allow, even demand, room for including both 
+propositions and the richness of infor mation leading to them.8
+Our principal aim is to stimulate other theorists to codify 
+and publish their own methods for generating theory. We trust 
+that they will join us in telling those who have not yet attempted to 
+generate theory that it is not a residual chore in this age of verifica-
+tion. Though difficult, it is an exciting adventure.
+In our own attempt to discuss methods and processes for 
+discovering grounded theory, we shall, for the most part, keep
+7. Melville Dalton, “Preconceptions in Methods in Men Who Manage,”
+in Hammond, op. cit., pp. 57-58.
+8. Compare to Merton’s strictures on codification of theory, which require 
+leaving out the “irrelevant” richness of connotation! Op. cit., p. 14.
+
+ The Discovery of Grounded Theory   
+9 
+the discussion open-minded, to stimulate rather than freeze 
+thinking about the topic. Our suggestions are deliberately inter-
+spersed with occasional frank polemic—always, we hope, with pur-
+pose—though not at the expense of stopping the flow of suggested 
+procedures or the logic lying behind them. In using examples from 
+research, we have drawn heavily upon our own work—and for a 
+very good reason. We know others’ work as published product; we 
+know our own better as work-in-process—and discovering theory 
+as a process is, of course, the central theme of this book.
+In the ﬁ rst section—Comparative Analysis—we shall present a 
+strategy whereby sociologists can facilitate the discovery of grounded 
+theory, both substantive and formal. This strategy in volves the 
+systematic choice and study of several comparison groups. In 
+Chapter II we discuss the purpose of our use of comparative 
+analysis. In Chapter III we discuss theoretical sampling—the 
+process of collecting data for comparative analysis designed to 
+generate substantive and formal theory. In Chapter IV we take 
+up the transition from substantive to formal theory. And in 
+Chapter V we offer our method for the comparative analysis 
+of qualitative data. In Chapter VI we clarify and assess a num-
+ber of previous comparative studies in terms of several important 
+questions.
+In the second part of the book—The Flexible Use of Data— we 
+consider in detail the generation of theory from qualitative (espe-
+cially documentary) and quantitative data (in Chapters VII 
+and VII, respectively).
+In the third part of the book—Implications of Grounded 
+Theory—we consider the credibility of grounded theory (Chap ter 
+IX) and its practical implications (Chapter X). Lastly, in Chapter 
+XI we discuss insight, theory development and reality. We close 
+with an epilogue summarizing our position on the relations of 
+theory to research.
+Before moving on to these chapters, we shall discuss the contem-
+porary emphasis on veriﬁ cation, the inﬂ uential style of logico-deduc-
+tive theorizing, which encourages the drive toward veriﬁ cation, and 
+the distinction usually drawn between qualita tive and quantitative 
+data—a distinction useless for the genera tion of theory.
+
+10   
+THE DISCOVERY OF GROUNDED THEORY
+Veriﬁ cation and “Grand” Theory
+Verification of theory is the keynote of current sociology. Some 
+three decades ago, it was felt that we had plenty of theories 
+but few confirmations of them—a position made very fea-
+sible by the greatly increased sophistication of quantitative 
+methods.9 As this shift in emphasis took hold, the discovery 
+of new theories became slighted and, at some universities, 
+virtu ally neglected. Those who still wished to generate theory 
+had to brook the negative, sometimes punitive, attitudes of their 
+colleagues or professors.
+Part of the trend toward emphasizing veriﬁ cation was the as-
+sumption by many sociologists that our “great men” fore fathers 
+(Weber, Durkheim, Simmel, Marx, Veblen, Cooley, Mead, 
+Park, etc.) had generated a sufficient number of out standing 
+theories on enough areas of social life to last for a long while. 
+Although we, their sociological offspring, could never equal their 
+genius, we did know how to modify and re formulate their theories 
+with our new-found abilities in veri ﬁ cation—and so that was the 
+next job of sociology. As a result, many of our teachers converted 
+departments of sociology into mere repositories of “great-man” 
+theories and taught these theories with a charismatic ﬁ nality that 
+students could seldom resist. Currently, students are trained to 
+master great-man theories and to test them in small ways, but 
+hardly to question the theory as a whole in terms of its position 
+or manner of gen eration. As a result many potentially creative 
+students have limited themselves to puzzling out small problems 
+bequeathed to them in big theories. A few men (like Parsons and 
+Merton) have seen through this charismatic view of the great men 
+sufﬁ  ciently to generate “grand” theories on their own. But even 
+these few have lacked methods for generating theory from data, 
+or at any rate have not written about their methods. They have 
+played “theoretical capitalist” to the mass of “proletariat” testers,
+9. See Hans L. Zetterberg, On Theory and Veriﬁ cation in Sociology (Totowa, 
+N.J.: Bedminster Press, 1963).
+
+ The Discovery of Grounded Theory   
+11 
+by training young sociologists to test their teachers’ work but 
+not to imitate it.10
+In the face of this prevalent attitude, we contend, however, that 
+the masters have not provided enough theories to cover all the 
+areas of social life that sociologists have only begun to explore. 
+Further, some theories of our predecessors, because of their lack 
+of grounding in data, do not fit, or do not work, or are not’ 
+sufficiently understandable to be used and are there fore useless 
+in research, theoretical advance and practical appli cation. On the 
+other hand, the great theorists have indeed given us models and 
+guidelines for generating theory, so that with recent advances in 
+data collection, conceptual systematization and analytic proce-
+dures, many of us can follow in their paths: from social research 
+we can generate theories for new areas, as well as better theories 
+for areas where previous ones do not work.11
+We contend also that it does not take a “genius” to generate 
+a useful grounded theory. It does take some codiﬁ cation of the 
+method of doing it, as well as recognition of its legitimacy for 
+student training and academic careers. Our book provides some 
+of both. It is well known that in science the highest rewards 
+have always gone to those who generate an important new
+10. The following are the words of a young theoretical capitalist
+modestly asking the proletariat testers  to correct his  conjectured the 
+ory: “Whereas empirical tests would undoubtedly prove a good proportion
+of the inferred predictions to be incorrect, these negative findings would
+provide a basis for refining the theory, whereas as no such refinements are
+possible if a theory fails to yield operational hypotheses that can be negated
+by empirical evidence.” Thus to encourage the testers he carefully writes
+his theory so it can be readily operationalized and proven wrong in several
+ways—a temptation for those who like to prove the theorist wrong. These
+proletariat testers do not realize that allowing themselves to be tempted sim 
+ply puts the refined theory and the theorist on firmer ground, while they
+are soon forgotten. See Peter Blau, Exchange and Power in Social Life
+(New York: John Wiley and Sons, 1964), p. 9. We can only say that it is
+our position that theorists be responsible for the grounding of their theories
+from the start.
+For another attempt at theoretical capitalism and request for colleagues to test 
+him out, see Thomas J. Scheff, Being Mentally Ill (Chicago: Aldine Publishing 
+Co., 1966), especially p. 101.
+11. For example, this is happening in the study of deviance. See
+Marshall B. Clinard (Ed.), Anomie and Deviant Behavior (New York: Free
+Press of Glencoe, 1964).
+
+12   
+THE DISCOVERY OF GROUNDED THEORY
+theory (sociology is like physics in this regard).12 Historical rea-
+sons, then, account for the paradox that more sociologists do not 
+try their hand at generating theory and publishing it, thus achieving 
+high rewards. We wish to help alleviate this condition by encouraging 
+able sociologists to generate more and better theory with the type of 
+comparative method dis cussed in our book, and, in turn, to start 
+developing methods of their own for all of us to use.
+Veriﬁ cation or Generation?
+The following account is an example of the kind of historical 
+circumstance that put the generation of grounded theory into 
+second place, and made verification the dominant orientation 
+in virtually all sociological work:
+During 1938 the Social Science Research Council struck 
+upon the idea of subjecting to critical appraisal a series of sig niﬁ cant 
+contributions to social science. In sociology, Herbert Blumer was 
+assigned the task of appraising Thomas and Znani-ecki’s great 
+monograph, The Polish Peasant in Poland and America.13 A year 
+later Blumer’s critique was published by the Council.14 The vol-
+ume included comments on Blumer’s analysis by Thomas and by 
+Znaniecki, as well as a reprinting of the pro ceedings of a conference 
+that discussed the analysis (the con ference included such partici-
+pants as Murdock, Wirth, Bain, Wiley and Waller).
+Blumer noted that Thomas and Znaniecki had been much 
+concerned with methodological issues and had taken a stand 
+against several types of knowledge then much advocated. These 
+latter included “common sense generalization,” “planless empiri-
+cism,” “mere statements of uniformities of social behavior in 
+response to social influences,” “statements of causal influences 
+which hold true ‘on the average,’ or ‘in a majority of cases,’” 
+and a type of misleading oversimplification in which “effort is 
+made to resolve what must be taken as a primary relation into
+12. For example, six of the eight Maclver Awards have gone to 
+sociolo gists for generating grounded theory.
+13. Thomas and F. Znaniecki  (New York:  Alfred A. Knopf,  1918).
+14. Appraisal of Thomas and Znaniecki’s The Polish Peasant in Europe
+and America (New York: Social Science Research Council, 1939).
+
+ The Discovery of Grounded Theory   
+13 
+simpler elements.” In contrast, the monograph was directed at 
+furthering general sociological theory and giving a very detailed 
+interpretation of Polish peasant society in Europe and America.
+Blumer’s principal criticism of The Polish Peasant was di rected 
+at what he believed was an important methodological ﬂ aw in 
+it—one that needed to be discussed as an issue basic to sociological 
+research rather than as pertinent merely to this par ticular mono-
+graph. The authors claimed that their analyses rested largely on 
+numerous “human documents”: letters, agency records, life histories, 
+court records. Blumer noted ﬁ rst that not all—perhaps not even 
+the major—theoretical conceptions used by Thomas and Znaniecki 
+were grounded on those documents. Indeed, “the major outlines 
+are foreshadowed in the previous writings of Thomas,” and even 
+“their particular interpretations of Polish peasant life were not 
+formed solely from the materials they present; we have to assume 
+that the familiarity with Polish peasant life which enabled their 
+interpretations was made in a wide variety of ways.”
+But this was only a minor criticism. Blumer’s major concern was 
+this: “the important question is whether the materials ade quately 
+test the generalizations (regardless of their source) which are 
+being applied to the materials. . . .” But “the answer is very incon-
+clusive.” Some interpretations seemed to him to be borne out by the 
+materials; some did not. Worse yet, usually one could not say that 
+“the interpretation is either true or not, even though it is distinctly 
+plausible,” (pp. 74-75). Blumer agreed that these plausible interpre-
+tations made the materials more signiﬁ cant and made “theoretical 
+interpretation more understandable.” Yet the very puzzling issue of 
+plausible inter pretation versus genuine verification remained.
+Therefore Blumer concluded, first, that the materials were 
+not a decisive test of theoretical interpretations, although they 
+did more than simply illustrate them; second, that a test of 
+“theory would have to come in other ways, such as in its in-
+ternal consistency, in the character of its assumptions, in its 
+relation to other theories, in its consistency with what seems 
+to be ‘human,’ or in other kinds of data than those provided 
+by human documents”; and, third, that the authors’ use of 
+human documents would seemingly imply that their essential 
+function “would be to ... yield to a sensitive and inquiring mind
+
+14   
+THE DISCOVERY OF GROUNDED THEORY
+hunches, insights, questions suitable for reﬂ ection, new per-
+spectives, and new understandings” (pp. 75-76). In short, the 
+data were useful for theorizing but not adequate for veriﬁ cation.
+Blumer’s critique was written during the period when 
+Stouffer, Chapin, Lazarsfeld, Guttman and other advocates of bet-
+ter (quantitative) measures for checking theory began to exert 
+great inﬂ uence in sociology. The emphasis in Blumer’s critique on 
+veriﬁ cation, then, ﬁ t the mood of the day. Yet the enormous inﬂ u-
+ence of The Polish Peasant for two decades was less the result of its 
+demonstrable ﬁ ndings than of its stimulating theory. With hindsight, 
+we can wonder what might have hap pened if Blumer had focused 
+less on the problem of veriﬁ cation and more on generation. He 
+did, of course, come close to emphasizing the latter, since he 
+raised the issue of how to theorize from data rather than from 
+the armchair. But, as we see it, whatever his intent, Blumer threw 
+the weight of his analysis toward an examination of verification, 
+rather than toward the question of how to generate grounded 
+theory. He left that latter problem largely untouched, apparently 
+assuming that the most one could say was that good theory is 
+produced by a fortunate combination—an inquiring mind, rich 
+experience, and stimulating data.15
+Znaniecki’s rejoinder to Blumer’s critique on the verification 
+issue is also instructive. He agreed that his monograph’s materi-
+als did not always provide a good test of the theoretical formu-
+lations, but he attributed this to “the inadequacy of that general 
+conceptual framework with which we approached our data.”
+15. A year later, Blumer published an admirable article addressing himself to 
+the gap between ungrounded theories and the countless empiri cal studies unguided 
+by any theories. Operationalism was then coming into dominance, and he attacked 
+it effectively as not offering a solution to clos ing the gap. Closing it, he believed, 
+would depend on “developing a rich and intimate familiarity with the kind of 
+conduct being studied and in em ploying whatever relevant imagination observers 
+may fortunately possess. The improvement in judgment, in observation, and in 
+concept will be in the future, as . . . in the past, a slow maturing process.” His 
+emphases on the meaning of the theory-data gap and on the requisite need for 
+good qualitative data, we agree with thoroughly. Blumer’s solution to getting 
+better theory, and in close relation to data, was—again—blunted because he was 
+poised in too sharp a posture against veriﬁ cation (Operationalism in this instance), 
+and too ready to give up on the problem of how to generate better theory except 
+by the general formula of sticking close to the data being studied. See his “The 
+Problem of the Concept in Social Psychology,” American Journal of Sociology 
+(1940), 707-19; the quotes are from pp. 718-19.
+
+ The Discovery of Grounded Theory   
+15 
+By “framework,” Znaniecki referred to the “excessive simplicity of 
+the ‘attitude-value’ conceptual combinations”—the principal theo-
+retical conception that organized the monograph. Znaniecki would 
+substitute a more sophisticated conception involving “system” 
+and “pattern” (which he believed had been implicit anyhow in the 
+monograph) which would have demanded fuller qualitative data 
+of various kinds. He was still thinking of the generation of theory 
+largely in terms of a pre-existent concep tualization; he was still not 
+emphasizing methods for generating grounded theory.
+Qualitative vs. Quantitative Data
+Historically linked with the change in relative emphasis from 
+generation to veriﬁ cation of theory was the clash between advocates 
+of quantitative and qualitative data. The generators of theory in the 
+late 1930’s, by and large, had used qualitative data in a nonsystematic 
+and nonrigorous way (when they used data at all), in conjunction 
+with their own logic and common sense. In addition, monographs 
+based on qualitative data con sisted of lengthy, detailed descriptions 
+which resulted in very small amounts of theory, if any.16 The effort 
+in these mono graphs was to “get the story straight.” In short, the 
+work based on qualitative data was either not theoretical enough 
+or the theories were too “impressionistic.”
+Meanwhile, beginning in the late 1930’s, and especially after 
+World War II, quantitative researchers made great strides both in 
+producing accurate evidence and in translating theoretical concepts 
+into research operations. The result was an ability to begin the 
+challenge of testing theory rigorously.
+Thus, advances in quantitative methods initiated the zeal to 
+test unconfirmed theories with the “facts.” Qualitative re search, 
+because of its poor showing in producing the scientifically re-
+producible fact, and its sensitivity in picking up everyday facts 
+about social structures and social systems, was relegated, by 
+men like Stouffer and Lazarsfeld, to preliminary, exploratory, 
+groundbreaking work for getting surveys started. Qualitative 
+research was to provide quantitative research with a few sub-
+16. For example, see the various studies of the Chicago school on the gang, 
+the ghetto, the taxi-dance hall, the hoboes, etc.
+
+16   
+THE DISCOVERY OF GROUNDED THEORY
+stantive categories and hypotheses. Then, of course, quantitative 
+research would take over, explore further, discover facts and test 
+current theory.
+The strength of this position, which soon swept over Ameri can 
+sociology, was based on the emerging systematic canons and 
+rules of evidence of quantitative analysis: on such issues as sampling, 
+coding, reliability validity, indicators, frequency dis tributions, 
+conceptual formulization, hypothesis construction, and parsi-
+monious presentation of evidence. The methods of qualitative 
+researchers on these issues had not been developed to the point 
+where they offered any assurance of their ability to assemble 
+accurate evidence and to test hypotheses. Indeed, in sociology the 
+only qualitative methods receiving much devel opment were for the 
+quantification of qualitative data! The assumption behind, and 
+because of, these developments was that sociology was embarked 
+on a straight-line course of prog ress towards becoming a science, 
+by virtue of quantitative veri ﬁ cations of hypotheses.
+A smaller number of sociologists did take other positions, 
+in their research and teaching, but they began—and still con tinue 
+today—to use the veriﬁ cation rhetoric in talking of quali tative data 
+(testing, proving, tentativeness, demonstrating, and so forth). One 
+position was “since we are so accustomed to qualitative data, let’s verify 
+with such data, as they do with quantitative data.” These advocates 
+tried to systematize the ways they collected, assembled and presented 
+qualitative ma terials. Sometimes they used quantifying techniques, 
+but their systemization was far broader. Virtually every maneuver was 
+accomplished according to precise patterns—for example, how inter-
+views or observation were recorded, coding procedures ac complished, 
+modeled analyses done, and concepts clariﬁ ed. The path to system-
+atization was guided (as this book has been) by the pressure that 
+quantitative veriﬁ cations had put on all sociol ogists to clarify and 
+codify all research operations, no matter what the type of data 
+or the content of the research report.17
+17. For clariﬁ cations and codiﬁ cations of qualitative methods see, for example, 
+the articles in Richard N. Adams and Jack J. Preiss (Eds.), Human Organization 
+Research (Homewood, 111.: Dorsey Press, 1960). The call to codify and clarify all 
+methods, including qualitative research was earlier given in 1949 by Robert K. 
+Merton, op. cit., p. 390.
+
+ The Discovery of Grounded Theory   
+17 
+Another position taken by advocates of qualitative data has been 
+that these data were their media and therefore were still the best and 
+richest for theorizing about social structures and social systems. Also, 
+qualitative method still was the only way to obtain data on many areas 
+of social life not amenable to the techniques for collecting quantitative 
+data. The fascinating fact about people who have taken this stand is 
+that they have con tinued to generate theories from qualitative data, 
+realizing its importance, and yet they have not explicitly referred 
+to their work as generating theory (or have not described how they 
+generated theory or how it was relevant) because they have been too 
+concerned with formulating their ideas within the rhetoric of veriﬁ ca-
+tion! In reading their writings, one constantly ﬁ nds that they make 
+qualiﬁ cations using the veriﬁ cation termi nology, such as “the hypoth-
+esis is tentative,” “we had only a few cases,” “we need more denite 
+proofs in future research,” and “we checked this out many times.” We 
+cannot evaluate how well their theories were generated, because we are 
+seldom told of what use the theories are in prediction, application and 
+expla nation, or what procedures led to suggested hypotheses.
+The position of the logico-deductive theorists also became subor-
+dinated to the rhetoric of verification. Since they did not use data 
+for generating theory anyway, they supported quanti tative verifica-
+tions as the best way to reformulate and modify their theories. 
+This meant, of course, that they supported the trend in sociology 
+that pointed toward the perfection of their own theories by other 
+men. They could not lose. As we have remarked earlier, they never 
+mentioned the lost emphasis on generating theory, since perhaps 
+they wanted their work to be tested and only slightly modified 
+rather than replaced.
+Our position in this book is as follows: there is no funda mental 
+clash between the purposes and capacities of qualitative and 
+quantitative methods or data. What clash there is concerns the 
+primacy of emphasis on verification or generation of theory— to 
+which heated discussions on qualitative versus quantitative data 
+have been linked historically. 18 We believe that each form
+18. In the 1930’s, men like E. W. Burgess attempted to mediate be tween 
+the antagonists, using both types of data in their research. But in evitably they 
+leaned toward the Stouffer-Lazarsfeld position that qualitative data was exploratory 
+in function, thus neutralizing its generative possibilities.
+
+18   
+THE DISCOVERY OF GROUNDED THEORY
+of data is useful for both veriﬁ cation and generation of theory, what-
+ever the primacy of emphasis. Primacy depends only on the 
+circumstances of research, on the interests and training of the 
+researcher, and on the kinds of material he needs for his theory.
+In many instances, both forms of data are necessary—not quan-
+titative used to test qualitative, but both used as supple ments, 
+as mutual verification and, most important for us, as different 
+forms of data on the same subject, which, when com pared, will 
+each generate theory (see Chapter III).
+To further this view, we seek in this book to further the system-
+atization of the collection, coding and analysis of quali tative data 
+for the generation of theory. We wish particularly to get library 
+and field research off the defensive in social research, and thereby 
+encourage it. Although the emphasis on qualitative data is strong 
+in our book, most chapters also can be used by those who wish 
+to generate theory with quantitative data, since the process of 
+generating theory is independent of the kind of data used. (See 
+particularly Chapters II and VIII, on theoretical sampling and 
+quantitative data.)
+We focus on qualitative data for a number of other reasons: be-
+cause the crucial elements of sociological theory are often found 
+best with a qualitative method, that is, from data on structural 
+conditions, consequences, deviances, norms, processes, patterns, and 
+systems19; because qualitative research is, more often than not, the 
+end product of research within a substantive area beyond which 
+few research sociologists are motivated to move; and because 
+qualitative research is often the most “ade quate” and “efﬁ cient” way 
+to obtain the type of information re quired and to contend with the 
+difﬁ culties of an empirical situa tion. We wish also through this 
+book to provide sociologists with a set of categories for writing 
+their theories within a rhetoric of generation, to balance out 
+that of verification.
+19. See James Coleman’s discussion of the relative merits of qualitative and 
+quantitative research in analyzing the “working parts of a system,” “Research 
+Chronicle: The Adolescent Society,” in Philip E. Hammond, op. cit., pp. 190-
+193, 206. Coleman agrees with us, but he is not aware that the benefits that 
+he suggests for a “comparative quantitative analysis” can also be obtained with a 
+“comparative qualitative analysis,” as we shall show in this book.

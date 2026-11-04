@@ -1,0 +1,14 @@
+Re-extracting code files in . (no LLM needed)...
+[graphify watch] 105 file(s) not classified (no supported extension or shebang), skipped: .gitignore, APS_11BM_sincrotron_0p413A.instprm, APS_sincrotron_0p143A.instprm, Abrir_Alerta_Onibus.bat, Al2O3_SRM676_corindon.cif, AndroidManifest.xml (+99 more)
+  AST extraction: 100/101 uncached files (99%) [16 workers]
+  AST extraction: 101/101 uncached files (100%) [16 workers]
+  warning: 1 file(s) had syntax errors and may be partially extracted: Write/testes/saida/lt/main.toc (first error at line 1, no symbols extracted)
+  warning: 60 code file(s) yielded no symbols (0.06 MB) — a data file, or source this extractor models no symbols for: AlertaDeOnibus/alertadeonibus_main.py, AlertaDeOnibus/iniciar_alerta.py, AlertaDeOnibus/src/config.py, DA/Executável/gui_analysis_smoke.py, DA/Executável/gui_smoke_test.py (+55 more)
+[graphify watch] community set changed since labeling (0 saved labels, 339 communities now; renamed 97 community(ies) by their hub). Run `graphify label` to refresh names with the LLM.
+Graph has 11644 nodes (above 5000 limit). Building aggregated community view...
+graph.html written (aggregated: 339 community nodes, 1241 cross-community edges)
+Tip: run with --obsidian for full node-level detail.
+[graphify watch] Rebuilt: 11644 nodes, 27757 edges, 339 communities
+[graphify watch] graph.json, graph.html and GRAPH_REPORT.md updated in graphify-out
+Code graph updated. For doc/paper/image changes run /graphify --update in your AI assistant.
+Tip: set GEMINI_API_KEY or GOOGLE_API_KEY to use Gemini for semantic extraction.

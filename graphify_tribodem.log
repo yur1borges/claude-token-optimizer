@@ -1,0 +1,9 @@
+Re-extracting code files in . (no LLM needed)...
+[graphify watch] 262 file(s) not classified (no supported extension or shebang), skipped: .png, 01_Crushing_pin-on-disc_pan_floor.stl, 01_Excavator_loader_bucket_with_teeth_shell.stl, 01_G65_rubber_wheel.stl, 01_Transfer_station_feed_belt.stl, 01_chute_Transfer_chute_only_hood_or_rockbo.stl (+256 more)
+  AST extraction: 88/88 uncached files (100%) [16 workers]
+  warning: 5 code file(s) yielded no symbols (0.01 MB) — a data file, or source this extractor models no symbols for: instalacao/liberar_memoria_wsl.ps1, instalacao/teste_serial_acoplado.py, testes/rodar_lote_janela.ps1, testes/sonda_yade.py, tribodem/deme_forca_jkr.cu
+[graphify watch] community set changed since labeling (0 saved labels, 135 communities now; renamed 23 community(ies) by their hub). Run `graphify label` to refresh names with the LLM.
+[graphify watch] Rebuilt: 1817 nodes, 4362 edges, 135 communities
+[graphify watch] graph.json, graph.html and GRAPH_REPORT.md updated in graphify-out
+Code graph updated. For doc/paper/image changes run /graphify --update in your AI assistant.
+Tip: set GEMINI_API_KEY or GOOGLE_API_KEY to use Gemini for semantic extraction.

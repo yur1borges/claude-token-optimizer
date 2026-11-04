@@ -1,0 +1,880 @@
+Determination of the friction coe¨cient of coal
+particles by discrete element simulation and
+experimentation
+Jinrong CHAI  (  xiaozheng3340@yeah.net )
+China University of Mining and Technology(Beijing)
+Shifeng WANG 
+China University of Mining and Technology(Beijing)
+Zihao ZHOU 
+China University of Mining and Technology(Beijing)
+Guohua LI 
+China University of Mining and Technology(Beijing)
+Xunan LIU 
+Liaoning Technical University
+Research Article
+Keywords: coal particle, friction coe¨cient, discrete element simulation, simulation model
+Posted Date: December 15th, 2020
+DOI: https://doi.org/10.21203/rs.3.rs-122784/v1
+License:   This work is licensed under a Creative Commons Attribution 4.0 International License.  
+Read Full License
+
+ 
+1 
+Determination of the friction coefficient of coal particles by discrete 
+element simulation and experimentation 
+Chai Jinrong1, Wang Shifeng1, Zhou Zihao1, Li Guohua1, Liu Xunan2 
+1.School of Mechanical Electronic and Information Engineering, China University of Mining and Technology(Beijing), Beijing 
+100083, China;  
+2.College of Mechanical Engineering, Liaoning Technical University, Fuxin, 123000, China） 
+these authors contributed equally to this work 
+ABSTRACT  
+The friction coefficient of coal is the main factor influencing the results of discrete element simulation. In this 
+study, the friction coefficient of coal was determined using a self-made testing instrument for measuring the 
+static friction coefficient and an automatic cylinder lifting device on the basis of discrete element simulation, 
+image processing, and orthogonal testing. The correlations between the angle of repose of coal particles, the 
+rolling friction coefficient between coal particles, and the rolling friction coefficient between the coal particles 
+and stainless steel were evaluated by linear regression analysis. Results indicated that the dependent variable 
+(angle of repose of coal particles) was linearly correlated to the two independent variables (rolling friction 
+factor between the coal particles, as well as the rolling friction factor between the coal and the stainless steel). 
+The angle of repose of the coal particles was largely affected by the rolling friction coefficient between the coal 
+particles but not by the rolling friction coefficient between the coal particle and stainless steel. Moreover, the 
+static friction coefficient between the coal particles was 0.53, and that between the coal particle and the stainless 
+steel was 0.38. The rolling friction coefficient between the coal particles was 0.048, and that between the coal 
+particles and the stainless steel was 0.03. These friction coefficients were used to simulate the bottomless 
+cylinder test of the coal particles. The angle of repose in the simulation test was 30.77°, whereas that in the real 
+test was 31.47°; the relative error was 2.22%. Therefore, no significant difference in the results was indicated 
+between the simulation test and the real test, verifying the effectiveness of the method used to determine friction 
+coefficients. The aforementioned technique can be applied to determine the friction coefficient of lump coal 
+particles. 
+Key words: coal particle; friction coefficient; discrete element simulation; simulation model 
+ 
+Introduction  
+Discrete element simulation has been widely used in the coal mining industry, particularly in coal mining 
+and conveying[1–8]. The physical characteristic parameters (Poisson's ratio, shear modulus, density) and contact 
+parameters (collision recovery coefficient, static friction factor, and rolling friction factor) of discrete element 
+simulation materials significantly influence the simulation test results[9–10]. The physical properties of the 
+material can be measured by a triaxial shear test, a tensile pressure test, and a uniaxial compression test[11–14]. 
+Material density can be determined using the drainage method. However, the contact parameters of materials 
+are difficult to determine directly through experiments, requiring calibration with discrete element simulation 
+software. Wen Xiangyu et al. [15] fitted the relationship between the contact parameters of granular fertilizers 
+and the overall characteristics of the material through a simulation test. They also derived the contact 
+parameters of granular fertilizers from actual test results. Yuan Quanchun et al. [16] established a regression 
+
+ 
+2 
+model through a simulation test and combined the result with that of the physical test to identify the optimal 
+method for determining the simulation model parameters of organic fertilizers. Li Tiejun et al. [13] conducted a 
+Box–Behnken simulation test on the friction factor of 6–8 mm coal particles; moreover, they solved the 
+regression model with the actual stacking angle as the response value, identifying the optimal combination of 
+the contact parameters of coal particles. 
+Currently, studies on methods for determining the contact parameters of granular materials mainly focus on 
+granular materials related to agriculture [17–18]; meanwhile, few studies have been reported on the contact 
+parameters of coal particles. Various coal particles have large granularity spans and different contact parameters 
+for different coal particles. The application of discrete element simulation in the mining industry necessitates 
+the study of the contact parameters of coal particles. Based on previous studies, the current study uses a 
+self-made static friction factor tester and an automatic cylinder lifting test device. This study also combines 
+discrete element simulation, image processing technology, orthogonal testing, and regression analysis to 
+examine the discrete element simulation friction factor of lump-coal with particle sizes of 24–26 mm. 
+1 Materials and Methods 
+1.1 Basic parameters of the test materials 
+The coal particles used in the experiment are anthracite from Shanxi Province. Anthracite is a hard, dense, 
+and high-gloss variety of coal mine, with grain sizes ranging from 24 mm to 26 mm. The material in contact 
+with the coal particles is stainless steel. The Poisson ratio, shear modulus, density, and recovery coefficient of 
+the selected materials were determined by referring to relevant literatures[12,18]. The basic parameters of the 
+materials are listed in Tab. 1. 
+Table 1 Basic material parameters[12，18] 
+Materials 
+Parameters 
+Value 
+Coal 
+Poisson's ratio 
+Shear modulus/Pa 
+Density/(kg/m3) 
+Coal–coal restitution coefficient 
+Coal–stainless steel restitution coefficient 
+0.3 
+2×108 
+1500 
+0.64 
+0.65 
+Stainless steel 
+Poisson's ratio 
+Shear modulus/Pa 
+Density/(kg/m3) 
+0.29 
+8×108 
+7800 
+1.2 Experimental method 
+1.2.1 Static friction factor calibration testing  
+ 
+Figure 1 Test instrument of the static friction coefficient 
+The static friction factor test was conducted on a self-made tester (Fig. 1) . The static friction factor 
+between the coal and the stainless steel plate was measured as follows: The coal particles were placed on a 
+stainless steel inclined plate, which was then tilted slowly. The inclined plate angle when the coal particles 
+
+ 
+3 
+began to slide was recorded; this step was repeated 3 times, and the average of the 3 test results was calculated. 
+The coal and the coal static friction factor were determined as follows: The large flat coal was selected and then 
+fixed on the stainless steel plate by using glue. The coal particles were then placed on the large flat coal. The 
+stainless steel inclined plate was slowly tilted. The angle when the coal particles started to slide on the large flat 
+coal was recorded; this step was repeated 3 times, and the average of the 3 test results was determined. The 
+static friction factor, static µ, was calculated using Eq.(1).                                         
+                                           
+                                 (1) 
+1.2.2 Rolling friction factor calibration testing  
+An orthogonal simulation experiment on coal particle stacking was conducted using the discrete element 
+simulation software EDEM. With the real stacking angle as a reference, the orthogonal simulation results were 
+analyzed. Regression analysis of the orthogonal simulation results was performed to establish the relationship 
+between the rolling friction factor and the angle of repose. The rolling friction factor of the coal particles was 
+solved. 
+1) Discrete element simulation model of coal particles 
+The choice of the coal particle model influences the simulation results to a certain extent. Xia Rui [19] et al. 
+established six coal particle models to evaluate the effects of the models on the accuracy of the simulation; the 
+research results showed that the 10-ball particle model exhibited the highest accuracy. The 10-ball coal particle 
+model is presented in Fig. 2. 
+ 
+ 
+Figure 2 Model of the coal particles 
+2）Contact model of discrete element simulation  
+In the actual test, the dry coal particles was used as the test material, and the surfaces of the coal particles 
+almost exhibited no adhesion. Therefore, the Hertz–Mindlin (no-slip) contact model, which exhibits rapid 
+calculation and high precision, was adopted as the contact model between coal particles and between the coal 
+particles and stainless steel in the simulation. The normal component in the model was calculated based on the 
+Hertz theory of contact mechanics, and the tangential component was calculated based on the research results of 
+Mindlin and Deresiewicz. Both normal force and tangential force have damping components, and the damping 
+coefficient is related to the particle recovery coefficient[19]. Tangential friction follows Coulomb's law of 
+friction[20], and rolling friction can be explained by the directional constant torque of the contact surface[21]. The 
+specific formula is as follows[22] : 
+The normal force between particles (
+) can be determined using Eq. (2):  
+                         (2)  
+where 
+is the equivalent particle radius of two spherical particles in elastic contact, which can be derived 
+from Eq. (3); 
+ is the equivalent elastic modulus, which can be determined from Eq. (4); 
+, 
+ are the 
+position vectors from the center of the two particles.  
+                                   (3) 
+where 
+ and 
+ denote the radii of the two particles in contact. 
+)
+tan(a
+µ =
+n
+F
+2
+/
+3
+2
+1
+2
+1
+2
+/1
+*
+*
+n
+)
+(
+)
+(
+3
+4
+r
+r
+R
+R
+R
+E
+F
+-
+-
++
+=
+*
+R
+*
+E
+1r
+2r
+2
+1
+*
+1
+1
+1
+R
+R
+R
++
+=
+1
+R
+2
+R
+
+ 
+4 
+                                 (4) 
+where 
+, 
+, 
+ and 
+ are the elastic moduli and Poisson's ratios, respectively, of the two particles. 
+The normal damping force 
+ can be calculated using the following equation: 
+                            (5) 
+where e is the recovery coefficient; 
+ is the normal stiffness, which can be determined using Eq. (6); 
+ is the normal component value of the relative velocity. 
+                                (6) 
+The tangential force 
+ between the particles can be obtained from the following formula: 
+                              (7) 
+where 
+  is the equivalent shear modulus, which can be calculated from Eq. (8); 
+is the tangential 
+overlap quantity. 
+                                   (8) 
+where 
+, 
+ are the shear moduli of the two particles. 
+    The tangential damping force 
+ between the particles can be calculated using the following formula.  
+                              (9) 
+where 
+ is the tangential component value of the relative velocity. 
+The tangential force 
+ is also related to the friction force 
+ and is the static friction factor. 
+The moment of the contact surface is related to the rolling friction factor, as shown in Eq. (10). 
+                                  (10) 
+where
+ is the rolling friction factor between particles; 
+ is the distance between the center of mass and 
+the contact point; 
+ is the unit angular velocity vector of the object at the point of contact. 
+By using this contact model, the force on coal particles can be decomposed into two directions: the normal 
+direction and the tangential direction of the contact point. The force in each direction can be simplified into the 
+force exerted by the spring and the damping force. The tangential force is affected not only by the elastic force 
+and the damping force but by the friction force as well. The contact model measures the resultant force of forces 
+in the normal and tangential directions to determine the spatial force of coal particles in contact collision. It also 
+calculates the position of coal particles at each time step by iteration. 
+3) Simulation model of the bottomless cylinder tester 
+The size of the bottomless cylinder should be determined based on the predicted particle size. The 
+bottomless cylinder should have a diameter larger than 4–5 times the maximum particle size and a 
+height-to-diameter ratio of 3:1[23]. Given that the predicted coal particle size was 24–26 mm, the bottomless 
+barrel measured 130 mm in diameter and 390 mm in height. In the EDEM software, the cylinder modeling tool 
+in Geometry was used to establish the bottomless cylinder discrete element model with determined parameters 
+and to set the stainless steel as the material. With the polygon modeling tool in Geometry, a 600 mm × 600 mm 
+plane was established, and stainless steel was set as the material. The plane of the stainless steel plate coincided 
+with the bottom plane of the bottomless cylinder. 
+2
+2
+2
+1
+2
+1
+*
+1
+1
+1
+E
+E
+E
+n
+n
+-
++
+-
+=
+1
+E
+1
+n
+2
+E
+2
+n
+d
+n
+F
+rel
+n
+n
+d
+n
+v
+m
+S
+e
+e
+F
+*
+2
+2
+ln
+ln
+6
+5
+2
+p
++
+-
+=
+n
+S
+rel
+tv
+)
+2
+2
+1
+2
+1
+*
+*
+n
+r
+r
+R
+R
+R
+E
+S
+-
+-
++
+=
+（
+tF
+d
+)
+(
+G
+8
+-
+2
+1
+2
+1
+*
+*
+r
+r
+R
+R
+R
+Ft
+-
+-
++
+=
+*
+G
+d
+2
+2
+2
+1
+2
+1
+*
+-
+2
+-
+2
+G
+G
+G
+n
+n
++
+=
+1
+G
+2
+G
+d
+tF
+rel
+t
+n
+d
+t
+v
+m
+S
+e
+e
+F
+*
+2
+2
+ln
+ln
+6
+5
+2
+p
++
+-
+=
+rel
+tv
+n
+F
+s
+µ
+s
+µ
+i
+i
+n
+r
+i
+R
+F
+T
+w
+µ
+-
+=
+s
+µ
+iR
+i
+w
+
+ 
+5 
+4) Simulation of the bottomless cylinder test 
+After the geometry of the bottomless cylinder and stainless steel plate was generated, the polygon 
+modeling tool in Geometry was used to establish a plane measuring 90 mm × 90 mm on the upper end of the 
+bottomless cylinder, and the plane was set as a virtual plane. A particle factory was established on the virtual 
+plane. Coal particles were produced by dynamic quantitative particle generation, and the simulated coal 
+particles were filled with a bottomless cylinder. After the particles were stabilized in the bottomless cylinder, the 
+bottomless cylinder was set to move in a positive direction perpendicular to the plane of the stainless steel plate 
+at the speed of 0.01 m/s. The coal particles gradually flowed out, eventually forming a heap of stable cone 
+particles on the stainless steel plate. The simulation process is illustrated in Fig. 3.    
+ 
+      
+ 
+(a) Coal particles being packed  (b) Bottomless cylinder filled with 
+into the bottomless cylinder        coal particles   
+ 
+  
+ 
+(c) Coal particles flowing out  (d) Formation of a pile of coal particles 
+Figure 3 Simulation of the bottomless cylinder test 
+5) Measurement of the angle of repose  
+The stacking contour of the coal particles was formed by the particles and was not a straight line. If the 
+angle of repose of the coal particles was measured using a screen protractor, errors would be generated. To more 
+accurately measure the angle of repose of the coal particles, the measurement method described in the 
+literature[15, 24] was adopted in the current study, and the specific method is illustrated in Fig. 4. The original 
+image was show in Fig. 4a. First, Matlab was used to process the image and consequently produce the binary 
+image (Fig. 4b). Second, the boundary contour of the binary graph was extracted (Fig. 4c). Third, the boundary 
+contour of the binary graph was scanned, the coordinates of the white points were recorded, the boundary 
+contour was fitted linearly by using the least-squares method, and the fitting line was drawn with the red line 
+(Fig. 4d). The slope K of the fitting line was read in the Matlab software working area, and the inclination of the 
+edge contour of the particle heap was be established using Formula 11. In each simulation, the particle heap 
+morphology diagram was intercepted in the positive X and positive Z directions. The angle of repose was 
+considered as the average of the angles of repose in the positive X and positive Z directions. Each simulation 
+experiment was repeated 3 times, the average of the 3 test results was determined. 
+
+ 
+6 
+             
+                                          (11) 
+5）Orthogonal experimental design 
+The orthogonal test table of two factors and three levels was designed, and the orthogonal simulation test 
+was performed. Regression analysis was also conducted to determine the relative relationship between the 
+dependent variable (angle of repose of coal particles) and two independent variables (the rolling friction factor 
+between coal paritcles, as well as the rolling friction factor between coal and stainless steel). The orthogonal test 
+table of two factors and three levels is shown in Tab. 2. 
+  
+ 
+(a) Original image             (b) Binary image 
+  
+ 
+(c) Boundary contour image  (d) Contour fitting image 
+Figure 4 Image processing of the angle of repose measurement 
+6) Regression analysis 
+To analyze the effects of the factors A and B on the angle of repose, regression analysis of the 
+aforementioned orthogonal test data was conducted. The angle of repose was considered as the dependent 
+variable, whereas the rolling friction factor between the coal particles (A) and the rolling friction factor between 
+the coal and stainless steel (B) were regarded as the independent variables. 
+Table 2 Orthogonal test table 
+N
+o. 
+A (Rolling friction factor between coal and coal) B (Rolling friction factor between coal and stainless steel) 
+1 
+1 (0.01) 
+1 (0.01) 
+2 
+1 
+2 (0.03) 
+3 
+1 
+3 (0.05) 
+4 
+2 (0.03) 
+1 
+5 
+2 
+2 
+6 
+2 
+3 
+7 
+3 (0.05) 
+1 
+8 
+3 
+2 
+9 
+3 
+3 
+2 Results and analysis 
+2.1 Static friction factor 
+The inclination angles of the inclined plates in the three static friction factor tests of coal particles to coal 
+particles were 27.5°, 28.5°, and 28°, with 28° as the average value. By substituting the average value into 
+Formula 1, the static friction factor between the coal particles was calculated as 0.53. The inclined plates of the 
+p
+q
+180
+arctan
+´
+=
+k
+
+ 
+7 
+static friction factor tests between the coal particles and stainless steel, performed three times, were 21°, 21°, 
+and 20.5°, respectively. The average value was 20.83°, which was then substituted into Formula 1 to calculate 
+the static friction factor between the coal particles and stainless steel (0.38).  
+2.2 Rolling friction factor 
+2.2.1 Analysis of the orthogonal test results  
+The orthogonal test results are listed in Table 3. With the measured angle of repose as the reference (the 
+measured angle of repose was tested in the third part), the orthogonal test data were analyzed. The optimal 
+horizontal combination was determined as A3B2—that is, when the rolling friction factor between the coal 
+particles was 0.05, the rolling friction factor between the coal and stainless steel was 0.03, yielding the 
+simulation result closest to the actual value. 
+Table 3 Analysis of orthogonal test results 
+2.2.2 Regression analysis results 
+Linear regression analysis of the test data in Tab. 3 was conducted to establish the prediction model of the 
+angle of repose of the bottomless cylinder test (Eq. (12)). 
+                                                                 (12) 
+The analysis of the regression model indicated that R2 of the prediction model of the angle of repose was 
+0.90, and the prediction model has a satisfactory goodness of fit. The significance of the prediction model was 
+less than 0.05, indicating a significant linear correlation between the dependent variable (repose angle) and 
+independent variables (the rolling friction factor between coal particles and the rolling friction factor between 
+the coal and stainless steel). The significance of the prediction model constant and the rolling friction factor 
+between the coal particles was less than 0.001, indicating that the constant of the model and the rolling friction 
+factor between the coal particles are extremely significant. The significance of the rolling friction factor 
+between the coal and stainless steel was 0.118>0.05, indicating no significance in the rolling friction factor 
+B
+A
+08
+.
+30
+75
+.
+118
+86
+.
+24
++
++
+=
+q
+NO. 
+A (rolling friction factor between 
+coal particles) 
+B (rolling friction factor between coal particles 
+and stainless steel) 
+K (slope of the fitted 
+curve) 
+Θ (angle of 
+repose)  
+Error 
+(%) 
+1 
+1 (0.01) 
+1 (0.01) 
+-0.4986 
+26.51° 
+15.76% 
+2 
+1 
+2 (0.03) 
+-0.5146 
+27.24° 
+13.44% 
+3 
+1 
+3 (0.05) 
+-0.5147 
+27.23° 
+13.47% 
+4 
+2 (0.03) 
+1 
+-0.5594 
+29.24° 
+7.09% 
+5 
+2 
+2 
+-0.5770 
+29.53° 
+6.16% 
+6 
+2 
+3 
+-0.5531 
+28.96° 
+7.98% 
+7 
+3 (0.05) 
+1 
+-0.5966 
+29.86° 
+5.12% 
+8 
+3 
+2 
+-0.6350 
+32.43° 
+3.05% 
+9 
+3 
+3 
+-0.6494 
+33.03° 
+5% 
+K1 
+42.67 
+27.97 
+ 
+ 
+ 
+K2 
+21.23 
+22.65 
+ 
+ 
+ 
+K3 
+13.17 
+26.45 
+ 
+ 
+ 
+k1 
+14.22 
+9.32 
+ 
+ 
+ 
+k2 
+7.08 
+7.55 
+ 
+ 
+ 
+k3 
+4.39 
+8.82 
+ 
+ 
+ 
+R 
+9.83 
+1.77 
+ 
+ 
+ 
+The optimal 
+level 
+A3 
+B2 
+ 
+ 
+ 
+
+ 
+8 
+between the coal and stainless steel.  
+The rolling friction factor of the coal to stainless steel exerted no significant influence on the angle of 
+repose. Thus, the rolling friction factor between the coal and stainless steel could choose the optimal value, 
+which determined by the orthogonal test, i.e. 0.03. The value of the rolling friction factor between the coal and 
+stainless steel was substituted into Formula (12) of the prediction model, and the calibration value of the rolling 
+friction factor between the coal and stainless steel was calculated as 0.048. 
+3 Validation test 
+The test was conducted on a self-developed automatic cylinder lifting device. The testing machine had a 
+lead screw slider structure, which was driven by a servo motor for rotating the lead screw. The slider moved up 
+and down as the lead screw rotated, and a bottomless cylinder was connected to the slider, rising at a constant 
+speed with the slider. The machine was equipped with a servo control system to control the lifting speed of the 
+bottomless cylinder and reduce the test error caused by factors such as the shaking, eccentricity, and unstable 
+speed of the bottomless cylinder. The automatic cylinder lifting device is shown in Figure 5. The bottomless 
+cylinder has a lifting speed of 0.01 m/s, which was consistent with the condition for the simulation test of the 
+bottomless cylinder. The coal particles used in the test were anthracite from Shanxi Province, and the particle 
+size ranged from 24 mm to 26 mm. The experiment was repeated three times, and the average value was taken. 
+The static friction factor between the coal particles, the rolling friction factor between the coal particles 
+and stainless steel plate, and the rolling friction factor between the coal particles and stainless steel plate were 
+input into the bottomless cylinder system for the accumulation simulation test. The experiment was repeated 
+three times, and the average value was taken. Figure 6 presents the diagram of the comparison between the real 
+and simulation tests. The two exhibited similar stacking morphologies; however, the slope surface of the real 
+test was smoother than that of the simulation test because the dispersion of the coal particle size in the 
+simulation process and that in the real test varied to a certain extent.  
+The angles of repose for the three repeated tests in the real experiment were 31.72°, 33.26°, and 29.37°, 
+respectively, with a mean value of 31.47° and a standard deviation of 1.6°. The angles of repose of the coal 
+blocks obtained from the real experiment were 31.47°±1.6°. The angles of repose for the three replicates of the 
+simulation test were 31.22°, 30.77°, and 30.31°, respectively, with a mean value of 30.77°and a standard 
+deviation of 0.37°. The angles of repose of the coal obtained from the simulation test were 30.77°±0.37°. The 
+angle of repose error obtained from the simulation test was 2.22%. The friction factor of the coal particles can 
+be determined using the discrete element method combined with image processing, orthogonal testing, and 
+linear regression.  
+ 
+ 
+
+ 
+9 
+Figure 5 Automatic cylinder testing machine 
+ 
+ 
+(a) Actual test 
+ 
+(b) Simulated test 
+Figure 6 Comparison between actual and simulated tests of coal particle accumulation 
+4 Conclusion 
+(1) The static friction factor between the coal particles was 0.53, and that between the coal and stainless 
+steel was 0.38, as determined using the slope test. 
+(2) The influence of the rolling friction factor between the coal particles and that between the coal and the 
+stainless steel plate on the angle of repose for the coal particles was evaluated using the orthogonal simulation 
+experiment. With the real stacking angle as a reference, orthogonal test data were analyzed. The analysis results 
+indicated that the smallest error between the simulation value and the real value was generated when the rolling 
+friction factor between the coal particles was 0.05 and the rolling friction factor between the coal and the 
+stainless steel plate was 0.03. 
+(3) Linear regression analysis of the orthogonal experimental data was conducted. The results showed that 
+a linear correlation was present between the dependent variable (angle of repose of coal particles) and two 
+independent variables (the rolling friction factor between the coal particles, as well as that between the coal and 
+the stainless steel). The angle of repose of the coal particles was largely affected by the rolling friction 
+coefficient between coal particles but not by the rolling friction coefficient between the coal particle and the 
+stainless steel. The rolling friction factor between the coal particles and the stainless steel plate was considered 
+as the optimal value of orthogonal analysis (0.03); when substituted into the regression equation, the rolling 
+friction factor between the coal particles was calculated as 0.048. 
+(4) The aforementioned coal particle friction factor was input into the discrete element simulation model 
+for the simulation test of the angle of repose. The angle of repose in the simulation was 30.77°, whereas that in 
+the actual test was 31.47°; the relative error was 2.22%. 
+This method can be used to determine the friction factor of dry anthracite particles. The influence of other 
+factors—such as coal type, degree of coal irregularity, and coal particle size distribution—on the accumulation 
+characteristics has yet to be further studied to continuously improve the accuracy of this method and expand its 
+scope of application. 
+Reference 
+1. 
+Gao, K. D., Wang, L. P., Du, C. L., Li, J. N., Dong, J. H.. Research on the effect of dip angle in mining direction 
+on drum loading performance: a discrete element method. The International Journal of Advanced Manufacturing 
+Technology, 89: 2323-2334 (2017). 
+
+ 
+10 
+2. 
+Mao, J., Liu, X. Y., Chen, H. Y., Song Q. S..  Simulation of shearer drum cutting performance based on EDEM. 
+Journal of China Coal Society, 42(4):1069-1077(2017). 
+3. 
+Li, X. F., Wang, S. B., Ge, S. R., Malekian, Reza，Li, Z. X.，et al. A study on drum cutting properties with 
+full-scale experiments and numerical simulations. Measurement, 114: 25-36(2018).  
+4. 
+Zhao, L. J., Jin, X., Zhao Y. D., Wang, B.. Discrete element simulation analysis on the wear characteristics of drum 
+in coal seam with gangue. Journal of China Coal Society, 45(9) :3341-3350 (2020). 
+5. 
+Wang, X. W., Li, B., Yang, Z. J..  Analysis of the Bulk Coal Transport State of a Scraper Conveyor Using the 
+Discrete Element Method. Strojniški vestnik-Journal of Mechanical Engineering, 64(1): 37-46(2018). 
+6. 
+Gong, Z. Q., Wang, D. C., Wang, G. H., Wu, H. J., Gu, X. W.. Simulation analysis and design of vertical screw 
+silage-conveyor based on EDEM. ASABE Annual International Meeting (2016). 
+7. 
+Barrios, Gabriel, K.P., de Carvalho, Rodrigo M., Kwade, Arno, Tavares, Luís Marcelo, Tavares, Luís Marcelo.  
+Contact parameter estimation for DEM simulation of iron ore pellet handling. Powder Technology, 248（2）: 
+84-93(2013). 
+8. 
+Wei, X.. Research on the wear of scraper conveyor chute based on DEM (M.S. Thesis). Taiyuan: Taiyuan 
+University of Technology, China (2019).  
+9. 
+Martina, C. L., Bouvarda, D., Shimad, S.. Study of particle rearrangement during powder compaction by the 
+discrete element method. Journal of the Mechanics and Physics of Solids, 51( 4) : 667-693 (2003).  
+10. Cleary, P. W.. Predicting charge motion, power draw, segregation and wear in ball mills using discrete element 
+methods. Minerals Engineering, 11( 11) : 1061-1080(1998).  
+11. Zhang R., Han D., Ji Q., He, Y., Li, J..  Calibration methods of sandy soil parameters in simulation of discrete 
+element method. Transactions of the Chinese Society for Agricultural Machinery，48( 3)：49-56(2017). 
+12. Shi L. R., Sun, W., Zhao, W. Y., Yang, X. P., Feng B.. Parameter determination and validation of discrete element 
+model of seed potato mechanical seeding. Transactions of the CSAE, 34( 6) : 35-42(2018). 
+13. Li, T. J., Wang, X. W., Li, B., Li, J. L., Yang, Z. J..  Optimization method for coal particle model parameters 
+based on discrete element method. CHINA Powder Science and Technolgy，24( 5) : 6-12(2018). 
+14. Wang, J. F., Ju, J.Y., Yin, D. Q..Test and analysis of elastic modulus of urea particle．Journal of Anhui agriculture 
+science,42( 33) : 11626-11628 (2014). 
+15. Wen, X. Y., Yuan, H. F., Wang, G., Jia, H. L.. Calibration Method of Friction Coefficient of Granular Fertilizer by 
+Discrete Element Simulation. Transactions of the Chinese Society of Agricultural Machinery,  51（2）：
+115-122,142(2020). 
+16. Yuan, Q. C., Xu, L. M., Xing, J. J., Duan, Zh. Zh., Ma, Sh., et al. Parameter calibration of discrete element model 
+of organic fertilizer particles for mechanical fertilization. Transactions of the CSAE，34( 18) : 21-7 (2018).  
+17. Feng, B., Sun, W., Shi, L. R., Sun, B. G., Zhang, T., et al． Determination of restitution coefficient of potato tubers 
+collision in harvest and analysis of its influence factors. Transactions of the Chinese Society of Agricultural 
+Engineering，33（13）：50-57(2017). 
+18. Lou, S., Yuan, Q. X., GOUDA, S., Yang, L. Y., et al. Parameters Calibration of Vermicomposting Nursery 
+Substrate with Discrete Element Method Based on JKR Contact Model. Transactions of the Chinese Society for 
+Agricultural Machinery, 49(04)：343-350 (2018). 
+19. Tsuji, Y., Tanaka, T., Ishida, T.. Lagrangian numerical simulation of plug flow of cohesionless particles in a 
+horizontal pipe. Powder Technology, 71（3）：239-250 (1992). 
+20. Sakaguchi H., Ozaki, E., Igarashi, T.. Plugging of the Flow of Granular Materials during the Discharge from a Silo. 
+International Journal of Modern Physics B. 7(9):1949-1963(1993). 
+21. Cundall, P. A., Strack, O. D. L.. A discrete numerical model for granular assemblies. Géotechnique, 29(1):47-65 
+(1979). 
+22. Wang G. Q., Hao, W. J., Wang, J. X.. Discrete Element method and its practice on EDEM. Northwest Polytechnic 
+University Press，China(2010). 
+23. Wu A. X, Sun, Y. Zh., Liu, X. P.. Theory and application of granular dynamics. Metallurgy Press, China(2002). 
+24. Jia, F. G., Han, Y. L., Liu, Y., Cao, Y., Wang, H.. Simulation prediction method of repose angle for rice particle 
+materials. Transactions of the Chinese Society of Agricultural Engineering，30（11）:254-260.(2014) 
+ 
+Acknowledgments 
+This study was supported by the National Key Researcher and Development Plan during the 13th Five-Year 
+Plan of China (2017YFB0305105). 
+Author contributions  
+The contributions of the authors are as follows: J. R. C.: proposed the problem and was responsible of the 
+discussion and writing of the manuscript. S.F.W.: was responsible of experiment. Z. H. Z.: was responsible of 
+
+ 
+11 
+simulation. G. H. L. and X. N. L.: were responsible of writing of the manuscript.  
+Competing interests  
+The authors declare no competing interests 
+Additional information  
+Correspondence and requests for materials should be addressed to J. R. C..  
+Reprints and permissions information is available at www.nature.com/reprints.  
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in published maps and 
+institutional afliations. 
+Corresponding author 
+Correspondence to Jinrong Chai. The email address of corresponding author is xiaozheng3340@yeah.net. 
+
+Figures
+Figure 1
+Test instrument of the static friction coe¨cient
+Figure 2
+Model of the coal particles
+
+Figure 3
+Simulation of the bottomless cylinder test
+
+Figure 4
+Image processing of the angle of repose measurement
+
+Figure 5
+Automatic cylinder testing machine
+
+Figure 6
+Comparison between actual and simulated tests of coal particle accumulation

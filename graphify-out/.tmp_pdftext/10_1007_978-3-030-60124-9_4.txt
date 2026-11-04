@@ -1,0 +1,1196 @@
+Particle-Based Approach for Simulation
+of Nonlinear Material Behavior
+in Contact Zones
+Evgeny V. Shilko, Alexey Yu. Smolin, Andrey V. Dimaki,
+and Galina M. Eremina
+Abstract Methods of particles are now recognized as an effective tool for numer-
+ical modeling of dynamic mechanical and coupled processes in solids and liquids.
+This chapter is devoted to a brief review of recent advances in the development of
+the popular particle-based discrete element method (DEM). DEM is conventionally
+considered as a highly specialized technique for modeling the ﬂow of granular media
+and the fracture of brittle materials at micro- and mesoscopic scales. However, in the
+last decade, great progress has been made in the development of the formalism of this
+method. It is largely associated with the works of the scientiﬁc group of Professor S.
+G. Psakhie. The most important achievement of this group is a generalized formula-
+tion of the method of homogeneously deformable discrete elements. In the chapter,
+we describe keystones of this implementation of DEM and a universal approach
+that allows one to apply various rheological models of materials (including coupled
+models of porous ﬂuid-saturated solids) to a discrete element. The new formalism
+makes possible qualitative expansion of the scope of application of the particle-based
+discrete element technique to materials with various rheological properties and to the
+range of considered scales form microscopic to macroscopic. The capabilities of this
+method are especially in demand in the study of the features of contact interaction of
+materials. To demonstrate these capabilities, we brieﬂy review two recent applica-
+tions concerning (a) the effect of adhesive interaction on the regime of wear of surface
+asperities under tangential contact of bodies and (b) the nonmonotonic dependence
+of the stress concentration in the neck of the human femur on the dynamics of hip
+joint contact loading.
+Keywords Discrete element method · Deformable element · Movable cellular
+automata · Many-body interaction · Plasticity · Poroelasticity · Surface adhesion ·
+Adhesive wear · Bone tissue · Pore ﬂuid
+E. V. Shilko (B) · A. Yu. Smolin · A. V. Dimaki · G. M. Eremina
+Institute of Strength Physics and Materials Science SB RAS, 634055 Tomsk, Russia
+e-mail: shilko@ispms.tsc.ru
+© The Author(s) 2021
+G.-P. Ostermeyer et al. (eds.), Multiscale Biomechanics and Tribology
+of Inorganic and Organic Systems, Springer Tracts in Mechanical Engineering,
+https://doi.org/10.1007/978-3-030-60124-9_4
+67
+
+68
+E. V. Shilko et al.
+1
+Introduction
+Starting with the classic works of Cauchy and Navier [1, 2], the development of
+the formalism of the discrete representation of the medium at a continuum (“super-
+atomic”) scale is considered among the fundamental problems for the mechanics of
+solids.Intheframeworkofthisrepresentation,amatterisdescribedbyanensembleof
+interacting particles. Each particle models a sufﬁcient number of atoms or molecules
+to describe the state and response of the particle in terms of thermodynamic param-
+eters and classical mechanical models (Fig. 1). A discrete description of solids and
+liquids was initially considered as a way to ﬁll the gap between molecular mechanics
+and continuum mechanics [3]. However, the rapid development of the formalism
+of particle methods in the last two decades has made it possible to apply them to
+study the mechanical behavior of diverse solids as well as various mechanically
+assisted or activated processes in the entire spectrum of spatial scales from atomic
+to macroscopic.
+The traditional approach to the numerical study of the behavior of materials on the
+“above-atomic” spatial scales is based on the methods of continuum mechanics such
+as ﬁnite element, ﬁnite difference and boundary element methods (FEM, FDM and
+BEM) [4–9]. The formalism of these methods allows easy implementation of various
+linear and nonlinear (including coupled thermomechanical and poroelastic) rheolog-
+ical models. Moreover, advanced implementations of FEM, FDM and BEM include
+the ability to directly model fracture [10, 11]. Despite the well-known advantages of
+continuum numerical methods, their fundamental limitation is difﬁculty in modeling
+of complex fracture-related problems including development of multiple fractures,
+contact interaction of the initial and newly formed surfaces, wear of surface layers
+and a change in surface roughness, ﬂow of granular media, etc.
+Mentioned limitation is not inherent in particle-based methods [12–19]. The most
+relevant and efﬁcient particle-based method for numerical modeling of the above-
+said complex mechanical processes in solids is the discrete element method (DEM)
+[18, 19]. The constantly growing interest in this numerical technique is determined
+by the ability to solve a variety of complex and non-linear contact problems, where
+the processes of fragmentation and mass transfer of fragments play a key role. This
+Fig. 1 Representation of the material by ensemble of particles as an extension of atomistic
+representation to higher spatial (and temporal) scales
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+69
+chapter is devoted to the analysis of achievements in the development of DEM for
+computer simulation of the mechanical behavior of consolidated solids.
+Creation of this method is attributed to Cundall [20, 21]. In the framework of
+original implementation of DEM, a discrete element is treated as a ﬁnite part of a
+solid body (or a particle in particulate/granular material) bounded by clearly deﬁned
+(exact) surface. The latter qualitatively distinguishes this method from the methods
+of quasiparticles with “fuzzy” surface. Elements can be either chemically bonded
+if they model a consolidated material, or contact if the contact interaction of the
+fragments is modeled. Changing the type of bond of elements (chemically bonded
+↔contact ↔noninteracting) is governed by the applied criteria of fracture, bond
+formationandcontactloss[22,23].Thestressstateofadiscreteelementisdetermined
+by the mechanical load of the surrounding elements on the surface of the element.
+The absence of a constraint in the form of the continuity equation makes the DEM
+extremely attractive for numerical studying complex processes in contact zones.
+The term “discrete element method” is now used as a generic name for a large
+group of numerical techniques based on these general principles for representing the
+medium [18, 21, 24, 25]. Various representatives of this group differ in several key
+features: the principle of local or global force equilibrium (explicit or implicit formu-
+lation); approximation of the shape of the volume modeled by a discrete element;
+approximation to the description of the deformability of a discrete element.
+Explicit DEM is the most popular and is widely used to solve fracture- and contact
+interaction related dynamic problems. It implies the formulation of equations of
+motion for each discrete element and the parallel solution of the system of these
+equations with an explicit time marching scheme (Euler, Verlet or other integra-
+tion algorithm). Since a discrete element simulates a ﬁnite volume of material, the
+mechanical interaction of such ﬁnite volumes should lead not only to their transla-
+tional motion, but also to rotation determined by the moments of interaction forces.
+The form of the dynamics equations for the rotational degrees of freedom of an
+element (Euler’s equations) is determined by the shape of an element. In the general
+case, Euler’s equations are written in integral form using the inertia tensor (tensor of
+inertia, in turn, is formulated as an integral) [18]. Integral Euler equation is cumber-
+some and computationally costly, that is why elements with complex nonequiaxial
+geometry (polygonal [26], superquadric [27] elements) are used only for modeling
+granular or fragmented (block-structured) materials. At the same time, a consoli-
+dated material can be much more efﬁciently modelled by an ensemble of bonded
+equiaxial elements, the shape of which is approximated by equivalent sphere (3D
+problem) or a disk of a given height (2D problem) [18, 22, 28]. The efﬁciency of
+an approximation of an equivalent disk/sphere is determined by the simplicity of the
+Newton–Euler motion equations for a discrete element:
+⎧
+⎪⎪⎨
+⎪⎪⎩
+mi
+d2⃗ri
+dt2 = mi
+d⃗vi
+dt =⃗Fi =
+Ni
+
+k=1⃗
+Fik =
+Ni
+
+k=1
+⃗
+Fc
+ik +⃗Ft
+ik
+
+Ji
+d⃗ωi
+dt =⃗Mi =
+Ni
+
+k=1⃗
+Mik
+,
+(1)
+
+70
+E. V. Shilko et al.
+where i is the number of discrete element,⃗ri,⃗vi and⃗ωi are the radius-vector, velocity
+vector and angular velocity pseudovector respectively, mi is the mass of the element
+i, Ji is moment of inertia of an equivalent disk or sphere,⃗Fi and⃗Mi are the total force
+and torque acting on the element i by the neighbors,⃗Fik is the force of interaction of
+the considered element i with the neighbor k,⃗Fc
+ik and⃗Ft
+ik are the central (along the
+line connecting mass centers of the elements i and k) and tangential (in transverse
+plane) components of the force⃗Fik,⃗Mik is the moment of interaction forces (includes
+tangential moment of⃗Ft
+ik and twisting moment [22]), Ni is the number of neighbors
+of the element i.
+One can see that the approximation of the equivalent disk/sphere allows the use
+of Euler’s equations in the most trivial and computationally efﬁcient form. Another
+important consequence of this approximation is the formal independence of the
+central and tangential interactions: the force⃗Fc
+ik does not cause acceleration in the
+plane of the tangential interaction, and the force⃗Ft
+ik does not cause acceleration along
+the line connecting the centers of mass of the elements.
+The forces⃗Fc
+ik and⃗Ft
+ik of interaction of discrete elements are traditionally
+represented as the sum of the potential (⃗Fcp
+ik and⃗Ftp
+ik ) and viscous (⃗Fcv
+ik and⃗Ftv
+ik )
+constituents [20, 22]. From the point of view of the rheological description, viscous
+forces have a meaning similar to the physical meaning of the damper in the Kelvin-
+Voight viscoelastic model. A key component of constructing a discrete-element
+model of a material is the determination of the structural type and coefﬁcients of
+the potential interaction forces.
+In the framework of the traditional DEM implementation, the central and tangen-
+tial potential forces of interaction of equivalent balls/disks (Fcp
+ik and Ftp
+ik ) are calcu-
+lated in the pair-wise approximation. From the physical point of view, pair-wise
+potential corresponds to the approximation of a non-deformable (rigid) element (a
+system of springs or rods). Here, the term “rigid” is used in the sense that the inter-
+action of the element i with the neighbor k does not change its volume and shape
+and, therefore, does not cause a change in the forces of interaction of the element
+i with other neighbors (these neighbors “feel” the result of the interaction in the
+pair i −k only indirectly, through the motion of the element i). This approximation
+is widely used for micro- and mesoscopic description of the processes of damage
+accumulation and fracture of brittle materials, contact interaction of elastic bodies,
+including the dynamics of block-structured media. In this case, element-element
+interaction is traditionally modelled using harmonic interaction potentials (such an
+interaction is schematically represented by connecting the centers of the elements
+with two springs oriented in the central and tangential directions) [22, 28, 29]. Some
+models also use nonlinear (elastic–plastic or viscoelastic Maxwell type) formulations
+of pair-wise interaction forces Fcp
+ik and Ftp
+ik [30, 31] for simulation of granular media
+and porous structures with non-linear/ductile rheological properties of the material
+of the skeleton walls or granules. However, such potentials make possible adequate
+description of the mechanical behavior of porous systems only at a “low” scale (the
+scale of discontinuities or granules).
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+71
+The key problems that strongly limit the range of application of the traditional
+implementation of DEM with pair-wise interaction forces are well known. They are
+(i) dependence of the macroscopic properties of an ensemble of discrete elements
+on the type of packaging and size distribution of elements, (ii) incorrect description
+of the plastic strain of an ensemble of elements (for example, plastic deformation of
+a sample may be accompanied by an uncontrolled change in its volume), and other
+related problems.
+Various approaches to solving these fundamental difﬁculties within the framework
+of the concept of non-deformable elements have been proposed in last decades. In
+particular, stochastic dense packing of non-uniform-sized circular (2D) or spher-
+ical (3D) elements [22, 28, 29] is used to solve the problems of packing-induced
+anisotropy of the elastic response and packing-dependent ratio of elastic modules
+of an ensemble of elements. An alternative approach is to use the formalism of
+spring network model (lattice model [32, 33]) to build relationships for the forces of
+interaction of regularly packed uniform-sized elements [34–36]. The lattice model
+is based on the postulation of the form of interaction potential (harmonic potential
+is usually used for both central and angular interactions) and equalization of elastic
+strain energy stored in a unit cell of volume to the associated elastic strain energy
+of the modelled continuum. The material parameters derived from this equality are
+included in the relationships for the forces of element-element interaction. The above
+approaches made it possible to adequately describe the mechanical (and thermome-
+chanical [36]) behavior of brittle materials under complex loading conditions. At
+the same time, they do not allow solving the key problem of incorrect modeling of
+nonlinear (and/or inelastic) mechanical behavior of materials with complex rheolog-
+ical properties (including rubber-like viscoelastic materials as well as metallic and
+polymer materials, whose macroscopic plasticity is not related to discontinuities).
+The problem of correct modeling of nonlinear mechanical behavior of consoli-
+dated materials by the method of discrete elements can be generally solved only by
+using the approximation of the deformable element. In turn, the deformability of an
+element can be realized only within the framework of a many-body interaction of
+elements. This means that the potential interaction force must depend not only on the
+relative motion of the elements in the pair, but also on the interaction of each of them
+with other neighbors. The formulation of the general structural form of the potential
+interaction force and its speciﬁc realizations for materials with various rheological
+properties has been among the critical challenges for the DEM until recently.
+2
+Distinct Element Method with Deformable Elements
+A meaningful contribution to the development of the formalism of DEM was done
+by Professor Sergey G. Psakhie and his team. Professor Psakhie was a founder of
+the new particle-based method, namely, the method of movable cellular automata
+(MCA) [37, 38].The basic principles of this method were developed in collaboration
+with Professor Yuki Horie (North Carolina State University, Los Alamos National
+
+72
+E. V. Shilko et al.
+Lab). Originally, the MCA method was designed as a hybrid technique to model
+mechanically activated chemical reactions in powder mixtures [39, 40]. This original
+implementation combined the formalisms of discrete elements and cellular automata,
+in which the mechanical response of the particle was described using the DEM
+formalism, while the non-mechanical thermodynamic aspects of particle–particle
+interaction (including melting and mechanically activated chemical reaction) were
+modelled on the basis of the concept of cellular automata.
+The most important achievement of S. G. Psakhie in the development of numerical
+particle-based modelling techniques is the proposed general formalism of the method
+of homogeneously (simply) deformable discrete elements.
+The keystones of this formalism were laid in the framework of collaboration
+with Professor Valentin L. Popov (Technische Universität Berlin) and his scien-
+tiﬁc group. In a joint work of Professors Psakhie and Popov [41], the basic princi-
+ples for describing the mechanical behavior of a discrete element (movable cellular
+automaton) as a deformable area of the medium were formulated. For a special case
+of an ensemble of close packed elements of the same equivalent radius, which models
+an isotropic two-dimensional continuum, a relation was proposed for the potential
+force of the central interaction of elements in the many-body approximation:
+Fcp
+ik = E∗δLik = E∗
+⎛
+⎝δrik + D
+N
+
+j=1
+δri j + D
+N
+
+m=1
+δrkm
+⎞
+⎠.
+(2)
+Here, the symbol δ denotes the difference between the current and initial values of the
+corresponding parameter, rik = |⃗ri −⃗rk| is the distance between the centers of mass
+of the elements i and k, Lik is the effective distance between the elements, N is the
+number of neighbors in the ﬁrst coordination sphere. The coefﬁcients E∗and D are
+expressed in terms of the elastic constants of the material and the element packing
+parameters. Derivation of these coefﬁcients is based on the condition for ensuring
+the required values of Young’s modulus and Poisson’s ratio of the material [41].
+This model is based on the same principles as the classic spring network models,
+but it has a fundamental difference. The force of the central interaction of the two
+elements is represented in the form of a superposition of the pair-wise component
+E∗δrik and “hydrostatic” components. The latter are proportional to the change in the
+volumes of the interacting elements (here, we use the particular form of expression
+for the element’s volume change in regular packing). The reasonableness of this
+formulation is conﬁrmed by the linear relationship of the diagonal components of
+the stress tensor and the volume strain in the vast majority of macroscopic rheological
+models of materials (linear and non-linear elasticity, viscoelasticity, plasticity).
+The proposed formalism actually uses the approximation of homogeneously
+deformable elements. It was further developed to describe plastic ﬂow of the elements
+based on constitutive equations of the macroscopic continuum theory of defects
+[41]. Despite the clear advantages of the proposed formalism, it has the same key
+limitations as traditional lattice-based models. Among them, are the absence of the
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+73
+tangential interaction of elements (shear resistance force), packing-dependent artiﬁ-
+cial anisotropy of the integral response of the ensemble of elements at a signiﬁcant
+distortion of the initial symmetry of the lattice, and the lack of a general and simple
+algorithm of implementation of complex rheological material models.
+A generalized formulation of the method of homogeneously deformable discrete
+elements was proposed later in the works of Professor S. G. Psakhie with co-authors.
+It applies the concept of many-body interaction for the ensemble of arbitrarily packed
+different-size elements and is based on the following principles:
+1. Approximation of equivalent disks/spheres (Fig. 2). Within the framework of
+this approximation, the dynamics of elements is described by Eq. (1), and the
+forces of central and tangential interaction are assumed to be formally unrelated
+to each other. Elements interact with each other through ﬂat contact areas. The
+geometry and squares of these areas are determined by the local packing and
+sizes of the elements [22, 42, 43]. The potential interaction of the two elements
+is conveniently described in terms of speciﬁc forces of interaction (normal σik
+and tangential τik contact stresses):
+
+Fcp
+ik = σikSik
+Ftp
+ik = τikSik
+.
+(3)
+2. A discrete element is assumed to be homogeneously deformable, i.e., its stress–
+strain state is characterized by tensors of stress and strain (hereinafter called
+Fig. 2 Typical examples of 2D samples modelled by the ensembles of regularly and stochastically
+(dense) packed discrete elements. Figures show equivalent disks
+
+74
+E. V. Shilko et al.
+average stresses σ αβ and strains εαβ, where α, β = x, y, z). To determine the
+components of average stress tensor, we use well-known classical relations for
+average stresses and “local” values of traction vectors at the contact areas of the
+element with neighbors (stress homogenization) [22, 42, 44]:
+σ i
+αβ = Ri
+	0
+i
+Ni
+
+k=1
+S0
+ik(⃗nik)α
+⃗
+
+ik
+
+β = Ri
+	0
+i
+Ni
+
+k=1
+S0
+ik(⃗nik)α
+
+σik(⃗nik)β + τik
+⃗
+tik
+
+β
+
+,
+(4)
+where Ri is the radius of equivalent sphere approximating the element i, 	0
+i is
+the volume of unstrained element, S0
+ik is the contact square in unstrained pair
+i −k,⃗
+ik is the traction vector at the area of contact of elements i and k (normal
+and tangential contact stresses are the components of this vector),⃗nik is the
+unit normal vector directed along the line connecting the mass centers of the
+elements,⃗tik is the unit tangent vector directed in the tangential plane, (⃗W)β is
+the projection of some vector⃗W onto the β-axis. We emphasize the generality
+of deﬁnition (4), which is applicable for arbitrary local packing of elements of
+various sizes (packing and sizes determine the values of the direction cosines
+and contact areas).
+3. A consequence of the deformability of an element is the need to divide the spatial
+parameters of its interaction with a neighbor (pair overlap and relative tangential
+displacement) into two components, namely, the contributions of both elements:
+rik = qik + qki = Riεik + Rkεki
+lsh
+ik = Riγik + Rkγki
+,
+(5)
+where qik and qki are the distances from the mass centers of the interacting
+elements i and k to the central point of the contact area (they are equal to equiv-
+alent radii Ri and Rk respectively for the case of unstrained elements), εik and
+εki are central pair strains of discrete elements i and k, lshear
+ik
+is the value of
+relative tangential displacement of the elements (it is calculated with taking into
+account the element rotations [22, 39, 42]), γik and γki are the shear angles of
+discrete elements i and k (contributions to the total shear angle). In the general
+case, εik̸ = εki and γik̸ = γki. Relations (5) are given in the incremental form
+[hereinafter the symbol  denotes an increment of some parameter over the time
+step of numerical integration of the motion equations (1)] because this form is
+convenient for the numerical implementation of complex rheological models.
+Note that the strains εik and γik are the components of the “local” strain vector,
+which is used in the deﬁnition of εi
+αβ by the analogy to (4).
+4. In the framework of approximation of deformable element, the speciﬁc normal
+and tangential forces (contact stresses) σik and τik are interpreted as the compo-
+nents of the speciﬁc force of mechanical response of the element i to the mechan-
+ical loading by the neighboring element k. These stresses are the functions of the
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+75
+i-th element strains εik and γik in the pair i −k. We proposed the general form of
+these functions, which assumes homogeneous deformability of the element and
+linear relation between volume strain and mean stress (or pressure) [42–44]:
+
+σik = σ pair
+ik
+(εik, ˙εik) + Biσ i
+mean = σ pair
+ik
+(εik, ˙εik) −Bi Pi
+τik = τ pair
+ik
+(γik, ˙γik)
+.
+(6)
+Here, the upper index “pair” denotes pair-wise function, σ i
+mean = −Pi =
+
+σ i
+xx + σ i
+yy + σ i
+zz
+
+3, Bi is the material parameter. The ﬁrst relation in (6)
+suggests that the normal (compressive/tensile) resistance of an element is deter-
+mined by both the strain of this element εik along the loading axis and the hydro-
+static (liquid-like) component. The second relation is written in the pair-wise
+approximation, which ideologically corresponds to the relations connecting the
+off-diagonal components of the stress and strain (or strain rate) tensors in most
+rheological models of solids. The speciﬁc form of the pair-wise components
+σ pair
+ik
+and τ pair
+ik
+as well as the values of the material coefﬁcients are determined
+by the applied rheological model of the material modeled by a discrete element.
+The necessity to satisfy Newton’s third law (σ ik = σki and τik = τki) leads to the
+following systems of equations, which are used to calculate the current value of
+interaction forces⃗Fcp
+ik and⃗Ftp
+ik for the motion equation (1):
+
+σ pair
+ik
+(εik, ˙εik) + Biσ i
+mean = σ pair
+ki
+(εki, ˙εki) + Biσ i
+mean
+rik = qik + qki = Riεik + Rkεki
+,
+(7)
+
+τ pair
+ik
+(γik, ˙γik) = τ pair
+ki
+(γki, ˙γki)
+lsh
+ik = Riγik + Rkγki
+.
+(8)
+The solutions to each pair of equations are the values of pair strains. These
+strains are then used to calculate the current values of the forces of interaction
+of elements according to (6).
+5. A pair of elements modeling a part of a consolidated material is assumed to be
+chemically bonded (linked). The central interaction of linked elements includes
+resistance to compression and tension, and the tangential interaction typically
+takes into account shear and bending resistance [42]. In the framework of the
+discrete element method, the elementary act of fracture at the considered spatial
+scale is the breaking of the chemical bond between the two elements. The condi-
+tion of linked-to-unlinked transition is governed by a speciﬁed fracture criterion
+for a pair. This criterion is determined as a fracture condition at the contact
+area. Most fracture criteria in the mechanics of a deformable solid are formu-
+lated in force-like form in terms of the invariants of the stress tensor (Mises,
+Mohr–Coulomb, Drucker-Prager and other failure criteria). We proposed an
+approach to implementation of such kind of criteria within the framework of
+the formalism of deformable elements [42, 44]. It is based on determining
+the local stress tensor on the contact area of the linked pair of elements and
+
+76
+E. V. Shilko et al.
+calculating its invariants. The local stress tensor σ ik
+α′β′ is determined in the local
+coordinate system of the pair i −k. The speciﬁc forces σik and τik are used
+as the diagonal and off-diagonal components of this tensor. The missing 4
+components are determined on the contact surface by linear interpolation of the
+corresponding components of average stress tensors in the interacting elements:
+σ ik
+α′β′ =
+
+σ i
+α′β′qki + σ k
+α′β′qik
+
+rik. Here the accent means that average stresses
+are considered in the local coordinate system.
+A bond break leads to a change in the interaction in a pair of discrete elements:
+the central interaction includes only compression resistance, and the dry [22] or
+viscous friction force is usually used as the tangential force. A pair becomes non-
+interacting if the value of the central force becomes equal to zero. We also note
+that the deformability of elements leads to a generalized formulation of contact
+detection condition, which takes into account a change in the linear dimensions
+of elements [42, 44].
+6. Contact interaction of unlinked discrete elements is traditionally treated as non-
+adhesive. However, in many real systems, the adhesion of surfaces is an important
+factor determining the laws of friction and wear [45]. To adequately model the
+adhesive contact of surfaces, we assume attractive normal force acting between
+elements even after they are debonded [46, 47]. This force varies with separation
+of the surfaces of interacting elements according to prescribed model of adhesion
+(Dugdale’s, Van-der-Vaals or other interaction potential). The value of separation
+is determined with taking into account deformation of elements along the normal⃗
+nik. The tangential force of interaction of unlinked and noncontact elements is
+assumed to be zero.
+At large values of surface energy, the mechanical contact of chemically clean and
+smooth surfaces can be accompanied by the formation of a chemical bond (this
+effect is often called cold welding). This effect is taken into account in the method
+of deformable discrete elements based on the use of the criterion of unlinked-to-
+linked transition for contacting pairs of elements. The pair of elements becomes
+linked if the criterion is satisﬁed. We proposed some formulations of such kind
+of criteria including critical values of the contact normal stress and plastic work
+of deformation [42].
+3
+Principles of Implementation of Rheological Models
+The most important advantage of the proposed general formulation of element-
+element interaction (6)–(8) is the possibility of simple implementation of various
+rheological models of solids. One can see from relation (4) that the components of
+average stress tensor are linearly related to the forces of interaction of the element
+with its neighbors. In turn, the interaction forces are linearly related to the compo-
+nents of average stress tensor by relation (6). A fully similar interconnection takes
+place between average strains and pair strains of the element. We ﬁrst showed that
+the similarity of the relationship between average and local (contact) stress and strain
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+77
+parameters of the element inevitably leads to the fact that the speciﬁc formulation
+of relations (6) should be similar to the formulation of the constitutive relations for
+the material of a discrete element. In other words, the relation for the speciﬁc central
+force σik of the ith element response to the mechanical loading by the neighbor k has
+to be formulated by means of direct rewriting of the constitutive equation for the diag-
+onal components of the stress tensor. The speciﬁc force of tangential response τik is
+formulatedbydirectrewritingthecorrespondingconstitutiverelationforoff-diagonal
+stress components. Using these principles, we implemented macroscopic mechan-
+ical models of elasticity, viscoelasticity, and plasticity and applied them to study
+the behavior of various materials, including metals, ceramics, composite materials,
+rocks, rubbers, and even bone tissues [38, 42–44].
+Below there is an example of the relations (6) for the quite general case of locally
+isotropic viscoelastic (described by the Prony series) material of the element. These
+relations are written in an incremental form:
+⎧
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎨
+⎪⎪⎪⎪⎪⎪⎪⎪⎪⎩
+σik = 2Gi,
+εik +
+
+1 −2Gi
+3Ki
+
+σ i
+mean
+−2
+
+p
+Gi,Mp
+ηi,Mp
+σik,Mp + 2σ i
+mean
+3Ki,
+
+p
+Gi,MpKi,Mp
+ηi,Mp
+τik = 2Gi,
+γik −2
+
+p
+Gi,Mp
+ηi,Mp
+τik,Mp
+.
+(9)
+Here Gi,
+ = Gi,K + 
+p Gi,M is the instant shear modulus of viscoelastic material
+(Gi,K is the shear modulus of the Kelvin element, Gi,Mp is the shear modulus of
+the pth Maxwell element in a series), Ki,
+ is the total bulk modulus determined in
+a similar way, ηi,Mp is the dynamic viscosity of the p-th Maxwell element, σik,Mp
+and τik,Mp are the contributions of the pth Maxwell element to the total speciﬁc
+force. It is easy to show that substitution of the relations (9) to the deﬁnition of
+average stress tensor (4) leads to rigorous fulﬁlment of the constitutive equation for
+the viscoelastic material in terms of average stresses and strains. The particular case
+of (9) is the linear-elastic model (the only Kelvin element), which is typically used
+to numerically study the elastic behavior of brittle and ductile materials.
+It is well known that although the mechanisms of plasticity can qualitatively
+differ for the materials of various natures (defects of the crystal lattice in metals and
+alloys and discontinuities in microscopically brittle materials), their macroscopic
+inelastic behavior is adequately described on the basis of similar models based on
+the principles of the classical theory of plastic ﬂow. In the framework of this theory,
+plasticity is described as instantaneous relaxation of “excess” stresses when the
+plasticity criterion (which is traditionally expressed in terms of the stress tensor
+invariants) exceeds a speciﬁed threshold value (yield shear stress).
+Macroscopic inelastic (ductile) behavior of materials is conventionally modelled
+using associated (for metals and polymers) and non-associated (for ceramic mate-
+rials, rocks and bone tissues under mechanical conﬁnement) plastic ﬂow models.
+
+78
+E. V. Shilko et al.
+The most popular way to implement these models within explicit numerical methods
+of continuum mechanics is the use of radial return algorithm of Wilkins [48]. We
+were the ﬁrst to show that this algorithm can be easily adapted to the formalism of
+deformable discrete elements. By the analogy with elasticity, the prescribed law of
+mapping the average stresses σ i
+αβ is rigorously satisﬁed when applying the stress
+correcting expressions to the speciﬁc response forces σik and τik. Using this way, we
+numerically implemented the widely used macroscopic model of plasticity of metals
+with von Mises yield criterion [42, 43] and non-associated plastic ﬂow model of
+Nikolaevsky [44] (the macroscopic rock plasticity model with von Mises-Schleicher
+yield criterion [49]). Other models of elasticity and plasticity can be implemented
+within the formalism of deformable discrete elements using this direct way. In partic-
+ular, recently we developed a numerical model of inelastic deformation and fracture
+of brittle materials, which takes into account the ﬁnite incubation time of structural
+defects and applies principles of the structural-kinetic theory of strength [50].
+The generality of the developed formalism allows one to implement not only
+mechanical but also coupled (thermomechanical, poromechanical and so on) material
+models. One of the most signiﬁcant recent achievements of Professor S. G. Psakhie
+and his scientiﬁc team is the development of a hybrid (coupled) DEM-based tech-
+nique to model the mechanical behavior of “contrast” materials, namely the porous
+materials with solid skeleton and interstitial liquid [38, 51]. Well-known examples
+of materials with locally contrasting mechanical properties are watered porous rocks
+and rubbers, bone and soft tissues. The importance of adequate consideration of
+the liquid phase in the contrast materials is determined by the fact that such kind
+of materials possesses strongly nonlinear behavior and non-stationary mechanical
+characteristics (even in the case of elastic-brittle skeleton) due to redistribution of
+mobile interstitial ﬂuid in the pore space. Note that the formalism of DEM-based
+hybrid method was developed in collaboration with Dr. S. Zavsek (Velenje Coal
+Mine) and Professor J. Pezdic (University of Ljubljana).
+Within the framework of this hybrid technique, the discrete element is considered
+as porous and permeable solid. The mechanical behavior of both solid skeleton and
+interstitial ﬂuid and their mutual inﬂuence are taken into account. In particular, using
+Biot’s linear model of poroelasticity [52] and Terzaghi’s concept of effective stresses,
+we developed the coupled macroscopic model of permeable brittle materials. The
+main constitutive equations of this model are:
+1. Dependence of the pore volume of an element on the hydrostatic component of
+the external load and the pore pressure
+	p −	p0
+	
+= φ −φ0 = a
+K σmean +
+ 1
+K −1 + φ
+Ks
+
+Ppore,
+(10)
+where 	p and 	p0 are the current and initial (in an undeformed element) values
+of the pore volume, ϕ and ϕ0 are the corresponding values of porosity, 	 is the
+volume of the element, Ppore is the pore pressure in the volume of the element.
+2. Constitutive equation of linear compressible liquid in the pore space
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+79
+Ppore = P0
+pore + K f l
+
+ρ f l
+ρo
+f l
+−1
+
+= P0
+pore + K f l
+
+m f l
+ρo
+f lVp
+−1
+
+,
+(11)
+where ρ0
+f l and P0
+pore are the equilibrium values of the density and pressure of the
+ﬂuid under atmospheric conditions (in the absence of a mechanical conﬁnement),
+ρ f l is the current value of the density of the liquid in the pore space of the element,
+K f l is the bulk modulus of the liquid.
+3. Hooke’s law for poroelastic material of the element
+σαβ = 2G
+
+εαβ −δαβ
+aPpore
+K
+
++ δαβ
+
+1 −2G
+K
+
+σmean,
+(12)
+where a = 1 −K/Ks is a coefﬁcient of poroelasticity.
+4. Modiﬁed formulations of yield and fracture criteria in terms of Terzaghi’s
+effective stresses σ ef f
+αβ = σ mean + Ppore [51].
+5. The equations of motion of discrete elements (1) are supplemented by the clas-
+sical equation of transport of interstitial ﬂuid in the pore space of the material
+[53]. The transport equation is solved on an ensemble of discrete elements by
+the ﬁnite volume method [51].
+Shown below examples demonstrate the capability of the developed formalism to
+implement various complex material models. This allows qualitative expansion of
+the range of simulated materials and the spatial scales under consideration.
+4
+Recent Applications of the Formalism of Deformable
+Elements
+DEM is particularly efﬁcient technique to study various aspects of the contact prob-
+lems (including mechanisms of wear) in technical and natural friction pairs. One of
+the main principles of Professor Psakhie was a diversiﬁcation of research activity
+and the use of the developed mathematical tools in a variety of scientiﬁc ﬁelds. The
+section is devoted to a brief outline of some recent results of computer study of
+contact problems in technical and biological systems. These studies were initiated
+and supervised by S. G. Psakhie in close collaboration with Professor V. L. Popov.
+4.1
+Surface Adhesion as a Factor Controlling Regimes
+of Adhesive Wear
+Over the past two decades, the authors have carried out numerical studies of the laws
+of friction of rough surfaces of ductile and brittle materials. The key results of the
+
+80
+E. V. Shilko et al.
+studies are the features of the formation of the third body (quasi-liquid nano-layer)
+[54], the obtained generalized functional dependence of the friction coefﬁcient on
+dimensionless combinations of material parameters and loading parameters [54, 55],
+the formulated principles of nanotribospectroscopy as a promising nondestructive-
+testing technique for assessment of nanostructured coating and surface layer damage
+[56].
+Recent joint research in this ﬁeld has focused on studying the “elementary” wear
+mechanisms (that is, the modes of fracture of individual asperities) and analyzing
+the effect of attractive (adhesive) force between spatially separated surfaces on the
+involved mechanism of asperity wear under the condition of low-angle collision.
+Note that adhesive wear of the surface layers of contacting bodies is a widely studied
+but still poorly predicted phenomenon [45]. A key factor determining the regime
+and the rate of wear is the adhesive interaction of surfaces in the contact spots of
+asperities. Here, the term “adhesive interaction” includes (a) attractive interaction
+between detached surfaces and (b) effect of “cold welding” (chemical bonding of
+contacting surfaces) for chemically clear surfaces with high surface energy. The ﬁrst
+well-known attempt to generalize the patterns of adhesive wear is the analytical
+model of Rabinowicz [57, 58]. He examined two qualitatively different mechanisms
+of asperity wear (plastic smoothing and breakaway) and showed that the involving of
+a speciﬁc mechanism is determined by the size parameter, which is a combination of
+speciﬁc material parameters, including shear strength, elastic constants, and speciﬁc
+surface energy. In recent years, a number of scientiﬁc groups carried out extensive
+numerical studies of the laws of interaction of single asperities [59, 60]. These studies
+have shown that the dependence of the power of asperity wear on material parameters
+generally has a signiﬁcantly more complex nonlinear form, and the spectrum of
+realized mechanisms is not limited to those considered by Rabinowicz. However,
+the vast majority of theoretical results were obtained for nanoscale asperities using
+atomistic simulation.
+We were the ﬁrst to make a systematic numerical analysis of typical modes of
+asperity wear on higher (micro- and mesoscopic) scales. Due to the capabilities of
+the developed formalism of deformable discrete elements, such a study was carried
+out for ductile and brittle materials.
+The main result of the study is that we revealed and substantiated two dimension-
+less material parameters that control the regime of asperity wear [46].
+The ﬁrst one is the ratio of attractive stress σ0 between the detached surfaces (the
+adhesion stress) to the shear strength of the material σ j.We showed that the range
+of values of this dimensionless parameter could be divided into two intervals with
+its own wear regime in each of them. The border value of the ratio
+
+σ ∗
+0 /σ j
+
+and the
+speciﬁc involved mechanisms (speciﬁc modes) of asperity wear are determined by
+the value of the second dimensionless parameter.
+The second one is the dimensionless parameter a, which characterizes shear
+strength sensitivity to the applied normal stress (or mean stress). It can be expressed in
+terms of the ratio of material strength values under different loading conditions. Note
+that shear strength sensitivity parameter effectively characterizes fracture toughness
+and is closely related to material brittleness: a ≈1 for highly ductile materials,
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+81
+1 < a < 1.5 for moderately ductile materials, a reaches 5–10 for elastic-brittle
+solids. We showed that increase in the ratio of adhesion stress to shear strength is
+accompanied by the transitions:
+1. from slipping (wear at the atomic scale) to grinding-based wear regime for the
+case of highly and moderately ductile materials;
+2. from breakaway (separation of the asperity from the foundation) to grinding-
+based wear regime for the case of materials with a limited ductility or brittle.
+We have built the qualitative map of asperity wear regimes in terms of dimen-
+sionless material parameters σ0/σ j and a [46]. Figure 3 shows a rough schematic
+representation of this classiﬁcation of wear regimes, which agrees with the results of
+atomistic studies by other researchers, supplements and generalizes them to higher
+scales of surface roughness.
+An important result of the DEM-based study is the determined dependence of
+the position of the boundary between the wear regimes (the border value σ ∗
+0 /σ j)
+separating “low adhesion” and “high adhesion” wear modes) on asperity size L. We
+showed that the value is determined not by the absolute value of L, but its relation
+to the length d of action of attractive potential between spatially separated surfaces
+[47]. This dependence has a nonlinear increasing proﬁle with reaching a saturation
+level at the scale ∼104 of the ratio L/d. For larger asperities
+
+L/d > 104
+, the results
+of the analysis of the wear regimes are scale invariant under the condition of scale
+invariance of the mechanical characteristics of the material.
+Fig. 3 Schematic classiﬁcation of wear regimes of asperities for the case of tangential dry contact.
+The coefﬁcient α is close to 1 for highly ductile materials and about 0.5–0.6 for brittle materials
+
+α = σ ∗
+0 /σ j
+
+[46].
+
+82
+E. V. Shilko et al.
+So, the surface adhesion stress is a criterion that determines the wear regime of
+asperities under the condition of tangential contact. The obtained map of asperity
+wear (Fig. 3) together with the revealed asperity size (scale) effect have both funda-
+mental and practical signiﬁcance as they allow forecasting the dominating mode of
+asperity wear for quite different materials from brittle to highly ductile.
+4.2
+Inﬂuence of Interstitial Fluid on the Sensitivity
+of the Femur to the Rate of Contact Loading
+Contact loading is capable of determining not only surface wear and structural modi-
+ﬁcation of surface layers, but also structural changes in the volume of contacting
+bodies. This is particularly relevant for biological (bone and cartilage) tissues. Func-
+tioning of these tissues is largely determined by the redistribution of interstitial ﬂuid.
+Pore ﬂuid has a complex nonlinear effect on the state and behavior of these biological
+materials. There are two key aspects of this inﬂuence. The ﬁrst one is ﬂuid ﬂow in
+the pore space. Fluid ﬂow provides the transfer of nutrients and oxygen and serves
+as a prerequisite for cell proliferation and tissue regeneration [61, 62]. The second
+aspect is the mechanical effect of pore pressure. It causes local tensile stresses in the
+skeleton and contributes to local fracture and gradual degradation of bone tissue. At
+extreme values of pore pressure it makes a signiﬁcant contribution to the formation
+of cracks. The aforesaid argues the existence of optimal distributions of pore ﬂuid
+(that is, optimal maximum local values and their gradient), which on the one hand
+provide sufﬁcient ﬂuid ﬂows to ensure normal (regenerative) tissue activity, and on
+the other hand do not cause local fracture. Such distribution is formed under certain
+(“optimal”) condition of the mechanical (contact) loading of the analyzed organ.
+This problem is especially important in application to elements of the human
+musculoskeletal system (joints) because functioning of bone tissues in these regions
+strongly depends on the normal contact load and mode of tangential contact inter-
+action. One of the topical problems in this ﬁeld is the analysis of stress evolution
+and redistribution of interstitial ﬂuid in the femur near the hip joint under dynamic
+loading. The developed formalism of permeable ﬂuid-saturated discrete elements
+is an efﬁcient tool for such a dynamic analysis up to the stage of macroscopic
+crack formation. Note that despite the topicality of the problem, there are practi-
+cally no works devoted to the numerical study of the dynamic mechanical response
+of femur within the consideration of bone tissue as a multiphase ﬂuid-saturated
+solid. The preliminary results of the numerical DEM-based study presented below
+are, therefore, pioneering in some way.
+The aim of the study is to determine the loading rate sensitivity of healthy bone
+tissue of the proximal femur and bone tissue at different stages of osteoporosis. The
+main attention was paid to the regions of the femur in which the volume stresses are
+positive. This is due to the fact that bone is a brittle material and is characterized by
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+83
+Fig. 4 General view of the model of the proximal femur (a) and its cross section (b) with differently
+colored cortical and spongy (trabecular) bone tissues
+signiﬁcantly lower tensile strength than compressive one. First of all, we analyzed
+the femoral neck (the typical region of the origin of the cracks).
+The femur was modeled as a heterogeneous (shell) structure containing two ﬂuid-
+saturated porous layers (Fig. 4): an inner spongy bone with low stiffness and an outer
+layer of cortical bone tissue. The latter plays the role of a hard shell and determines
+constrained conditions for the deformation of the soft spongy bone. The standard
+CAD model of the femur was used as the geometric basis of the DEM model [63]. We
+modelled compression of the proximal part of the femur along its main physiological
+direction (at an angle of about 45° relative to the orientation of the stem, Fig. 4b).
+The load was applied by setting the constant velocity Vload to the outermost elements
+of a special “cap” on the bone head. The base of the model was ﬁxed. The model was
+loaded until the resistance force Fmax = 10 kN was reached (10 kN, is about 70% of
+the critical load [64]). A velocity range from 1 to 8 m/s was considered. This range
+covers various modes of motor activity up to the “extreme” one.
+Various authors previously showed that the strain rate dependence of the mechan-
+ical characteristics of heterogeneous (block-structured) brittle materials under
+conﬁned loading conditions has not just a non-linear, but non-monotonic proﬁle with
+a local minimum [65]. The reason for the non-monotonic nature of the dependence
+is the competition of two factors: pore ﬂuid ﬂow, which affects the redistribution
+of local stresses in the skeleton, and change in the equilibrium linear dimensions of
+the material due to change in pore pressure. The non-monotonic nature of the inﬂu-
+ence of interstitial ﬂuid is especially pronounced under conditions of constrained
+deformation, when a change in linear dimensions causes a corresponding change
+in the degree of constraint. The biomechanical system under consideration (femur)
+also has a heterogeneous structure and is constrained by a hard cortical bone “shell”.
+The shell causes conﬁned deformation of a much softer inner region. This gives
+reason to suggest that under dynamic loading of such a system, the dependence of
+local stress values (including stresses in the femoral neck) on the strain rate can also
+
+84
+E. V. Shilko et al.
+be nonmonotonic with a local minimum. The magnitude of corresponding “opti-
+mal” loading velocity should be related to the characteristics of the porosity and
+permeability of the bone.
+The simulation results conﬁrmed these assumptions and, moreover, allowed us to
+estimate the characteristic values of the “optimal” loading velocity for healthy bone
+and bone at various stages of osteoporosis. The key result of the numerical study is the
+revealed non-linear and nonmonotonic dependence of the stress concentration in the
+femoral neck on the loading rate. Figure 5 shows examples of the distribution of mean
+and equivalent stresses in a healthy femur sample at different loading velocities. The
+simulation results show that an increase in Vload is accompanied by an increase in the
+values of the parameters characterizing the stress concentration in the upper part of
+the femoral neck. In particular, the volume of the region of maximum stresses and the
+magnitude of the maximum stress in the neck increase. However, when approaching
+the “optimal” value of the loading velocity (∼3 m/s for the healthy bone), stress
+concentration decreases, then reaches minimum value at the “optimal” velocity, and
+then (with further increase in Vload) increases monotonously again. This effect takes
+place both for mean and equivalent stresses. The relative magnitude of the reduction
+in peak stresses in the neck reaches 10–20%, and the maximum decrease in the
+volume of the region of stress concentration amounts to 10%. Note that the loading
+velocities 3–4 m/s correspond to the regime of training motion of a human.
+The described effect of reducing the heterogeneity of the stress state of bone
+tissue (particularly in the femoral neck) in the vicinity of the “optimal” loading
+velocity is directly related to the inﬂuence of pore ﬂuid pressure and redistribution.
+Special simulations for the “dry” femur showed a monotonic dependence of the stress
+Fig. 5 Distributions of mean stress (upper row) and equivalent stress (lower row) in the proximal
+femur at different values of loading velocity: a 1 m/s; b 3 m/s; c 5 m/s. All pictures correspond to
+the same value of applied load Fmax = 10 kN
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+85
+concentration in the sample (including the femoral neck) on the loading rate in the
+entire considered velocity range.
+Preliminary numerical studies have also shown that a change in bone tissue param-
+eters corresponding to the successive stages of osteoporosis leads to a systematic
+increase in the values of “optimal” loading velocity. Bone tissue suffering from
+osteoporosis is characterized by the reduced strength and higher brittleness. There-
+fore, our results indicate that the selection of the optimal regime of motor activity
+for such a femur is questionable.
+Finally, we note the importance of the revealed effect of the “optimal” loading
+rate. Despite the relatively small decrease in the maximum tensile stresses in the
+critical region of the bone (upper part of the neck), this effect can have a signiﬁcant
+positive value in the long term (with multiple repetitions of the load). In addition
+to reducing the risk of microdamage nucleation/accumulation in the upper part of
+the neck, a decrease in the magnitude of positive volume stresses contributes to
+a more intensive and uniform circulation of interstitial ﬂuid in this region of the
+bone. The consequence is a more complete and rational ﬂow of substances necessary
+for the normal functioning of bone tissue at optimal loading intensity. So, the results
+obtained are critically important for determining the optimal modes of motor activity
+ofpeople,aswellasfordevelopingstrategiesfortreatingosteoarthritisandpreventing
+the negative consequences of osteoporosis.
+5
+Conclusion
+A formalism of homogeneously deformable elements, which was developed by
+Professor Sergey G. Psakhie and his colleagues, made possible qualitative enhance-
+ment of the capabilities of the particle-based discrete element method. The main
+advantage of DEM is the ability to correctly describe the mechanical behavior of
+various materials with taking into account the accompanying thermal, hydrome-
+chanical and other effects. Deformability of elements is of particular importance
+when studying various aspects of dynamic contact interaction, for example, stick-to-
+slip transition in technical and geological contact zones, mechanisms of friction and
+wear, redistribution of pore ﬂuid in the surface layers of geological and biological
+joints, etc.
+Two key factors that identiﬁed the advantages of the formalism of deformable
+elements should be especially noted. The ﬁrst one is the postulation of the many-
+particle form of relations for the element-element interaction forces. In this regard,
+DEM has much in common with molecular dynamics method. Pair-wise interatomic
+potentials are able to catch basic properties of crystal lattice, but do not describe many
+fundamentally important effects in the bulk and on the surface of solids, including
+those determining plasticity and phase transformations. Note that the approxima-
+tion of a homogeneously deformable element is an efﬁcient alternative to more
+computationally expensive combined DEM-FEM technique. The second factor is
+the proposed universal method for determining the speciﬁc form (and the values of
+
+86
+E. V. Shilko et al.
+constants) of the interaction forces. This method is based on the replication of the
+corresponding rheological relationships of the applied mechanical model. It “cir-
+cumvents” the fundamental problem of traditional DEM, namely, the need to ﬁnd
+a vector analogue of constitutive equations written in tensor form. The particular
+cases of rheological models mentioned in this chapter are related to locally isotropic
+materials, however, models of elasticity, ductility and local fracture of anisotropic
+materials can be implemented in a similar way.
+At present time, the formalism of deformable DEM is actively developed and
+applied in various ﬁelds and in the wide range of spatial scales. Moreover, inter-
+national scientiﬁc teams leaded by well-recognized scholars adopt these ideas and
+develop them in their own way. DEM with deformable elements becomes not just
+an addition to the classical continuum numerical methods, but to some extent their
+competitive even in the areas of mechanics, where they traditionally dominate.
+Acknowledgements The work was performed according to the Government research assignment
+for ISPMS SB RAS.
+References
+1. Cauchy AL (1823) Recherches sur l’equilibre et le mouvement interieur des corps solides ou
+ﬂuides, elastiques ou non lastiques. Bulletin des sciences par la Societe Philomatique de Paris
+9–13
+2. Navier CL (1823) Sur les lois de l’equilibre et du mouvement des corps solides elastiques.
+Bulletin des sciences par la Societe Philomatique de Paris 177–181
+3. Kocsis A, Challamel N (2018) Generalized models and non-classic approaches in complex
+materials 1. Springer, Berlin, pp 451–486 (On the foundation of a generalized nonlocal
+extensible shear beam model from discrete interactions)
+4. Zienkiewicz OC, Taylor RL, Fox DD (2014) The ﬁnite element method for solid and structural
+mechanics, 7th edn. Butterworth-Heinemann, Oxford
+5. Balokhonov RR, Romanova VA, Kulkov AS (2020) Microstructure-based analysis of defor-
+mation and fracture in metal-matrix composite materials. Eng Fail Anal 110:104412. https://
+doi.org/10.1016/j.engfailanal.2020.104412
+6. Moczo P, Kristek J, Galis M (2014) The ﬁnite-difference modelling of earthquake motions:
+waves and ruptures. Cambridge University Press, Cambridge (UK)
+7. Garavand A, Stefanov YP, Rebetsky YL, Bakeev RA, Myasnikov AV (2020) Numerical
+modeling of plastic deformation and failure around a wellbore in compaction and dilation
+modes. Int J Numer Anal Meth Geomech 44(6):1–28. https://doi.org/10.1002/nag.3041
+8. Cheng AHD, Syngellakis S (eds) (2019) Boundary elements and other mesh reduction methods
+XLI. WIT Press, Southampton (UK)
+9. Popov VL, Pohrt R, Li Q (2017) Strength of adhesive contacts: inﬂuence of contact geometry
+and material gradients. Friction 5(3):308–325. https://doi.org/10.1007/s40544-017-0177-3
+10. Yazid A, Abdelkader N, Abdelmajid H (2009) A state-of-the-art review of the X-FEM for
+computationalfracture mechanics. Appl Math Model 33(12):4269–4282. https://doi.org/10.
+1016/j.apm.2009.02.010
+11. Pohrt R, Popov VL (2015) Adhesive contact simulation of elastic solids using local mesh-
+dependent detachment criterion in boundary elements method. Facta Univ Mech Eng 13(1):3–
+10
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+87
+12. Liu MB, Liu GR (2010) Smoothed particle hydrodynamics (SPH): an overview and recent
+developments. Arch Comput Methods Eng 17:25–76. https://doi.org/10.1007/s11831-010-
+9040-7
+13. Li X, Zhao J (2019) An overview of particle-based numerical manifold method and its appli-
+cation to dynamic rock fracturing. J Rock Mech Geotech Eng 11(3):684–700. https://doi.org/
+10.1016/j.jrmge.2019.02.003
+14. Nabian MA, Farhadi L (2016) Multiphase mesh-free particle method for simulating granular
+ﬂows and sediment transport. J Hydraul Eng 143(4):04016102. https://doi.org/10.1061/(ASC
+E)HY.1943-7900.0001275
+15. Munjiza A, Smoljanovi´c H, Živalji´c N, Mihanovic A, Divi´c V, Uzelac I, Nikoli´c Ž, Bali´c
+I, Trogrli´c B (2019) Structural applications of the combined ﬁnite–discrete element method.
+Comput Part Mech. https://doi.org/10.1007/s40571-019-00286-5
+16. Rodriguez JM, Carbonell JM, Cante JC, Oliver J (2016) The particle ﬁnite element method
+(PFEM) in thermo-mechanical problems. Int J Numer Meth Eng 107(9):733–785. https://doi.
+org/10.1002/nme.5186
+17. Cerquaglia ML, Deliege G, Boman R, Papeleux L, Ponthot JP (2017) The particle ﬁnite element
+method for the numerical simulation of bird strike. Int J Impact Eng 109:1–13. https://doi.org/
+10.1016/j.ijimpeng.2017.05.014
+18. Jing L, Stephansson O (2007) Fundamentals of discrete element method for rock engineering:
+theory and applications. Elsevier, Amsterdam (NL)
+19. Bicanic N (2017) Encyclopaedia of computational mechanics, 2nd edn. Wiley, Hoboken, pp
+1–38 (Discrete element methods)
+20. Cundall PA, Strack ODL (1979) A discrete numerical model for granular assemblies.
+Geotechnique 29(1):47–65
+21. Cundall PA, Hart RD (1992) Numerical modelling of discontinua. Eng Comput 9(2):101–113.
+https://doi.org/10.1108/eb023851
+22. Potyondy DO, Cundall PA (2004) A bonded-particle model for rock. Int J Rock Mech Min Sci
+41:1329–1364. https://doi.org/10.1016/j.ijrmms.2004.09.011
+23. Ivars DM, Pierce ME, Darcel C, Reyes-Montes J, Potyondy DO, Young RP, Cundall PA (2011)
+The synthetic rock mass approach for jointed rock mass modelling. Int J Rock Mech Min Sci
+48(2):219–244. https://doi.org/10.1016/j.ijrmms.2010.11.014
+24. Mustoe GGW (1992) A generalized formulation of the discrete element method. Eng Comput
+9(2):181–190. https://doi.org/10.1108/eb023857
+25. Hatzor YH, Ma G, Shi G-H (2017) Discontinuous deformation analysis in rock mechanical
+practice. CRC Press, Boca Raton (Florida, US)
+26. Schneider B, Ramm E (2019) Conceptual experiments and discrete element simulations with
+polygonal particles. Granular Matter 21(91). https://doi.org/10.1007/s10035-019-0930-6
+27. Podlozhnyuk A, Pirker S, Kloss C (2017) Efﬁcient implementation of superquadric particles
+in discrete element method within an open-source framework. Comput Part Mech 4:101–118.
+https://doi.org/10.1007/s40571-016-0131-6
+28. Sinaie S (2017) Application of the discrete element method for the simulation of size effects
+in concrete samples. Int J Solids Struct 108:244–253. https://doi.org/10.1016/j.ijsolstr.2016.
+12.022
+29. Potyondy DO (2015) The bonded-particle model as a tool for rock mechanics research and
+application: current trends and future directions. Geosyst Eng 18(1):1–28. https://doi.org/10.
+1080/12269328.2014.998346
+30. Nosewicz S, Rojek J, Pietrzak K, Chmielewski M (2013) Viscoelastic discrete element model of
+powder sintering. Powder Technol 246:157–168. https://doi.org/10.1016/j.powtec.2013.05.020
+31. Rojek J, Lumelskyj D, Nosewicz S, Romelczyk-Baishya B (2019) Numerical and experimental
+investigation of an elastoplastic contact model for spherical discrete elements. Comput Part
+Mech 6:383–392. https://doi.org/10.1007/s40571-018-00219-8
+32. Wang G, Al-Ostaz A, Cheng AH-D, Mantena PR (2009) Hybrid lattice particle modeling:
+theoretical considerations for a 2D elastic spring network for dynamic fracture simulations.
+Comput Mater Sci 44(4):1126–1134. https://doi.org/10.1016/j.commatsci.2008.07.032
+
+88
+E. V. Shilko et al.
+33. Puglia VB, Kosteski LE, Riera JD, Iturrioz I (2019) Random ﬁeld generation of the material
+properties in the lattice discrete element method. J Strain Anal Eng Des 54(4):236–246. https://
+doi.org/10.1177/0309324719858849
+34. Pieczywek PM, Zdunek A (2017) Compression simulations of plant tissue in 3D using a mass-
+spring system approach and discrete element method. Soft Matter 13:7318–7331. https://doi.
+org/10.1039/C7SM01137G
+35. Zabulionis D, Rimsa V (2018) A lattice model for elastic particulate composites. Materials
+11(9):1584. https://doi.org/10.3390/ma11091584
+36. Rizvi ZH (2019) Lattice element method and its application to multiphysics. Dissertation in
+fulﬁlment of the requirements for the degree “Dr.-Ing.” of the Faculty of Mathematics and
+Natural Sciences at Kiel University, Christian-Albrechts-Universität, Kiel
+37. Psakhie SG, Horie Y, Ostermeyer GP, Korostelev SYu, Smolin AYu, Shilko EV, Dmitriev
+AI, Blatnik S, Špegel M, Zavšek S (2001) Movable cellular automata method for simulating
+materials with mesostructured. Theoret Appl Fract Mech 37(1–3):311–334
+38. Psakhie SG, Shilko EV, Smolin AY, Dimaki AV, Dmitriev AI, Konovalenko IS, Astafurov SV,
+Zavshek S (2011) Approach to simulation of deformation and fracture hierarchically organized
+heterogeneous media, including contrast media. Phys Mesomech 14(1–5):224–248. https://doi.
+org/10.1016/j.physme.2011.12.003
+39. Psakhie SG, Horie Y, Korostelev SYu, Smolin AYu, Dmitriev AI, Shilko EV, Alekseev SV
+(1995) Method of movable cellular automata as a tool for simulation within the framework of
+mesomechanics. Russ Phys J 38(11):1157–1168. https://doi.org/10.1007/BF00559396
+40. Psakhie SG, Shilko EV, Smolin AY, Dmitriev AI, Korostelev SY (1996) Computer aided study
+of reaction-assisted powder mixture shock compaction at meso-scale. New computational
+technique. In: Proceedings of US-Russian workshop “Shock induced chemical processing”,
+Saint-Petersburg, 23–24 June, 1996
+41. Popov VL, Psakhie SG (2001) Theoretical principles of modeling elastoplastic media by
+movable cellular automata method. I. Homogeneous media. Phys Mesomech 4(1):15–25
+42. Psakhie S, Shilko E, Smolin A, Astafurov S, Ovcharenko V (2013) Development of a formalism
+of movable cellular automaton method for numerical modeling of fracture of heterogeneous
+elastic-plastic materials. Frattura Ed Integrità Strutturale 24(7):26–59. https://doi.org/10.3221/
+IGF-ESIS.24.04
+43. Shilko EV, Psakhie SG, Schmauder S, Popov VL, Astafurov SV, Smolin AYu (2015) Over-
+coming the limitations of distinct element method for multiscale modeling of materials with
+multimodal internal structure. Comput Mater Sci 102:267–285. https://doi.org/10.1016/j.com
+matsci.2015.02.026
+44. Psakhie SG, Shilko EV, Grigoriev AS, Astafurov SV, Dimaki AV, Smolin AYu (2014) A math-
+ematical model of particle–particle interaction for discrete element based modeling of defor-
+mation and fracture of heterogeneous elastic–plastic materials. Eng Fract Mech 130:96–115.
+https://doi.org/10.1016/j.engfracmech.2014.04.034
+45. Wen S, Huang P (2017) Principles of tribology, 2nd edn. Wiley, London (UK)
+46. Dimaki AV, Shilko EV, Dudkin IV, Psakhie SG, Popov VL (2020) Role of adhesion stress in
+controlling transition between plastic, grinding and breakaway regimes of adhesive wear. Sci
+Rep 10:1585. https://doi.org/10.1038/s41598-020-57429-5
+47. Dimaki AV, Dudkin IV, Popov VL, Shilko EV (2019) Inﬂuence of adhesion force and strain
+hardening coefﬁcient of the material on the rate of adhesive wear in a dry tangential frictional
+contact. Russ Phys J 62(8):1398–1408. https://doi.org/10.1007/s11182-019-01857-y
+48. Wilkins ML (1999) Computer simulation of dynamic phenomena. Springer, Berlin
+49. Nikolaevsky VN (1996) Geomechanics and ﬂuidodynamics with application to reservoir
+engineering. Kluwer Academic Publishers (Springer), Berlin
+50. Grigoriev AS, Shilko EV, Skripnyak VA, Psakhie SG (2019) Kinetic approach to the develop-
+ment of computational dynamic models for brittle solids. Int J Impact Eng 123:14–25. https://
+doi.org/10.1016/j.ijimpeng.2018.09.018
+51. Psakhie SG, Dimaki AV, Shilko EV, Astafurov SV (2016) A coupled discrete element-ﬁnite
+difference approach for modeling mechanical response of ﬂuid-saturated porous materials. Int
+J Numer Meth Eng 106(8):623–643. https://doi.org/10.1002/nme.5134
+
+Particle-Based Approach for Simulation of Nonlinear Material …
+89
+52. Detournay E, Cheng AH-D (1993) Comprehensive rock engineering: principles, practice and
+projects. Pergamon Press, Oxford (UK), pp 113–171 (Fundamentals of poroelasticity)
+53. Basniev KS, Dmitriev NM, Dmitriev NM, Chilingar GV (2012) Mechanics of ﬂuid ﬂow. Wiley,
+London (UK)
+54. Popov VL, Psakhie SG, Dmitriev AI, Shilko E (2003) Quasi-ﬂuid nano-layers at the interface
+between rubbing bodies: simulations by movable cellular automata. Wear 254(9):901–906.
+https://doi.org/10.1016/S0043-1648(03)00244-8
+55. Bucher F, Dmitriev AI, Ertz M, Knothe K, Popov VL, Psakhie SG, Shilko EV (2006) Multiscale
+simulation of dry friction in wheel/rail contact. Wear 261(7–8):874–884. https://doi.org/10.
+1016/j.wear.2006.01.046
+56. Psakhie SG, Shilko EV, Popov VL, Starcevic J, Thaten J, Astafurov SV, Dimaki AV (2009)
+Assessment of nanostructured ceramic coating damage Nanotribospectroscopy. Russ Phys J
+52(4):380–385. https://doi.org/10.1007/s11182-009-9242-3
+57. Rabinowicz E (1958) The effect of size on the looseness of wear fragments. Wear 2(1):4–8
+58. Popova E, Popov VL, Kim DE (2018) 60 years of Rabinowicz’ criterion for adhesive wear.
+Friction 6(3):341–348. https://doi.org/10.1007/s40544-018-0240-8
+59. von Lautz J, Pastewka L, Gumbsch P, Moseler M (2016) Molecular dynamic simulation of
+collision-induced third-body formation in hydrogen-free diamond-like carbon asperities. Tribol
+Lett 63:26. https://doi.org/10.1007/s11249-016-0712-9
+60. Molinari J-F, Aghababaei R, Brink T, Frérot L, Milanese E (2018) Adhesive wear mechanisms
+uncovered by atomistic simulations. Friction 6:245–259. https://doi.org/10.1007/s40544-018-
+0234-6
+61. Christen P, Ito K, Ellouz R, Boutroy S, Sornay-Rendu E, Chapurlat RD, van Rietbergen B
+(2014) Bone remodelling in humans is load-driven but not lazy. Nat Commun 5:4855. https://
+doi.org/10.1038/ncomms5855
+62. Wittkowske C, Reilly GC, Lacroix D, Perrault CM (2016) In vitro bone cell models: impact of
+ﬂuid shear stress on bone formation. Front Bioeng Biotechnol 4:87. https://doi.org/10.3389/
+fbioe.2016.00087
+63. Cheung G, Zalzal P, Bhandari M, Spelt JK, Papini M (2004) Finite element analysis of a femoral
+retrograde intramedullary nail subject to gait loading. Med Eng Phys 26(2):93–108. https://
+doi.org/10.1016/j.medengphy.2003.10.006
+64. Todo M (2018) Biomechanical analysis of hip joint arthroplasties using CT-image based ﬁnite
+element method. J Surg Res 1:34–41
+65. Shilko EV, Dimaki AV, Psakhie SG (2018) Strength of shear bands in ﬂuid-saturated rocks:
+a nonlinear effect of competition between dilation and ﬂuid ﬂow. Sci Rep 8:1428. https://doi.
+org/10.1038/s41598-018-19843-8
+Open Access This chapter is licensed under the terms of the Creative Commons Attribution 4.0
+International License (http://creativecommons.org/licenses/by/4.0/), which permits use, sharing,
+adaptation, distribution and reproduction in any medium or format, as long as you give appropriate
+credit to the original author(s) and the source, provide a link to the Creative Commons license and
+indicate if changes were made.
+The images or other third party material in this chapter are included in the chapter’s Creative
+Commons license, unless indicated otherwise in a credit line to the material. If material is not
+included in the chapter’s Creative Commons license and your intended use is not permitted by
+statutory regulation or exceeds the permitted use, you will need to obtain permission directly from
+the copyright holder.

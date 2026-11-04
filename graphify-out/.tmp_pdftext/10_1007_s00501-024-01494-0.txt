@@ -1,0 +1,775 @@
+Originalarbeit
+Berg Huettenmaenn Monatsh (2024) Vol. 169 (8): 412–420
+https://doi.org/10.1007/s00501-024-01494-0
+© The Author(s) 2024
+A Discrete Element Method Calibration Approach for Large
+Ore-ﬂow Applications
+Lukas Alexander Koch
+Chair of Mining Engineering and Mineral Economics, Montanuniversität Leoben, Leoben, Austria
+Received June 18, 2024; accepted June 21, 2024; published online August 15, 2024
+Abstract: The major constraint for large discrete element
+method (DEM) simulations is the high demand for com-
+putation power.
+To keep the model in a feasible range
+of simulation time and to conduct the numerical calcula-
+tions efﬁciently, the implemented material can be simpli-
+ﬁed and upscaled.
+After this, a calibration of the mate-
+rial is inevitable and sets the link between the simulation
+model and reality.
+Therefore, an alternative calibration
+approach is established in this contribution to mimic the
+ﬂow behaviour of the original material with multi-spherical
+DEM particles. The calibration approach utilises ﬂow zone
+dimensions, which were observed in block-caving opera-
+tions. Additionally, apassivedraw-point isused to calibrate
+the angle of repose. Applying the calibration approach for
+Kiruna iron ore showed that, with the help of the calibration
+approach, the material in the simulation could successfully
+reproduce the targeted ﬂow zone and angle of repose.
+Keywords: Discrete Element Method, Calibration, Cave
+mining, Ore-ﬂow
+Ein Kalibrierungs-Ansatz mit der Diskreten Elemente
+Methode für große Erzﬂussanwendungen
+Zusammenfassung: Die größte Schwierigkeit bei großen
+Simulationen mit der Diskreten-Elemente-Methode (DEM)
+ist der hohe Bedarf an Rechenleistung. Um das Modell in ei-
+nem machbaren Bereich der Simulationszeit zu halten und
+die numerischen Berechnungen efﬁzient durchzuführen,
+kann das implementierte Material vereinfacht und hochs-
+kaliert werden. Danach ist eine Kalibrierung des Materials
+unumgänglich und stellt die Verbindung zwischen dem Si-
+mulationsmodell und der Realität her. Daher wird in diesem
+Dipl. Ing. L. A. Koch ()
+Chair of Mining Engineering and Mineral Economics,
+Montanuniversität Leoben,
+Erzherzog Johann-Straße 3,
+8700 Leoben, Austria
+lukas.koch@unileoben.ac.at
+Beitrag ein alternativer Kalibrierungsansatz entwickelt, um
+das Fließverhalten des Originalmaterials mit multikugelför-
+migen DEM-Partikeln zu imitieren. Der Kalibrierungsansatz
+verwendet Fließzonen-Dimensionen, die im Blockbruch-
+bau-Verfahren beobachtet wurden.
+Zusätzlich wird ein
+passiver Abzugspunkt zur Kalibrierung des Schüttwinkels
+verwendet. Die Anwendung des Kalibrierungsansatzes für
+Kiruna-Eisenerz zeigte, dass das Material in der Simula-
+tion mit Hilfe des Kalibrierungsansatzes die angestrebte
+Fließzone und den Schüttwinkel erfolgreich reproduzieren
+konnte.
+Schlüsselwörter: Diskrete-Elemente-Methode,
+Kalibrierung, Bruchbau, Erzﬂuss
+1. Introduction
+There are several challenges when investigating large mod-
+elscontaining millionsof particleswith the discrete element
+method (DEM). One of the most important challenges is
+the high demand for computing capacity. First of all, soft-
+ware with a large parallelisation capability is thus neces-
+sary, preferably with the possibility to run the simulation
+on a graphics card (GPU). In this contribution the software
+EDEM by Altair [1] was used. This contribution further con-
+centrates on two points: simplifying the material in the
+model to reduce the high demand for computing power and
+subsequently calibrating the simpliﬁed material to yield re-
+alistic results as if it was the original material.
+A DEM calibration can compensate to some extent for
+simpliﬁcation measures undertaken beforehand. The cali-
+bration sometimes represents the largest part and a major
+difﬁculty in large-scale DEM simulations [2, 3]. For a DEM
+simulation, the material macro propertiesare distinguished
+from the DEM micro parameters [4]. The macro properties
+describe the macroscopic behaviour of the bulk material,
+e.g. the angle of repose or the ﬂow zone dimensions in
+a cave mine.
+The DEM micro parameters, on the other
+hand, are the input parameters for the software which lead
+412
+© The Author(s)
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+
+Originalarbeit
+to certain macro properties. In the bulk calibration process,
+the micro parameters are calibrated in a sensitivity study
+to achieve the desired macro behaviour of the material. As
+the macro behaviour is usually dependent on more than
+one parameter, it is recommended to conduct more than
+one calibration experiment, each being representative for
+a respective application [5–7]. The combined results lead
+to the unique parameter set for the material of interest.
+1.1 Requirements
+An issue for material calibration in large models like cave
+mines is that there is no standardised calibration routine,
+Fig. 1: Flow chartofthecali-
+bration process
+and there are not many DEM models with a comparably
+large size available in the literature. Some authors [8–15],
+however, have approached the topic of ore-ﬂow in cave
+mines via DEM. Some sources talk about non-calibrated
+or non-validated simulations [8, 9] or do not mention the
+underlying calibration method [10]. Yet, the basis for the
+calibration of the models was mostly small-scale physical
+tests. There are, however, issues with upscaling the results
+from small-scale physical models [16]. As the particle sizes
+in cave mines range from ﬁnes to large boulders, simple
+small-scale angle of repose tests are also difﬁcult or even
+not feasible to conduct.
+For these reasons, a DEM cali-
+bration method based on full-scale mine data is needed
+for this kind of large model. This was approached by very
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+© The Author(s)
+413
+
+Originalarbeit
+Fig. 2: Calibrationmodel: athe
+CAD model, b thecross-cutof
+therunning model. Theﬂow
+width is obtained from theac-
+tivedraw-pointand thean-
+gleofreposefrom thepassive
+draw-point
+few authors, like DeGagné and McKinnon [15], who cali-
+brated the material by adapting the friction values until the
+material behaviour matched the draw responses seen in
+sublevel caving (SLC) rings. For free ﬂow situations like in
+a large stope with dimensions of several tens of meters, like
+in block caving (BC), reliable DEM calibration approaches
+have not been found yet. Establishing a reliable calibration
+approach is the aim in this contribution.
+1.2 Approach
+The idea of the calibration approach is to generate a virtual
+material that possesses the same ﬂow behaviour as the
+real physical one. Therefore, the physical one as well as its
+known macroscopic features need to be determined in the
+beginning.
+To decrease the computational demand and
+to enable a suitable DEM simulation, the virtual material
+usually needs to be simpliﬁed by different measures. The
+contact parameters, which are mainly the friction values
+(referring to a common Hertz-Mindling contact model), are
+then adapted in the calibration process, and the calibration
+simulation is repeated until the macroscopic behaviour cor-
+responds to the behaviour of the physical material. When
+the virtual material behaviour ﬁts, the calibrated parameter
+set is found, and the calibration is ﬁnished. If simpliﬁcation
+measures are used too extensively, a successful calibration
+may not be possible.
+Figure 1 summarises the systematic of this contribu-
+tion’s calibration approach. First, the basic properties of
+the original material that is expected to be encountered in
+the mine need to be deﬁned (particle shape, particle size
+distribution, density etc.). Then the target values for the
+calibration are determined, which are the angle of repose
+and the draw-zone width, as explained later in more detail.
+To keep the number of required calibration simulations as
+small as possible, both calibration values are implemented
+in asinglecalibration model. The material isthen simpliﬁed
+to enable the calculation of the model. Subsequently, the
+simpliﬁed material is inserted with a predeﬁned bulk den-
+sity into the calibration model. A sensitivity study is run
+by iteratively adapting the friction parameters and running
+the simulation until the target values of the calibration are
+met. To keep the number of simulations low, both chosen
+target values are evaluated in a single model. If the results
+correspond to the target values, the calibration is ﬁnished.
+2. Calibration Approach
+The presented calibration model is based on experiences
+on movement zones above a draw-point, made by Laub-
+scher [17] in BC operations. Further on, the angle of repose
+at thedraw-point iscompared to arepresentativeone found
+in the mine. The model, seen in Fig. 2a, consists of a stope
+of 25× 30× 40m with broken material. On the bottom of the
+model, there is a draw-bell with a 45° inclination and two
+attached draw-points. The vertical distance from the ﬂoor
+of the extraction point to the bottom of the stope above is
+10m. Material is extracted from one—active—draw-point,
+which evokes a movement zone in the material pile above.
+From the second—passive—draw-point material ﬂows out
+and stabilises at a certain angle of repose. The draw-points
+have a quadratic cross-section of 5× 5m and a straight roof.
+These dimensions were taken from typical BC layouts [18,
+19].
+To extract material from the active draw-point, the ma-
+terial is removed after the outﬂow through a vertical ex-
+tension below the draw-point. Consequently, the overly-
+ing material begins to ﬂow towards the draw-point, and
+a movement zone evolves.
+Material is allowed to ﬂow
+out until the movement zone breaks through the top of
+the model, which is ﬁlled to a height of 40m (see Fig. 2b).
+After this breakthrough point, the zone above the moving
+particles is destabilised. The simulations were then anal-
+ysed and compared. Depending on the parameter set, the
+414
+© The Author(s)
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+
+Originalarbeit
+0
+20
+40
+60
+80
+100
+0,001
+0,1
+10
+1000
+% Passing
+Fragmentaon size [mm]
+Fig. 3: Fragmentation curveofKirunaSLC operation according to Wim-
+mer etal. [21]
+breakthrough was reached at different extraction states, but
+generally approximately around 4kt of extracted material.
+The width of the movement zone was analysed by mea-
+suring the ﬂow width of the active area within the block.
+The advantage of this model is that the angle of repose is
+additionally obtained at the passive draw-point.
+2.1 Determination of a Representative Material
+The ﬁrst step in replicating material in a DEM model is to
+determine the representative physical material in nature.
+Therefore, the fragmentation size and the particle shape
+are estimated. The presented approach is utilised in ore-
+ﬂow investigations for the Kiruna mine, researching a novel
+mining method called Raise-Caving [20]. The particle size
+distribution (PSD) is taken from available literature sources
+[21] stating the Kiruna SLC situation with an x50 value of
+110mm (see Fig. 3). Future investigations should also tar-
+get other fragmentation groups, which include coarse and
+homogeneous, coarse and inhomogeneous groups, and
+the inﬂuence of water and cohesion.
+Regarding the particle shape, pictures from the material
+at SLC draw-points in the Kiruna mine (see Fig. 4) gave the
+impression of a rather angular material shape. This infor-
+mation was seen to be sufﬁcient for modeling, as the over-
+all material behaviour calibration compensates for a certain
+lack of particle-shape detail.
+Fig. 4: Fragmentation ofastandard draw-pointin Kiruna
+2.2 Target Values for Calibration
+The basis for the calibration is the experience made in
+many BC operations by Laubscher [17]. Laubscher showed
+that the size of extraction zones above a draw-point de-
+pended on the PSD and the dimensions of the draw-point
+(see Fig. 5). In this table, the loading width indicates the
+width of the draw-point. The rock mass class deﬁnes the
+size of the caved rock mass. Wide ﬂow zones above the
+draw-points are achieved when the material is very coarse.
+The ﬂow zone gets slimmer with ﬁner material.
+The fragmentation data seen in Fig. 3 wascombined with
+a draw-point width of 5m, which resulted in a draw-zone
+diameter of approximately 10m. This was consequently
+set as the target value for the calibration. For the angle
+of repose, Määttä et al. [22] showed for 3D-laser-scanned
+Kiruna draw-points that a normal and stable gravity ﬂow
+took place when the angle of repose varied between 30–35°.
+Beakawi [23] analysed that, for coarse gravel material, val-
+ues of 25–45° could be possible, depending on the content
+of ﬁnes. It was seen in literature that the angle of repose
+increases for ﬁner material [23, 24]. As a combination of
+this information, a range of 33–37° was set as a target for
+the angle of repose of the investigated ﬁne material group.
+2.3 Simpliﬁcation Measures on Particle
+Properties
+2.3.1 PSD and Particle Shape Simpliﬁcation
+The simpliﬁcation measures are applied to the determined
+material. These need to be implemented within their lim-
+its to yield realistic results. The ﬁrst simpliﬁcation mea-
+sures are to neglect ﬁnes and simplify the particle shape.
+An issue with implementing ﬁnes is the excessive calcu-
+lation demand as these contain billions of relatively small
+(and, respectively, computationally intensive) particles. In
+state-of-the-art simulations, ﬁnes are commonly neglected.
+The lack of this part of fragmentation needs to be compen-
+sated with a proper calibration. Additionally, it was seen in
+the course of this contribution that the implementation of
+large boulders—although reducing the number of particles
+in a simulation—affected the computational speed nega-
+tively, as the time step was reduced to maintain the particle
+overlaps in a relatively small range. Boulders in Kiruna are
+deﬁned as material blocks larger than 0.7m. However, the
+fraction of particles larger than 0.5m is already very small
+and was therefore neglected in the basic models. The im-
+plemented PSD consequently followed the curve of Fig. 3
+by only considering the sizes 50–500mm. To generate this
+PSD in the DEM model, four different particle size groups
+were used—50, 150, 300, and 500mm.
+The particle shape has a signiﬁcant effect on the bulk ma-
+terial behaviour; however, literature references [3, 4] show
+that an exact replication of the particle shape in DEM simu-
+lation isoften not necessary. Complex particlescan berepli-
+cated in DEM simulations by simpliﬁed particle shapes. For
+example, multiple spheres can be consolidated into multi-
+sphere particles. They are inseparably ﬁxed together and
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+© The Author(s)
+415
+
+Originalarbeit
+Fig. 5: Isolated draw-zonedi-
+ameter (ﬂow width)for differ-
+entsizeranges ofcaved rock
+mass atcertain loading widths
+after Laubscher [17, 18]
+consequently represent a single particle. It could be shown
+that theﬂow behaviour of most common non-spherical par-
+ticles (excluding highly complex shapes, such as ﬁbers,
+plates, interlocking particles etc.) can be reproduced with
+this approach when calibrated properly [4] (e.g. ﬂow from
+a ﬁlled container). It is stated that a particle clump con-
+sisting of two spheres is already much more precise than
+a simple single sphere. Using more than four spheres does
+not increase the accuracy signiﬁcantly but increases the
+computational effort. A compromise between realistic and
+efﬁcient simulations can be made by implementing a man-
+ually created particle mix with different numbers of spheres
+per particle. In this contribution, a manual material mixture
+was chosen similar to the one of Coetzee [4], who found
+that this can reproduce a good accuracy for angular mate-
+Fig. 6: Particleshapes containing oneto four spheres for theRC models
+rial. As a compromise between calculation efﬁciency and
+accuracy, seven different particle shapes with one to four
+spheres were implemented (see Fig. 6).
+2.3.2 Shear Modulus, Coefﬁcient of Restitution,
+and Upscaling Factor
+A further point to speed up the simulation is to reduce the
+shear modulus in the model compared to reality. This can
+yield massively faster results. If applied within its limits,
+it does not change the quality of the result for many appli-
+cations [25, 26]. The shear modulus reduction was tested
+by Brandner and Koch [27]. As a consequence, the shear
+modulus was reduced in this contribution from originally
+34 to 5GPa. Considering the value of the coefﬁcient of resti-
+tution (COR), it was found by different authors [26, 28] that
+DEM simulations showed an insensitivity to the variation
+of the COR. Its exact determination can additionally only
+be done individually for every particle with drop tests. This
+wasseen to be impractical for a calibration process, which is
+whyliteratureresearch on thisparameter wasdone. Barrios
+et al. [29] investigated similar material properties to crude
+iron ore and used the same software as in this contribution
+(EDEM). Therefore, the found COR value of 0.51 served as
+the guiding value, with a value of 0.5 implemented in this
+work.
+The calibration model with 25× 30× 40m dimensions
+still contains over a hundred million of the simpliﬁed parti-
+cles, which is not feasible to compute with contemporary
+workstations. A solution to reduce the number of particles
+is to apply particle upscaling. The idea is to replace the
+particles by larger ones.
+Up to a certain point, speciﬁ-
+cally depending on the application, this was seen not to
+affect the results adversely, especially when a calibration
+is conducted subsequently. For large stope applications,
+this was tested by Brandner and Koch [27] and seen to
+416
+© The Author(s)
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+
+Originalarbeit
+Upscaling 
+factor
+2
+3
+4
+6
+PSD
+100-1,000mm
+150-1,500mm
+200-2,000mm
+300-3,000mm
+Speed-up rao
+1
+5.3
+16.4
+33.8
+Fig. 7: Theoriginal material of50–500bmm is upscaled in sizebyfactors from 2to 6. Black particles indicatetheextracted zonewhilethecolours show
+themovementzone. Itshows thattoo largeupscaling factors changethesimulation results drastically
+be reasonable up to an upscaling factor of 3. This value
+means that, instead of 50–500mm, the implemented parti-
+cles have sizes of 150–1500mm. However, the PSD in this
+study differs to the present one, which is why it is tested
+again with the present PSD.
+As a comparison value, the centrally located black ex-
+traction zone and the movement zone on top of it were
+used, as seen in Fig. 7.
+This area is focused with mini-
+mal regard for minor diverging boundary effects. In order
+to achieve a speed-up effect, the method introduces some
+idealisations. The potential slight distortions introduced by
+the upscaling approach need to be acknowledged and ac-
+counted for in the analyses. This awareness allows us to
+place greater emphasis on trends and relative comparisons
+rather than relying solely on the absolute results. With that
+context, Fig. 7 shows that the upscaling factors of 2 and
+3 deliver similar results for the ﬂow zones and the upscal-
+ing factors of 4 and 6 lead to a more distorted ﬂow image
+than the previous ones. This leads to the conclusion that an
+upscaling factor of 3 is the limit for the present application.
+As it was 5.3 times faster than factor 2, an upscaling fac-
+tor of 3 was consequently used in this contribution (being
+aware of its inﬂuences).
+2.4 Parameter Study for a Realistic Bulk Density
+Bierwisch et al. [30] found that it is mandatory for a DEM
+model for the bulk density to be the same as the original
+one. Otherwise the granular behaviour might deviate due
+to a changed amount of potential energy in the system.
+Property
+Value
+stac fricon
+0.1
+0.1
+0.1
+0.5
+0.5
+0.5
+0.9
+0.9
+0.9
+rolling fricon
+0.1
+0.5
+0.9
+0.1
+0.5
+0.9
+0.1
+0.5
+0.9
+Bulk density [kg/m³]
+3,418
+3,312
+3,352
+3,111
+2,840
+2,818
+2,993
+2,641
+2,620
+Fig. 8: Parameter study—effectoffriction coefﬁcients during theﬁlling process on thebulk density
+There are various uncertainties related to the bulk density
+of the broken ore in the stope due to blasting and com-
+paction mechanisms. It is, however, reasonable to assume
+that the bulking factor K of broken ore in the region of the
+draw point will be in the range of 1.3< K< 1.5.
+The bulk
+density of the broken ore will therefore fall in the range of
+3600–3130kg/m3.
+To set up the simulation model, the material is dropped
+into the stope from the top. It was seen that the predeﬁned
+friction values during the ﬁlling process already inﬂuenced
+the bulk density of the model. Higher friction led to a lower
+bulk density and vice versa. To ﬁnd adequate friction values
+for the ﬁlling process, a parameter study was done. A box
+was ﬁlled several times with different friction values. The
+static and rolling friction values were varied during each
+ﬁlling process, from 0.1, to 0.5, and 0.9. Thisisdone for both
+friction values, which leads to a full set of nine parameter
+combinations (see Fig. 8; also being aware that commonly
+the rolling friction should be set lower than the staticfriction
+value). The target bulking density of 3600–3130kg/m3 can
+be achieved by four different parameter combinations. To
+compensate for any larger voids across the entire stope, the
+lower value of the range was chosen. Therefore the used
+density was 3111kg/m3, achieved by the parameter set of
+0.5 (static friction) and 0.1 (rolling friction).
+2.5 Results of the Actual Calibration Model
+The target values for the calibration are 10m ﬂow width
+and 33–37° angle of repose. To ﬁnd a set of friction pa-
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+© The Author(s)
+417
+
+Originalarbeit
+11,0
+11,5
+12,0
+12,5
+13,0
+13,5
+14,0
+0,5
+0,6
+0,7
+0,8
+Flow width[m]
+stac fricon value [ -]
+0,0
+5,0
+10,0
+0,1
+0,15
+0,2
+Flow width[m]
+rolling fricon value [ -]
+a
+b
+Fig. 9: Correlation oftheﬂow width with athestatic friction valueataconstantrolling friction of0.1and b therolling friction valueataconstantstatic
+friction of0.5
+Fig. 10: Comparison ofthe
+best-ﬁttingdatasetsofthecon-
+ducted calibration models
+Stac fricon [1]
+0.60
+0.65
+0.70
+0.75
+0.75
+0.85
+Rolling fricon [1]
+0.12
+0.10
+0.12
+0.10
+0.12
+0.10
+Angle of repose [°]
+35.5
+34.9
+35.6
+35.7
+35.8
+34.4
+Flow width [m]
+11.4
+11.9
+11.9
+11.8
+10.9
+11.6
+rameters that produce this material behaviour, the effect of
+static and rolling friction parameters was investigated in-
+dividually. One parameter was locked at the time, and the
+other one was varied to see the effect on the bulk behaviour.
+First, the rolling friction was kept at a value of 0.1 with the
+static friction increased from 0.5 to 0.85 in steps of 0.05.
+The result in Fig. 9a shows that the ﬂow width decreases
+with growing static friction, as expected. The targeted ﬂow
+width of 10m is, however, difﬁcult to achieve by only adapt-
+ing the static friction.
+As a second step, the rolling friction was varied from
+0.1 to 0.15 and 0.2 with the static friction kept at a value
+of 0.5. Figure 9b shows that a friction value of 0.15 results
+in a ﬂow width of 10.1m, but at an angle of repose 43°.
+Fig. 11: Cross-section ofthecalibration model and theﬂow zonefor
+astatic friction of0.75and arolling friction of0.12
+A rolling friction of 0.2 even led to immediate hang-ups at
+the draw-point. This concludes that increasing the rolling
+friction reduces the ﬂow width, but a too-high value pro-
+vokes an unnatural behaviour.
+Further simulations were conducted with different pa-
+rameter sets, varying both friction parameters. The cali-
+bration results can be seen in Fig. 10, with the parameter
+set 0.75 static friction and 0.12 rolling friction approximat-
+ing the target values in a suitable way. This set resulted
+in an angle of repose of 35.8° and a ﬂow width of 10.9m
+(see Fig. 11). Consequently, this friction parameter set is
+used in subsequent models for a detailed investigation of
+key issues related to the ore-ﬂow. The calibration has been
+applied by Koch et al. [20] to investigate the draw-bell incli-
+nation and the draw-point spacing on the ore-ﬂow. A sum-
+marising table of all used input parameters and the cali-
+brated values can be seen in Table 1.
+3. Conclusion, Summary, and Outlook
+The contribution showed a successful way to calibrate ma-
+terial in large discrete element method (DEM) models for
+cave mining. This was based on full-scale mine data, which
+included the ﬂow width within a stope and the angle of
+repose of a passive draw-point.
+The model consists of
+a large stope with broken material, an underlying draw-
+bell with a 45° inclination, and two draw-points at the bot-
+tom. One draw-point is actively worked and consequently
+forms a ﬂow zone of broken material in the draw-bell above
+it. The other draw-point is passive, and the outﬂowing ma-
+terial forms an angle of repose.
+The calibration targeted the ﬂow behaviour of the iron
+ore in the Kiruna mine.
+Therefore characteristic proper-
+ties concerning the particle shape and particle size distri-
+bution were implemented in the software. Simpliﬁcation
+measures were applied within the tested limits to facilitate
+the computation. A parameter study was conducted to ﬁnd
+suitable friction parameters for the ﬁlling process in order
+418
+© The Author(s)
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+
+Originalarbeit
+TABLE 1
+Summary of parameters for the DEM calibration model
+Property
+Value
+Material solids density
+4700kg/m3
+Resulting material bulk density
+3156kg/m3
+Static friction for ﬁlling process
+0.5
+Rolling friction for ﬁlling process
+0.1
+Particle shape
+Multishperical; varying in 7 different constellations with 1 to 4 spheres; see Fig. 6
+Original PSD
+According to [21] (x50 of 110mm); see Fig. 3
+Simpliﬁed PSD
+50–500mm (50, 150, 300, and 500mm)
+Used upscaling factor
+3
+Target ﬂow width
+10m
+Target angle of repose
+33–37°
+Static friction result from calibration
+0.75
+Rolling friction result from calibration
+0.12
+to set up the model for later discharge modeling represent-
+ing a realistic bulk density. A value of 3159kg/m3 could
+be achieved with a parameter set of 0.5 and 0.1 for static
+and rolling friction, respectively. These friction parameters,
+however, were not the ones set for the subsequent mate-
+rial discharge simulations and were only used to perform
+the ﬁlling process as part of the model preparation. For the
+actual calibration, the implemented particle size distribu-
+tion was combined with draw-zone width experience from
+block caving. This led to the target value for calibration of
+10m draw-zone width. Further, the angle of repose was
+calibrated based on typical Kiruna draw-point angles and
+values from literature of 33–37°. The calibration could be
+successfully achieved with a suitable parameter set of 0.75
+static friction and 0.12 rolling friction. These calibration re-
+sults should further be validated at a future stage to control
+their quality, which can be done by representative tests in
+the mine and by evaluation of experts in the ﬁeld of DEM
+and ore-ﬂow. It was also seen that the bulk density plays
+a major role as it affects the results, thus leading to an open
+point for future research regarding a more detailed deter-
+mination of the physical bulk density inside block caving
+stopes.
+Acknowledgements. Luossovaara-KiirunavaaraAB (LKAB) is thanked for the
+support of this project and the supply of experience and data. Special thanks for
+the good collaboration and permission of publishing this contribution.
+Funding. Open access funding provided by Montanuniversität Leoben.
+Open Access This articleis licensed under aCreativeCommons Attribu-
+tion 4.0International License, which permits use, sharing, adaptation,
+distribution and reproduction in anymedium or format, as long as you
+giveappropriatecreditto theoriginal author(s)and thesource, providea
+linktotheCreativeCommonslicence,andindicateifchangesweremade.
+Theimages or other third partymaterial in this articleareincluded in the
+article’sCreativeCommonslicence,unlessindicatedotherwiseinacredit
+lineto thematerial. Ifmaterial is notincluded in thearticle’s Creative
+Commons licenceand your intended useis notpermitted bystatutory
+regulation or exceeds thepermitted use, you will need to obtain permis-
+siondirectlyfromthecopyrightholder. Toviewacopyofthislicence,visit
+http://creativecommons.org/licenses/by/4.0/.
+References
+1. -: EDEM. Altair Engineering Inc (2021)
+2. Coetzee, C.J.: Review: calibration of the discrete element method.
+Powder Technol 310,
+104–142 (2017).
+https://doi.org/10.1016/j.
+powtec.2017.01.015
+3. Marigo, M., Stitt, E.H.: Discrete element method (DEM) for indus-
+trial applications: comments on calibration and validation for the
+modelling of cylindrical pellets. KONA 32(0), 236–252 (2015). https://
+doi.org/10.14356/kona.2015016
+4. Coetzee, C.J.: Calibration of the discrete element method and the
+effect of particle shape. Powder Technol 297, 50–70 (2016). https://
+doi.org/10.1016/j.powtec.2016.04.003
+5. Li, Q., et al.: Validation and calibration approach for discrete ele-
+ment simulation of burden charging in pre-reduction shaft furnace
+of COREX process. ISIJ Int 53(8), 1365–1371 (2013). https://doi.org/
+10.2355/isijinternational.53.1365
+6. Derakhshani, S.M., et al.: Micro-macro properties of quartz sand:
+experimental investigation and DEM simulation. Powder Technol
+269, 127–138 (2015). https://doi.org/10.1016/j.powtec.2014.08.072
+7. Simons, T.A., et al.: A ring shear tester as calibration experiment for
+DEM simulations in agitated mixers—a sensitivity study. Procedia
+Eng 102, 741–748 (2015). https://doi.org/10.1016/j.proeng.2015.01.178
+8. Sellden, H., Pierce, M.: PFC3D modelling of ﬂow behaviour in sub-
+level caving. Massmin 2004, (2004)
+9. DeGagné, D.O., McKinnon, S.D.: The inﬂuence of blasting fragmen-
+tation on ore recovery in sublevel cave mines. In: The 40th U.S.
+Symposium on rock mechanics (USRMS). Anchorage, Alaska (2005)
+10. Yi, C., et al.: Numerical modelling of fragmentation by blasting and
+gravity ﬂow in sublevel caving mines.
+In: Caving 2022: ﬁfth in-
+ternational conference on block and sublevel caving, pp. 963–974.
+Australian Centre for Geomechanics, Perth (2022)
+11. Rayo, J.D., et al.: Simulation of block caving operation using a dis-
+crete element method (DEM). In: Conference paper of Minin 2016.
+Santiago, Chile (2016)
+12. Song, Z., et al.: Drawing mechanism of fractured top coal in long-
+wall top coal caving. Int. J. Rock Mech. Min. Sci. 130, 104329 (2020).
+https://doi.org/10.1016/j.ijrmms.2020.104329
+13. Song, Z., Konietzky, H.: A particle-based numerical investigation on
+longwall top coal caving mining. Arab J Geosci (2019). https://doi.
+org/10.1007/s12517-019-4743-z
+14. Troﬁmov, A.V., Amosov, I.V.: DEM modeling of the ore discharge
+from blocks. In: - (ed.) Geomechanica and geodynamics of rock
+masses—Litvinenko, pp. 1071–1074. (2018)
+15. DeGagné, D.O., McKinnon, S.D.: The inﬂuence of cave mass proper-
+ties on discrete sublevel cave models. In: The 41st U.S. Symposium
+on rock mechanics (USRMS). Golden, Colorado (2006)
+16. Kunes, J.:
+Similarity and modeling in science and engineering,
+1st edn. Cambridge International Science Publishing Limited, Cam-
+bridge (2012)
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8
+© The Author(s)
+419
+
+Originalarbeit
+17. Laubscher, D.: Cave mining—the state of the art. J. S. Afr. Inst. Min.
+Metall. 94(10), 279–293 (1994)
+18. Laubscher, D., et al.: Guidelines on caving methods: the underlying
+concepts. University of Queensland Australia, Brisbane (2017)
+19. Brown, E.T.: Block caving geomechanics: international caving study
+1997–2004. Julius Kruttschnitt Mineral Research Centre, The Univer-
+sity of Queensland (2007)
+20. Koch, L.A., et al.: Key issues related to oreﬂow in raise caving. In:
+Caving 2022: proceedings of the ﬁfth international conference on
+block and sublevel caving, pp. 1391–1404. Australian Centre for Ge-
+omechanics, Perth (2022)
+21. Wimmer, M., et al.:
+Analysis of rock fragmentation and its ef-
+fect on gravity ﬂow at the Kiruna sublevel caving mine:
+ﬁnal
+paper—Fragblast. 11, (2015)
+22. Määttä, M., et al.: Observations at drawpoint. Internal report of
+LKAB (2017)
+23. Beakawi Al-Hashemi, H.M., Baghabra Al-Amoudi, O.S.: A review
+on the angle of repose of granular materials. Powder Technol 330,
+397–417 (2018). https://doi.org/10.1016/j.powtec.2018.02.003
+24. Zhou, Y.C., et al.: An experimental and numerical study of the angle
+of repose of coarse spheres. Powder Technol 125(1), 45–54 (2002).
+https://doi.org/10.1016/S0032-5910(01)00520-4
+25. Lommen, S., et al.: DEM speedup: Stiffness effects on behavior of
+bulk material.
+Particuology 12, 107–112 (2014).
+https://doi.org/10.
+1016/j.partic.2013.03.006
+26. Yan, Z., et al.: Discrete element modelling (DEM) input parameters:
+understanding their impact on model predictions using statistical
+analysis. Comp. Part. Mech. 2(3), 283–299 (2015). https://doi.org/10.
+1007/s40571-015-0056-5
+27. Brandner, A., Koch, L.A.: Speed-up measures and associated prob-
+lems for large-scale DEM-models.
+Berg Huettenmaenn Monatsh
+168(6), 287–293 (2023). https://doi.org/10.1007/s00501-023-01363-2
+28. Lommen, S.W.: Virtual prototyping of grabs.
+Delft University of
+Technology (2016)
+29. Barrios, G.K., et al.: Contact parameter estimation for DEM simula-
+tion of iron ore pellet handling. Powder Technol 248, 84–93 (2013).
+https://doi.org/10.1016/j.powtec.2013.01.063
+30. Bierwisch, C., et al.: Three-dimensional discrete element models
+for the granular statics and dynamics of powders in cavity ﬁlling.
+J. Mech. Phys. Solids 57(1), 10–31 (2009). https://doi.org/10.1016/j.
+jmps.2008.10.006
+Publisher’s Note. Springer Nature remains neutral with regard to jurisdictional
+claims in published maps and institutional aﬃliations.
+420
+© The Author(s)
+Berg HuettenmaennMonatsh (2024), 169. Jg., Heft 8

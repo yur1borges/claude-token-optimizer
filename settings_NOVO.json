@@ -1,0 +1,265 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash",
+      "PowerShell",
+      "Agent",
+      "Skill",
+      "SendMessage",
+      "ListAgents",
+      "ToolSearch",
+      "WebSearch",
+      "WebFetch",
+      "NotebookEdit",
+      "ScheduleWakeup",
+      "Monitor",
+      "ReadNotifications",
+      "SendUserFile",
+      "TaskStop",
+      "mcp__plugin_claude-mem_mcp-search"
+    ],
+    "deny": []
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\yuri\\AppData\\Local\\Codenotch\\codenotch-hook.exe\" attention",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\yuri\\AppData\\Local\\Codenotch\\codenotch-hook.exe\" running",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Agent|Bash|PowerShell|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\yuri\\AppData\\Local\\Codenotch\\codenotch-hook.exe\" running",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Agent|Bash|PowerShell|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\yuri\\AppData\\Local\\Codenotch\\codenotch-hook.exe\" session_end",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\yuri\\AppData\\Local\\Codenotch\\codenotch-hook.exe\" session_start",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "python \"C:\\Users\\yuri\\.claude\\hooks\\erros_softwares.py\"",
+            "timeout": 15,
+            "statusMessage": "Lendo erros novos dos softwares (Flow/TriboDEM/RPA)…"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\yuri\\AppData\\Local\\Codenotch\\codenotch-hook.exe\" done",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Users\\yuri\\AppData\\Local\\Codenotch\\codenotch-hook.exe\" running",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Users\\yuri\\.claude\\agent-flow\\hook.js\"",
+            "timeout": 2
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "impeccable@impeccable": true,
+    "ponytail@ponytail": true,
+    "claude-mem@thedotmack": true,
+    "caveman@caveman": true,
+    "taste-skill@taste-skill": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "impeccable": {
+      "source": {
+        "source": "github",
+        "repo": "pbakaus/impeccable"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "one-skill-to-rule-them-all": {
+      "source": {
+        "source": "github",
+        "repo": "rebelytics/one-skill-to-rule-them-all"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "taste-skill": {
+      "source": {
+        "source": "github",
+        "repo": "Leonxlnx/taste-skill"
+      }
+    },
+    "msadura": {
+      "source": {
+        "source": "github",
+        "repo": "msadura/claude-plugins-marketplace"
+      }
+    }
+  },
+  "syntaxHighlightingDisabled": true,
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "low"
+    },
+    "combo/modelos gratuitos": {
+      "effortLevel": "xhigh"
+    },
+    "claude-sonnet-4-6": {
+      "effortLevel": "low"
+    }
+  },
+  "autoUpdatesChannel": "latest",
+  "theme": "dark",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "autoMemoryEnabled": true
+}

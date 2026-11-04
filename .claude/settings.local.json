@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:20128",
+    "ANTHROPIC_AUTH_TOKEN": "sk-8c7ed193a076420e-0dca1b-028a6007",
+    "ANTHROPIC_MODEL": "combo/modelos gratuitos",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "combo/especialistas",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "combo/programacao",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "combo/modelos gratuitos",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "combo/modelos gratuitos"
+  }
+}

@@ -1,0 +1,349 @@
+Plasma and Fusion Research: Regular Articles
+Volume 15, 2402039 (2020)
+Radiation Resistant Camera System for Monitoring Deuterium
+Plasma Discharges in the Large Helical Device∗)
+Mamoru SHOJI and LHD Experiment Group
+National Institute for Fusion Science, National Institutes of Natural Sciences, Toki 509-5292, Japan
+(Received 28 November 2019 / Accepted 5 May 2020)
+Radiation resistant camera system was constructed for monitoring deuterium plasma discharges in the Large
+Helical Device (LHD). This system has contributed to safe operation during two experimental campaigns without
+serious problems due to radiation (neutrons and gamma-rays). The cameras steadily functioned even in the plasma
+discharge with the maximum neutron emission rate in FY 2017, though some bright specks temporarily appeared
+on the images. The cameras have been installed in shield boxes which consist of lead boxes covered with 10%
+borated polyethylene blocks in all directions. For optimizing the design of the shield box, the radiation ﬂux
+distribution was calculated by MCNP-6 code, which reveals the reduction of the radiation ﬂux and the change
+of the energy spectra in the shield box. Thanks to the optimization, signiﬁcant extension of the lifetime of the
+cameras has been realized. Investigation of the inﬂuence of the radiation on the CCD image sensor shows that
+the number of bright specks generally increases with the radiation ﬂux to the camera, which also indicates that
+some bright specks disappear by the self-annealing process on the image sensor. This phenomenon also highly
+contributes to the further extension of the lifetime of the radiation resistant cameras.
+c⃝2020 The Japan Society of Plasma Science and Nuclear Fusion Research
+Keywords: radiation resistant camera, neutron, gamma-ray, CCD, deuterium plasma, LHD
+DOI: 10.1585/pfr.15.2402039
+1. Introduction
+The ﬁrst deuterium (D-D) experimental campaign
+started in March 2017 in the Large Helical Device (LHD),
+and it continued for the following four months [1]. Neu-
+trons are yielded in deuterium plasmas, and gamma-rays
+are also collaterally yielded by interactions of neutrons
+with the peripheral components and the torus hall [2]. Be-
+fore the D-D experimental campaign, about thirty Charge
+Coupled Device (CCD) cameras which had been directly
+mounted at viewports on the vacuum vessel have been
+used for monitoring LHD plasmas and plasma-wall inter-
+actions [3,4]. It has been well known that the CCD image
+sensors are very sensitive to and easily damaged by radi-
+ation (neutrons and γ-rays) [5]. In the D-D experimental
+campaign, it is predicted that the cameras must be replaced
+at frequent intervals because of the following two facts.
+One is that the estimated maximum neutron ﬂuence at the
+viewports is about 8×109 n/cm2 per one deuterium plasma
+discharge [6]. The other fact is that the number of dam-
+aged CCD image sensors per this neutron ﬂuence is esti-
+mated to be about 5×103 pixels, which is derived from the
+experimental data reported in the reference 5. These two
+facts result in that all the image sensors in standard CCD
+cameras having 4 × 105 pixels are damaged in about 80
+deuterium plasma discharges. This estimation means that
+all the cameras have to be replaced by two times per one-
+author’s e-mail: shoji@nifs.ac.jp
+∗) This article is based on the presentation at the 28th International Toki
+Conference on Plasma and Fusion Research (ITC28).
+day plasma discharge operation in LHD, producing large
+amounts of radioactive wastes and signiﬁcantly lowers the
+operating rate. Thus, it was an urgent task to develop a ra-
+diation resistant camera system for monitoring deuterium
+plasma discharges.
+In the next section, the speciﬁcation of the radiation
+resistant camera system is described. Analyses of a Gen-
+eral Monte Carlo N-Particle Transport simulation Code
+version 6 (MCNP-6) for optimizing the design of the shield
+box for protecting the cameras from the radiation is pre-
+sented in section 3. The successful results of the acquired
+plasma images at the plasma discharge with the maximum
+neutron emission yield is depicted in section 4. In the next
+section, the investigation of the inﬂuence of the radiation
+on the image sensor is presented, which will provide valu-
+able information for applying the CCD camera in future
+nuclear fusion reactor plants.
+2. Setup of the Radiation Resistant
+Camera System
+For protecting the cameras from neutrons and gamma-
+rays, ﬁve shield boxes were installed on LHD diagnostic
+stages in the torus hall, as illustrated in Fig. 1. These lo-
+cations are far from the LHD center by more than 12 m in
+order to reduce the inﬂuence of high energy neutrons to
+the cameras. The cameras are covered with a lead (Pb)
+box (15 mm in thickness) surrounded with 10% borated
+polyethylene blocks (100 mm in thickness) in all directions
+which is the maximum tolerable thickness due the spatial
+c⃝2020 The Japan Society of Plasma
+Science and Nuclear Fusion Research
+2402039-1
+
+Plasma and Fusion Research: Regular Articles
+Volume 15, 2402039 (2020)
+Fig. 1
+The top view of the setup of the radiation resistant camera
+system for monitoring deuterium plasmas in LHD.
+limit on the site. The polyethylene blocks are for protect-
+ing the cameras from the neutrons, and the lead box is for
+reducing the gamma-ray ﬂux secondly yielded by the in-
+teractions of neutrons with the polyethylene blocks. Two
+bended slit halls on the up and bottom sides are opened for
+air ventilation and as ducts for power supply cables, image
+ﬁbers, signal lines and optical ﬁbers, etc. The lead box in-
+cludes optics for connecting the image ﬁbers to the CCD
+cameras (Toshiba IK-CU44, IK-C44 H, IK-M44 H, Hitachi
+KP-D20A, and KP-D20B), camera controllers (Toshiba
+IK-UM44 H), media converters (Nanahoshi Kagaku VP-
+205SC), and a serial device server (Moxa NPort5410) for
+controlling the cameras.
+Eight optical lenses were mounted at the viewports
+on the vacuum vessel in the ﬁrst deuterium experimen-
+tal campaign in FY 2017. In the next experimental cam-
+paign in FY 2018, three optical lenses were additionally
+mounted. Plasma images at the viewports are transferred
+to the cameras via the radiation resistant image ﬁbers (with
+30,000 pixels and approximately 10 - 20 m in length). The
+video output signal (NTSC) from the camera controllers
+are transferred to the control room via the media convert-
+ers through the optical ﬁbers. The signal is captured by a
+video encoder and stored in RAID disks or a data acquisi-
+tion (DAQ) system for LHD.
+3. Optimization of the Design of the
+Shield Box
+The General Monte Carlo N-Particle Transport simu-
+lation Code version 6 (MCNP-6) [7] was applied for op-
+timizing the structure of the shield box, in which an LHD
+model for one helical coil pitch angle (36 degrees in the
+toroidal direction) is included with a cylindrical torus hall
+model for calculating the radiation ﬂux distribution in the
+hall [6]. Figure 2 illustrates the side and top cross-sectional
+view of the three-dimensional model of the shield box
+which consists of a lead box and 10% borated polyethy-
+lene blocks with the slit halls. In this model, the helical
+Fig. 2
+The side and top cross-sectional view of the three-
+dimensional model of the shield box for the MCNP code.
+symmetry of the plasma and the peripheral components is
+assumed. Neutrons with an energy of 2.45 MeV by the
+bulk deuterium-deuterium reaction are yielded from circu-
+lar shaped torus plasma locating at the center of the vac-
+uum vessel.
+Figures 3 (a) and (b) give the simulation result of the
+vertical cross-section of the neutron and gamma-ray ﬂux
+distribution in the torus hall at a toroidal angle crossing the
+shield box #2 for a neutron emission rate of 1.0 n/s, re-
+spectively. This shield box is chosen as a representative
+one for the simulation because of no signiﬁcant toroidal
+variation of neutron ﬂux in the torus hall around LHD [8].
+Figure 3 (a) shows that the neutron ﬂux is reduced at the
+position of the shield box by approximately one-order of
+magnitude compared to that in the vacuum vessel. On the
+other hand, as illustrated in Fig. 3 (b), while the gamma-ray
+ﬂux decreases by about one-order of magnitude around the
+shield box, the 10% borated polyethylene blocks enhance
+the gamma-ray ﬂux at the LHD side in the shield box. This
+simulation result indicates that lead box is essential for pro-
+tecting the cameras from the enhanced gamma-rays.
+The side and top cross-sectional view of the neutron
+and gamma-ray ﬂux distribution around the shield box #2
+are presented in Figs. 4 (a) and (b).
+These simulations
+show that the neutron and gamma-ray ﬂux in the lead
+box is reduced by a factor of about 30 and 10 compared
+to those around the shield box (LHD side), respectively.
+Figures 5 (a) and (b) present the calculated neutron and
+gamma-ray spectra at the shield box, respectively.
+The
+solid black lines represent the background spectra which
+is calculated for no shield box. The colored dotted lines
+are the calculated spectra at the inside of the lead box,
+showing that the neutron ﬂux is attenuated in the wide neu-
+tron energy range by a factor of about 40 compared to the
+background ﬂux. The gamma-ray ﬂux in the high energy
+2402039-2
+
+Plasma and Fusion Research: Regular Articles
+Volume 15, 2402039 (2020)
+Fig. 3
+The simulation of the vertical cross-section of (a) the neutron and (b) the gamma-ray ﬂux distribution in the torus hall for a neutron
+emission rate of 1.0 n/s in the LHD deuterium plasma.
+range (> 0.4 MeV) is reduced by a factor of about 2 or
+3, and the ﬂux in the low energy range (< 0.4 MeV) is
+lowered by about one order of magnitude compared to the
+back ground ﬂux (solid black line). The shielding perfor-
+mance of the lead box for the gamma-rays is investigated
+by changing the thickness of the lead plates (components
+of the lead box). Colored broken lines in Figs. 5 (a) and
+(b) give the calculated neutron and gamma-ray spectra in
+the shield box #2 in the case where the thickness of the
+lead plates is changed from 5 to 25 mm. The calculations
+show that the thicker lead plates are eﬀective for reducing
+gamma-ray ﬂux in the high energy range. The increment
+of the reduction ratio for 25 mm is about 20% compared to
+that for 15 mm. Lead plate is a heavy and toxic material
+which has to be handled with care. Considering this com-
+plicatedness, the thickness of the lead plate adopted in the
+2402039-3
+
+Plasma and Fusion Research: Regular Articles
+Volume 15, 2402039 (2020)
+Fig. 4
+The simulation of the side and top cross-section of (a) the neutron and (b) the gamma-ray ﬂux distribution in the shield box #2.
+shield box (15 mm) seems to be reasonable.
+The neutron and gamma-ray spectra at a space be-
+tween polyethylene blocks and the lead box (indicated in
+Fig. 2) are shown as a blue broken line in Figs. 5 (a) and
+(b), respectively. The gamma-ray ﬂux in the low energy
+range is higher than that of the background ﬂux (solid
+black line). This is because the gamma-rays are yielded
+in the polyethylene blocks in the LHD side as shown in
+Fig. 4 (b). On the other hand, the ﬂux in the high energy
+range is lower than the background ﬂux by more than a
+factor of two, although the ﬂux is higher than that inside of
+the lead box with the thickness of 15 ∼25 mm. This simu-
+lation result suggests that the space between the polyethy-
+lene blocks and the lead box, which is located behind lead
+plates from the LHD side, can be eﬀectively used for a
+space for protecting devices from high energy gamma-rays
+(not from low energy rays).
+2402039-4
+
+Plasma and Fusion Research: Regular Articles
+Volume 15, 2402039 (2020)
+Fig. 5
+(a) The calculated neutron spectra at the shield box, and (b) the calculated gamma-ray spectra at the shield box. The solid black
+lines represent the background spectra. The colored dotted lines present the spectra in the lead box with various thicknesses of the
+lead plates. The blue broken lines indicates the spectra at a space between polyethylene blocks and the lead box.
+4. Images in the Deuterium Plasma
+Discharge with the Maximum
+Neutron Emission Rate
+In the deuterium plasma discharges in the experimen-
+tal campaign in FY 2017, the maximum neutron emission
+rate of 3.3 × 1015 (n/s) was achieved. Plasma images taken
+with the radiation resistant camera systems at the maxi-
+mum neutron emission rate are shown in Fig. 6. The posi-
+tions of the optical lenses for the cameras are illustrated in
+Fig. 1. From the simulation results by the MCNP-6 code in
+Fig. 4, the neutron and gamma-ray ﬂuxes inside of the lead
+box are calculated to be 5.3×10−7 and 6.3×10−7 cm−2·s−1,
+respectively. It was found that the cameras operate without
+any problems even in the plasma discharge with the max-
+imum neutron emission rate. Some small bright specks,
+which are indicated by arrows, appeared in the images as
+shown in Fig. 6. While these specks disappeared in the
+next frame, new bright specks emerged at diﬀerent posi-
+tions. These temporal bright specks have not disturbed the
+monitoring of the plasma, proving the durability of the ra-
+diation resistant camera systems in the deuterium plasma
+discharges.
+5. Investigation of the Inﬂuence of the
+Cumulative Radiation Flux on the
+Image Sensor
+It was believed that the bright specks on CCD image
+sensors permanently remain after the exposure to radia-
+tion ﬂux. A positive correlation between the number of
+the specks and the cumulative exposed neutron ﬂux was
+reported [5]. The background images which are taken be-
+fore the ignition of plasma discharges are a good indicator
+to check the inﬂuence of the radiation on the image sen-
+sor. The change of the background image as the increase
+of the cumulative radiation ﬂux was investigated. The ab-
+solute neutron emission yield has been routinely monitored
+with a neutron diagnostic system [9]. The radiation ﬂux ex-
+posed to the camera system is derived by multiplying the
+simulation result (Fig. 4) by the observed emission yield.
+Figures 7 (a) and (b) present the change of the background
+images as the cumulative radiation ﬂuxes in the two ex-
+perimental campaigns (FY 2017 and FY 2018), respec-
+tively. The images taken with the camera (Hitachi KP-
+D20B) mounted at the tangential port (6-T) are shown as a
+representative. For highlighting the bright specks, bright-
+ness and contrast of the images are enhanced. The ﬁgures
+clearly show that the number of specks generally increases
+with the cumulative radiation ﬂux. The parameters Yn and
+Yγ are the cumulative neutron and gamma-ray ﬂuxes ex-
+posed to the cameras in each experimental campaign, re-
+spectively. The camera was turned oﬀat the end of the ex-
+perimental campaign in FY2017, and it was turned on be-
+fore the next campaign in FY 2018. The number of specks
+at the beginning in FY 2018 (left ﬁgure in Fig. 7 (b)) is
+lower than that at the end of the previous campaign (right
+ﬁgure in Fig. 7 (a)). For example, one of the specks appear-
+ing in FY 2017 (indicated by a blue arrow) disappeared at
+the beginning in FY2018. This phenomenon can be ex-
+plained by the so called self-annealing which was reported
+in the CCD camera mounted in the JET tokamak [10]. In
+LHD, this self-annealing is found in some pixels even in
+2402039-5
+
+Plasma and Fusion Research: Regular Articles
+Volume 15, 2402039 (2020)
+Fig. 6
+Plasma images taken with the radiation resistant camera systems at the time of the maximum neutron emission rate in a deuterium
+plasma discharge in FY 2017.
+Fig. 7
+The change of the background images taken before the ignition of the plasma discharges as the cumulative radiation ﬂuxes in the
+two experimental campaigns (FY 2017 and FY 2018), respectively.
+2402039-6
+
+Plasma and Fusion Research: Regular Articles
+Volume 15, 2402039 (2020)
+one experimental campaign as shown by an orange arrow
+in Fig. (b). The self-annealing has highly contributed to the
+extension of the lifetime of the camera systems.
+6. Summary
+Radiation resistant camera systems for monitoring
+deuterium plasma discharges have been successfully con-
+structed. Investigation using the MCNP-6 code reveals that
+the neutron and gamma-ray ﬂuxes in the lead box are re-
+duced by a factor of about 30 and 10 compared to those
+around the shield box, respectively. The calculations of the
+energy spectra show that the neutron ﬂux decreases in all
+energy ranges by more than one-order of magnitude, and
+the gamma-ray ﬂux in the high energy range is reduced
+by a factor of two or three although the ﬂux in the low
+energy range is signiﬁcantly lowered by about one-order
+of magnitude. The simulation indicates that the thickness
+(15 mm) of the lead plates is reasonable because the thicker
+plates (25 mm) lower the gamma-ray ﬂux in the high en-
+ergy range only by about 20%. The radiation resistant cam-
+eras have succeeded in operating without serious problems
+in the deuterium plasma discharge with the maximum neu-
+tron emission rate, though some temporary bright specks
+appeared on the images. The investigation of the change of
+the background images in the two experimental campaigns
+in FY 2017 and 2018 shows that the number of specks gen-
+erally increases with the cumulative radiation ﬂux, and in-
+dicates that some specks disappear by self-annealing. This
+phenomenon has highly contributed to the signiﬁcant ex-
+tension of the lifetime of the cameras in deuterium experi-
+mental campaigns in LHD.
+Acknowledgments
+This work is performed under the auspices of the NIFS
+budgets (UFEX301 and ULPP801).
+The author (M.S.)
+would like to thank Dr. K. Ogawa and Prof. T. Nishitani
+for the use of the computational resource for the MCNP
+code. He is also grateful for the support for computing
+the neutron and gamma-ray ﬂux in the shield box using
+the MCNP code, and expresses special thanks to the NIFS
+technical staﬀfor their support for the installation of the
+radiation resistant camera system and the shield box in the
+LHD torus hall.
+[1] Y. Takeiri et al., IEEE Trans. Plasma Sci. 46, 2348 (2018).
+[2] T. Nishitani et al., Plasma Fusion Res. 14, 3405048 (2019).
+[3] M. Shoji et al., Nucl. Fusion 55, 053014 (2015).
+[4] M. Shoji et al., J. Plasma Fusion Res. SERIES 3, 440
+(2000).
+[5] Y. Tanimura et al., J. Nucl. Mater. 258-263, 1812 (1998).
+[6] T. Nishitani et al., Plasma Fusion Res. 11, 2405057 (2016).
+[7] D.B. Pelowits (Ed.), MCNP6 users Manual, LA-CP-13-
+00634, Los Alamos National Laboratory (2013).
+[8] T. Nishitani et al., Progress in Nuclear Science and Tech-
+nology 6, 48 (2019).
+[9] M. Isobe et al., IEEE Trans. Plasma Sci. 46, 2050 (2018).
+[10] A. Huber et al., Fusion Eng. Des. 123, 669 (2017).
+2402039-7

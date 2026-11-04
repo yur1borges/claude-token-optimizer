@@ -1,0 +1,57 @@
+
+--- TRIBOCAD - cor da peca no viewport 3D (VTK) ---
+cor                    fundo                             ratio   resultado
+inlet #16A34A          claro (gradiente VTK 0.80-0.98)    2.30:1  FALHA
+inlet #16A34A          escuro (gradiente VTK 0.05-0.13)    4.28:1  ok
+liner #F59E0B          claro (gradiente VTK 0.80-0.98)    1.50:1  FALHA
+liner #F59E0B          escuro (gradiente VTK 0.05-0.13)    6.57:1  ok
+region #22D3EE         claro (gradiente VTK 0.80-0.98)    1.26:1  FALHA
+region #22D3EE         escuro (gradiente VTK 0.05-0.13)    7.80:1  ok
+default #1F3A5F        claro (gradiente VTK 0.80-0.98)    8.02:1  ok
+default #1F3A5F        escuro (gradiente VTK 0.05-0.13)    1.23:1  FALHA
+(regra: 1.4.11 (grafico/nao-texto), minimo 3.0:1)
+
+--- TRIBOCAD - cor da peca como TEXTO (arvore/tabela de features) ---
+cor                    fundo                             ratio   resultado
+inlet #16A34A          claro/painel                      3.30:1  FALHA
+inlet #16A34A          claro/painel2                     3.01:1  FALHA
+inlet #16A34A          escuro/painel                     5.22:1  ok
+inlet #16A34A          escuro/painel2                    4.65:1  ok
+liner #F59E0B          claro/painel                      2.15:1  FALHA
+liner #F59E0B          claro/painel2                     1.96:1  FALHA
+liner #F59E0B          escuro/painel                     8.00:1  ok
+liner #F59E0B          escuro/painel2                    7.13:1  ok
+(regra: 1.4.3 (texto), minimo 4.5:1)
+
+--- DRX - item de tabela (marca de ok / falha) como TEXTO ---
+cor                    fundo                             ratio   resultado
+ok #16A34A             claro/painel                      3.30:1  FALHA
+ok #16A34A             claro/painel2                     3.01:1  FALHA
+ok #16A34A             escuro/painel                     5.22:1  ok
+ok #16A34A             escuro/painel2                    4.65:1  ok
+erro #DC2626           claro/painel                      4.83:1  ok
+erro #DC2626           claro/painel2                     4.41:1  FALHA
+erro #DC2626           escuro/painel                     3.56:1  FALHA
+erro #DC2626           escuro/painel2                    3.17:1  FALHA
+(regra: 1.4.3 (texto), minimo 4.5:1)
+
+--- DRX - canetas dos graficos sobre o fundo do painel ---
+cor                    fundo                             ratio   resultado
+calculado #E8762D      claro/painel                      2.97:1  FALHA
+calculado #E8762D      escuro/painel                     5.78:1  ok
+background #6B7280     claro/painel                      4.83:1  ok
+background #6B7280     escuro/painel                     3.56:1  ok
+diferenca #0F766E      claro/painel                      5.47:1  ok
+diferenca #0F766E      escuro/painel                     3.14:1  ok
+eixo #94A3B8           claro/painel                      2.56:1  FALHA
+eixo #94A3B8           escuro/painel                     6.70:1  ok
+serie #1F3A5F          claro/painel                     11.48:1  ok
+serie #1F3A5F          escuro/painel                     1.50:1  FALHA
+observado #1E3A5F      claro/painel                     11.50:1  ok
+observado #1E3A5F      escuro/painel                     1.49:1  FALHA
+(regra: 1.4.11 (grafico), minimo 3.0:1)
+
+================================================================================================
+RESUMO: cores hardcoded (nao passam pela paleta) - DRX e TriboCAD
+================================================================================================
+Regenerar com: python wcag_drx_tribocad.py

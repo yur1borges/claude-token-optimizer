@@ -1,0 +1,130 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+https://doi.org/xxxxx/xxxxx 
+ 
+ 
+Symposium on Energy Geotechnics
+Accelerating the energy transition 
+3-5 October 2023, Delft, the Netherlands
+ 
+© 2023 [Sac--Morane, Rattez, Veveakis] published by TU Delft OPEN Publishing on behalf of the authors.  
+DOI: https://doi.org/10.59490/seg23.2023.630 
+  
+ 
+ 
+Peer-reviewed Conference Contribution 
+ 
+A Phase-Field Discrete Element Method to study chemo-mechanical 
+coupling in granular materials. 
+Alexandre Sac-Morane1,2,*, Hadrien Rattez1, Manolis Veveakis2 
+1 Institue of Mechanics, Materials and Civil Engineering, UCLouvain, Louvain-la-Neuve, Belgium 
+2 Multiphysics Geomechanics Lab, Duke University, Durham, NC, USA 
+* Corresponding author: alexandre.sac-morane@uclouvain.be  
+ 
+Geochemical reactions are ubiquitous for subsurface energy extraction and storage applications, like geothermal electricity pro-
+duction or hydrogen storage, but also for other applications aiming at reducing climate change like underground CO2 disposals [1]. 
+Those reactions lead to mineral dissolution/precipitation that can modify the different properties of the reservoir rock and the caprock. 
+For example, porosity of the porous material depends strongly on the dissolution/precipitation of the solid phase. It can thus affect 
+the evolution of its permeability, a key parameter for most of those applications that involve the transport of a fluid through the 
+reservoir. Moreover, the mechanical behavior and rupture of geomaterials is also strongly affected by dissolution/precipitation phe-
+nomena. In the case of cemented rocks, debonding can occur during weathering and strongly weakens the material [2]. This strength 
+degradation has also been highlighted during oedometric tests in the case of granular materials presenting no cohesion [3]. In the 
+case of underground storage applications, if a strength reduction is induced in the caprock, cracks can be created, leading to a 
+migration pathway and leakage. It can also affect the behavior of faults in the vicinity of the reservoir and induce earthquakes [4] 
+Granular material (like in fault) or sedimentary rock can be modeled by the discrete element method (DEM). This method was 
+first developed by Cundall and Strack to model the micromechanical behavior by reproducing more accurately the interactions in 
+an assembly of grains. In the classical approach, grains are modeled as disks (2D) and spheres (3D), however, real particles can be 
+highly irregular. These complex shapes of the grains influence greatly the macroscopic mechanical behavior of the material [5] and 
+accurate models should aim at capturing this complexity. To do so, different approaches have been developed in the frame of DEM 
+like particles cluster, ellipsoids, polygonal (2D) or polyhedral (3D) particles [6]. The latter is the most accurate solution, but it tends 
+to overestimate the roundness of the particles and show some limitations to reproduce experimental results [7]. Recently, a level-
+set discrete element model was developed and allowed to capture the complex shape of the grains and reproduce experimental 
+results [8]. 
+To model grain dissolution/precipitation, discrete elements are often considered with a homogenous decrease/increase of the 
+particle diameter. But in some cases, like pressure-solution, the dissolution/precipitation are localized. Hence, the dissolution occurs 
+in the high-stress area, whereas the precipitation occurs in the low-stress area with a large solute concentration. This diffusive mass 
+transfer is done within the pore fluid. Considering the granular material as a phase, the phase-field theory (PF) is a good candidate 
+to model with physics-based laws an addition or reduction of the quantity of material locally. The dissolution at the contact is 
+controlled by the introduction of mechanical and chemical energy into the Allen-Cahn formulation on the phase variables, whereas 
+the precipitation and the mass conservation are verified by a coupled diffusion formulation on the solute concentration. 
+In this study, an extension to the discrete element method is developed to simulate the irregular shapes of particles in a granular 
+material and their heterogeneous change using the phase-field variable as a particle’s geometrical descriptor. This method, available 
+on https://github.com/AlexSacMorane/PFDEM_ACS_MultiGrains, is applied to reproduce results from previous experiments on 
+K0 evolution [9]. The influence of the grain shape has been highlighted. Then, the model is used to investigate on the pressure-
+solution phenomenon at several grains level [10]. For example, a so-called Andrade creep law has been reproduced. 
+
+ 
+2 of 2 
+ 
+In conclusion, this new framework enables us to model chemo-mechanical couplings, considering the true shape of the grain. It 
+is used to investigate the influence of the different physical phenomena (dissolution, precipitation or diffusion) controlling the rate 
+of material compaction and of the macro properties evolutions, as the porosity, permeability or strength.  
+ 
+   
+ 
+Initial configuration  
+ 
+ 
+ 
+ 
+   Final configuration 
+Figure 1: Pressure solution phenomena between multiple grains. For initial and final configurations, the left plot shows 
+the position of the grains and the solute concentration, and the right plot shows the phase variables. Between the initial 
+and the final steps, solute has been generated and the shape of the grains have become less and less spherical. The granular 
+material becomes denser while the pressure-solution phenomenon occurs. 
+ 
+Contributor statement  
+Conceptualization: Hadrien Rattez and Manolis Veveakis; Investigation: Hadrien Rattez, Manolis Veveakis and Alexandre Sac--Morane; Soft-
+ware: Alexandre Sac--Morane; Supervision: Hadrien Rattez and Manolis Veveakis; Writing - Original Draft: Alexandre Sac--Morane; Writing – 
+Review and Editing: Hadrien Rattez and Manolis Veveakis 
+References 
+[1] 
+Heinemann, N., Alcalde, J., Miocic, J.M., Hangx, S.J.T., Kallmeyer, J., Ostertag-Henning, C., Hassanpouryouzband, A., Thaysen, E.M., 
+Strobel, G.J., Schmidt-Hattenberger, C., Edlmann, K., Wilkinson, M., Bentham, M., Haszeldine, R.C., Carbonell, R., & Rudloff, A. (2021) 
+Enabling large-scale hydrogen storage in porous media – the scientific challenges. Energy and Environmental Science; 14; 853-864. Re-
+trieved from https://pubs.rsc.org/en/content/articlelanding/2021/ee/d0ee03536j 
+[2] 
+Castellanza, R., & Nova, R. (2004) Oedometric Tests on Artificially Weathered Carbonatic Soft Rocks. Journal of Geotechnical and Ge-
+oenvironmental 
+Engineering, 
+130, 
+728-739. 
+10.1061/(asce)1090-0241(2004)130:7(728). 
+Retrieved 
+from https://asceli-
+brary.org/doi/10.1061/%28ASCE%291090-0241%282004%29130%3A7%28728%29 
+[3] 
+Viswanath, P., & Das, A. (2020) Stiffness degradation in granular materials due to chemical dissolution.  Geotechnique Letters, 10, 88-94. 
+10.1680/jgele.19.00020. Retrieved from https://www.icevirtuallibrary.com/doi/abs/10.1680/jgele.19.00020 
+[4] 
+Lesueur, M., Poulet, T., & Veveakis M. (2020) Three-scale multiphysics finite element framework (FE3) modelling fault reactivation. Com-
+puter Methods in Applied Mechanics and Engineering, 365, 112988. 10.1016/j.cma.2020.112988. Retrieved from https://www.sciencedi-
+rect.com/science/article/abs/pii/S0045782520301717 
+[5] 
+Guével, A., Rattez, H., & Veveakis, M. (2022). Morphometric description of strength and degradation in porous media. International Journal 
+of Solids and Structures, 241, 111454. Retrieved from https://www.sciencedirect.com/science/article/pii/S0020768322000245 
+[6] 
+Nezami, E.G., Hashash, Y.M.A., Zhao, D. & Ghaboussi, J. (2004).A fast contact detection algorithm for 3-D discrete element method. Com-
+puters and Geotechnics, 31, 575-587. Retrieved from https://www.sciencedirect.com/science/article/pii/S0266352X04001016  
+[7] 
+Lee, S.J., Hashash, Y.M. & Nezami, E.G. (2012). Simulation of triaxial compression tests with polyhedral discrete element. Computers and 
+Geotechnics, 43, 92-100. Retrieved from https://www.sciencedirect.com/science/article/pii/S0266352X12000407 
+[8] 
+Kawamoto, R., Andò, E., Viggiani, G. & Andrade, J.E. (2018). All you need is shape: Predictiong shear banding in sand with LS-DEM. Jour-
+nal of the Mechanics and Physics of Solids, 111, 375-392. Retrieved from https://www.sciencedirect.com/science/arti-
+cle/pii/S0022509617306580 
+[9] 
+Shin, H., & Santamarina, J.C. (2009) Mineral Dissolution and the Evolution of k0. Journal of Geotechnical and Geoenvironmental Engi-
+neering, 135, 1141-1147. Retrieved from https://ascelibrary.org/doi/10.1061/%28ASCE%29GT.1943-5606.0000053 
+[10] Guével, A., Rattez, H., & Veveakis, M. (2020). Viscous phase-field modeling for hcemp-mechanical microstructural evolution: application 
+to geomaterials and pressuresolution. International Journal of Solids and Structures, 207, 230-249. Retrieved from https://www.sciencedi-
+rect.com/science/article/pii/S0020768320303759 

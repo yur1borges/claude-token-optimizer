@@ -1,0 +1,375 @@
+~ 990 ~ 
+International Journal of Research in Agronomy 2026; 9(5): 990-994 
+ 
+E-ISSN: 2618-0618 
+P-ISSN: 2618-060X 
+© Agronomy 
+NAAS Rating (2026): 5.20 
+www.agronomyjournals.com   
+2026; 9(5): 990-994 
+Received: 10-02-2026 
+Accepted: 15-03-2026 
+ 
+Dr. K Charith Kumar 
+Assistant Professor, College of 
+Agricultural Engineering, PJTA 
+University, Sangareddy, 
+Telangana, India 
+ 
+Dr. G Rajender 
+Assistant Professor, College of 
+Agricultural Engineering, PJTA 
+University, Sangareddy, 
+Telangana, India 
+ 
+Dr. M Padma 
+Associate Professor, College of 
+Agricultural Engineering, PJTA 
+University, Sangareddy, 
+Telangana, India 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Corresponding Author: 
+Dr. K Charith Kumar 
+Assistant Professor, College of 
+Agricultural Engineering, PJTA 
+University, Sangareddy, 
+Telangana, India 
+ 
+Groundnut seed flow analysis in a rotating seed coater 
+with discrete element method 
+ 
+K Charith Kumar, G Rajender and M Padma 
+ 
+DOI: https://www.doi.org/10.33545/2618060X.2026.v9.i5m.5785  
+ 
+Abstract 
+Coating of particulate solids by a thin film layer is of interest in many industrial applications such as seed 
+and tablet coating. In seed processing, seeds are commonly coated with a protective coating layer consisting 
+of fertilizers and disease control agents, such as pesticides and fungicides. Batch coaters are commonly used 
+for this purpose. A typical coater consists of a horizontal axis cylindrical drum with a horizontal rotation and 
+the coating material fed simultaneously after the seed. The seeds are driven around the drum in horizontal 
+axis, and are mixed by three baffles; one on either side of the drum. In the present study, Distinct Element 
+Method (DEM) simulations are used to model the seed coating process. Groundnut seed are used as a model 
+material. The velocity of the seeds is predicted by the DEM, whereby the seeds are simulated as spheres 
+inside a drum. It was observed that when the seed treatment drum was positioned at an angle of 45º, linear 
+drum speed of 30 m/s the groundnut particles can attain a maximum velocity of 2.5 m/s. 
+ 
+Keywords: Seed coating, discrete element method, simulation, etc 
+ 
+Introduction  
+Seed quality is one of the most important factors determining successful crop establishment, 
+productivity, and overall agricultural sustainability. The maintenance of high-quality seed depends 
+on several environmental factors, including moisture content, temperature, relative humidity, and 
+storage conditions. However, even under controlled storage conditions, seed quality may 
+deteriorate due to seed-borne diseases, storage insects, and other pest infestations. Among the 
+various approaches adopted for protecting seeds, chemical seed treatment has been recognized as 
+one of the most economical and effective methods for improving seed quality and ensuring better 
+crop performance. Since most seed treatment chemicals are toxic in nature, proper application 
+methods and safety precautions are essential during treatment and subsequent handling of treated 
+seeds. 
+Seed treatment is defined as the application of fungicides, insecticides, or combinations of 
+chemicals to seeds to protect them from seed-borne and soil-borne pathogens and storage pests. It 
+also includes various physical and biological approaches such as solar exposure and conditioning 
+treatments. Treated seeds are subjected to specific processes intended to reduce, control, or repel 
+disease-causing organisms, insects, and other pests that affect seed germination and early seedling 
+growth. Pre-sowing seed treatments improve germination, enhance seedling vigour, prevent seed 
+rot and seedling blight, protect seeds during storage, and provide resistance against soil and 
+storage insects. 
+The movement of granular materials inside rotating equipment is difficult to characterize 
+experimentally because of the complex interactions among particles and the continuous dynamic 
+changes occurring during operation. Measurement of individual particle velocities and flow 
+patterns inside a rotating seed treatment drum is particularly challenging. Therefore, numerical 
+modelling approaches have become valuable tools for predicting particle behaviour and 
+optimizing equipment design. 
+The Discrete Element Method (DEM) is one of the most widely used numerical techniques for 
+analysing granular materials. DEM was initially developed by Cundall and Strack (1979) [3] for 
+studying the behaviour of granular assemblies in rock mechanics and has subsequently been 
+applied in various fields involving particle flow. 
+
+International Journal of Research in Agronomy  
+https://www.agronomyjournals.com  
+~ 991 ~ 
+Unlike continuum-based approaches, DEM considers particles as 
+discrete elements and calculates particle interactions by solving 
+Newton’s laws of motion. The method incorporates particle size, 
+shape, mass, rotational motion, and contact forces, making it 
+suitable for investigating the dynamic behaviour of granular 
+materials. 
+DEM has been successfully applied in different processing 
+industries to evaluate mixing, segregation, and coating processes. 
+In coating systems, controlling inter-particle coating variability is 
+critical because variations in coating thickness or mass can 
+influence the effectiveness of applied chemicals and nutrients. 
+Studies on rotating coating devices have demonstrated the 
+usefulness of DEM in predicting particle circulation, mixing 
+behaviour, and coating uniformity. Pandey et al. investigated 
+particle motion in a pan coating device using experimental 
+observations and DEM simulations and reported that dynamic 
+angle of repose was influenced by rotational speed and fill level. 
+Li et al. used DEM combined with spray analysis to investigate 
+the effect of particle size distribution on segregation and coating 
+uniformity in an industrial paddle coater. Similarly, Sandadi et al. 
+developed imaging techniques to evaluate circulation time, 
+surface exposure time, and particle exposure during coating 
+processes. Groundnut (Arachis hypogaea L.) is an important 
+oilseed crop cultivated worldwide and is a major source of edible 
+oil, protein, minerals, and vitamins. It contains approximately 48–
+50% oil and 26–28% protein and plays a significant role in 
+agricultural economies, particularly in developing countries. 
+India is one of the largest producers of groundnut, with major 
+contributions from states such as Gujarat, Tamil Nadu, Andhra 
+Pradesh, Karnataka, and Maharashtra. Due to its economic 
+importance and nutritional value, maintaining high-quality 
+groundnut seed through effective treatment and coating 
+technologies is essential. 
+Although seed treatment drums are widely used commercially, 
+limited information is available regarding the particle flow 
+behaviour and velocity distribution of groundnut seeds inside 
+rotating seed treatment equipment. The complex interactions 
+between seed particles and drum components make experimental 
+determination of flow characteristics difficult. Hence, numerical 
+simulation using DEM provides an effective approach for 
+analysing seed movement, optimizing drum design, and 
+improving coating uniformity. 
+Therefore, the present study aims to calibrate the DEM 
+parameters required for modelling groundnut seed behaviour and 
+simulate particle movement inside a seed treatment drum to 
+determine the velocity profile of groundnut particles. The specific 
+objectives of the study are to calibrate DEM properties required 
+for modelling groundnut, including physical and interaction 
+properties and mixing behaviour. The study also about 
+simulateing particle movement inside a seed treatment drum and 
+determine the velocity profile of groundnut particles. 
+ 
+Materials and Methods 
+Raw Materials 
+The ground seed for experiment was procured from Sangareddy, 
+Medak. The seed was cleaned and stored in plastic containers for 
+the use. 
+ 
+Size and shape 
+The size of the black pepper was measured with a dial type 
+thickness gauge having accuracy of ± 0.01mm. 100 seeds were 
+randomly selected and measurements were taken at three different 
+orientations.  
+ 
+Seed drum description: Seed treatment drum is made of angle 
+iron frame and G. I. sheet made drum. Bearings provided with this 
+implement make it easy to use. In one batch 10-15kg of seed can 
+be treated with chemicals. The drum is provided with four number 
+of G. I. sheet made fins placed all along the length at an angle of 
+900 from each other. This special arrangement of fins makes this 
+seed treatment drum very efficient. The drum and frame of this 
+equipment are strong and durable. Seed treatment drum is the 
+liking of the farmers. 
+The seed treatment drum consists of frame, handle and cylindrical 
+drum. The cylindrical drum is mounted on a tri-pod angle iron 
+frame. Three piece of mild steel flat are welded inside the drum 
+for helping in uniform mixing. Prior to star mixing of chemicals, 
+workers are advised for wearing plastic hand gloves and mask on 
+nose for health protection. After Adding chemicals in drum, add 
+little water, close the lid of drum tightly and rotate the drum for 
+20 to 25 revolutions. After 1-2 minutes of completing the work, 
+open the lid and take the treated seed in a separate bag/container. 
+A batch of 20kg seeds takes about 5-6 minute for complete 
+operation. 
+ 
+ 
+ 
+Fig 1: Model of the seed treatment drum simulated 
+ 
+Simulation Methodology: It is essential to know the accurate set 
+of DEM parameters to model the bulk behavior of the material 
+(Coetzee, 2016) [2]. DEM input parameters can be categorized as 
+material properties and interaction properties. Size, shape, 
+particle density, Young's modulus, shear modulus and Poission’s 
+ratio constitute material properties, whereas, interaction 
+properties include the coefficient of restitution, static friction, 
+rolling friction between particle to particle contact and particle to 
+surface contact respectively (Boac et al., 2010) [1]. EDEM 2.4.1 
+Academic Version from DEM Solutions was used in this study. 
+The DEM parameters for the work were found from Generic 
+EDEM Material Model (GEMM) Database. The GEMM database 
+contains thousands of material models representing a wide range 
+of materials such as rocks, soils and ores. EDEM software is made 
+of three core components: EDEM Creator, Simulator and Analyst. 
+ 
+ 
+ 
+
+International Journal of Research in Agronomy  
+https://www.agronomyjournals.com  
+~ 992 ~ 
+Bulk density (ρb) 
+The bulk density was determined by filling a container of a known 
+volume with a sample of the bulk material. The bulk mass, m, of 
+the material was used together with the container volume, to 
+calculate the bulk density,  
+ 
+ρb = m / Vb. 
+ 
+Angle of repose 
+The angle of repose was also used experimentally and 
+numerically to see which method was more accurate in this case. 
+The angle of repose or critical angle of repose, of a granular 
+material is the steepest angle of descent or dip relative to the 
+horizontal plane to which a material can be piled without 
+slumping. At this angle, the material on the slope face is on the 
+verge of sliding. The angle of repose can range from 0° to 90°. 
+The angle of repose was measured by filling a bottomless tapered 
+cylindrical container with material. The container had a lower 
+diameter of 200mman upper diameter of 220mmwith a height of 
+500mm. The container was then slowly lifted vertically to allow 
+the material to exit at the bottom and forma static pile.Angle of 
+repose is the steepest angle at which a sloping surface formed of 
+loose material is stable. The height of the pile is measured from 
+base to top.  
+ 
+The equation for calculating the angle of repose is: 
+ 
+Angle of repose = Tan-1(2h/d). 
+ 
+Where, h is height of the pile and d is diameter of the pile  
+ 
+ 
+ 
+Fig 2: Layout of EDEM creator in the software. 
+ 
+Results and Discussion: The results obtained from the various 
+tests conducted during the experiments are as follows 
+ 
+Bulk density (ρb): The bulk density was calculated with a known 
+volume of the container. The average of three replications is 
+648.06kg/m3. 
+Angle of Repose  
+The angle of the pile was measured at eight different positions and 
+the experiment repeated four times. The angle of repose ranged 
+between 26.1° and 25.2° with an average value of 25.4º. 
+
+International Journal of Research in Agronomy  
+https://www.agronomyjournals.com  
+~ 993 ~ 
+ 
+ 
+Fig 3: Angle of repose test of groundnuts. 
+ 
+Velocity of the groundnut particles simulated with DEM 
+The drum was given a rotational motion in the DEM and velocity 
+profiles formed during the simulation was studied. The velocity 
+of the simulated particles varied between 0.2 and 2.5 m/s. The 
+results showed that initially the velocity increased constantly until 
+0.23 s and stabilized afterwards with minor fluctuations as shown 
+in the Fig. 4.2. Average velocities at different time steps showed 
+a steady increase with time. However, it should be observed that 
+the average velocity of the particles is much lesser than the 
+maximum velocities which are in the order of 0.5 to 0.9 m/s only. 
+It can be observed that, the minimum velocities of the particles 
+are less than 0.25 m/s only. The range of minimum velocities 
+indicate that during the simulation there are always some particles 
+which might be having minimal movement. The simulations 
+results showed an understanding of particles velocities in a 
+rotating drum. The velocity profiles can be used as guide to set 
+the rpm of the rotating drum. 
+ 
+ 
+ 
+Fig 4: Variation of maximum velocity of the particles with simulation time 
+ 
+4. Summary and Conclusions: Seed treatment is an important 
+process in the seed industry to improve seed germination and 
+vigour. The performance of a seed treatment drum (seed coater) 
+depends on its design and operating parameters, which must be 
+optimized according to seed properties to avoid seed damage and 
+ensure uniform coating. Conventional experimental methods have 
+limitations in measuring important parameters such as particle 
+velocity and impact forces inside the drum. 
+The Discrete Element Method (DEM) provides an effective 
+numerical approach for analysing granular particle behaviour in 
+seed coaters. In DEM simulations, seed particles are represented 
+by discrete elements, and their movement characteristics such as 
+maximum, minimum, and average velocities can be predicted at 
+different operating conditions. The study of groundnut seed 
+movement using DEM showed that drum angle and rotational 
+speed significantly influence particle velocity. At a drum 
+inclination of 45° and a linear drum speed of 30 m s⁻¹, groundnut 
+particles attained a maximum velocity of 2.5 m s⁻¹, demonstrating 
+the usefulness of DEM in optimizing seed treatment drum 
+performance.
+ 
+
+International Journal of Research in Agronomy  
+https://www.agronomyjournals.com  
+~ 994 ~ 
+ 
+ 
+Fig 5: Variation of average velocity of the particles with simulation time 
+ 
+ 
+ 
+Fig 6: Variation of minimum velocity of the particles with simulation time 
+ 
+Acknowledgement 
+ We are highly thankful to the Associate Dean, College of 
+Agricultural Engineering, Kandi, Sangareddy, for providing the 
+necessary facility.  
+ 
+References 
+1. Boac JM, Casada ME, Maghirang RG, Harner JP. Material 
+and interaction properties of selected grains and oilseeds for 
+discrete element method modelling. Transactions of the 
+ASABE. 2010;53(4):1201-1216.  
+2. Coetzee CJ. Calibration of the discrete element method and 
+the 
+effect 
+of 
+particle 
+shape. 
+Powder 
+Technology. 
+2016;297:50-70.  
+3. Cundall PA, Strack ODL. A discrete numerical model for 
+granular assemblies. Géotechnique. 1979;29(1):47-65.  
+4. DEM Solutions Ltd. EDEM 2.4.1 Academic User Guide. 
+Edinburgh (UK): DEM Solutions Ltd.; 2013.  
+5. EDEM Solutions. Generic EDEM Material Model (GEMM) 
+Database. Edinburgh (UK): DEM Solutions Ltd.; 2016.  
+6. Li J, Webb C, Pandiella SS, Campbell GM. A numerical 
+simulation of segregation and coating in a pan coating system 
+using the discrete element method. Chemical Engineering 
+Science. 2005;60(21):6002-6013.  
+7. Pandey R, Mujumdar AS, Mujumdar A. Discrete element 
+modelling of particle motion in a rotating pan coating device. 
+Advanced Powder Technology. 2012;23(4):520-529.  
+8. Sandadi S, Das M, Deen NG. Experimental and numerical 
+investigation of particle mixing and coating behaviour in 
+rotating drum systems. Powder Technology. 2016;301:1078-
+1089. 

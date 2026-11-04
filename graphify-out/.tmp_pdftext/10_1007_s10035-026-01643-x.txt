@@ -1,0 +1,2704 @@
+RESEARCH
+Granular Matter (2026) 28:53
+https://doi.org/10.1007/s10035-026-01643-x
+the experimental results of [9] and provide varying reasons 
+for a slight increase in the angle of repose, even for large 
+cohesive forces. Peters and Lemaire [2] argued that, rather 
+than a uniform magnetic field that results in a highly aniso­
+tropic force between particles, a rotating magnetic field is 
+more suitable for control over the avalanching of cohesive 
+particles.
+Sunday et al. [8] conducted avalanching experiments 
+with varied particle sizes and two materials to show tran­
+sitions between three different flow regimes: the granular 
+regime, where particles move independently, the correlated 
+regime, where particles move in clusters, and the plastic 
+regime, where the entire assembly acts as a single block. 
+They showed that the linear increase of the angle of repose 
+with applied magnetic field only holds in the granular 
+regime, while surface roughness parameters: Root-Mean-
+Square (RMS) height and RMS slope continue to increase 
+in the correlated regime.
+Discrete Element Model (DEM) based numerical studies 
+are used to model forces on each particle to simulate mag­
+netic interactions between granular particles using various 
+1  Introduction
+Magnetic interactions between metallic granular par­
+ticles can result in magnetic cohesion [1]. Various theo­
+retical, experimental, and numerical studies have looked 
+at the effect of magnetic cohesion on the angle of repose 
+and flow characteristics of granular media for Magneto-
+Rheological Fluids (MRF)[2–6] and Planetary Science [7, 
+8] applications. Forsyth et al. [9] conducted experiments 
+with steel ball bearings to show that the angle of repose 
+changes linearly but slowly with increasing magnetic field 
+strength. Fazekas et al. [10] & Taylor et al. [11] performed 
+Discrete Element Modeling (DEM) simulations to validate 
+	
+ Anmol Sikka
+sikka@umd.edu
+Christine Hartzell
+hartzell@umd.edu
+1	
+Department of Aerospace Engineering, University of 
+Maryland, College Park, MD 20740, USA
+Abstract
+Magnetic interactions between metallic granular particles can lead to magnetic cohesion, influencing the flow character­
+istics of granular media. This magnetic cohesion has been studied in the context of Magneto-Rheological Fluids (MRFs) 
+for their unique flow properties and their use across multiple industries. In Planetary Science, magnetic cohesion can 
+influence regolith behavior on metallic asteroids with remnant magnetic fields. The upcoming NASA Psyche mission 
+will study the metallic asteroid 16-Psyche, which is expected to have a surface magnetic field. Modeling and simulating 
+the effect of magnetic cohesion on granular media is crucial for accurately simulating the behavior of magnetic granular 
+materials in both terrestrial and planetary applications. We introduce an improved magnetic force model in LIGGGHTS, 
+an open-source discrete element modeling software, to calculate magnetic forces between paramagnetic grains. The model 
+is based on the Mutual Dipole Method and the Inclusion Model, extensions of the Fixed Dipole Method. We validate the 
+model using 1-D unit tests and compare the results of avalanche simulations of paramagnetic regolith with experimental 
+data. This work contributes to understanding the role of magnetic cohesion in small body surface processes and provides 
+a tool for future studies of magnetic granular materials in DEM.
+Keywords  Magnetic cohesion · Magnetic dipoles · Multipole methods · Magnetic force model · MRF · Asteroid 
+psyche · SSDEM · Numerical modeling
+Received: 8 December 2025 / Accepted: 12 April 2026 / Published online: 7 May 2026
+© The Author(s) 2026
+An experimentally validated magnetic force model for discrete 
+element modeling of paramagnetic granular media
+Anmol Sikka1 · Christine Hartzell1
+1 3
+
+A. Sikka, C. Hartzell
+methods. Fazekas et al. [10] & Taylor et al. [11] used the 
+Fixed Dipole Model (FDM) based on single particle dipoles 
+for magnetic interactions between granular particles. How­
+ever, various studies [3, 7, 12] have shown that dipolar 
+models, such as FDM, are quite inaccurate when particles 
+are sufficiently close, especially in dense assemblies. In this 
+work, we seek to implement a more accurate magnetic force 
+model for DEM simulations. We build upon the work of 
+Keaveny and Maxey [3] who proposed the Inclusion Model. 
+We present the first experimentally validated DEM model of 
+magnetic interactions of granular materials.
+1.1  Planetary science motivation
+Due to surface gravities up to 1 million times smaller than 
+that on Earth, surface grains on traditional (non-metallic) 
+asteroids are significantly affected by van der Waals cohe­
+sion [13]. Multiple studies considered the role of cohesion 
+in simulations related to NASA’s successful Double Aster­
+oid Redirection Test (DART) Mission. DART impacted 
+the smaller satellite object Dimorphos in the binary pair of 
+65803 Didymos and Dimorphos to demonstrate the poten­
+tial to change an asteroid’s trajectory for planetary defense. 
+Zhang et al. [14] studied the role of cohesion in the bulk 
+structural stability to maintain the fast rotational spin of the 
+primary asteroid Didymos. Raducan et al. [15] evaluated 
+different values for momentum change for the impact on the 
+satellite Dimorphos to show that Dimorphos must have a 
+weaker cohesive strength than the larger parent Didymos. 
+The OSIRIS-REx mission experienced unexpected behav­
+ior due to near-zero cohesion [16] during the sample collec­
+tion on asteroid 101955 Bennu. Sánchez and Scheeres [17] 
+looked at the cohesive properties of different fine powders 
+in the context of rubble-pile asteroids. These studies demon­
+strate the need to model and simulate cohesion for asteroid 
+regolith research.
+NASA’s Psyche spacecraft, launched in October 2023, 
+is headed to the main-belt asteroid 16-Psyche. A predomi­
+nantly metallic body, 16-Psyche, is assumed to be a remnant 
+core of a protoplanet [18]. A dynamo could have existed in 
+the initial cooling period of the asteroid [19]. This dynamo 
+would result in a magnetic field being locked in the body. 
+Anand et al. [20] model possible magnetic field of 16-Psyche 
+due to Solar Wind Induced Magnetization (WIM). Courville 
+et al. [21] theorizes volcanic dykes on 16-Psyche with mag­
+netic field signatures. Solar plasma wind interaction simula­
+tions by Fatemi and Poppe [22] assume surface magnetic 
+fields up to 500 nT. These various theories suggest the pos­
+sibility of a local surface magnetic field on 16-Psyche. The 
+spacecraft is carrying a magnetometer [23, 24] to measure 
+the magnetic field from orbit.
+The likely constituents of M-type asteroids are iron and 
+nickel. These ferromagnetic substances will have paramag­
+netic ores, resulting in a paramagnetic regolith. Kohout et al. 
+[25] measured magnetic susceptibilities of multiple iron and 
+stony-iron meteorites. When placed in a uniform magnetic 
+field, paramagnetic grains develop a magnetic moment. 
+This moment results in a magnetic force acting between the 
+particles, increasing the net cohesion. Sikka et al. [7] argued 
+that on metallic bodies like 16-Psyche, magnetic cohesion 
+can dominate over surface gravity for sub-micron-sized 
+grains, while noting that a higher magnetic field strength 
+would further enhance this effect for larger particles.
+Robinson et al. [26] showed different gravity-driven 
+morphological features on Eros 433’s three craters: Psyche, 
+Himeros, and Shoemaker. Avalanching on the Moon was 
+compared to the same on Earth by Kokelaar et al. [27]. 
+They showed that Lunar avalanches only involve dry-flow­
+ing grains, while terrestrial avalanches involve both dry and 
+fluidized grains. Sugita et al. [28] demonstrated evidence 
+of mass-wasting on asteroid 162173 Ryugu using Haya­
+busa2 observations. The role of volatiles in mass wasting 
+on Vesta and Ceres was studied by Parekh et al. [29]. They 
+concluded that dry granular flows dominate Vesta’s mass-
+wasting, while Ceres shows evidence of fluidized flows. 
+Tang et al. [30] studied mass-wasting on Bennu’s Bralgah 
+crater using DEM simulations. All these studies have shown 
+the importance of cohesion in understanding mass wasting 
+and granular flows on small planetary bodies.
+Based on granular mechanics, DEM simulations have 
+been used to model the regolith on small bodies. Research­
+ers have used DEM in multiple studies for rubble pile aster­
+oids ranging from reshaping & disruption [31], avalanching 
+[32], and wave transmission [33]. Maurel et al. [34] simu­
+lated the Brazil-nut effect on asteroid regolith. DeMartini et 
+al. [35] used a proprietary software PKDGRAV to study and 
+simulate the 2029 tidal encounter of Apophis 99942 with 
+Earth. Frizzell and Hartzell [36–38], simulate wave trans­
+mission on regolith to study the cold spot formation around 
+lunar craters. Marohnic et al. [39] looked at the effect of 
+particle shape on rubble-pile dynamics with a new approach 
+to model non-spherical particles. Tang et al. [30] uses the 
+PKDGRAV code to study mass-wasting on the asteroid 
+101955 Bennu’s Bralgah Crater. Many researchers studied 
+the various aspects of the DART mission target: the Dimor­
+phos and Didymos system, including the impact momentum 
+enhancement factor using an integrated smoothed particle 
+hydrodynamics (SPH) and DEM code [40] and the effect of 
+cohesion on the structural stability of Didymos using PKD­
+GRAV [14].
+1 3
+53 
+Page 2 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+1.2  Magneto-rheological fluids motivation
+Magneto-Rheological Fluids (MRF) are suspensions of 
+micron-sized, magnetizable particles in a carrier fluid [41]. 
+Without an external magnetic field, the particles are ran­
+domly distributed in the fluid, and the fluid behaves like a 
+Newtonian fluid. When subjected to an applied magnetic 
+field, the particles become magnetized and form chain-like 
+structures along the field lines, thereby altering the bulk 
+rheological properties, such as viscosity. This property of 
+MRFs is exploited in various applications, including damp­
+ers, clutches, and prosthetics. Bica et al. [42] provide a 
+comprehensive review of MRF applications in various 
+industries. Understanding the behavior of MRF in vari­
+ous magnetic environments is crucial for optimizing these 
+applications.
+Modeling and simulation of MRFs is crucial for predict­
+ing their behavior under various conditions. There are two 
+primary approaches to modeling MRFs: continuum models 
+and discrete models. Ghaffari et al. [43] provide a review of 
+both the modeling and simulation techniques used for MRFs. 
+Continuum models treat the system as a continuous medium 
+modeled with rheological equations that describe fluid flow, 
+magnetization, structural formation, and stress–strain rela­
+tionships. These models are computationally faster but are 
+limited by the rheological equation used and cannot capture 
+particle-level interactions for every application. Finding an 
+accurate rheological equation for MRFs is an ongoing area 
+of research. Discrete models, on the other hand, simulate 
+the behavior of magnetized particles independently of the 
+carrier fluid, enabling a more detailed understanding of par­
+ticle interactions and dynamics. While these models can be 
+computationally expensive, they provide valuable insights 
+into the microstructural behavior of MRFs. Modeling inter-
+particle magnetic forces is a key research area for discrete 
+models. Various methods have been proposed to model 
+magnetic interactions between particles in discrete models.
+Han et al. [4] reviewed different magnetic force mod­
+els used in DEM simulations of MRFs. Most commonly, 
+dipolar models like the Fixed Dipole Method (FDM) and 
+the Mutual Dipole Method (MDM) are employed due to 
+their simplicity and computational efficiency. However, 
+these models have limitations in accuracy, especially when 
+particles are in close proximity. Keaveny and Maxey [3] 
+proposed the Inclusion Model, which improves upon dipo­
+lar models, but Han et al. [4] & Ghaffari et al. [43] note 
+that it is highly computationally expensive and therefore 
+not widely adopted. We introduce a critical magnetic time 
+step that allows the Inclusion Model to be run at a larger 
+time step than the Hertzian collision time, making it more 
+computationally feasible for DEM simulations. Our model 
+is implemented in LIGGGHTS, an open-source DEM soft­
+ware, and validated against experiments. This work is the 
+first experimentally validated Inclusion model for magnetic 
+interactions in DEM simulations.
+1.3  Soft-sphere discrete element model
+Our simulations utilize a Soft-Sphere Discrete Element 
+Modeling (SSDEM) technique to model the interactions 
+between thousands of grains. In discrete element models, 
+equations of motion are integrated at each time step for every 
+particle in the system. Soft-sphere, in particular, means that 
+particles themselves can deform during collisions. Various 
+force models are used to model the different physics of the 
+problem, such as a spring-dashpot for collision dynamics.
+Consider a system with a total of N particles. The dynam­
+ical equations for a the ith particle (Fig. 1) are given as
+mi ˙vi = mig +
+N
+∑
+j=1
+(Fn,i + Fc,i + Ft,i) ,
+
+(1)
+Ii ˙ωi =
+N
+∑
+j=1
+(Ti −Mf,i) ,
+
+(2)
+where mi, Ii, vi, ωi are mass, moment of inertia, transla­
+tional and rotational velocity respectively of ith particle. 
+Fn,i, Fc,i, Ft,i are normal, cohesive and tangential forces 
+respectively on the ith particle. Finally, Ti and Mf,i are the 
+Fig. 1  Soft-sphere discrete element model. a represents the particle 
+radius, ˆn represents the normal at the point of contact, H is the applied 
+magnetic field, v and ω are the particle velocity and angular veloc­
+ity respectively, and Ft and Fn are the tangential and normal forces 
+on each particle. Subscripts i and j represent the two particles. δn is 
+the overall distance between the particles during collision. The applied 
+magnetic field is at an angle α to the line joining the two particles. 
+Velocities and forces are not necessarily in the same plane as the mag­
+netic field
+ 
+1 3
+Page 3 of 26 
+53
+
+A. Sikka, C. Hartzell
+2  Magnetostatics
+Consider a system of N spherical particles placed in a uni­
+form magnetic field H0. Each particle has a radius a and a 
+magnetic susceptibility χ. Neglecting free and displacement 
+currents, we can write Laplace’s equations [48] using scalar 
+magnetic potential Φ such that H = −∇Φ:
+∇2ϕout = 0
+∇2ϕin,i = 0 ,
+
+(3)
+where ϕout is the potential outside the particle and ϕin,i is 
+the potential inside the ith particle. The boundary condi­
+tions for the Laplace equations at particle surfaces (rn = a) 
+are given by:
+ϕout = ϕin,i
+µ∂ϕin,i
+∂rn
+= µ0
+∂ϕout
+∂rn
+,
+
+(4)
+where µ is the permeability of the particle and µ0 is the 
+permeability of free space. Additionally, as rn →∞, 
+ϕout →−H0 · rn .
+The general solution to the Laplace equations (Eq. 3) 
+is an infinite sum of spherical harmonics. Magnetic force 
+models are based on an approximation of this infinite series.
+Earlier studies [10, 11] employed the Fixed Dipole 
+Method (FDM) to model magnetic interactions between 
+granular particles. Recent studies [4–6, 49] pivot to the 
+more accurate Mutual Dipole Model (MDM). Sikka et al. 
+[7] compared different models of magnetic force, such as 
+the Mutual Dipole Method (MDM) [3], the Finite Volume 
+Model (FVM) [12], and the Spherical Harmonic Approxi­
+mation (SHA) [3]. They concluded that SHA presents the 
+most accurate results while being fairly computationally 
+efficient. FVM can provide comparable accuracy to the 
+SHA, but it is significantly slower. While being fast, the 
+MDM loses accuracy when particles are closer than  3 par­
+ticle radii. However, the SHA only applies to a two-particle 
+system and, therefore, cannot be applied to a system of mul­
+tiple particles. Keaveny and Maxey [3] provided an Inclu­
+sion model to calculate the force on each particle placed in a 
+uniform magnetic field by combining dipole-based models 
+such as FDM and MDM, with SHA, thereby providing a 
+potential framework for multi-particle systems. However, to 
+the best of our knowledge, the Inclusion model has not been 
+implemented in any DEM software. We specifically imple­
+mented and compared the Inclusion model to the MDM.
+torque and frictional moment on ith particle. The torque is 
+given by Ti = aiFt,i × ˆn where ai is the radius of the par­
+ticle and ˆn is the direction of the normal as shown in the 
+Fig. 1.
+For collision dynamics, we use the Hertz contact model, 
+where the contact force experienced by the particles depends 
+on the overlap ‘δ’ (Fig. 1) as a power law δ3/2. The Hertz 
+contact model requires the simulation time step (dt) to be 
+less than the Hertzian collision time (τhc) [44], that is usu­
+ally in 10−6 order of magnitude. Along with the contact 
+model, we use an elastic spring and dashpot-based static 
+and rolling friction model [45]. The cohesion is a simplified 
+JKR - Johnson-Kendall-Roberts (SJKR) model [46] based 
+on cohesion energy density. The cohesive force is given by 
+Fc = kAˆn where k is the cohesion energy density in J/m3 
+units, and A is the contact area between the two particles.
+1.4  Paper overview
+This paper presents the implementation of the modified 
+Inclusion model for magnetic interactions of spherical 
+particles, as proposed by Keaveny and Maxey [3], imple­
+mented in the open-source DEM software LIGGGHTS [47] 
+and validated with experimental results from Sunday et al. 
+[8]. Section 2 reviews the magnetostatics equations and the 
+theoretical background for magnetic force models for gran­
+ular particles.
+Section 3 describes the implementation of the magnetic 
+force model in the open-source DEM software LIGGGHTS. 
+We detail the numerical methods, including the Mutual 
+Dipole Method (MDM) and the Inclusion Model, and dis­
+cuss computational considerations for efficient simulation. 
+We also introduce the critical magnetic time step, which 
+allows the magnetic force model to be run at a larger time 
+step than the Hertzian collision time.
+Section 4 presents validation of the implemented models 
+against analytical and published results for simple particle 
+systems, demonstrating the accuracy and limitations of each 
+approach.
+Section  5 applies the model to simulate avalanching 
+of metallic grains under varying magnetic field strengths, 
+comparing simulation outcomes to experimental results. 
+We replicate flow regimes along with trends for angle of 
+repose, surface roughness, and root mean square (RMS) 
+slope, demonstrating the model’s effectiveness in capturing 
+magnetic cohesion effects.
+Section  7 concludes with a summary of contributions, 
+limitations, and directions for future work.
+1 3
+53 
+Page 4 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+to the dipole, become significant. The Inclusion model 
+improves MDM by calculating the SHA solution, which 
+accounts for ‘L’ multipoles, for particle pairs with separa­
+tion distances less than a cutoff distance. Below, we give a 
+brief description of the Inclusion model.
+Step 1: Calculate forces using a dipolar approach like 
+MDM.
+Step 2: Identify the particle pairs with separation dis­
+tances lower than the cut-off distance.
+Step 3: Calculate force using the SHA on the selected par­
+ticle pairs. There are some important considerations when 
+applying SHA here. The MDM already included the dipolar 
+terms for the selected particle pair. Therefore, Keaveny and 
+Maxey [3] provides some corrective measures to ensure that 
+no calculation is performed twice. Along with dipolar cor­
+rections, a component of the magnetic field due to the out-
+of-plane component of the dipole moment from the MDM 
+needs to be added to the Maxwell Stress Tensor [48]:
+T = µ0
+(
+HH −1
+2H2I
+)
+,
+
+(9)
+Fi =
+ˆ
+Vi
+∇· T dV .
+
+(10)
+With the corrective terms calculated, the magnetic field is 
+now known. We can use the Eqs. 9 and 10 to calculate the 
+force.
+3  Magnetic model implementation
+We use LIGGGHTS, an extensively validated SSDEM 
+solver, for our work. In addition to being open-source, 
+multiple force models are available for contact, rolling 
+friction, and cohesion. Various researchers have extended 
+LIGGGHTS with different models, showcasing its ease of 
+adding new models. Finally, the software can scale with par­
+allel processing on High-Performance Computing servers. 
+Therefore, we could focus on implementing the magnetic 
+force model. To ensure correctness, we validated the force 
+models in LIGGGHTS by running unit test cases [50]. The 
+tangential history model needed corrections [36] as a par­
+ticle didn’t stop at the theoretical distance after sliding on 
+a wall.
+LIGGGHTS is based on the C++ language and some 
+legacy Fortran-based codes. Users only need to add the cor­
+responding source and header files with the same class style 
+to add a new capability. Various class styles in LIGGGHTS 
+provide a base structure to extend the functionality. For 
+example, the atom class deals with all particle-centric 
+2.1  Mutual Dipole Method
+The Mutual Dipole Model (MDM) extends the Fixed Dipole 
+Method (FDM), the simplest model. In both cases, the mag­
+netic moment of a particle is assumed to be dipolar. The 
+FDM only uses the external magnetic field to calculate the 
+magnetization for each particle. A single particle placed in 
+the uniform magnetic field H0 gains a dipole moment,
+m = CH0,
+C = 4
+3πa3χeff ,
+
+(5)
+where a is the particle radius and χeff =
+3χ
+χ+3 is particle 
+effective susceptibility.
+FDM assumes that every particle is dipolar and doesn’t 
+affect the others. MDM addresses the second assumption 
+by incorporating the effect of the magnetic field generated 
+by every other particle. A particle with dipole moment m 
+changes the magnetic field around it by Hdip [3],
+Hdip(r) = 1
+4π
+(3m · r r
+r5
+−m
+r3
+)
+,
+
+(6)
+where r denotes a coordinate system centered at the par­
+ticle. MDM accounts for this change in the magnetic field 
+when calculating the dipole moments. For the ith particle, 
+the moment mi is then given by [3]:
+mi = Ci
+(
+H0 +
+N
+∑
+j=0,j̸=i
+Hdip,j(ri,j)
+)
+,
+
+(7)
+where ri,j is the separation distance vector from ith particle 
+to jth particle. Equations 6 and 7 result in a 3N × 3N lin­
+ear system of equations. The moments of all the particles 
+are coupled and must be solved simultaneously. We discuss 
+numerical methods to solve this system in Sect. 3.2. The 
+calculated moment is then used to calculate the dipolar force 
+(Fdip
+i
+) on each particle [3],
+Fdip
+i
+= −µ0∇
+(
+mi ·
+N
+∑
+j=0,j̸=i
+Hdip,j(ri,j)
+)
+.
+
+(8)
+2.2  Inclusion model
+The Inclusion model provided by Keaveny and Maxey [3] 
+removes the assumption of considering only dipoles. When 
+particles are closer together, other multipoles, in addition 
+1 3
+Page 5 of 26 
+53
+
+A. Sikka, C. Hartzell
+τhc =
+N
+min
+i,j
+[
+2.87 ∗
+(
+m2
+eff
+aeff ∗E2
+eff ∗vmax
+)0.2]
+,
+
+(12)
+where effective mass is meff =
+mimj
+mi+mj , effective radius 
+aeff =
+aiaj
+ai+aj and effective Young’s Modulus is given using 
+poisons ratio ν
+1
+Eeff
+= 1 −ν2
+i
+Ei
++ 1 −ν2
+j
+Ej
+.
+
+(13)
+Using a similar formulation, we defined a critical time step 
+for the Magnetic force model. Sikka et al. [7] developed an 
+empirical model for the force between two identical sphere 
+paramagnetic particles. They provide three simplified for­
+mulas for calculating the magnetic force between particles 
+in specific orientations: parallel to the magnetic field, per­
+pendicular to the field, and touching while parallel to the 
+field. The formula (Eq. 14) for particles parallel to the field 
+provides the maximum possible force between a particle 
+pair. We use this empirical model in our definition of critical 
+magnetic time
+F = FDM + µ0a2H2
+0
+3
+∑
+i=1
+pi(χ)
+c4+i ,
+
+(14)
+pi(χ) =
+4
+∑
+j=0
+qi
+jχj
+eff
+i = 1, 2, 3 .
+
+(15)
+where c = r/a and the coefficients qi
+j are given in [7]. Given 
+this force, we can find dF
+dr . We know that the values of F and 
+dF
+dr are maximum at r = 2 for a given susceptibility. First, 
+we find the change in relative position ∆r for which the 
+magnetic force changes by 100%,
+∆r(χ) ≈
+[
+1
+F(χ)
+dF
+dr (χ)
+]−1
+.
+
+(16)
+Now, we can use the maximum relative velocity to define 
+the critical magnetic time (τmag),
+vmaxτmag ≈
+[
+1
+F(χ)
+dF
+dr (χ)
+]−1
+.
+
+(17)
+We have implemented this into our LIGGGHTS model 
+using a fix check/timestep/mag command. The user 
+inputs the tolerable ∆F
+F and the time step at which they 
+properties like position, velocity, force, and such. For all 
+computations, the source code uses simple C-style data 
+structures. We instead build LIGGGHTS with eigen 
+and boost libraries to access efficient linear algebra and 
+numerical integration functions.
+We defined a new fix for the magnetic force model in 
+LIGGGHTS called fix magnetic. A fix, in LIGGGHTS, 
+is a modular component applied during time integration to 
+modify particle behavior [51]. It takes six arguments along 
+with the fix ID and group-ID. The first three argu­
+ments define the components of the applied magnetic field 
+H0 in A/m units in the simulation coordinate frame. Next, 
+we define the magnetic time step (mag_steps), followed 
+by model type (could be mdm or inclusion) and finally 
+the dipole moment calculation method (could be con­
+vergence or linalg). An example magnetic fix is as 
+follows:
+fix mag all magnetic 0 0 1 100 mdm 
+convergence
+The fix currently only works with SI units. It also needs 
+the atom_style to be hybrid granular dipole 
+as the particles need to be granular and dipolar. Per particle 
+type, the property called magneticSusceptibility 
+needs to be defined for this magnetic fix. To run the mag­
+netic model at a different time step (dtmag), we modified 
+the LIGGGHTS atom class to add another variable called 
+mag_f similar to the existing total force variable f. This 
+variable stores the magnetic force for each particle each 
+time a new force is calculated. At all other time steps, the 
+same force is propagated. All the modified atom classes 
+and magnetic code (folders src/DIPOLE and src/MAG­
+NETIC) can be found at our public LIGGGHTS fork [52].
+3.1  Critical magnetic time
+The computation time for the magnetic model is com­
+paratively the highest among the different force models. 
+With the time step being on the order of microseconds 
+(dt →O(10−6)), the magnetic model can be run at a larger 
+time step. The particles don’t move much in a single time 
+step, resulting in minimal change to the magnetic force. This 
+variable time step can help reduce the computational load 
+of the magnetic model. There are different formulations for 
+critical time steps for the Hertzian force model. LIGGGHTS 
+uses the Hertzian collision time (τhc), which is based on the 
+maximum possible relative velocity of a particle pair vmax,
+vmax = 2
+N
+max
+i
+|vi|,
+
+(11)
+where vi is the the velocity of ith particle.
+1 3
+53 
+Page 6 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+where L and U are lower and upper triangular matrices of R 
+respectively. As R has a zero diagonal, L and U are strictly 
+triangular matrices. By applying the same technique to this 
+system, we need to examine the eigenvalues of (I −L)−1U. 
+Using that L and U are strictly triangular with all eigenval­
+ues equal to zero. It can be shown that (I −L)−1U has all 
+eigenvalues equal to 0. Therefore, the system converges.
+In our implementation (Algorithm  1), we use this dis­
+crete-time system given in Eq. 18. Different columns of the 
+R matrix are calculated by individual processors as per their 
+local particles. Then, the convergence algorithm is applied 
+on processor 0, after which the converged moments are dis­
+tributed to all the processors.
+Algorithm 1 Convergence-based Mutual DipoleMethod 
+for LIGGGHTS 
+want to check the magnetic time. It is worth noting that the 
+empirical formula is based on a spherical harmonic approxi­
+mation. Therefore, the critical magnetic time τmag would 
+be much smaller than the exact definition using the FDM 
+or MDM model. A larger tolerance is advised when using 
+the MDM model. We compare the critical magnetic time 
+with the Hertz collision time in one set of our simulations as 
+discussed in Sect. 5.4.
+3.2  MDM implementation
+The MDM method described in Sect. 2.1 requires a solu­
+tion to 3N × 3N linear system. For large systems with 
+≈1000s of particles, even optimized C++ libraries like 
+eigen require a lot of computational resources. One pos­
+sible solution is to limit the dipole influence of each particle 
+(eq. 6) as it directly scales with the cube of the distance from 
+the particle (r3). Fazekas et al. [10] employ a similar tech­
+nique for force calculation using the FDM by keeping the 
+magnetic force cutoff at ≈6.25D where D is the particle 
+diameter. Han et al. [4] show that for an infinite chain of 
+particles, a force cutoff of ≈6a gives less than 5 % relative 
+error. While force cutoff is a possible solution for the FDM 
+model and dispersed/special systems, we observed that the 
+aggregate of all small interactions from far-field particles 
+becomes significant for a large particle system. Leps and 
+Hartzell [6] implemented an MDM solver in LIGGGHTS 
+while using a cut-off distance. They used a convergence 
+algorithm instead of solving the linear system.
+However, their convergence algorithm is not guaranteed 
+to converge each time. Han et al. [4] proposed a convergence 
+algorithm using the Gauss-Seidel method. This method uses 
+the latest dipole moment value rather than the value from 
+the last step as described in the following equation.
+mk+1
+i
+= m0
+i + Ci
+N
+∑
+j=0,j̸=i
+(3ˆrij.ˆrT
+ij −I)
+4πr3
+ij
+p ,
+
+(18)
+where p =
+{ mk+1
+j
+if j < i
+mk
+j
+if j > i .
+
+(19)
+By stacking the dipole moments of each particle, we can 
+create a stacked moment vector m = [mi]T , and we can 
+define a new 3N × 3N matrix called R whose 3 × 3 ele­
+ments at 3i, 3j can be defined as R3i,3j = Ci
+(3ˆrij.ˆrT
+ij−I)
+4πr3
+ij
+ to 
+result in the following linear discrete-time system,
+mk+1 = m0 + L mk+1 + U mk ,
+
+(20)
+1 3
+Page 7 of 26 
+53
+
+A. Sikka, C. Hartzell
+setup. However, LIGGGHTS also decides if a particle 
+should be moved between processors during neighbor list 
+generation. If the neighbor list is not updated, all particles 
+remain associated with their initial processors, even if they 
+have moved significantly within the simulation domain. At 
+the end of the simulation run, LIGGGHTS identifies the 
+particles that have moved significantly, determines they 
+are behaving abnormally, and deletes them. Any restart file 
+generated after the run would not contain the said particles. 
+Therefore, the frequency of neighbor list generation also 
+needs to be optimized.
+3.3  Force calculation
+Once the moments are calculated with either linalg or 
+convergence (Algorithm 1), we can calculate the dipo­
+lar force between particles. The force between two dipolar 
+particles can be calculated as [12]:
+Fdip
+i,j = 3µ0
+4πr4
+[
+(mi.ˆr)mj + (mj.ˆr)m1 ,
++ (mi.mj)ˆr −5(mi.ˆr)(mj.ˆr)ˆr)
+]
+
+(23)
+where r = rj −ri, r = |r| and ˆr = r/r.
+Therefore, the force on a single particle is the sum of the 
+forces on all other particles,
+Fdip
+i
+=
+N−1
+∑
+j=0,j̸=i
+Fdip
+i,j .
+
+(24)
+The force due to the spherical harmonics approximation 
+(Fsha
+i
+) for the Inclusion model (discussed more in the next 
+section) is calculated for particle pairs with separation dis­
+tances less than four radii (ri,j/ai = c < 4). Therefore, the 
+total magnetic force on the ith particle (Algorithm  2) is 
+calculated,
+Fmag
+i
+= Fdip
+i
++ Fsha
+i
+.
+
+(25)
+The calculated force Fmag
+i
+ is then assigned to atom class 
+variables for total force (f) and magnetic force (mag_f).
+We also implement another algorithm to solve the 3N 
+linear systems of equations described in equations 6 and 7. 
+It follows the same principle as the convergence algo­
+rithm. The 3N × 3N linear system can be written in terms 
+of the earlier defined R matrix by modifying the discrete-
+time system,
+m = m0 + R m ,
+
+(21)
+(I −R)m = m0 .
+
+(22)
+Each processor calculates the corresponding components 
+(for local particles) of both (I −R) and m0. These are gath­
+ered on processor 0, and the linear system is solved using 
+the eigen library’s ColPivHouseholderQR algo­
+rithm, which is based on the Householder rank-revealing 
+QR decomposition of a matrix with column pivoting. The 
+calculated moments are then scattered to the respective pro­
+cessors for housekeeping.
+LIGGGHTS uses neighbor lists to track particle pairs and 
+potential interactions between them. These lists are gener­
+ated by each processor for its local particles. Therefore, 
+every processor only stores information for local particles 
+and their neighbors. While this setup is both memory and 
+computationally efficient for other DEM force models, our 
+magnetic model requires all particle pairs to be considered. 
+We modify the neighbor parameters for our simulations to 
+generate neighbor lists that include all particle pairs.
+To ensure all particle pairs are considered, we need the 
+neighbor cutoff distance, known as neighbor skin dis­
+tance in LIGGGHTS, to encompass the whole simulation 
+domain. We refer to a neighbor list with all particle pairs 
+as a complete neighbor list. This larger skin distance has 
+some drawbacks. Each processor has its own neighbor list 
+for each local particle. If neighbors for a particle are local to 
+another processor, information pertaining to those particles 
+is shared between the processors. With a complete neighbor 
+list, there is a significant communication overhead. There­
+fore, it is essential to optimize the number of processors 
+used.
+Another critical parameter is the frequency of neighbor 
+list generation. For a complete neighbor list, we could, in 
+theory, never update the neighbor list after the simulation 
+1 3
+53 
+Page 8 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+corrections to the system are added to account for the dipo­
+lar force that has already been calculated.
+In a two-body isolated case, each particle would only 
+have in-plane components (plane with the two particles 
+and the external magnetic field) of the dipole moments. 
+We therefore need to ensure that the corresponding spheri­
+cal harmonics (β11 and β10 in equation A2) don’t have the 
+dipolar force calculated twice. The bulk scenario, instead, 
+would have an out-of-plane component of dipole moment. 
+Keaveny and Maxey [3] include a new term in the Inclusion 
+model based on this out-of-plane component. One can think 
+of this as adding a β12 into the Eq. A2. But, there are no 
+such terms in any other multipoles in the SHA formulation; 
+therefore, it results in non-physical phenomena in bulk sim­
+ulations. This phenomenon is further discussed in detail in 
+the sub-sect. 3.4.1. The validation cases discussed in [3] are 
+all particle chains with all out-of-plane components equal to 
+zero. We remove this term in our implementation.
+The linear system is then solved using the ColPiv­
+HouseholderQR algorithm mentioned earlier. The sur­
+face integral of the Maxwell stress tensor (Eq. 10) was 
+first reduced analytically using Mathematica. The reduced 
+polynomial dependence is then solved with boost library’s 
+Gaussian Konrod algorithm. The Spherical Harmonics 
+Approximation and the reduced polynomials are discussed 
+in detail in the Appendix A.
+3.4.1  Out-of-plane dipolar correction
+The out-of-plane dipole correction is applied to the SHA 
+force to add additional information from the out-of-plane 
+component of the dipole moment calculated during the 
+MDM method. The scalar potential Φout−plane is given by 
+[3]:
+Φout−plane,i = mi.ˆy
+4πa3
+P m
+l
+cos θi sin ϕi
+r2
+i
+,
+
+(26)
+where P m
+l is the associated Legendre polynomial, mi is 
+the dipole moment and ri, θi and ϕi are the spherical coor­
+dinates of the ith particle respectively. The correction to 
+the magnetic field is then the sum of the gradient of scalar 
+potentials of the two particles, i and j:
+H = −∇Φout−plane,i −∇Φout−plane,j .
+
+(27)
+Algorithm 2 Force Calculation 
+3.4  Inclusion model implementation
+As described in the force calculation algorithm 2, the 
+model_type inclusion only affects the calculation of 
+Fsha
+i,j . We use a cutoff distance to ascertain when to incor­
+porate multipoles for a particle pair by calculating the SHA 
+force. Sikka et al. [7] and Fig. 5 show that MDM and SHA 
+converge quickly for a two-particle case. Therefore, we 
+finalized a cutoff distance of three radii (3a). We have a 
+separate class called spherical_harmonics to calcu­
+late the SHA force. The initializer takes six input arguments: 
+the particles’ radius (a), the particles’ susceptibility (χ), the 
+applied magnetic field vector (H0), the separation distance 
+vector (ri,j) and finally the respective dipole moments (mi 
+and mj).
+The spherical_harmonics class initializes the 
+two 2L × 2L linear systems needed for spherical harmon­
+ics approximation. Table 1 is used to find the number of 
+multipoles L to be used for a given susceptibility χ. The 
+Table 1  Number of Multipoles (L) for a given magnetic susceptibility (χ). These values were obtained by testing the two-particle configuration 
+(Sect. 4.1) for different susceptibilities and finding the minimum number of multipoles required for convergence
+χ
+(0, 4)
+[4, 7)
+[7, 12)
+[12, 20)
+[20, 35)
+[35 −55)
+[55, 75)
+[75 −100)
+L
+10
+20
+30
+40
+45
+50
+75
+80
+1 3
+Page 9 of 26 
+53
+
+A. Sikka, C. Hartzell
+Figure 2 shows the dipolar moments of the particles. We 
+see that the x-component of dipole moment (Fig. 2a, 2d, 2g) 
+have opposite signs near opposing x-walls while the y-com­
+ponent of dipole moment (Fig. 2b, 2e, 2h) have opposite 
+signs near opposing y-walls. The z-component of the dipole 
+moment is aligned in the positive z-direction, the same as 
+the applied magnetic field. These dipole moments contrib­
+ute to the out-of-plane term, leading to a spiral motion.
+In Fig. 3, we plot the specific angular momentum about 
+the center of the box of top particles against their distance 
+from the center for each of the three boxes. Most particles 
+have positive angular momentum, indicating rotational 
+We can use simple geometric relations to convert the spheri­
+cal coordinates of one particle to another by including the 
+separation vector c. We observed a unique non-physical 
+phenomenon once we implemented these equations into our 
+model. The top particles are further from the center of the 
+box in a spiral motion. To understand this phenomenon, we 
+simulated boxes of different sizes. We used three different 
+box sizes: Size 1: 35 × 35 × 130 mm, Size 2: 85 × 85 × 130 
+mm, and Size 3: 120 × 120 × 130 mm with the same par­
+ticle size (6.35 mm diameter) and susceptibility (χ = 3.6). 
+The magnetic field is applied in the +z direction, with all 
+other parameters held constant across the three boxes.
+(a) Size 1: x-component of dipolar
+moment
+(b) Size 1: y-component of dipolar
+moment
+(c) Size 1: z-component of dipolar
+moment
+(d) Size 2: x-component of dipolar
+moment
+(e) Size 2: y-component of dipolar
+moment
+(f) Size 2: z-component of dipolar
+moment
+(g) Size 3: x-component of dipolar
+moment
+(h) Size 3: y-component of dipolar
+moment
+(i) Size 3: z-component of dipolar
+moment
+Fig. 2  Dipolar moments of particles for three different sizes: Size 
+1: 35 × 35 × 130 mm, Size 2: 85 × 85 × 130 mm, and Size 3: 
+120 × 120 × 130 mm. The applied magnetic field is in the positive 
+z-direction (upwards). The x-component of the dipole moment is 
+shown to be opposite near opposing x-walls (2a, 2d, 2g), while the 
+y-component is opposite near opposing y-walls (2b, 2e, 2h ). These 
+figures illustrate the effect of the out-of-plane dipolar moment term in 
+the Inclusion model, leading to spiral motion. Therefore, we require 
+the modification of removing the out-of-plane correction term as 
+described in Sect. 3.4.1
+ 
+1 3
+53 
+Page 10 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+motion about the center of the box. For the smallest box, the 
+top particles quickly settle out of the spiral motion because 
+the walls are too close for the given particle radius. We can 
+observe that the particles at the center (further away from 
+the wall) have almost zero velocities for other sizes. In con­
+trast, the particles closer to the walls have higher velocities. 
+Particles closest to the walls have lower angular momentum 
+because they are slowed down by friction with the walls. 
+Therefore, we observe a peak in angular momentum at some 
+distance between the center and the wall.
+We conclude that including the out-of-plane term in the 
+SHA implementation leads to this nonphysical rotation 
+because the MDM model lacks the corresponding out-of-
+plane terms. This could be achieved by including another 
+multipole in the far-field calculation and the MDM. We 
+remove this out-of-plane correction term, as the aim of this 
+study is to implement a more accurate model than dipolar 
+models such as MDM.
+(a) Logarithmic scale of loop time for all three
+cases.
+(b) Loop time for Inclusion model.
+(c) Loop time for MDM model.
+(d) Loop time for no magnetic force
+case.
+Fig. 4  Computational effort of the MDM and Inclusion model for dif­
+ferent numbers of particles in an HCP configuration. The computa­
+tional effort of no magnetic force calculation is also included for ref­
+erence. The MDM model is more computationally efficient than the 
+Inclusion model and scales quadratically with the number of particles, 
+while the Inclusion model scales linearly. The loop times for the Inclu­
+sion model are approximately two orders of magnitude higher than the 
+MDM model, while the MDM model is approximately one order of 
+magnitude higher than the no magnetic force case
+ 
+Fig. 3  Specific Angular Momentum about the center of the box of top 
+particles against their distance from the center for three different box 
+sizes at a representative time step. The Hs increases as the distance 
+of the particles from the center increases, indicating the spiral motion 
+around the center of the box. Size 01: 35 × 35 × 130 mm, Size 2: 
+85 × 85 × 130 mm and Size 3: 120 × 120 × 130 mm
+ 
+1 3
+Page 11 of 26 
+53
+
+A. Sikka, C. Hartzell
+include the computational effort of the no-magnetic force 
+calculation for reference.
+It is clear that the MDM model is much more computa­
+tionally efficient than the Inclusion model. The loop times 
+for the Inclusion model are approximately two orders of 
+magnitude higher than the MDM model, while the MDM 
+model is approximately one order of magnitude higher 
+than the no magnetic force case. The computational effort 
+for the Inclusion model is linear, while the MDM model is 
+quadratic with the number of particles, as expected. These 
+results are for a specific configuration and may vary for dif­
+ferent configurations, but they provide a general idea of the 
+computational effort required for each model. The MDM 
+model, being more computationally efficient, is suitable for 
+larger simulations with sparse particle configurations as the 
+accuracy of the MDM model is comparable to the Inclusion 
+model for such cases, as shown in the validation cases in the 
+3.5  Computational comparison
+We compared the computation cost of the MDM (con­
+vergence-based) and the Inclusion model by system­
+atically increasing the number of particles in hexagonal 
+close-packed (HCP) configurations. A box of dimensions 
+10 × 10 × 100 m was used for this comparison study. The 
+particles were arranged in an HCP configuration with a par­
+ticle radius of 1 m and a susceptibility of χ = 1. The mag­
+netic field was applied in the z-direction, and the force was 
+calculated twice for each configuration and each model. We 
+increased the number of particles by increasing the number 
+of layers in the z-direction while keeping the x and y dimen­
+sions constant. There is no particle motion in this computa­
+tional comparison. The results for loop times (total run-time 
+in LIGGGHTS output file) are shown in the Fig. 4. We also 
+(a) a = 1 m, H0 = 1 A/m, α = 00 , χ = 1.0
+(b) a=1 m, H0=1 A/m, α = 00 , χ = 4.0
+(c) a=1 m, H0=1 A/m, α = 90 , χ = 1.0
+(d) a=1 m, H0=1 A/m, α = 90 , χ = 4.0
+Fig. 5  Validation curves for a two-particle configuration. The force is 
+normalized by the value when the particles are touching. For higher 
+susceptibility, the MDM underestimates the force when particles have 
+a separation distance less than 2.5 particle radii. SHA is considered the 
+exact force in this two-particle case
+ 
+1 3
+53 
+Page 12 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+MDM model. Results for these always matched; therefore, 
+for the rest of the paper, MDM refers to the convergence-
+based algorithm only.
+4.1  Two-particle case
+We first tested the magnetic force model for two particles 
+in two configurations by varying the inter-particle distance 
+to compare it with [3] and [7]. We also show (Fig. 5) the 
+results for the SHA model. The angle α is varied to test dif­
+ferent orientations of the magnetic field with respect to the 
+line joining the two particles. We tested two orientations: 
+parallel (α = 0◦) and perpendicular (α = 90◦). SHA is con­
+sidered to be an exact result for the two-particle case when a 
+large number of multipoles are considered (L ≈20 & 40 for 
+χ = 1 & 4 respectively) [3]. The Inclusion model matches 
+exactly with SHA, as no other far-field force exists. The 
+next section. For dense particle configurations, the Inclusion 
+model is more accurate, but the computational effort may be 
+prohibitive for larger simulations.
+4  1-D validations
+We validated the model against simple 1-D test cases for 
+which the results are available in the literature [3, 7, 12]. We 
+tested both algorithms (convergence & linalg) for the 
+Fig. 7  Eight-particle chain; applied with aligned with axis of the chain 
+(χ = 1; H0 = 1)
+ 
+(a) a=1 m, H0=1 A/m, α = 00 , χ = 1.0
+(b) a=1 m, H0=1 A/m, α = 00 , χ = 4.0
+(c) a=1 m, H0=1 A/m, α = 90 , χ = 1.0
+(d) a=1 m, H0=1 A/m, α = 90 , χ = 4.0
+Fig. 6  Validation curves for a three-particle configuration. The force 
+is normalized by the value when the particles are touching. For higher 
+susceptibility, the MDM underestimates the force when particles are 
+closer than 2.5 particle radii, while the SHA is closer to the exact solu­
+tion, and the Inclusion model matches the exact force closely
+ 
+1 3
+Page 13 of 26 
+53
+
+A. Sikka, C. Hartzell
+exact force for all four cases considered. The MDM model 
+is very inaccurate for higher susceptibilities (χ = 4) in both 
+external magnetic field orientations (parallel and perpen­
+dicular to the line joining the particles).
+4.3  Eight-particle case
+Keaveny and Maxey [3] also tested the Inclusion model 
+for an eight-particle chain depicted in Fig. 7. We reproduce 
+the results with our model here in Tables 2 and 3. We tried 
+different neighbor skin distances (Force cut-off 
+in LIGGGHTS), resulting in different average number of 
+neighbors per particle. These tests were our first indication 
+that a force cut-off for magnetic force could result in an 
+inaccurate calculation. Considering a lower number of aver­
+age neighbors results in higher error percentages. Especially 
+when the cut-off distance was less than 4 particle diameters 
+(average neighbors: 5.5), the error percentages were close 
+to 40% for the middle particles. Both the MDM and Inclu­
+sion models exhibited this behavior. When all particles are 
+considered as each other’s neighbors (average neighbors: 
+7.0), we observed that our model matches the expected 
+force value [3]. Therefore, we concluded that the magnetic 
+force model is sensitive to the neighbor skin distance. In our 
+subsequent simulations, we considered all particle neighbor 
+pairs.
+MDM underestimates the force when particles are closer 
+together in the case of parallel magnetic field orientation, 
+while it overestimates the force for perpendicular orienta­
+tion. We also tested the quadratic dependence [7] on par­
+ticle radius (a) and applied magnetic field magnitude (H0) 
+as other test cases consider unit values for these parameters.
+4.2  Three-particle case
+For the three-particle configuration, we fix two particles to 
+be touching, and the third particle’s distance is varied along 
+the line connecting all three particles. The force on the mov­
+ing particle is plotted. The results of this test case, shown 
+in Fig. 6, match with [3] where they suggest a pair-wise 
+Spherical Harmonic Approximation with more multipoles 
+(L = 20 for χ = 1 and L = 30 for χ = 4) is equivalent to 
+the exact force. The Inclusion model closely matches the 
+Table 2  MDM Results for 8 particle chain configuration: Expected force (N) [3] and percentage error (against expected force) for the various 
+particles (Fig. 7) for different average neighbors. The error percentage is calculated as Fexpected−Fcalculated
+Fexpected
+× 100%
+Particle
+Expected
+Average number of neighbors per particle
+Number
+Force (N)
+4.5
+5.5
+6.25
+6.75
+7
+1
+5.0252E-07
+−1.04%
+−0.45%
+−0.19%
+−0.06%
+0.00%
+2
+7.5187E-08
+−4.09%
+−1.30%
+−0.21%
+0.11%
+0.00%
+3
+1.8014E-08
+−12.60%
+−1.82%
+0.90%
+0.06%
+0.00%
+4
+3.9195E-09
+−39.78%
+6.44%
+0.46%
+0.06%
+0.01%
+Table 3  Inclusion Results for 8 particle chain configuration: Expected force (N) [3] and percentage error (against expected force) for the various 
+particles (Fig. 7) for different average neighbors. The error percentage is calculated as Fexpected−Fcalculated
+Fexpected
+× 100%
+Particle
+True
+Expected
+Average number of neighbors per particle
+Number
+Force (N)
+Force (N)
+4.5
+5.5
+6.25
+6.75
+7
+1
+6.38E-07
+6.4659E-07
+−1.01%
+−0.53%
+−0.31%
+−0.21%
+−0.16%
+2
+7.07E-08
+7.9784E-08
+−3.84%
+−1.20%
+−0.18%
+0.10%
+−0.02%
+3
+1.72E-08
+1.8894E-08
+−11.75%
+−1.48%
+0.93%
+0.03%
+−0.03%
+4
+3.84E-09
+4.0966E-09
+−37.25%
+6.88%
+0.43%
+0.02%
+−0.02%
+Fig. 8  Mass wasting setup: Green section are the fixed floor particles in 
+a hexagonal packing, blue section is filled with the magnetic particles 
+for avalanching and the yellow section is used to insert particles while 
+preparing the particle assembly
+ 
+1 3
+53 
+Page 14 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+range of magnetic field strength than Forsyth et al. [9]. Faze­
+kas et al. [10] & Taylor et al. [11] used a dipolar algorithm 
+for force calculation, which is inaccurate at closer distances, 
+as shown in Sect. 4. They could not reproduce the increase 
+in angle of repose or the bulk flow regimes, such as the cor­
+related and uncorrelated regimes. Our implementation can 
+be used with either the dipolar algorithm or the Inclusion 
+model. We tested both algorithms to compare their results.
+5.1  Setup
+Sunday et al. [8] uses 3.18 mm, 6.35 mm, and 8.73 mm-
+sized grains. We looked at the experiments with 8.73 mm 
+grains, as fewer particles provide a reasonable computa­
+tional time. Fig. 8 shows the simulation setup. An avalanche 
+is triggered by removing the middle partition wall. The 
+length of the box (x-axis) is 280 mm, with a middle partition 
+at 130 mm. The width (y-axis) is 85 mm while the height 
+(z-axis) is initially set to 130 mm. The floor is modeled with 
+brass particles (Fig. 9a) that are frozen in a hexagonal closed 
+packing to simulate a coarse floor. We use fixed boundaries 
+in LIGGGHTS with granular walls (fix wall/gran) to 
+keep particles within the simulation box. The magnetic sus­
+ceptibility for walls is set to zero to simulate non-magnetic 
+walls. The middle partition wall is also modeled similarly. 
+The gravity is in the downward (−z) direction while the 
+applied magnetic field is in the upward (+z) direction. 
+Once particle assembly is prepared, we change the ceiling 
+(change_box) to a shrink-wrapped boundary condition to 
+have fewer idle processors. The middle partition is removed 
+(unfix) to initiate the avalanche.
+5.2  Material properties
+We used three materials in the simulation: alloy steel for 
+magnetic particles, brass for the floor particles, and acrylic 
+for the walls, including the middle partition. The mate­
+rial properties are given in Table 4. The densities (ρ) for 
+alloy steel and brass are modeled the same as [8]. Multi­
+ple DEM studies [36, 53] have shown that using a factor 
+of 0.01−0.0001 to the actual Young’s modulus (E0) does 
+not affect bulk flow behavior. The Hertz collision time, 
+and therefore time-step (dt), however, directly depends on 
+Young’s modulus (dt ∝
+√
+E). We use a 0.01 to E0 factor 
+for our E values to keep computation time reasonable. The 
+mechanical properties of the walls were based on PMMA 
+material [53].
+The interaction properties between different materials, 
+the coefficient of restitution (e), and the rolling friction coef­
+ficients (µr, γd,r) were based on DEM studies by Hlosta et 
+al. [53]. The friction coefficient varied between 0.3 [53] and 
+0.7 [10]. We start with the values by [53] for all interaction 
+5  Avalanching of metallic grains
+After validating the magnetic force model with simple 1-D 
+cases, we tested the model against more complex scenar­
+ios. Sunday et al. [8] performed avalanching experiments 
+with brass and steel balls placed between two Helmholtz 
+coils to simulate a uniform magnetic field. We modeled the 
+same setup in LIGGGHTS to reproduce the bulk behav­
+ior of metallic grains with our model. Previous avalanche 
+studies have examined the effects of magnetic cohesion on 
+the angle of repose of steel grains through experimental 
+[9] and numerical [10, 11] investigations. Sunday et al. [8] 
+performed experiments with different particles and a larger 
+Table 4  Material Properties for Avalanching [8, 54, 55]
+Quantity
+Symbol Units
+Steel
+Floor 
+(Brass)
+Wall 
+(Acrylic)
+Density
+ρ
+(kg/m3) 7800
+8500
+1250
+Young’s 
+modulus
+E
+(MPa)
+2100
+1100
+30
+Poisson ratio
+ν
+(-)
+0.3
+0.375
+0.4
+Magnetic 
+Susceptibility
+χ
+(-)
+3.6 −40.0 0
+0
+Table 5  Interaction Properties for Avalanching [10, 53]
+Quantity
+Symbol Units Steel-Steel
+Steel-Floor
+Steel-Wall
+Coeff. of 
+restitution
+e
+(-)
+0.80
+0.70
+0.40
+Friction 
+coefficient
+µs
+(-)
+0.2
+0.15
+0.10
+Rolling fric­
+tion coeff
+µr
+(-)
+0.02
+0.015
+0.01
+Rolling visc. 
+damping
+γd,r
+(-)
+0.02
+0.02
+0.02
+Cohesion 
+energy 
+density
+kc
+(mJ/
+m3)
+2
+2
+2
+(a) Floor
+(b) Post insertion
+(c) Post tapping
+(d) Final assembly
+Fig. 9  Different stages of particle assembly preparation to obtain a 
+desired packing fraction
+ 
+1 3
+Page 15 of 26 
+53
+
+A. Sikka, C. Hartzell
+insertion rate facilitates a higher packing fraction of the 
+assembly and, therefore, a compact particle assembly. We 
+aim for a packing fraction of φ ≈0.59 to match experi­
+ments [8]. The extra particles are then deleted to ensure a 
+fixed height (72 mm).
+In some cases, we tap the assembly to achieve the required 
+packing fraction (Fig. 9c). The assembly floor is provided 
+with a sinusoidal vibration: zt = z0 + A sin(2πft) [36]. 
+We use the same amplitude (A = 0.5 mm) and frequency 
+(f = 30 Hz) as used by Frizzell and Hartzell [36]. The tap­
+ping is done for fixed intervals, and the packing fraction is 
+calculated. Once the desired packing fraction is achieved, 
+we stop the tapping. The final particle assembly (Fig. 9d) is 
+then used to perform various avalanching simulations using 
+a restart file (write_restart command). We provide 
+input scripts and restart files in our dataset [56]. Multiple 
+seeds are used to generate different assemblies for the same 
+packing fraction.
+For each simulation, we first allow the particles to settle 
+after switching on the external magnetic field. By ‘settle’, 
+we mean particles should reach a steady state. We define 
+the steady state by observing the simulation and the total 
+kinetic energy plots. The total kinetic energy becomes neg­
+ligible for cases with lower magnetic cohesion (lower sus­
+ceptibility and field strength), as all particles stop moving. 
+properties. We then calibrate the interaction properties’ val­
+ues to match the angle of repose of experiments [8] in the 
+absence of any magnetic field. The calibrated values are 
+mentioned in Table 5.
+We set the magnetic susceptibility for the walls and the 
+brass particles to zero because they are assumed to be non-
+magnetic. Two types of susceptibility values are mentioned 
+in the literature: bulk susceptibility and material susceptibil­
+ity. Material susceptibility is intrinsic to the material, while 
+bulk susceptibility depends on the shape and size of the 
+material sample. Sunday et al. [8] mentions the bulk effective 
+susceptibility of the coarse alloy grains to be 3.59 ± 0.12. 
+However, the material susceptibility is mentioned to range 
+between 13 and 100. Sunday et al. [8] observed that the 
+steel particles demonstrated plastic flow behavior starting at 
+25 mT field strength. We varied the material susceptibility 
+between 3.6 and 40.0 at a field strength of 25 mT. With the 
+Inclusion model, we could reproduce the flow behavior with 
+a material susceptibility of 20.0.
+5.3  Particle assembly preparation
+Each simulation starts with preparing a particle assembly. 
+We use the same particle size for the floor (brass) and the 
+bulk (steel) particles. The particles are modeled as spheres 
+with a diameter of 8.73 mm (coarse). We arrange the floor 
+particles in a hexagonal packing using LIGGGHTS’ lat­
+tice command (Fig. 9a). The left half is filled by pour­
+ing particles and allowing them to settle under gravity, as 
+it provides more control over the packing fraction (φ) [36]. 
+The packing fraction is defined as the ratio of the volume 
+of particles to the total bulk volume. For packing fraction 
+calculation, we only consider the assembly region up to the 
+height of 72 mm (blue in Fig. 8). The particles are inserted 
+using ins/rate/region fix in LIGGGHTS. We define 
+an insertion region (yellow in Fig. 8), insertion rate, total 
+number of particles inserted, and a random seed. The par­
+ticles are inserted at a rate of 2 per time step (dt). A slow 
+Table 6  Critical magnetic time step (τmag) and hertz collision time 
+(τhc) for different field strengths at 0.1ms magnetic time step (mag_t) 
+for our time sensitivity analysis. The ratio of the two is also shown
+H (mT)
+τhc (s)
+τmag (s)
+Ratio ( τmag
+τhc )
+5.0
+2.176272e−05
+1.121155e−01
+5.151722e+03
+15.0
+2.215137e−05
+1.224906e−01
+5.529708e+03
+30.0
+2.414839e−05
+1.885994e−01
+7.810023e+03
+Table 7  Time steps used in the simulations
+Quantity
+Symbol
+Units
+Value
+Time step
+dt
+µs
+5
+Magnetic time step
+mag_t
+ms
+1
+Neighbor time step
+(-)
+ms
+10
+Fig. 10  Sensitivity analysis for magnetic time step (mag_t) with 
+6.35 mm particles, susceptibility of 40.0, and field strengths of 5.0 mT 
+(Left), 15.0 mT (Middle), and 30.0 mT (Right). The magnetic time step 
+of 10.0 ms never settles for a 30 mT field strength, while the 1.0 ms and 
+0.1 ms magnetic time steps settle for all three field strengths. The 1.0 
+ms and 0.1 ms magnetic time steps have similar kinetic energy profiles 
+for all three field strengths
+ 
+1 3
+53 
+Page 16 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+The 10.0 ms magnetic time step never settled from a 30 
+mT field strength, while the 1.0 ms and 0.1 ms magnetic 
+time steps settled for all three field strengths. The 1.0 ms 
+and 0.1 ms magnetic time steps have similar kinetic energy 
+profiles for all three field strengths. τmag is much higher 
+than τhc for all three field strengths, which is expected. The 
+order of magnitude of the ratio of τmag to τhc is around 103 
+for all three field strengths. We concluded that a magnetic 
+time step of 1.0 ms (three orders of magnitude higher than 
+the simulation time step of 5 µs) is suitable for our simu­
+lations, providing a good trade-off between accuracy and 
+computational time. In all our subsequent simulations, we 
+used a magnetic time step of 1.0 ms or 2.0 ms when particle 
+velocities were low to speed up the simulations.
+5.5  Data analysis
+To analyze the simulation results, we examine three dif­
+ferent granular flow parameters: Flow Behavior, Angle of 
+Repose, and Surface Roughness [8]. Surface roughness is 
+determined using the root-mean-squared (RMS) height 
+and the RMS slope. Python, with the NumPy, SciPy, and 
+Pandas libraries, is used for data analysis, and Ovito Pro 
+[57] is used for visualization. We visually analyze the flow 
+behavior to assess whether our model can recreate the three 
+flow regimes: granular, correlated, and plastic. The angle of 
+repose and surface roughness were analyzed by comparing 
+the top particles in the pre-avalanche and the post-avalanche 
+state. To find the top particles, we divide the simulation box 
+into a grid along the x axis with cells of particle radius size 
+(a × w × h, where a is the particle radius, w is the simula­
+tion width, and h is the height of the simulation box). We 
+then find the highest particle in each grid cell and look at 
+any particle with vertical displacement less than half the 
+particle radius ∆y < ϵ = a/2 to find the list of stationary 
+particles that haven’t moved between the two frames.
+We look at two different values for the angle of repose 
+(θ) and surface roughness (RMS height ξ and RMS slope 
+θrms). First, as in Sunday et al. [8], we collapse the y−
+dimension (width) of the simulation and find general values. 
+Second, we also analyze the variation of these parameters in 
+the y−axis (width) by calculating them for different slices 
+(Fig. 11). We divide the simulation width into five equal 
+y-slices and compute the angle of repose, RMS height, and 
+RMS slope for each y-slice. Therefore, we are able to obtain 
+multiple unique values for each of our three data analysis 
+parameters: 3 or 4 from different seeds and 5 within each 
+seed from the y−slicing.
+However, in some cases with higher magnetic cohesion, not 
+all particles come to a complete stop. Some particles fall 
+into a steady state around local magnetic fields, oscillating 
+around a local minimum.
+Once the assembly is settled, we use this simulation 
+frame as our pre-avalanche state. Then, an avalanche is ini­
+tiated by deleting (using LIGGGHTS unfix command) the 
+middle partition wall. The particles are then allowed to fall 
+freely under the influence of gravity. We run each simula­
+tion for at least 1.5 s more, after which we start checking for 
+the steady state. Once a steady state is reached, we treat the 
+last frame as the post-avalanche state.
+5.4  Sensitivity analysis for magnetic time step
+Table 7 shows the various time-steps used. Each simula­
+tion’s time step (dt) is kept to 5µs. The magnetic time step 
+(mag_t) refers to the time step used for a new magnetic 
+force calculation. The magnetic steps value used for the fix 
+magnetic is calculated as mag_steps = mag_t
+dt
+. Neigh­
+bor time step is a similar value used to calculate how often 
+LIGGGHTS constructs a new neighbor list.
+We performed a sensitivity analysis for the magnetic 
+time step (mag_t) to ensure that this parameter does not 
+affect our results. MDM simulations were conducted with 
+6.35 mm particles, magnetic susceptibility of 40.0 (the 
+highest in our study), and applied field strengths of 5.0 mT, 
+15.0 mT, and 30.0 mT, as these parameters provide the most 
+magnetic cohesion and therefore are critical for our anal­
+ysis. The three magnetic time-steps considered were 10.0 
+ms, 1.0 ms, and 0.1 ms while keeping all other simulation 
+parameters and particle properties (Tables 4 & 5) the same. 
+Fig. 10 shows the total kinetic energy at each frame for the 
+three different magnetic time steps. Table 6 shows the criti­
+cal magnetic time and hertz collision time along with the 
+ratio of the two for each case.
+Fig. 11  Different slices to analyze the angle of repose, RMS height, 
+and RMS slope. The simulation width is divided into five equal slices
+ 
+1 3
+Page 17 of 26 
+53
+
+A. Sikka, C. Hartzell
+5.5.2  Surface roughness
+Both RMS height (ξ) and RMS slope (θrms) are calculated 
+for all the top particles in the post-avalanche state without 
+any trimming. The RMS height is given by
+ξ =
+[
+1
+n −1
+n
+∑
+i=1
+(zi −¯z)2]1/2
+,
+
+(28)
+where n is the number of particles considered, zi is the 
+height of the ith particle and ¯z is the mean height of the n 
+particles. The RMS slope is calculated by
+θrms = tan−1 (v(∆x)
+∆x
+)
+,
+
+(29)
+where ∆x is the difference in x−coordinate of consecutive 
+particles and
+v(∆x) =
+[ 1
+n
+n
+∑
+i=1
+[zi −zi+1]2]1/2
+.
+
+(30)
+The difference in x-coordinate (∆x) remains constant as the 
+particle radius (a).
+5.6  Non-magnetic results
+Figure 12 shows the final frames when no external magnetic 
+field is applied. We performed non-magnetic simulations 
+with both particle sizes (6.35 mm and 8.73 mm) to validate 
+our interaction properties (Table 5). The fine particles (6.35 
+mm) were simulated first to calibrate the interaction proper­
+ties by matching the angle of repose to approximately 19◦ 
+[8]. Based on our four different seeds with 6.35 mm par­
+ticles with a packing fraction of φ = 0.62 ± 0.01, we cal­
+culated the angle of repose as 19.97◦± 0.67◦. The surface 
+roughness parameters were: RMS height ξ = 5.33 ± 0.50 
+mm and RMS slope θrms = 23.46◦± 1.12◦.
+We then used the same interaction properties for the 
+coarse particles (8.73 mm). The angle of repose was calcu­
+lated as 20.12◦± 1.02◦, which is within the experimental 
+range of 20.15◦± 0.17◦ [8]. The surface roughness param­
+eters were calculated: RMS height 6.53 mm ± 0.96 mm 
+and RMS slope 26.06◦± 1.00◦. These values validated the 
+calibrated interaction properties (Table 5) for both particle 
+sizes. Table 8 summarizes the angle of repose and surface 
+roughness values for both particle sizes.
+5.5.1  Angle of repose
+We measured the angle of repose (θ) by fitting a line through 
+the centers of the top-most particles in the final post-ava­
+lanche frame. Some particles were removed from the left 
+and the right side before fitting the line. Stationary particles 
+between the pre-avalanche and post-avalanche frames are 
+removed from fit consideration. We find the stationary par­
+ticles by comparing only the y−displacement (∆y < a/2). 
+The right side is trimmed to the furthest particle, resulting in 
+the best fit (R2 value).
+Table 8  Angle of repose and surface roughness values for both particle 
+sizes with no applied magnetic field
+a
+φ
+θ
+ξ
+θrms
+(mm)
+(-)
+(◦)
+(mm)
+(◦)
+6.35
+0.62
+19.97 ± 0.67
+5.33 ± 0.50
+23.46 ± 1.12
+8.73
+0.59
+20.12 ± 1.02
+6.53 ± 0.96
+26.06 ± 1.00
+(b) 8.73 mm particles
+(a) 6.35 mm particles
+Fig. 12  Final frame for seed 1 with no applied magnetic field. (a) 6.35 
+mm particles, (b) 8.73 mm particles
+ 
+1 3
+53 
+Page 18 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+of repose and surface roughness trends with increasing field 
+strength for MDM and the Inclusion model, along with the 
+experimental data in Sunday et al. [8]. We demonstrate the 
+same quantitative increase in the angle of repose and surface 
+roughness parameters as observed in experiments [8]. The 
+angle of repose increased from 20.12◦± 1.02◦ (no field) to 
+31.03◦± 3..00◦ (20 mT). The RMS height increased from 
+6.53 ± 0.96 mm (no field) to 11.04 ± 1.38 mm (15 mT). 
+The RMS slope increased from 26.06◦± 1.00◦ (no field) to 
+42.15◦± 1.62◦ (20 mT). The surface roughness trends are 
+shifted between the experimental and Inclusion models. We 
+attribute this to different data analysis techniques. Sunday et 
+al. [8] used image processing to find the profile of the top 
+of the avalanche pile. We, on the other hand, use particle 
+center data for analysis. This discrepancy results in shifts 
+in the trends for surface roughness parameters, while the 
+5.7  Magnetic results
+We performed avalanching simulations with both the MDM 
+and Inclusion magnetic models. The magnetic susceptibility 
+was calibrated to 20.0 based on simulations matching the 
+flow behavior to experiments [8] as explained in Sect. 5.2. 
+The magnetic field was varied from 2.5 mT to 25 mT for 
+both models.
+We used three different seeds for 8.35 mm particles with 
+the Inclusion model for each simulation to account for 
+variability in the initial packing. Figure 13 shows the final 
+frames for the Inclusion model with different field strengths. 
+The results reproduced the three flow regimes: granular, 
+correlated, and plastic at different field strengths. The cor­
+related regime was observed at 15-20 mT, while the plastic 
+regime was observed at 25 mT. Figure 14 shows the angle 
+Fig. 14  Magnetic Results (8.73 mm diameter and 20.0 magnetic sus­
+ceptibility): Plots showing the relationship between applied magnetic 
+field and various parameters for both the Inclusion and MDM simula­
+tions, along with the experimental data from [8]. The Inclusion model 
+(our implementation) and the experimental data agree on all three 
+parameters. Surface roughness plots are shifted as compared to the 
+experimental data. We attribute this shift to differences in data analysis 
+techniques as discussed in Sect. 5.7
+ 
+(a) Inclusion, B0 = 2.5 mT
+(b) Inclusion, B0 = 15.0 mT
+(c) Inclusion, B0 = 25.0 mT
+(d) MDM, B0 = 2.5 mT
+(e) MDM, B0 = 15.0 mT
+(f) MDM, B0 = 25.0 mT
+Fig. 13  Magnetic Results (8.73 mm diameter and 20.0 magnetic sus­
+ceptibility): Post-avalanche state for different magnetic field strengths. 
+The top row shows the Inclusion model results, while the bottom row 
+shows the MDM model results. Inclusion Model transitions to cor­
+related regime at 15.0 mT (middle) before turning plastic at 25.0 mT 
+(right) in agreement with the experiments [8], while MDM model 
+remains in a granular state even at 25.0 mT
+ 
+1 3
+Page 19 of 26 
+53
+
+A. Sikka, C. Hartzell
+Fig. 17  Inclusion Results (6.35 mm diameter and 3.6 magnetic susceptibility): Plots showing the relationship between applied magnetic field and 
+various parameters
+ 
+(a) B0 = 5.0 mT
+(b) B0 = 15.0 mT
+(c) B0 = 30.0 mT
+(d) B0 = 50.0 mT
+(e) B0 = 65.0 mT
+(f) B0 = 80.0 mT
+Fig. 16  Inclusion Results (6.35 mm diameter and 3.6 magnetic susceptibility): Post-avalanche state for different magnetic field strengths. Fields 5 
+mT to 50 mT (a-d) show a granular regime, while 65 mT (e) shows a correlated regime, and 80 mT (f) shows a plastic regime
+ 
+(a)
+No
+magnetic
+ﬁeld,
+collapsed
+width
+(b) No magnetic ﬁeld, slice 1
+(c) No magnetic ﬁeld, slice 2
+(d) No magnetic ﬁeld, slice 3
+(e) No magnetic ﬁeld, slice 4
+(f) No magnetic ﬁeld, slice 5
+Fig. 15  Slice Variability (8.73 mm diameter): Post-avalanche state for no applied magnetic field case with different slices
+ 
+1 3
+53 
+Page 20 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+6  Limitations
+A few limitations of the current implementation in 
+LIGGGHTS are worth noting. LIGGGHTS processor map­
+ping in large simulations leads to a non-uniform distribution 
+of particles across processors. This results in an inefficient 
+use of processor resources and longer computation times. 
+Changing the LIGGGHTS processor distribution or using 
+a different DEM software like LAMMPS (balance com­
+mand) helps achieve a more uniform distribution and there­
+fore faster computation times. This could also enable us to 
+run the Inclusion model with larger multipoles to achieve 
+higher magnetic susceptibilities.
+LIGGGHTS calculates forces between particle neighbor 
+pairs only. The current implementation circumvents this 
+limitation by using a large neighbor skin distance to include 
+all particles as neighbors. This leads to issues with neighbor 
+list construction requiring more computational resources. 
+The assignment of particles to processors is carried out 
+whenever a neighbor list is constructed, which can lead to a 
+significant slowdown in the simulation. Future work could 
+include optimizing the neighbor list construction to reduce 
+the computational overhead.
+A very quirky behavior was observed while using mul­
+tiple run commands in LIGGGHTS. The run command in 
+LIGGGHTS is used to advance the simulation by a specified 
+number of time-steps. Each run command starts with a pre-
+construction of neighbor lists and forces. We observed an 
+influx of energy into the system whenever a subsequent run 
+command was used after the first one. This was not observed 
+when using a single run command for the entire simula­
+tion. We suspect this is due to the large neighbor skin dis­
+tance that includes all particles as neighbors. We tried using 
+the run pre no command, which does not reconstruct 
+the forces, but it did not work as expected. This issue can 
+be avoided by using a single run command for the entire 
+simulation. But this is not always feasible for longer simu­
+lations, for example, removing the middle wall requires at 
+least two run commands. We therefore experimented with 
+the run command and found that the influx of energy is dis­
+sipated within 1-10 dump time-steps, which is set to 1 ms in 
+our simulations. Therefore, we can safely ignore the influx 
+of energy if we use run commands with time steps larger 
+than an order of magnitude of 10 ms.
+Along with the limitations in LIGGGHTS, the Inclusion 
+model itself has some limitations. The model is based on 
+the assumption that all particles are identical (same mag­
+netic susceptibility and size) and spherical. Therefore, this 
+model cannot simulate a more complex particle shape or 
+distribution. While the particle shape effects can be mod­
+eled by varying friction parameters, different magnetic sus­
+ceptibilities cannot be modeled. We can, however, use the 
+percentage increase remains the same. Therefore, the mod­
+eling matches the experimental results.
+We do not include the RMS slope data from the 5 slices, 
+as the RMS slope is sensitive to the number of particles con­
+sidered, and the slices significantly reduce the number of 
+particles. The RMS slope values from the slices were all 
+over 40◦. Figure 15 shows the top particles considered in 
+each slice for the no field case. Each slice has a different 
+number of top particles considered, resulting in higher RMS 
+slope values compared to the collapsed width case.
+We performed MDM simulations for a single seed to 
+compare the results to the Inclusion model. Figure 13 shows 
+the final frames for the MDM model with different field 
+strengths, while Fig. 14 shows the angle of repose and sur­
+face roughness trends with increasing field strength. The 
+figures show that the MDM model cannot reproduce the 
+three flow regimes. We could not reach the plastic regime 
+even at the highest field strength of 25 mT. Moreover, the 
+MDM model continued to exhibit a granular flow regime 
+at the fields, where the Inclusion model showed a corre­
+lated and plastic regime (15-25 mT). We observed that, at 
+higher fields, even a single moving particle can disrupt the 
+entire pile. This behavior led to longer settling times (> 5s) 
+while all Inclusion simulations reached steady state within 
+2 s. Without the correlated and plastic regimes, the surface 
+roughness parameters did not show a significant increase 
+with increasing field strength. The angle of repose instead 
+showed a slight decrease, 20.34◦± 0.81◦ (no field) to 
+17.96◦± 1.33◦ (25 mT).
+We were not able to perform Inclusion simulations with 
+6.35 mm particles and higher susceptibilities due to com­
+putational limitations. Therefore, simulations with a single 
+seed were performed with a magnetic susceptibility of 3.6. 
+At the same time, we varied the field strength from 5 mT to 
+100 mT to achieve similar magnetic cohesion as the 8.73 
+mm particles with a susceptibility of 20.0 at 25 mT. We were 
+able to reproduce the three flow regimes with the Inclusion 
+model for 6.35 mm particles. We observed a granular flow 
+regime at 5 mT, a correlated flow regime at 30-65 mT, and 
+a plastic flow regime at 80-100 mT. Figure 16 shows the 
+final frames for the Inclusion model with different field 
+strengths, while Fig. 17 shows the angle of repose and sur­
+face roughness trends with increasing field strength. The 
+slight increase in angle of repose from 18.81◦± 0.17◦ (no 
+field) to 20.50◦± 0.20◦ (30 mT) is attributed to the lower 
+susceptibility. While 8.73 mm simulations validated the 
+model against experimental results, the 6.35 mm simula­
+tions showcase the three flow regimes for another particle 
+size and susceptibility pair, providing further confidence 
+that the Inclusion model accurately models the magnetic 
+interactions.
+1 3
+Page 21 of 26 
+53
+
+A. Sikka, C. Hartzell
+us to better understand the behavior of metallic regolith in 
+microgravity environments on asteroids like 16-Psyche. 
+The future work could also include modeling different ava­
+lanching experiments, such as the ones by Tang et al. [30]. 
+With minor tweaks, the model can also be used to simulate 
+magnetic manipulation of lunar regolith to design magne­
+tism-based technologies as proposed by Kawamoto et al. 
+[49]. Along with planetary applications, the model can also 
+simulate metallic grains for industrial applications such as 
+powder metallurgy and additive manufacturing.
+Appendix A: Spherical harmonics 
+approximation
+We present a brief overview of the spherical harmonics 
+approximation [3] used in the Inclusion model.
+Consider a system of two particles separated by a center-
+to-center distance c in an applied uniform magnetic field 
+H0 = H0(h⊥ˆx + h∥ˆz). The magnetic scalar potential Φ 
+satisfies the Laplace equation as described in equations 3-4. 
+This problem was solved by Keaveny and Maxey [3] using 
+a sum of spherical harmonics,
+Φ(n)
+in =
+∞
+∑
+l=0
+1
+∑
+m=0
+α(n)
+lm rl
+nP m
+l (cos θn) cos mϕn
+
+(A1)
+Φout = −H0
+(
+h⊥x + h∥z
+)
+,
++
+2
+∑
+n=1
+∞
+∑
+l=0
+1
+∑
+m=0
+β(n)
+lm
+P m
+l (cos θn)
+r(l+1)
+n
+cos mϕn ,
+
+(A2)
+where (x, y, z) are the Cartesian coordinates of the system 
+and (rn, θn, ϕn) are the spherical coordinates of a system 
+with the origin at the center of sphere n. The associated Leg­
+endre function is defined as
+P m
+l (cos θ) = (−1)m(1 −cos2 θ)
+m
+2 dmPl(cos θ)
+d(cos θ)
+.
+
+(A3)
+The coefficients α(n)
+lm and β(n)
+lm are found by satisfying 
+the boundary conditions. We need the Hobson formula to 
+describe the general solution in a single coordinate system 
+for a pair of spheres separated by a distance c:
+MDM model to simulate different magnetic susceptibilities 
+and particle sizes.
+7  Conclusions
+We have presented an accurate and experimentally validated 
+magnetic force model for discrete element method (DEM) 
+simulations of metallic grains. The model is based on the 
+Inclusion model of Keaveny and Maxey [3] and is imple­
+mented in the open-source software LIGGGHTS. We also 
+defined a new critical magnetic time to calculate the mag­
+netic force at a lower frequency than the DEM time step. 
+This new model is more accurate than the readily used 
+Mutual Dipole Model (MDM), as shown in our compari­
+sons. We validated the model against simple 1-D test cases 
+and then used it to simulate avalanching of metallic grains. 
+Earlier studies by Fazekas et al. [58] and Taylor et al. [11] 
+using dipolar models did not reproduce the plastic regime. 
+Our model replicated the bulk behavior of metallic grains 
+in avalanching experiments by Sunday et al. [8], showcas­
+ing three distinct flow regimes: granular, correlated, and 
+plastic. While earlier computational studies did showcase 
+an increase in the angle of repose with an external magnetic 
+field, they did not compare the trends with experimental 
+results. We demonstrated a quantitative increase in the angle 
+of repose and surface roughness parameters with increasing 
+magnetic field strength, in agreement with the experimental 
+data.
+7.1  Future work
+The current Angle of Repose (AoR) and surface roughness 
+analysis were primarily done in a 2D manner by collaps­
+ing the y−dimension. We sliced the simulation width into 
+five equal slices to analyze the variation of these parameters 
+in the y−axis. Future work should include a more detailed 
+3D analysis of the angle of repose and surface roughness 
+parameters. The current analysis is limited to comparing the 
+pre-avalanche and post-avalanche states. An advantage of 
+simulations over experimental work is the ability to track 
+the trajectory of each particle, along with the force data. 
+We can use this information to analyze avalanche dynam­
+ics in more detail by looking at force chains and particle 
+interactions.
+The new magnetic force model enables us to simulate 
+more accurate and complex scenarios for magnetic cohesion 
+in granular materials. We can use the Inclusion model to 
+simulate the effect of particle shape on avalanching behav­
+ior by varying the rolling friction parameters. We can also 
+model the effect of gravity on the change in angle of repose 
+and surface roughness. These simulations would enable 
+1 3
+53 
+Page 22 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+q0 =
+(
+H0h∥a3χ, 0, . . . , 0
+)T
+,
+q1 =
+(
+−H0h⊥a3χ, 0, . . . , 0
+)T
+,
+
+(A10)
+and the L × L matrices are
+Xij = δij
+(
+(χ + 2) i + 1
+)
+,
+
+(A11)
+∆ij;m = (−1)i+mχi
+( i + j
+j −m
+) a2i+1
+ci+j+1 ,
+
+(A12)
+Γij;m = (−1)i+jδij;m .
+
+(A13)
+After solving the system of equations, with β(n)
+lm known, the 
+contribution of the magnetic field from the particles is found 
+by taking the gradient of the scalar potential Φout:
+Hr =
+L
+∑
+l=0
+1
+∑
+m=0
+[
+(l + 1)β(1)
+lm
+P m
+l (cos θ1)
+rl+2
+1
+−β(2)
+lm
+L
+∑
+s=m
+(−1)s+m
+( l + s
+s + m
+)
+s rs−1
+1
+cl+s+1 P m
+s (cos θ1)
+]
+cos mϕ ,
+
+(A14)
+Hθ = −
+L
+∑
+l=0
+1
+∑
+m=0
+[ β(1)
+lm
+rl+2
+1
+dP m
+l (cos θ1)
+dθ1
++ β(2)
+lm
+L
+∑
+s=m
+(−1)s+m
+( l + s
+s + m
+) rs−1
+1
+cl+s+1
+dP m
+s (cos θ1)
+dθ1
+]
+cos mϕ ,
+
+(A15)
+Hϕ =
+L
+∑
+l=0
+[
+β(1)
+l1
+P 1
+l (cos θ1)
+rl+2
+1
+sin θ1
++ β(2)
+l1
+L
+∑
+s=1
+(−1)s+1
+( l + s
+s + m
+)
+rs−1
+1
+cl+s+1 sin θ1
+P 1
+s (cos θ1)
+]
+sin ϕ .
+
+(A16)
+The magnetic force on particle 1 is then calculated as
+Fx =
+ˆ
+r1=a
+TxrdS,
+
+(A17)
+Fy = 0,
+
+(A18)
+Fz =
+ˆ
+r1=a
+TzrdS,
+
+(A19)
+P m
+l
+(
+cos θ1
+)
+rl+1
+1
+=
+∞
+∑
+s=m
+(−1)s+m(−1)l+s
+( l + a
+s + m
+)
+rs
+2
+cl+s+1 P m
+s (cos θ2) ,
+
+(A4)
+P m
+l
+(
+cos θ2
+)
+rl+1
+2
+=
+∞
+∑
+s=m
+(−1)s+m
+( l + a
+s + m
+)
+rs
+1
+cl+s+1 P m
+s (cos θ1) .
+
+(A5)
+On substituting the general solution into the boundary con­
+ditions, using the Hobson formula and eliminating α(n)
+lm , we 
+find for each m = 0, 1,
+(
+(χ + 2) l + 1
+)
+β(1)
+lm +
+∞
+∑
+s=1
+β(2)
+sm
+(−1)l+mχl
+( l + s
+s −m
+) a2l+1
+cl+s+1
+= δ1ja3χH0(δ0mh∥−δ1mh⊥) ,
+
+(A6)
+(
+(χ + 2) l + 1
+)
+β(2)
+lm +
+∞
+∑
+s=1
+β(1)
+sm
+(−1)l+s(−1)l+mχl
+( l + s
+s −m
+) a2l+1
+cl+s+1
+= δ1ja3χH0(δ0mh∥−δ1mh⊥) .
+
+(A7)
+Considering only a finite number of multipoles, l = 0, . . . , L, 
+we arrive at 2L × 2L linear systems of equations. For each 
+m = 0, 1
+(
+X
+∆m
+Γm
+X
+) (
+β(1)
+m
+β(2)
+m
+)
+=
+(
+qm
+qm
+)
+,
+
+(A8)
+where
+β(1)
+m =
+(
+β(1)
+1m, β(1)
+2m, . . . , β(1)
+Lm
+)T
+,
+β(2)
+m =
+(
+β(2)
+1m, β(2)
+2m, . . . , β(2)
+Lm
+)T
+,
+
+(A9)
+1 3
+Page 23 of 26 
+53
+
+A. Sikka, C. Hartzell
+Open Access  This article is licensed under a Creative Commons 
+Attribution 4.0 International License, which permits use, sharing, 
+adaptation, distribution and reproduction in any medium or format, 
+as long as you give appropriate credit to the original author(s) and the 
+source, provide a link to the Creative Commons licence, and indicate 
+if changes were made. The images or other third party material in this 
+article are included in the article’s Creative Commons licence, unless 
+indicated otherwise in a credit line to the material. If material is not 
+included in the article’s Creative Commons licence and your intended 
+use is not permitted by statutory regulation or exceeds the permitted 
+use, you will need to obtain permission directly from the copyright 
+holder. To view a copy of this licence, visit ​h​t​t​p​:​/​/​c​r​e​a​t​i​v​e​c​o​m​m​o​n​s​.​o​
+r​g​/​l​i​c​e​n​s​e​s​/​b​y​/​4​.​0​/.
+References
+1.	
+Forsyth, A.J., Hutton, S.R., Osborne, C.F., Rhodes, M.J.: Effects 
+of interparticle force on the packing of spherical granular mate­
+rial. Phys. Rev. Lett. 87(24), 244301 (2001). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​
+0​3​/​P​h​y​s​R​e​v​L​e​t​t​.​8​7​.​2​4​4​3​0​1
+2.	
+Peters, F., Lemaire, E.: Cohesion induced by a rotating magnetic 
+field in a granular material. Phys. Rev. E 69(6), 061302 (2004). ​h​
+t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​3​/​P​h​y​s​R​e​v​E​.​6​9​.​0​6​1​3​0​2
+3.	
+Keaveny, E.E., Maxey, M.R.: Modeling the magnetic interac­
+tions between paramagnetic beads in magnetorheological fluids. 
+J. Comput. Phys. 227(22), 9554–9571 (2008). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​
+1​0​1​6​/​j​.​j​c​p​.​2​0​0​8​.​0​7​.​0​0​8
+4.	
+Han, K., Feng, Y.T., Owen, D.R.J.: Three-dimensional modelling 
+and simulation of magnetorheological fluids. Int. J. Numer. Meth. 
+Eng. 84(11), 1273–1302 (2010). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​2​/​n​m​e​.​2​9​4​
+0
+5.	
+Leps, T., Glick, P.E., Ruffatto, D., III., Parness, A., Tolley, M.T., 
+Hartzell, C.: A low-power, jamming, magnetorheological valve 
+using electropermanent magnets suitable for distributed control 
+in soft robots. Smart Mater. Struct. 29(10), 105025 (2020). ​h​t​t​p​s​:​
+/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​8​8​/​1​3​6​1​-​6​6​5​X​/​a​b​a​d​d​4
+6.	
+Leps, T., Hartzell, C.: High fidelity, discrete element method 
+simulation of magnetorheological fluids using accurate particle 
+size distributions in LIGGGHTS extended with mutual dipole 
+method. Mater. Res. Express. 8(8), 085701 (2021). ​h​t​t​p​s​:​/​/​d​o​i​.​o​
+r​g​/​1​0​.​1​0​8​8​/​2​0​5​3​-​1​5​9​1​/​a​c​1​1​3​c
+7.	
+Sikka, A., DesJardin, I., Leps, T., Hartzell, C.: Development of an 
+empirical model of the force between paramagnetic particles in 
+uniform magnetic field on M-type asteroids. Planet. Sci. J. 4(7), 
+129 (2023). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​3​8​4​7​/​P​S​J​/​a​c​e​3​2​3
+8.	
+Sunday, C., Pett, C.T., Youssef, A.B., Achiriloaie, D., Churko, C., 
+Lathrop, D.P., Hartzell, C.M.: Avalanching behavior of magnetic 
+granular mixtures. Phys. Rev. E 110(4), 044901 (2024). ​h​t​t​p​s​:​/​/​d​o​
+i​.​o​r​g​/​1​0​.​1​1​0​3​/​P​h​y​s​R​e​v​E​.​1​1​0​.​0​4​4​9​0​1
+9.	
+Forsyth, A.J., Hutton, S.R., Rhodes, M.J., Osborne, C.F.: Effect 
+of applied interparticle force on the static and dynamic angles of 
+repose of spherical granular material. Phys. Rev. E 63(3), 031302 
+(2001). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​3​/​P​h​y​s​R​e​v​E​.​6​3​.​0​3​1​3​0​2
+10.	 Fazekas, S., Kertész, J., Wolf, D.E.: Piling and avalanches of 
+magnetized particles. Phys. Rev. E 71(6), 061303 (2005). ​h​t​t​p​s​:​/​/​
+d​o​i​.​o​r​g​/​1​0​.​1​1​0​3​/​P​h​y​s​R​e​v​E​.​7​1​.​0​6​1​3​0​3
+11.	 Taylor, K., King, P.J., Swift, M.R.: Influence of magnetic cohe­
+sion on the stability of granular slopes. Phys. Rev. E 78(3), 
+031304 (2008). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​3​/​P​h​y​s​R​e​v​E​.​7​8​.​0​3​1​3​0​4
+12.	 Du, D., Toffoletto, F., Biswal, S.L.: Numerical calculation of 
+interaction forces between paramagnetic colloids in two-dimen­
+sional systems. Phys. Rev. E 89(4), 043306 (2014). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​
+g​/​1​0​.​1​1​0​3​/​P​h​y​s​R​e​v​E​.​8​9​.​0​4​3​3​0​6
+where the stress tensor components are given by 
+Tij = µ0HiHj −δij
+µ0
+2 HkHk.
+We solved the dependence on ϕ analytically using Math­
+ematica to reduce the surface integrals to polynomials in θ. 
+First, we add the uniform magnetic field contribution and 
+rewrite the magnetic field components as
+Hr = P + A cos ϕ,
+
+(A20)
+Hθ = Q + B cos ϕ,
+
+(A21)
+Hϕ = 0 + C sin ϕ,
+
+(A22)
+where P, Q, A, B, and C are functions of θ only. After substi­
+tuting these expressions into the stress tensor components, 
+we find the x and z force integrals reduced to:
+Fx =
+ˆ π
+0
+π
+[
+−CP + (BP + AQ) cos θ
++ (AP −BQ) sin θ
+]
+dθ,
+
+(A23)
+Fz =
+ˆ π
+0
+π
+2
+[
+(A2 −B2 −C2 + 2P 2 −2Q2) cos θ
+−2(AB + 2PQ) sin θ
+]
+dθ .
+
+(A24)
+Finally, we used Gaussian quadrature to evaluate the inte­
+grals over θ.
+Acknowledgements  We thank T. Leps for the initial MDM-based 
+model and E.S. Frizzell for their guidance on granular dynam­
+ics. Thanks also to the University of Maryland’s High Performance 
+Computing and Division of Information Technology for their sup­
+port. We thank NASA’s Solar System Working program, Grant 
+#80NSSC20K0865, for funding this research.
+Author contributions  AS and CMH conceptualized this study togeth­
+er. AS developed the model; implemented, carried out, and analyzed 
+the simulation results in this paper, and was also responsible for origi­
+nal manuscript preparation. CMH obtained funding, analyzed simula­
+tion results, and provided manuscript editing and review.
+Data availability  Given the size of our datasets, we provide a sub­
+set of data used in this paper. The restart files and scripts needed to 
+launch avalanching simulations are provided in [56]. We also provide 
+the two dump files used to analyze the Angle of Repose and the Sur­
+face Roughness parameters. Any reader can use the provided files with 
+open-source software [52] to easily recreate our work and validate it.
+Declarations
+Conflict of interest  The authors declare no Conflict of interest.
+1 3
+53 
+Page 24 of 26
+
+An experimentally validated magnetic force model for discrete element modeling of paramagnetic granular…
+M., Raymond, C.A., Russell, C.T., Wenkert, D., Wieczorek, M.A., 
+Zuber, M.T.: The psyche magnetometry investigation. Space Sci. 
+Rev. 219(3), 22 (2023). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​1​1​2​1​4​-​0​2​3​-​0​0​9​6​
+5​-​z
+25.	 Kohout, T., Kletetschka, G., Elbra, T., Adachi, T., Mikula, V., 
+Pesonen, L.J., Schnabl, P., Slechta, S.: Physical properties of 
+meteorites–applications in space missions to asteroids. Meteorit. 
+Planet. Sci. 43(6), 1009–1020 (2008). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​1​1​/​j​.​1​
+9​4​5​-​5​1​0​0​.​2​0​0​8​.​t​b​0​0​6​8​9​.​x
+26.	 Robinson, M.S., Thomas, P.C., Veverka, J., Murchie, S.L., Wil­
+cox, B.B.: The geology of 433 Eros. Meteorit. Planet. Sci. 37(12), 
+1651–1684 (2002). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​1​1​/​j​.​1​9​4​5​-​5​1​0​0​.​2​0​0​2​.​t​b​0​
+1​1​5​7​.​x
+27.	 Kokelaar, B.P., Bahia, R.S., Joy, K.H., Viroulet, S., Gray, 
+J.M.N.T.: Granular avalanches on the moon: mass-wasting con­
+ditions, processes, and features. J. Geophys. Res. Planets 122(9), 
+1893–1925 (2017). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​2​/​2​0​1​7​J​E​0​0​5​3​2​0
+28.	 Sugita, S., Honda, R., Morota, T., Kameda, S., Sawada, H., Tat­
+sumi, E., Yamada, M., Honda, C., Yokota, Y., Kouyama, T., Saka­
+tani, N., Ogawa, K., Suzuki, H., Okada, T., Namiki, N., Tanaka, 
+S., Iijima, Y., Yoshioka, K., Hayakawa, M., Cho, Y., Matsuoka, 
+M., Hirata, N., Hirata, N., Miyamoto, H., Domingue, D., Hira­
+bayashi, M., Nakamura, T., Hiroi, T., Michikami, T., Michel, 
+P., Ballouz, R.-L., Barnouin, O.S., Ernst, C.M., Schröder, S.E., 
+Kikuchi, H., Hemmi, R., Komatsu, G., Fukuhara, T., Taguchi, 
+M., Arai, T., Senshu, H., Demura, H., Ogawa, Y., Shimaki, Y., 
+Sekiguchi, T., Müller, T.G., Hagermann, A., Mizuno, T., Noda, 
+H., Matsumoto, K., Yamada, R., Ishihara, Y., Ikeda, H., Araki, 
+H., Yamamoto, K., Abe, S., Yoshida, F., Higuchi, A., Sasaki, S., 
+Oshigami, S., Tsuruta, S., Asari, K., Tazawa, S., Shizugami, M., 
+Kimura, J., Otsubo, T., Yabuta, H., Hasegawa, S., Ishiguro, M., 
+Tachibana, S., Palmer, E., Gaskell, R., Le Corre, L., Jaumann, R., 
+Otto, K., Schmitz, N., Abell, P.A., Barucci, M.A., Zolensky, M.E., 
+Vilas, F., Thuillet, F., Sugimoto, C., Takaki, N., Suzuki, Y., Kami­
+yoshihara, H., Okada, M., Nagata, K., Fujimoto, M., Yoshikawa, 
+M., Yamamoto, Y., Shirai, K., Noguchi, R., Ogawa, N., Terui, F., 
+Kikuchi, S., Yamaguchi, T., Oki, Y., Takao, Y., Takeuchi, H., Ono, 
+G., Mimasu, Y., Yoshikawa, K., Takahashi, T., Takei, Y., Fujii, 
+A., Hirose, C., Nakazawa, S., Hosoda, S., Mori, O., Shimada, T., 
+Soldini, S., Iwata, T., Abe, M., Yano, H., Tsukizaki, R., Ozaki, M., 
+Nishiyama, K., Saiki, T., Watanabe, S., Tsuda, Y.: The geomor­
+phology, color, and thermal properties of ryugu: implications for 
+parent-body processes. Science 364(6437), 0422 (2019). ​h​t​t​p​s​:​/​/​d​
+o​i​.​o​r​g​/​1​0​.​1​1​2​6​/​s​c​i​e​n​c​e​.​a​a​w​0​4​2​2
+29.	 Parekh, R., Otto, K.A., Jaumann, R., Matz, K.D., Roatsch, T., 
+Kersten, E., Elgner, S., Raymond, C.: Influence of volatiles on 
+mass wasting processes on vesta and ceres. J. Geophys. Res. 
+Planets 126(3), 2020–006573 (2021). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​2​9​/​2​0​
+2​0​J​E​0​0​6​5​7​3
+30.	 Tang, Y., Lauretta, D.S., Ballouz, R.-L., DellaGiustina, D.N., 
+Polit, A.T., Westermann, M.M., Bennett, C.A., Becker, K.J., 
+Walsh, K.J., Golish, D.R.: Characterization and implications of a 
+mass movement site in bennu’s bralgah crater. Icarus 415, 116056 
+(2024). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​i​c​a​r​u​s​.​2​0​2​4​.​1​1​6​0​5​6
+31.	 Sánchez, P., Scheeres, D.J.: The strength of regolith and rubble 
+pile asteroids. Meteorit. Planet. Sci. 49(5), 788–811 (2014). ​h​t​t​p​s​
+:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​1​1​/​m​a​p​s​.​1​2​2​9​3
+32.	 Sánchez, P., Durda, D.D., Devaud, G., Fischer, A., Scheeres, D.J., 
+Dissly, R.: Laboratory experiments with self-cohesive powders: 
+application to the morphology of regolith on small asteroids. 
+Planet. Space Sci. 207, 105321 (2021). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​
+p​s​s​.​2​0​2​1​.​1​0​5​3​2​1
+33.	 Sánchez, P., Scheeres, D.J., Quillen, A.C.: Transmission of a seis­
+mic wave generated by impacts on granular asteroids. Planet. Sci. 
+J. 3(10), 245 (2022). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​3​8​4​7​/​P​S​J​/​a​c​9​6​0​c
+13.	 Scheeres, D.J., Hartzell, C.M., Sanchez, P., Swift, M.: Scaling 
+forces to asteroid surfaces: the role of cohesion. Icarus 210(2), 
+968–984 (2010). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​i​c​a​r​u​s​.​2​0​1​0​.​0​7​.​0​0​9. 
+arXiv:1002.2478
+14.	 Zhang, Y., Michel, P., Richardson, D.C., Barnouin, O.S., Agrusa, 
+H.F., Tsiganis, K., Manzoni, C., May, B.H.: Creep stability of the 
+DART/Hera mission target 65803 didymos: II. the role of cohe­
+sion. Icarus 362, 114433 (2021). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​i​c​a​r​u​s​.​
+2​0​2​1​.​1​1​4​4​3​3
+15.	 Raducan, S.D., Jutzi, M., Cheng, A.F., Zhang, Y., Barnouin, O., 
+Collins, G.S., Daly, R.T., Davison, T.M., Ernst, C.M., Farnham, 
+T.L., Ferrari, F., Hirabayashi, M., Kumamoto, K.M., Michel, P., 
+Murdoch, N., Nakano, R., Pajola, M., Rossi, A., Agrusa, H.F., 
+Barbee, B.W., Syal, M.B., Chabot, N.L., Dotto, E., Fahnestock, 
+E.G., Hasselmann, P.H., Herreros, I., Ivanovski, S., Li, J.-Y., Luc­
+chetti, A., Luther, R., Ormö, J., Owen, M., Pravec, P., Rivkin, 
+A.S., Robin, C.Q., Sánchez, P., Tusberti, F., Wünnemann, K., 
+Zinzi, A., Epifani, E.M., Manzoni, C., May, B.H.: Physical prop­
+erties of asteroid dimorphos as derived from the DART impact. 
+Nat. Astron. 8(4), 445–455 (2024). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​3​8​/​s​4​1​5​5​
+0​-​0​2​4​-​0​2​2​0​0​-​3
+16.	 Walsh, K.J., Ballouz, R.-L., Jawin, E.R., Avdellidou, C., Barn­
+ouin, O.S., Bennett, C.A., Bierhaus, E.B., Bos, B.J., Cambioni, 
+S., Connolly, H.C., Delbo, M., DellaGiustina, D.N., DeMartini, 
+J., Emery, J.P., Golish, D.R., Haas, P.C., Hergenrother, C.W., Ma, 
+H., Michel, P., Nolan, M.C., Olds, R., Rozitis, B., Richardson, 
+D.C., Rizk, B., Ryan, A.J., Sánchez, P., Scheeres, D.J., Schwartz, 
+S.R., Selznick, S.H., Zhang, Y., Lauretta, D.S.: Near-zero cohe­
+sion and loose packing of Bennu’s near subsurface revealed by 
+spacecraft contact. Sci. Adv. 8(27), 6229 (2022). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​
+0​.​1​1​2​6​/​s​c​i​a​d​v​.​a​b​m​6​2​2​9
+17.	 Sánchez, P., Scheeres, D.J.: Cohesive regolith on fast rotating 
+asteroids. Icarus 338, 113443 (2020). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​i​
+c​a​r​u​s​.​2​0​1​9​.​1​1​3​4​4​3
+18.	 Elkins-Tanton, L.T., Asphaug, E., Bell, J.F., III., Bercovici, H., 
+Bills, B., Binzel, R., Bottke, W.F., Dibb, S., Lawrence, D.J., Mar­
+chi, S., McCoy, T.J., Oran, R., Park, R.S., Peplowski, P.N., Polan­
+skey, C.A., Prettyman, T.H., Russell, C.T., Schaefer, L., Weiss, 
+B.P., Wieczorek, M.A., Williams, D.A., Zuber, M.T.: Observa­
+tions, meteorites, and models: a preflight assessment of the com­
+position and formation of (16) psyche. J. Geophys. Res. Planets 
+125(3), 2019–006296 (2020). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​2​9​/​2​0​1​9​J​E​0​0​6​
+2​9​6
+19.	 Scheinberg, A., Elkins-Tanton, L.T., Schubert, G., Bercovici, D.: 
+Core solidification and dynamo evolution in a mantle-stripped 
+planetesimal. J. Geophys. Res. Planets 121(1), 2–20 (2016). ​h​t​t​p​s​
+:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​2​/​2​0​1​5​J​E​0​0​4​8​4​3
+20.	 Anand, A., Carroll-Nellenback, J., Blackman, E., Tarduno, J.: 
+Modelling the possible magnetic field of (16) psyche. Bulletin of 
+the AAS 55(8) (2023)
+21.	 Courville, S.W., Sanderson, H.R., Bierson, C.J., Elkins-Tanton, 
+L.T., Oran, R., O’Rourke, J.G., Russell, C.T., Weiss, B.P., Wil­
+liams, D.A.: Ferromagmatic intrusions on asteroid (16) psyche 
+may be magnetized. J. Geophys. Res. Planets 130(8), 009031 
+(2025). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​2​9​/​2​0​2​5​J​E​0​0​9​0​3​1
+22.	 Fatemi, S., Poppe, A.R.: Solar wind plasma interaction with aster­
+oid 16 Psyche: implication for formation theories. Geophys. Res. 
+Lett. 45(1), 39–48 (2018). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​2​/​2​0​1​7​G​L​0​7​3​9​8​
+0
+23.	 Oh, D.Y., Collins, S., Drain, T., Hart, W., Imken, T., Larson, K., 
+Marsh, D., Muthulingam, D., Snyder, J.S., Trofimov, D., Elkins-
+Tanton, L.T., Johnson, I., Lord, P., Pirkl, Z.: Development of the 
+psyche mission for NASA’s discovery program (2019)
+24.	 Weiss, B.P., Merayo, J.M.G., Ream, J.B., Oran, R., Brauer, P., 
+Cochrane, C.J., Cloutier, K., Elkins-Tanton, L.T., Jørgensen, J.L., 
+Maurel, C., Park, R.S., Polanskey, C.A., de Soria Santacruz-Pich, 
+1 3
+Page 25 of 26 
+53
+
+A. Sikka, C. Hartzell
+Progress in Computational Fluid Dynamics, an International 
+Journal 12(2–3), 140–152 (2012). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​5​0​4​/​P​C​F​D​.​
+2​0​1​2​.​0​4​7​4​5​7
+48.	 Jackson, J.D.: Classical Electrodynamics, 3rd edn. John Wiley 
+and Sons, Inc. (1998)
+49.	 Kawamoto, H., Egawa, R., Ayukawa, T., Iwatsubo, R.: Feasibility 
+study on handling lunar regolith using magnetic force. J. Aerosp. 
+Eng. 38(3), 04025018 (2025). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​6​1​/​J​A​E​E​E​Z​.​A​
+S​E​N​G​-​6​0​3​7
+50.	 Sunday, C., Murdoch, N., Tardivel, S., Schwartz, S.R., Michel, P.: 
+Validating N-body code chrono for granular DEM simulations in 
+reduced-gravity environments. Mon. Not. R. Astron. Soc. 498(1), 
+1062–1079 (2020). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​9​3​/​m​n​r​a​s​/​s​t​a​a​2​4​5​4
+51.	 9. Modifying & Extending LIGGGHTS(R)-PUBLIC — 
+LIGGGHTS v3.X Documentation. ​h​t​t​p​s​:​/​/​w​w​w​.​c​f​d​e​m​.​c​o​m​/​
+m​e​d​i​a​/​D​E​M​/​d​o​c​u​/​S​e​c​t​i​o​n​_​m​o​d​i​f​y​.​h​t​m​l​#​f​i​x​-​s​t​y​l​e​s 
+Accessed 
+2026-03-11
+52.	 Kloss, C., János, T., Mayrhofer, A., Sikka, A., Aigner, A., Sch­
+ramm, M., Phillips, J., Kwakkel, M., Sikarwar, N., Che, H., 
+Berger, R., XU, W.: AstroAnmol/LIGGGHTS-Public-Mag: Mag­
+netic Force Model in LIGGGHTS. Zenodo (2025). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​
+/​1​0​.​5​2​8​1​/​z​e​n​o​d​o​.​1​7​8​2​2​4​0​3
+53.	 Hlosta, J., Jezerská, L., Rozbroj, J., Žurovec, D., Nečas, J., Zeg­
+zulka, J.: DEM investigation of the influence of particulate prop­
+erties and operating conditions on the mixing process in rotary 
+drums: part 1–determination of the DEM parameters and calibra­
+tion process. Processes 8(2), 222 (2020). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​3​3​9​0​/​
+p​r​8​0​2​0​2​2​2
+54.	 Bauccio, M., American Society for Metals: ASM Metals Refer­
+ence Book, 3rd edn. ASM International, Materials Park, Ohio 
+(1993). Chap. viii, 614 pages : illustrations ; 29 cm
+55.	 Davis, J.R., ASM International Handbook Committee: Copper 
+and Copper Alloys. ASM Specialty Handbook. ASM Interna­
+tional, Materials Park, OH (2001). Chap. vii, 652 pages : illustra­
+tions ; 29 cm
+56.	 Sikka, A.: An experimentally validated magnetic force model for 
+discrete element modeling of paramagnetic granular media: input 
+scripts, restart files, dump files, and videos. Zenodo (2025). ​h​t​t​p​s​
+:​/​/​d​o​i​.​o​r​g​/​1​0​.​5​2​8​1​/​z​e​n​o​d​o​.​1​7​8​5​9​6​6​2
+57.	 Stukowski, A.: Visualization and analysis of atomistic simula­
+tion data with OVITO-the open visualization tool. Modell. Simul. 
+Mater. Sci. Eng. 18(1), 015012 (2009). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​8​8​/​0​9​
+6​5​-​0​3​9​3​/​1​8​/​1​/​0​1​5​0​1​2
+58.	 Fazekas, S., Kertész, J., Wolf, D.E.: Two-dimensional array of 
+magnetic particles: the role of an interaction cutoff. Phys. Rev. E 
+68(4), 041102 (2003). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​3​/​P​h​y​s​R​e​v​E​.​6​8​.​0​4​1​1​
+0​2
+Publisher's Note  Springer Nature remains neutral with regard to juris­
+dictional claims in published maps and institutional affiliations.
+34.	 Maurel, C., Ballouz, R.-L., Richardson, D.C., Michel, P., 
+Schwartz, S.R.: Numerical simulations of oscillation-driven rego­
+lith motion: brazil-nut effect. Mon. Not. R. Astron. Soc. 464(3), 
+2866–2881 (2017). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​9​3​/​m​n​r​a​s​/​s​t​w​2​6​4​1
+35.	 DeMartini, J.V., Richardson, D.C., Barnouin, O.S., Schmerr, 
+N.C., Plescia, J.B., Scheirich, P., Pravec, P.: Using a discrete ele­
+ment method to investigate seismic response and spin change of 
+99942 apophis during its 2029 tidal encounter with earth. Icarus 
+328, 93–103 (2019). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​i​c​a​r​u​s​.​2​0​1​9​.​0​3​.​0​1​5
+36.	 Frizzell, E.S., Hartzell, C.M.: Simulation of lateral impulse 
+induced inertial dilation at the surface of a vacuum-exposed gran­
+ular assembly. Granul. Matter 25(4), 75 (2023). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​
+.​1​0​0​7​/​s​1​0​0​3​5​-​0​2​3​-​0​1​3​6​3​-​6
+37.	 Frizzell, E.S., Hartzell, C.M.: Material parameter influence on the 
+expression of impulse-induced surface dilation. Granul. Matter 
+26(4), 90 (2024). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​7​/​s​1​0​0​3​5​-​0​2​4​-​0​1​4​6​0​-​0
+38.	 Frizzell et al.: Wave transmission through the megaregolith as a 
+mechanism for lunar cold spot formation. ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​
+/​j​.​i​c​a​r​u​s​.​2​0​2​5​.​1​1​6​4​6​1
+39.	 Marohnic, J.C., DeMartini, J.V., Richardson, D.C., Zhang, Y., 
+Walsh, K.J.: An efficient numerical approach to modeling the 
+effects of particle shape on rubble-pile dynamics. Planet. Sci. J. 
+4(12), 245 (2023). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​3​8​4​7​/​P​S​J​/​a​d​0​4​6​7
+40.	 Jiao, Y., Yan, X., Cheng, B., Baoyin, H.: SPH-DEM modelling 
+of hypervelocity impacts on rubble-pile asteroids. Mon. Not. R. 
+Astron. Soc. 527(4), 10348–10357 (2024). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​9​
+3​/​m​n​r​a​s​/​s​t​a​d​3​8​8​8
+41.	 Rabinow, J.: The magnetic fluid clutch. Electr. Eng. 67(12), 
+1167–1167 (1948). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​0​9​/​E​E​.​1​9​4​8​.​6​4​4​4​4​9​7
+42.	 Bica, I., Liu, Y.D., Choi, H.J.: Physical characteristics of mag­
+netorheological suspensions and their applications. J. Ind. Eng. 
+Chem. 19(2), 394–406 (2013). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​j​i​e​c​.​2​0​1​
+2​.​1​0​.​0​0​8
+43.	 Ghaffari, A., Hashemabadi, S.H., Ashtiani, M.: A review on the 
+simulation and modeling of magnetorheological fluids. J. Intell. 
+Mater. Syst. Struct. 26(8), 881–904 (2015). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​1​7​
+7​/​1​0​4​5​3​8​9​X​1​4​5​4​6​6​5​0
+44.	 Burns, S.J., Piiroinen, P.T., Hanley, K.J.: Critical time step for 
+DEM simulations of dynamic systems using a hertzian contact 
+model. Int. J. Numer. Meth. Eng. 119(5), 432–451 (2019). ​h​t​t​p​s​:​/​
+/​d​o​i​.​o​r​g​/​1​0​.​1​0​0​2​/​n​m​e​.​6​0​5​6
+45.	 Ai, J., Chen, J.-F., Rotter, J.M., Ooi, J.Y.: Assessment of rolling 
+resistance models in discrete element simulations. Powder Tech­
+nol. 206(3), 269–282 (2011). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​1​6​/​j​.​p​o​w​t​e​c​.​2​0​
+1​0​.​0​9​.​0​3​0
+46.	 Johnson, K.L., Kendall, K., Roberts, A.D., Tabor, D.: Surface 
+energy and the contact of elastic solids. proceedings of the royal 
+society of london. A. Math. Phys. Sci. 324(1558), 301–313 
+(1997). ​h​t​t​p​s​:​/​/​d​o​i​.​o​r​g​/​1​0​.​1​0​9​8​/​r​s​p​a​.​1​9​7​1​.​0​1​4​1
+47.	 Kloss, C., Goniva, C., Hager, A., Amberger, S., Pirker, S.: Models, 
+algorithms and validation for opensource DEM and CFD-DEM. 
+1 3
+53 
+Page 26 of 26

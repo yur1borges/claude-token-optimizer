@@ -1,0 +1,377 @@
+{
+  "nodes": [
+    {
+      "id": "rationale_de_foundation_cundall_strack_1979",
+      "label": "DEM foundational reference: Cundall & Strack (1979)",
+      "file_type": "rationale",
+      "source_file": "C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\pdfs_teste\\indice.tsv",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_1007_978_3_030_60124_9_4",
+      "label": "Particle-Based Approach for Simulation of Nonlinear Material Behavior in Contact Zones (Shilko 2021)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\OneDrive\\Desktop\\omniroute\\pdfs_teste\\10_1007_978-3-030-60124-9_4.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Shilko E V",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_1007_978_3_031_24066_9_3",
+      "label": "Excavation Simulations and Cutting Tool Wear (Brackmann 2023)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_978-3-031-24066-9_3.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Brackmann L",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_1007_s40571_019_00288_3",
+      "label": "Effect of particle roughness on bulk deformation using coupled BEM and DEM (Nadimi 2020)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_s40571-019-00288-3.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Nadimi S",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_1016_j_jmps_2021_104376",
+      "label": "PeriDEM hybrid DEM for granular systems with arbitrarily shaped particles breaking (Jha 2021)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1016_j_jmps_2021_104376.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Jha PK",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_1016_j_powtec_2015_05_051",
+      "label": "Scaling of DEM model parameters for cohesionless and cohesive solids (Thakur 2015)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1016_j_powtec_2015_05_051.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Thakur SC",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_21203_rs_3_rs_122784_v1",
+      "label": "Determination of friction coefficient of coal particles by DEM simulation and experimentation (Chai 2020)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_21203_rs_3_rs-122784_v1.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Chai JR",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_2208_jscejam_76_2_i_369",
+      "label": "Parameter contribution quantification in DEM granular flow analysis (Moriguchi 2020)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_2208_jscejam_76_2_i_369.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Moriguchi S",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_5772_58496",
+      "label": "Sintering Techniques of Materials (Lakshmanan 2015)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_5772_58496.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Lakshmanan A",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_5821_dissertation_2117_95384",
+      "label": "PFEM for modelling granular material flows (Dávalos Chargoy 2023)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_5821_dissertation-2117-95384.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Dávalos Chargoy CE",
+      "contributor": null
+    },
+    {
+      "id": "pdfs_teste_10_59490_seg_2023_630",
+      "label": "Phase-Field DEM for chemo-mechanical coupling in granular materials (Sac-Morane 2023)",
+      "file_type": "paper",
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_59490_seg_2023_630.pdf",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Sac-Morane A",
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "pdfs_teste_10_1007_978_3_030_60124_9_4",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_978-3-030-60124-9_4.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1007_978_3_031_24066_9_3",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_978-3-031-24066-9_3.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1007_s40571_019_00288_3",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_s40571-019-00288-3.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1016_j_jmps_2021_104376",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1016_j_jmps_2021_104376.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1016_j_powtec_2015_05_051",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1016_j_powtec_2015_05_051.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_2208_jscejam_76_2_i_369",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_2208_jscejam_76_2_i_369.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_5821_dissertation_2117_95384",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_5821_dissertation-2117-95384.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_59490_seg_2023_630",
+      "target": "rationale_de_foundation_cundall_strack_1979",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_59490_seg_2023_630.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1007_s40571_019_00288_3",
+      "target": "pdfs_teste_10_1016_j_powtec_2015_05_051",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_s40571-019-00288-3.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1016_j_powtec_2015_05_051",
+      "target": "pdfs_teste_10_21203_rs_3_rs_122784_v1",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1016_j_powtec_2015_05_051.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1007_978_3_030_60124_9_4",
+      "target": "pdfs_teste_10_1007_978_3_031_24066_9_3",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_978-3-030-60124-9_4.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1016_j_jmps_2021_104376",
+      "target": "pdfs_teste_10_2208_jscejam_76_2_i_369",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1016_j_jmps_2021_104376.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_21203_rs_3_rs_122784_v1",
+      "target": "pdfs_teste_10_2208_jscejam_76_2_i_369",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_21203_rs_3_rs-122784_v1.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_5821_dissertation_2117_95384",
+      "target": "pdfs_teste_10_59490_seg_2023_630",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_5821_dissertation-2117-95384.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1007_s40571_019_00288_3",
+      "target": "pdfs_teste_10_1016_j_powtec_2015_05_051",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_s40571-019-00288-3.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "pdfs_teste_10_1007_978_3_031_24066_9_3",
+      "target": "pdfs_teste_10_2208_jscejam_76_2_i_369",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_978-3-031-24066-9_3.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "concept_de_granular_simulation_problem",
+      "target": "pdfs_teste_10_1007_s40571_019_00288_3",
+      "relation": "conceptual_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_s40571-019-00288-3.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "concept_de_granular_simulation_problem",
+      "target": "pdfs_teste_10_1016_j_powtec_2015_05_051",
+      "relation": "conceptual_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1016_j_powtec_2015_05_051.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "concept_de_granular_simulation_problem",
+      "target": "pdfs_teste_10_2208_jscejam_76_2_i_369",
+      "relation": "conceptual_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_2208_jscejam_76_2_i_369.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "concept_de_granular_simulation_problem",
+      "target": "pdfs_teste_10_21203_rs_3_rs_122784_v1",
+      "relation": "conceptual_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_21203_rs_3_rs-122784_v1.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "concept_de_granular_simulation_problem",
+      "target": "pdfs_teste_10_5821_dissertation_2117_95384",
+      "relation": "conceptual_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_5821_dissertation-2117-95384.pdf",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "concept_de_granular_simulation_problem",
+      "target": "pdfs_teste_10_59490_seg_2023_630",
+      "relation": "conceptual_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_59490_seg_2023_630.pdf",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "hyper_de_parameter_quantification_triad",
+      "label": "DEM input-parameter characterization trio: roughness, scaling, contribution rates",
+      "nodes": [
+        "pdfs_teste_10_1007_s40571_019_00288_3",
+        "pdfs_teste_10_1016_j_powtec_2015_05_051",
+        "pdfs_teste_10_2208_jscejam_76_2_i_369"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_1007_s40571-019-00288-3.pdf"
+    },
+    {
+      "id": "hyper_de_granular_flow_triad",
+      "label": "Granular flow simulation studies across excavation, sediment, and coupled models",
+      "nodes": [
+        "pdfs_teste_10_1007_978_3_031_24066_9_3",
+        "pdfs_teste_10_2208_jscejam_76_2_i_369",
+        "pdfs_teste_10_59490_seg_2023_630"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "C:\\Users\\yuri\\Desktop\\omniroute\\pdfs_teste\\10_2208_jscejam_76_2_i_369.pdf"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

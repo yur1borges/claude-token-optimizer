@@ -1,0 +1,8 @@
+  warning: 4 code file(s) yielded no symbols (0.00 MB) — a data file, or source this extractor models no symbols for: flowcalc/__main__.py, flowcalc/engines/castep/__init__.py, pyproject.toml, renomear_pasta.ps1
+[graphify watch] community set changed since labeling (0 saved labels, 26 communities now; renamed 7 community(ies) by their hub). Run `graphify label` to refresh names with the LLM.
+Re-extracting code files in . (no LLM needed)...
+[graphify watch] 3366 file(s) not classified (no supported extension or shebang), skipped: 01_geomopt.cell, 01_geomopt.param, 02_scf.cell, 02_scf.param, 03_phonon.cell, 03_phonon.param (+3360 more)
+[graphify watch] Rebuilt: 713 nodes, 1709 edges, 26 communities
+[graphify watch] graph.json, graph.html and GRAPH_REPORT.md updated in graphify-out
+Code graph updated. For doc/paper/image changes run /graphify --update in your AI assistant.
+Tip: set GEMINI_API_KEY or GOOGLE_API_KEY to use Gemini for semantic extraction.
