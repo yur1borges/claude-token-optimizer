@@ -13,44 +13,22 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 └── marketplaces/     # Marketplaces de skills configurados
 ```
 
-## Skills Instaladas (37 skills)
+## Skills Instaladas (24 skills)
 
 ### Skills Principais (ativas)
 | Skill | Descrição | Trigger |
 |-------|-----------|---------|
 | `brainstorming` | Pré-requisito para trabalho criativo | Criar features, componentes |
-| `career-ops` | Candidaturas e LinkedIn do Yuri | "preencher vaga", "candidatura" |
-| `claude-real-video` | Assistir vídeos (YouTube/local) | URL de vídeo ou arquivo |
-| `computer-use` | GUI automation via Orca | Janela visível precisa controle |
-| `dem-vale-referencias` | Modelagem/calibração DEM e desgaste | TriboDEM, literatura |
-| `drx-refinamento` | Refinamento XRD (Le Bail, Rietveld) | GSAS-II no DA |
-| `entrevista-pre-tarefa` | 5-15 perguntas antes de tarefa complexa | `/entrevista-pre-tarefa` |
 | `find-skills` | Descobrir e instalar skills | "como fazer X", "find skill" |
 | `graphify` | Knowledge graph de código | `/graphify` ou graphify-out/ |
 | `humanizer` | Remover padrões de escrita de IA | Textos a humanizar |
 | `impeccable` | Design/frontend de alto nível | UI, landing pages, dashboards |
-| `lattes-agente` | Currículo Lattes e PDF do CV | Lattes, certificados |
 | `llm-council` | Conselho de 5 advisors | "council this" |
-| `maestri` | Comunicação inter-agentes no canvas | "ask [name] to..." |
-| `maestri-chat` | Mensagens do Maestri Chat | Header Maestri Chat |
-| `maestri-computer` | Controle de apps via Maestri | Operar apps externos |
-| `maestri-manager` | Orquestração de agentes no canvas | "assemble team", "delegate" |
-| `maestri-portal` | Browser automation no canvas | "browse URL", "test web UI" |
-| `maestri-portal-devices` | Android emulator/phone no canvas | "run mobile app" |
-| `maestri-routines` | Rotinas agendadas no canvas | "schedule command" |
-| `maestri-workspace` | Provisionar workspaces/floors | "new workspace", "new floor" |
-| `maestro` | Sessão Maestro (planeja/delega) | `/maestro` |
-| `orca-cli` | Orca worktrees, terminais, browser | "$orca-cli", "Orca worktree" |
-| `orchestration` | Workers Orca (Codex, Claude) | "Have Codex review this" |
-| `rpa-dev` | DA (Data Analyzer) - arquitetura, testes | DA, i18n, pitfalls |
-| `skills-smart-manager` | Auditar/fundir/aposentar skills | Ciclo de vida de skills |
-| `softwares-do-yuri` | Mapa dos 6 softwares do Yuri | DA, TriboDEM, FlowCalc, etc |
 | `systematic-debugging` | Debug sistemático (root cause first) | Qualquer bug/falha |
 | `task-observer` | Monitora execução para melhorar skills | Multi-step tasks |
 | `taste-skill` | Design frontend anti-slop | Landing pages, marketing sites |
 | `test-driven-development` | TDD obrigatório | Features, bugfixes, refactor |
 | `teste-leigo` | Teste como usuário leigo/impaciente | Apps desktop PySide6 |
-| `tribodem-dev` | TriboDEM Studio (Yade, Chrono, OpenFOAM) | TriboDEM, lotes, Monitor |
 | `ui-ux-pro-max` | Design intelligence (79 styles, 192 palettes) | UI/UX, acessibilidade |
 | `verification-before-completion` | Evidência antes de claims | "complete", "fixed", "passing" |
 | `writing-plans` | Planos de implementação | Multi-step tasks |
