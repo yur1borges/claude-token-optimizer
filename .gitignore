@@ -1,0 +1,6 @@
+# Ignorar tudo exceto skills docs
+*
+!README.md
+!.gitignore
+
+# Manter apenas documentação de skills
