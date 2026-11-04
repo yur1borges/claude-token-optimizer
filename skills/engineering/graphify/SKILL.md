@@ -1,3 +1,8 @@
+---
+name: graphify
+description: "Use para perguntas de codigo/arquitetura se graphify-out/ existir, ou /graphify."
+---
+
 # Graphify
 
 Knowledge graph de código. Mapeia relações entre arquivos, funções, imports.

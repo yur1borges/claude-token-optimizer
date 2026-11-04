@@ -1,3 +1,8 @@
+---
+name: taste-skill
+description: "tasteskill v2, the anti-slop frontend skill. Art direction for websites, distilled from a study of 247 curated gallery sites (One Page Love, Awwwards Sites of the Day). Deals researched directions (idea, composition, type, palette, photographs, section blueprints) from a library, enforces a strict n"
+---
+
 # Taste Skill
 
 Design frontend anti-slop. Landing pages, marketing sites com gosto.

@@ -1,3 +1,8 @@
+---
+name: humanizer
+description: "Use para tirar padroes de escrita de IA de textos a humanizar."
+---
+
 # Humanizer
 
 Remove padrões de escrita de IA. Deixa texto com voz humana.

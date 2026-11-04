@@ -1,3 +1,8 @@
+---
+name: teste-leigo
+description: "Use para testar apps desktop do Yuri como usuario leigo e impaciente (cliques aleatorios, entradas erradas, duplo clique, redimensionar) e achar quebras."
+---
+
 # Teste Leigo
 
 Teste como usuário leigo/impaciente. Para apps desktop.

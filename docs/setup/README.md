@@ -1,4 +1,4 @@
-# My setup — how I organize skills, hooks and settings
+# My setup: how I organize skills, hooks and settings
 
 Real, sanitized snapshot of my `~/.claude`. Goal: spend fewer tokens per session.
 
@@ -37,15 +37,24 @@ Hooks that were not worth their cost are moved to `hooks/_arquivados/` instead o
 ## 4. Settings that save tokens
 
 See [`settings.example.json`](settings.example.json):
-- `bashOutputMaxChars: 10000` — cap on tool output
-- `autoCompactWindow: 180000` + `autoCompactEnabled` — compact before the window overflows
-- `promptCacheTtl: "1h"` — keep the cache warm across pauses
-- `alwaysThinkingEnabled: false` and `effortLevel: low` for every model — raise effort only when needed
-- `CLAUDE_CODE_SUBAGENT_MODEL=claude-sonnet-4-6` — subagents on a cheaper model
-- `includeGitInstructions: false` — drops built-in git prompt text
+- `bashOutputMaxChars: 10000`: cap on tool output
+- `autoCompactWindow: 180000` + `autoCompactEnabled`: compact before the window overflows
+- `promptCacheTtl: "1h"`: keep the cache warm across pauses
+- `alwaysThinkingEnabled: false` and `effortLevel: low` for every model: raise effort only when needed
+- `CLAUDE_CODE_SUBAGENT_MODEL=claude-sonnet-4-6`: subagents on a cheaper model
+- `includeGitInstructions: false`: drops built-in git prompt text
 
 ## 5. Global CLAUDE.md habits
 
 - Short, imperative rules; one language rule; skills are called by the agent itself per task type.
 - Subagents only when asked or for big parallel work (each starts cold = expensive).
 - Subagent results are graded (good / acceptable / bad); bad ones are redone once, with a more detailed prompt.
+
+## 6. Related projects worth a look
+
+| Project | Idea | Fit |
+|---|---|---|
+| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | terse output voice | already used (plugin) |
+| [Kulaxyz/token-diet](https://github.com/Kulaxyz/token-diet) | always-on skill: short replies, grep before read, batch tools, few tests (claims ~31% lower bill, author's numbers) | overlaps caveman + ponytail; candidate to compare |
+| [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | rewrites prompts so the first attempt works (fewer re-prompts) | on-demand skill, no always-on cost |
+| [foryourhealth111-pixel/Vibe-Skills](https://github.com/foryourhealth111-pixel/Vibe-Skills) | routes among ~195 skills (claims -29.6% tokens on SkillsBench) | heavy; my fix is fewer visible skills instead |

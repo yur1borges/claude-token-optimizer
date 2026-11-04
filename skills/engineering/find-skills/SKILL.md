@@ -1,3 +1,8 @@
+---
+name: find-skills
+description: "Use para descobrir e instalar skills quando o Yuri perguntar como fazer algo."
+---
+
 # Find Skills
 
 Descobrir e instalar skills do marketplace. Use quando não souber como fazer algo.

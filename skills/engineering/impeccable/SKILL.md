@@ -1,3 +1,8 @@
+---
+name: impeccable
+description: "Use when the user wants to design, redesign, shape, critique, audit, polish, simplify, harden, animate, or otherwise improve a frontend interface: websites, landing pages, dashboards, product UI, components, forms, settings, onboarding, empty states, and native iOS or Android screens. Handles UX rev"
+---
+
 # Impeccable
 
 Design/frontend de alto nível. Landing pages, dashboards, componentes polidos.

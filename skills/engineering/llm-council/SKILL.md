@@ -1,3 +1,8 @@
+---
+name: llm-council
+description: "Use quando pedirem conselho ou decisao ('council this'): 5 advisors debatem."
+---
+
 # LLM Council
 
 Conselho de 5 advisors com perspectivas diferentes. Para decisões difíceis.

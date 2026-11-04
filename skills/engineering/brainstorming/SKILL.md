@@ -1,3 +1,8 @@
+---
+name: brainstorming
+description: "You MUST use this before any creative work - creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a talk, a business, a renovation)."
+---
+
 # Brainstorming
 
 Pré-requisito para trabalho criativo. Use antes de criar features, componentes, ou tomar decisões de design.

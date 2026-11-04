@@ -28,7 +28,6 @@ revisao_manual/
 *.js
 *.json
 *.txt
-*.md
 *.html
 *.pdf
 *.csv
@@ -53,3 +52,4 @@ revisao_manual/
 !scripts/link-skills.sh
 !docs/setup/
 !docs/setup/**
+!scripts/check.sh

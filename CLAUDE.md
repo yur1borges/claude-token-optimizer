@@ -26,5 +26,5 @@ House rules for agents working in this repository.
 
 ## No Em Dashes
 
-- Never use em dashes (—) in prose
+- Never use em dashes (-) in prose
 - Rewrite with comma, colon, period, parentheses, or conjunction

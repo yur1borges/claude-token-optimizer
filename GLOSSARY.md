@@ -4,15 +4,13 @@
 
 **Skill**: A reusable prompt/instruction package that teaches Claude a specific capability. Has a `SKILL.md` defining trigger, behavior, and success criteria.
 
-**Bucket**: Top-level category under `skills/` — engineering, productivity, misc, in-progress, deprecated.
+**Bucket**: Top-level category under `skills/`: engineering, productivity, misc, in-progress, deprecated.
 
-**Promoted**: Skills in engineering/ or productivity/ that ship in the Claude Code plugin and appear in README.md.
+**Promoted**: Skills in engineering/ or productivity/ that ship in the local harness and appear in README.md.
 
 **User-invoked**: Skill only reachable by human trigger (e.g., `/skill-name`). `disable-model-invocation: true`.
 
 **Model-invoked**: Skill reachable by model or human. No invocation restriction.
-
-**Router**: A skill that maps user-reachable skills to flows (e.g., ask-matt).
 
 **ADR**: Architecture Decision Record. Numbered markdown files in `.agents/adr/`.
 
