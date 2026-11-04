@@ -1,6 +1,6 @@
 # Skills for SAVING CLAUDE TOKEN
 
-Documentação completa das skills do Claude Code, organização, hooks e configurações do Yuri.
+Documentação genérica de skills do Claude Code, organização, hooks e configurações.
 
 ## Estrutura do Repositório
 
@@ -13,7 +13,7 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 └── marketplaces/     # Marketplaces de skills configurados
 ```
 
-## Skills Instaladas (24 skills)
+## Skills Instaladas (14 skills genéricas)
 
 ### Skills Principais (ativas)
 | Skill | Descrição | Trigger |
@@ -28,7 +28,7 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 | `task-observer` | Monitora execução para melhorar skills | Multi-step tasks |
 | `taste-skill` | Design frontend anti-slop | Landing pages, marketing sites |
 | `test-driven-development` | TDD obrigatório | Features, bugfixes, refactor |
-| `teste-leigo` | Teste como usuário leigo/impaciente | Apps desktop PySide6 |
+| `teste-leigo` | Teste como usuário leigo/impaciente | Apps desktop |
 | `ui-ux-pro-max` | Design intelligence (79 styles, 192 palettes) | UI/UX, acessibilidade |
 | `verification-before-completion` | Evidência antes de claims | "complete", "fixed", "passing" |
 | `writing-plans` | Planos de implementação | Multi-step tasks |
@@ -62,15 +62,7 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 - `ponytail:ponytail-help` - Ajuda ponytail
 - `ponytail:ponytail-review` - Review ponytail
 
-### Skills Desabilitadas (off no settings.json)
-- `brainstorming`, `writing-plans` (superpowers)
-- `systematic-debugging`, `test-driven-development`, `verification-before-completion` (superpowers)
-- `computer-use`, `maestro`, `lattes-agente`, `llm-council`
-- `orca-cli`, `maestri-chat`, `maestri-computer`, `maestri-manager`, `maestri-portal`, `maestri-routines`, `maestri-workspace`, `maestri`
-- `brainstorming`, `writing-plans` (duplicados)
-- `skills-smart-manager`
-
-## Subagentes Disponíveis (18 tipos)
+## Subagentes Genéricos
 
 | Agente | Uso | Modelo/Esforço |
 |--------|-----|----------------|
@@ -81,7 +73,7 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 | `claude-code-guide` | Perguntas sobre Claude Code/SDK/API | Haiku, low |
 | `design` | Interface, cores, ícones, layout | Sonnet 4.6, low |
 | `devops` | Infra, deploy, Docker, CI/CD | Sonnet 4.6, low |
-| `documentador` | Docs, notas, TAREFAS.md, relatórios | Sonnet 4.6, low |
+| `documentador` | Docs, notas, relatórios | Sonnet 4.6, low |
 | `especialista` | Tarefas difíceis/críticas/arquitetura | Opus 5.5, low |
 | `Explore` | Busca read-only ampla | Sonnet 4.6, low |
 | `fisico` | Análise física/numérica | Sonnet 4.6, low |
@@ -95,9 +87,7 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 | `testador` | Testes, verificações | Sonnet 4.6, low |
 | `teste` | Rodar suítes de teste | Sonnet 4.6, low |
 
-## Roteamento por Tarefa (combos obrigatórios)
-
-**OBRIGATÓRIO:** Antes de tarefa não trivial, delegue com ferramenta Agent (subagent_type abaixo).
+## Roteamento por Tarefa (combos)
 
 | Categoria | Subagente | Combo |
 |-----------|-----------|-------|
@@ -110,39 +100,35 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 | Difícil/crítico/arquitetura | `especialista` | combo/especialistas |
 | Perguntas simples/leitura rápida | Sessão principal | combo/modelos gratuitos |
 
-## Configuração de Hooks (settings.json)
+## Configuração de Hooks (genérica)
 
-### Hooks Ativos
+### Hooks Comuns
+| Evento | Descrição |
+|--------|-----------|
+| `PreToolUse` | Executa antes de ferramentas |
+| `SessionStart` | Início de sessão |
+| `PreCompact` | Antes de compactar contexto |
+| `UserPromptSubmit` | Envio de prompt do usuário |
+| `Stop` | Fim de execução |
+| `StopFailure` | Falha na execução |
+| `SubagentStart` | Início de subagente |
+| `SubagentStop` | Fim de subagente |
+| `TeammateIdle` | Colega ocioso |
+| `PostToolUse` | Após ferramenta |
+| `PostToolUseFailure` | Falha de ferramenta |
+| `PermissionRequest` | Solicitação de permissão |
+| `PostCompact` | Após compactação |
+| `Elicitation` | Elicitação |
+| `ElicitationResult` | Resultado elicitação |
+| `SessionEnd` | Fim de sessão |
 
-| Evento | Comando | Descrição |
-|--------|---------|-----------|
-| `PreToolUse` (Bash) | `rtk hook claude` | Hook RTK para comandos Bash |
-| `PreToolUse` (*) | `orca-agent-hook.exe claude` | Orca agent hook (timeout 10s) |
-| `SessionStart` | `remote_control_watchdog.ps1` | Watchdog Remote Control |
-| `SessionStart` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `PreCompact` | `pre-compact.py` | Pre-compact hook (timeout 10s) |
-| `UserPromptSubmit` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `Stop` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `StopFailure` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `SubagentStart` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `SubagentStop` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `TeammateIdle` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `PostToolUse` (*) | `orca-agent-hook.exe claude` | Orca agent hook |
-| `PostToolUseFailure` (*) | `orca-agent-hook.exe claude` | Orca agent hook |
-| `PermissionRequest` (*) | `orca-agent-hook.exe claude` | Orca agent hook |
-| `PostCompact` | `orca-agent-hook.exe claude` | Orca agent hook |
-| `Elicitation` (*) | `orca-agent-hook.exe claude` | Orca agent hook |
-| `ElicitationResult` (*) | `orca-agent-hook.exe claude` | Orca agent hook |
-| `SessionEnd` | `orca-agent-hook.exe claude` | Orca agent hook |
-
-### Hooks Arquivados (em `~/.claude/hooks/_arquivados/`)
+### Hooks Arquivados (exemplos)
 - `caveman-statusline.ps1` - Status line caveman
 - `context-mode-cache-heal.mjs` - Cache heal context mode
-- `erros_softwares.py` - Erros de softwares
 - `laya-gate.mjs` - Laya gate
 - `start_orchestrator.ps1` - Start orchestrator
 
-## Marketplaces de Skills Configurados
+## Marketplaces de Skills (públicos)
 
 | Marketplace | Source | Repo |
 |-------------|--------|------|
@@ -159,7 +145,7 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 | `cco` | github | egorfedorov/claude-context-optimizer |
 | `sentry-skills` | github | getsentry/skills |
 
-## Configurações Importantes (settings.json)
+## Configurações Importantes (settings.json genérico)
 
 ```json
 {
@@ -187,40 +173,27 @@ Documentação completa das skills do Claude Code, organização, hooks e config
 - `claude-sonnet-5-5`: low
 - `combo/modelos gratuitos`: xhigh
 
-## Regras da Casa (CLAUDE.md)
+## Regras Genéricas
 
 ### Idioma
-- **Apenas Português Brasileiro (pt-BR)** em todas as sessões
-- Tudo automático, sem passos manuais
+- Configurável por usuário
 
-### Skills - Regra de Ouro
-- Todo agente chama **sozinho, antes de começar**, as skills da tarefa:
-  - TriboDEM → `tribodem-dev` (+ `dem-vale-referencias`)
-  - Softwares do Yuri → `softwares-do-yuri` (+ `rpa-dev` no DA, `drx-refinamento` em DRX)
-  - Pesquisa → `anthropic-skills:deep-research`
-  - Bug → `systematic-debugging`
-  - Revisão → `code-review`
-  - Testes → `verification-before-completion`
-  - UI → `artifact-design`
+### Skills
+- Agentes chamam skills relevantes antes de começar tarefas
 
-### Avaliação de Retornos de Subagentes
+### Avaliação de Retornos
 - Classificar: **BOM**, **ACEITÁVEL** ou **RUIM**
-- Critérios: respondeu tudo, com evidência/fonte/file:line, números com unidade, testes rodados, sem inventar
-- RUIM (ou ACEITÁVEL com lacuna) → devolver ao MESMO subagente (máx 1 refazer)
-- Dizer ao Yuri a nota e por quê
+- Critérios: completude, evidência, testes, sem invenção
 
 ### Subagentes
-- Só usar quando Yuri pedir, ou tarefa grande e paralela
-- Todo subagente usa **Sonnet 4.6 com esforço low** (model: claude-sonnet-4-6, effort: low)
+- Usar quando solicitado ou tarefa grande/paralela
+- Modelo padrão: Sonnet 4.6, esforço low
 
-## Plugins Habilitados
+## Plugins
 - `ponytail@ponytail`: true
 - `caveman@caveman`: true
 - Demais: false
 
-## Status Line
-- Comando: `C:/Users/yuri/.orca/agent-hooks/claude-statusline.cmd`
-
 ---
 
-*Gerado automaticamente em 2026-11-04*
+*Documentação genérica - adaptar conforme necessário*
