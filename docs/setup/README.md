@@ -170,6 +170,15 @@ A research pass over official docs, GitHub, and English, Chinese and Russian sou
 
 **Ideas from other tools** (Cursor writing long outputs to files, Codex `tool_output_token_limit` and `compact_prompt`, Qwen `/compress-fast`, Kimi replacing old tool outputs with markers, JetBrains observation masking) all point to the same two levers already used here: cap tool output and keep the prefix stable. Chinese and Russian sources mostly repeat the English tips; coverage of Zhihu, Juejin, vc.ru, Reddit and HN was partial.
 
+**Follow-up tests (same day):**
+
+- **RTK A/B:** the same Bash-only task run 4 times with RTK and 4 without (an `RTK_OFF=1` switch in `filtra-testes.py`), Sonnet, `claude -p --output-format json`. With a warm cache: US$ 0.0498 mean with RTK, US$ 0.0471 without. No measurable gain on short outputs, matching the JetBrains result. Kept for now: `rtk gain` reports 453k tokens saved over 4,794 commands, mostly on long outputs this test did not cover.
+- **caveman and ponytail in subagents:** together they inject about 7.7 KB (about 1.9k tokens) into each subagent, about US$ 0.006 on Sonnet. Kept: they also shorten what the subagent sends back to the main thread.
+- **`opusplan`:** dropped. One model per session (Opus, effort low); cheap work goes to Sonnet or Haiku subagents.
+- **`idleCompaction`:** left at the default.
+
+**Codex (same machine):** the fixed prefix is about 21k tokens. Disabling the bundled plugins (`visualize`, `computer-use`) changed it by less than 60 tokens. Hiding 60 rare skills with `policy: allow_implicit_invocation: false` in each `agents/openai.yaml` (the Codex equivalent of `user-invocable-only`) saved only 278 tokens, because Codex already caps the skill catalog; kept anyway, so the model picks among fewer similar skills. `tool_output_token_limit=3000` made no difference: Codex already truncates long outputs. The Codex desktop shell tool is `exec`, so the RTK `PreToolUse` hook (matcher `Bash`) did not fire in the sessions checked. `AGENTS.md` now carries the same rules as the Claude `CLAUDE.md`.
+
 ## 9. Related projects
 
 | Project | Idea | Status |
