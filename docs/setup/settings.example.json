@@ -1,30 +1,69 @@
 {
+  "model": "opus",
   "skillListingMaxDescChars": 150,
   "skillListingBudgetFraction": 0.002,
   "bashOutputMaxChars": 10000,
   "promptCacheTtl": "1h",
   "autoCompactEnabled": true,
-  "autoCompactWindow": 180000,
+  "autoCompactWindow": 200000,
+  "precomputeCompactionEnabled": true,
   "alwaysThinkingEnabled": false,
-  "env": { "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-4-6" },
+  "showThinkingSummaries": false,
+  "includeGitInstructions": false,
+  "promptSuggestionEnabled": false,
+  "awaySummaryEnabled": false,
+  "autoMemoryEnabled": false,
+  "disableClaudeAiConnectors": true,
+  "syncClaudeAiPlugins": false,
+  "feedbackDrafts": "off",
+  "attribution": { "commit": "", "pr": "", "sessionUrl": false },
   "modelSettings": {
+    "claude-opus-5-5": { "effortLevel": "low" },
+    "claude-fable-5-2": { "effortLevel": "low" },
     "claude-sonnet-5-5": { "effortLevel": "low" },
     "claude-sonnet-4-6": { "effortLevel": "low" }
   },
+  "env": { "CLAUDE_CODE_GOAL_CHECKIN_MINUTES": "0", "RTK_SUPPRESS_HOOK_WARNING": "1" },
+  "permissions": {
+    "deny": [
+      "Agent(caveman:cavecrew-builder)",
+      "Agent(caveman:cavecrew-investigator)",
+      "Agent(caveman:cavecrew-reviewer)"
+    ]
+  },
   "skillOverrides": {
-    "some-plugin:rarely-used-skill": "user-invocable-only",
-    "some-plugin:never-used-skill": "off"
+    "caveman:caveman": "user-invocable-only",
+    "caveman:caveman-commit": "off",
+    "ponytail:ponytail": "user-invocable-only",
+    "graphify": "user-invocable-only",
+    "brainstorming": "off",
+    "llm-council": "off",
+    "writing-plans": "off"
   },
   "enabledPlugins": {
     "caveman@caveman": true,
-    "ponytail@ponytail": true
+    "ponytail@ponytail": true,
+    "ecc@ecc": false,
+    "context-mode@context-mode": false,
+    "context-optimizer@cco": false,
+    "mattpocock-skills@mattpocock": false,
+    "andrej-karpathy-skills@karpathy-skills": false,
+    "sentry-skills@sentry-skills": false,
+    "cloudflare@cloudflare": false,
+    "impeccable@impeccable": false,
+    "taste-skill@taste-skill": false,
+    "setup-token-savings@msadura-claude-marketplace": false,
+    "context-engineering@context-engineering-marketplace": false
   },
   "hooks": {
+    "PreToolUse": [
+      { "matcher": "Bash", "hooks": [ { "type": "command", "command": "python \"$HOME/.claude/hooks/filtra-testes.py\"", "timeout": 5 } ] }
+    ],
+    "PostToolUse": [
+      { "matcher": "Edit|Write|Bash|PowerShell", "hooks": [ { "type": "command", "command": "python \"$HOME/.claude/hooks/loop-edicao.py\"", "timeout": 5 } ] }
+    ],
     "PreCompact": [
       { "hooks": [ { "type": "command", "command": "python \"$HOME/.claude/hooks/pre-compact.py\"", "timeout": 10 } ] }
-    ],
-    "PreToolUse": [
-      { "matcher": "Bash", "hooks": [ { "type": "command", "command": "rtk hook claude" } ] }
     ]
   }
 }

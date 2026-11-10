@@ -1,5 +1,5 @@
 # Misc Skills
 
-Kept around but rarely used, not promoted.
+Guardadas, de uso raro. Não são instaladas, então não custam nada na listagem.
 
-(none currently)
+(nenhuma no momento)

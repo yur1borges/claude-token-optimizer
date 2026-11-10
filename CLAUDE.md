@@ -22,7 +22,7 @@ House rules for agents working in this repository.
 ## Subagent Usage
 
 - Only when user asks or task is large/parallel
-- Default: Sonnet 4.6, effort low
+- Default: Sonnet, effort low, maxTurns 50; simple lookup: triage (Haiku)
 
 ## No Em Dashes
 

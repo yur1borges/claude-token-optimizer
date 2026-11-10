@@ -1,5 +1,5 @@
 # In Progress Skills
 
-Beta: public on purpose, feedback wanted, not shipped in the plugin.
+Em teste antes de promover. Não são instaladas até provarem que economizam mais do que custam.
 
-(none currently)
+(nenhuma no momento)

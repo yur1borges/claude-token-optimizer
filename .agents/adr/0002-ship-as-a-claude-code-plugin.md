@@ -1,5 +1,9 @@
-# ADR 0002: Ship as a Claude Code Plugin
+# ADR 0002: Instalar por links, plugin depois
 
-Claude Code plugin (claude-plugins-official) ships exactly the promoted set. Other agents install from .claude-plugin/marketplace.json for automatic updates.
+## Decisão
 
-Run `claude plugin validate . --strict` after touching either manifest.
+Hoje a instalação é por links simbólicos (`scripts/link-skills.sh`) em `~/.claude/skills` e `~/.agents/skills`. Empacotar como plugin do Claude Code fica para depois.
+
+## Por quê
+
+Com links, editar a skill no repo muda a instalada na hora, sem republicar. Plugin só compensa se outras pessoas forem instalar. Se virar plugin, o manifesto deve listar exatamente o conjunto promovido, validado com `claude plugin validate . --strict`.

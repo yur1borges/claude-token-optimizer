@@ -1,24 +1,15 @@
-# Writing Plans
+# writing-plans (desligada)
 
-## What it does
+**Status:** fora do setup. O código está em [skills/deprecated/writing-plans](../../skills/deprecated/writing-plans/SKILL.md) e no meu PC fica em `~/.claude/skills_desligadas/`.
 
-Generates plan: objective, ordered steps, affected files, risks, tests, rollback. Format: markdown with checkboxes.
+## O que fazia
 
-## When to reach for it
+Plano de implementação formal, passo a passo, escrito em arquivo antes de tocar no código.
 
-- Features > 3 files
-- Cross-cutting refactoring
-- Migration
-- Any task with dependencies
+## Por que saiu
 
-## Common questions
+Gerava planos longos para tarefas curtas. Troquei por uma regra mais barata: plano curto em `~/.claude/planos/` só quando a tarefa tem mais de 3 passos.
 
-**Does the model follow the plan?**
-Should. Deviation = new plan.
+## Como voltar
 
-**Too much detail?**
-Level: file + function. Not line.
-
-## It's working if
-
-Plan exists before code. Execution follows plan or documents deviation.
+Mover a pasta de volta para `~/.claude/skills/` e tirar a entrada `"writing-plans": "off"` de `skillOverrides`.

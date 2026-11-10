@@ -1,24 +1,15 @@
-# LLM Council
+# llm-council (desligada)
 
-## What it does
+**Status:** fora do setup. O código está em [skills/deprecated/llm-council](../../skills/deprecated/llm-council/SKILL.md) e no meu PC fica em `~/.claude/skills_desligadas/`.
 
-Invokes 5 personas: Pragmatist, Architect, Security, Performance, User Advocate. Each gives opinion. Final synthesis with recommendation.
+## O que fazia
 
-## When to reach for it
+Cinco "conselheiros" com pontos de vista diferentes debatem uma decisão e um juiz consolida.
 
-- Architectural decisions
-- Complex trade-offs
-- Controversial code review
-- Tech stack choices
+## Por que saiu
 
-## Common questions
+Cada decisão custava cerca de cinco vezes uma resposta normal. Para as decisões que eu tomo, uma recomendação direta do modelo com os prós e contras basta.
 
-**Does it take long?**
-~30-60s. Worth it for irreversible decisions.
+## Como voltar
 
-**Different models?**
-All use same model, different prompts.
-
-## It's working if
-
-Decision documented with rationale from each advisor.
+Mover a pasta de volta para `~/.claude/skills/` e tirar a entrada `"llm-council": "off"` de `skillOverrides`.

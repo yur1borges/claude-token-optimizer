@@ -1,11 +1,17 @@
-# ADR 0001: Skill Bucket Organization
+# ADR 0001: Organização em buckets
 
-Skills organized into buckets under skills/:
+## Decisão
 
-- engineering/: daily code work
-- productivity/: daily non-code workflow tools
-- misc/: kept around but rarely used, not promoted
-- in-progress/: beta, public on purpose, feedback wanted
-- deprecated/: no longer used
+Skills ficam em `skills/<bucket>/`:
 
-Promoted buckets (engineering/, productivity/) must have references in top-level README.md and entries in .claude-plugin/plugin.json skills array.
+- `engineering/`: uso diário em código (instaladas)
+- `productivity/`: modo de trabalho (instaladas)
+- `misc/`: uso raro (não instaladas)
+- `in-progress/`: em teste (não instaladas)
+- `deprecated/`: desligadas, mantidas como referência
+
+## Por quê
+
+Toda skill instalada entra na listagem de cada sessão e custa tokens. O bucket diz, só pelo caminho, se a skill está no contexto ou não. Aposentar é mover de pasta: o histórico fica, e voltar é um `git mv`.
+
+Buckets promovidos (`engineering/`, `productivity/`) precisam estar no README principal.

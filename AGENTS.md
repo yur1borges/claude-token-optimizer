@@ -1,48 +1,36 @@
 # AGENTS.md
 
-This file documents the agent types available in this skills repository.
+Subagentes que uso hoje (`~/.claude/agents/`). O porquê de cada escolha está em [docs/setup](./docs/setup/README.md), seção 5.
 
-## Agent Types
+## Agentes próprios
 
-| Agent | Description | Model | Effort |
-|-------|-------------|-------|--------|
-| caveman:cavecrew-builder | Surgical 1-2 file edits | Haiku | low |
-| caveman:cavecrew-investigator | Read-only code locator | Haiku | low |
-| caveman:cavecrew-reviewer | Diff/branch/file reviewer | Haiku | low |
-| claude | Catch-all general agent | Sonnet 4.6 | low |
-| claude-code-guide | Claude Code/SDK/API questions | Haiku | low |
-| design | Interface, colors, icons, layout | Sonnet 4.6 | low |
-| devops | Infra, deploy, Docker, CI/CD | Sonnet 4.6 | low |
-| documentador | Docs, notes, reports | Sonnet 4.6 | low |
-| especialista | Hard/critical/architecture tasks | Opus 5.5 | low |
-| Explore | Broad read-only search | Sonnet 4.6 | low |
-| fisico | Physics/numerical analysis | Sonnet 4.6 | low |
-| general-purpose | Complex research, multi-step | Sonnet 4.6 | low |
-| pesquisador | Research, long reasoning, analysis | Sonnet 4.6 | low |
-| Plan | Software architect (plans) | Sonnet 4.6 | low |
-| programador | Write/edit/refactor/debug code | Sonnet 4.6 | low |
-| revisor | Review code, diffs, texts | Sonnet 4.6 | low |
-| seguranca | Security review, audit, secrets | Sonnet 4.6 | low |
-| statusline-setup | Configure status line | Haiku | low |
-| testador | Tests, verification | Sonnet 4.6 | low |
-| teste | Run test suites | Sonnet 4.6 | low |
+| Agente | Modelo | Effort | Ferramentas | Uso |
+|---|---|---|---|---|
+| triage | Haiku | padrão | Read, Grep, Glob | busca barata: arquivo, símbolo, config, erro (até 120 tokens) |
+| programador | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash, Skill | implementar e corrigir código, lançar testes/lotes |
+| design | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash, Skill | interface, cores, ícones, layout |
+| documentador | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash | notas, docs, relatórios |
+| teste | Sonnet | low | Read, Grep, Glob, Bash, Skill | rodar suítes e relatar pass/fail |
+| revisor | Sonnet | low | Read, Grep, Glob, Bash | revisar diff sem editar |
+| pesquisador | Sonnet | low | + WebSearch, WebFetch | literatura e dados na web |
+| fisico | Sonnet | low | + WebSearch, WebFetch | análise física/numérica de resultados |
+| Explore | Sonnet | low | Read, Grep, Glob, Bash | varredura só leitura |
 
-## Routing by Task (Combos)
+Todos com `maxTurns: 50` (menos o triage e o Explore) e todos leem `~/.claude/regras_agentes.md` antes de começar.
 
-| Category | Subagent | Combo |
-|----------|----------|-------|
-| Code/scripts | programador | combo/programacao |
-| Tests/verification | testador | combo/testes |
-| Code/text review | revisor | combo/revisao |
-| Research/reasoning/analysis | pesquisador | combo/pesquisa |
-| Security/audit | seguranca | combo/seguranca |
-| Infra/deploy/Docker/CI | devops | combo/devops |
-| Hard/critical/architecture | especialista | combo/especialistas |
-| Simple questions/quick reads | Main session | combo/modelos gratuitos |
+## Nativos usados
 
-## Skill Invocation Rules
+`general-purpose`, `Plan`, `claude-code-guide`, `statusline-setup`.
 
-- Agents invoke relevant skills before starting tasks
-- User-invoked skills: `disable-model-invocation: true`
-- Model-invoked skills: reachable by model or user
-- See `.agents/invocation.md` for details
+## Removidos e por quê
+
+- `caveman:cavecrew-builder/investigator/reviewer`: negados em `permissions.deny`; disparavam sem pedido e o retorno era fraco. O `triage` cobre a busca barata.
+- `especialista` (Opus), `seguranca`, `devops`, `testador`: sobrepunham com a sessão principal (já em Opus) e com `teste`/`revisor`.
+- Roteamento por combos do proxy (`combo/programacao` etc.): fora deste repo; cada agente declara o modelo no frontmatter.
+
+## Regras
+
+- Delegar só leitura grande (mais de ~5 arquivos ou logs grandes), pesquisa web, ou quando pedido.
+- Pergunta estreita, formato de saída fixo.
+- Retorno avaliado: BOM, ACEITÁVEL ou RUIM; RUIM volta uma vez com prompt mais detalhado.
+- Skills: `disable-model-invocation: true` para as só do usuário. Veja `.agents/invocation.md`.

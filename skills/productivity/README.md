@@ -1,12 +1,8 @@
 # Productivity Skills
 
-Daily non-code workflow tools. Promoted skills ship in the plugin.
+Modo de trabalho, fora do código. As duas atacam o custo de saída, que é o token mais caro.
 
-## User-invoked
+- [caveman](./caveman/SKILL.md): respostas tersas, todo fato técnico mantido
+- [ponytail](./ponytail/SKILL.md): menor mudança que resolve a tarefa inteira
 
-- [caveman](./caveman/SKILL.md): Terse, smart mode
-- [ponytail](./ponytail/SKILL.md): Lazy senior developer
-
-## Model-invoked
-
-(none currently)
+Rodam por hook no início da sessão, por isso ficam `user-invocable-only` (não ocupam a listagem).

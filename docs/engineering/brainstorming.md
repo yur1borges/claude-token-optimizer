@@ -1,25 +1,15 @@
-# Brainstorming
+# brainstorming (desligada)
 
-## What it does
+**Status:** fora do setup. O código está em [skills/deprecated/brainstorming](../../skills/deprecated/brainstorming/SKILL.md) e no meu PC fica em `~/.claude/skills_desligadas/`.
 
-Forces divergent thinking before convergent. Produces a structured list of options with trade-offs so you pick deliberately instead of drifting into the first idea.
+## O que fazia
 
-## When to reach for it
+Sessão de ideias obrigatória antes de qualquer trabalho criativo ou recurso novo, com perguntas, alternativas e um documento de design antes do código.
 
-- New feature design
-- Component architecture decisions
-- API design choices
-- Naming things
-- Any decision that will live in code for months
+## Por que saiu
 
-## Common questions
+A descrição dela dizia "use antes de qualquer trabalho criativo", então disparava em quase toda tarefa. Para mudanças de 1 a 3 arquivos, a conversa de ideias custava mais tokens que a própria tarefa.
 
-**Do I need this for small decisions?**
-No. Use for decisions that will live in code for months.
+## Como voltar
 
-**Can the model invoke it?**
-No. `disable-model-invocation: true`. Only you can trigger it.
-
-## It's working if
-
-You have 3+ distinct options written down with pros/cons before writing code.
+Mover a pasta de volta para `~/.claude/skills/` e tirar a entrada `"brainstorming": "off"` de `skillOverrides`.
