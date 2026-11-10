@@ -1,35 +1,35 @@
 ---
 name: graphify
-description: "Use para perguntas de codigo/arquitetura se graphify-out/ existir, ou /graphify."
+description: "Use for code/architecture questions if graphify-out/ exists, or /graphify."
 ---
 
 # Graphify
 
-Knowledge graph de código. Mapeia relações entre arquivos, funções, imports.
+Code knowledge graph. Maps relationships between files, functions, imports.
 
 ## Trigger
 
-`/graphify` ou pasta `graphify-out/` existe no projeto.
+`/graphify` or a `graphify-out/` folder exists in the project.
 
 ## When to reach for it
 
-- Entender codebase grande
-- Encontrar dependências ocultas
-- Refatoração cross-file
-- Documentar arquitetura
+- Understanding a large codebase
+- Finding hidden dependencies
+- Cross-file refactoring
+- Documenting architecture
 
 ## What it does
 
-Roda análise estática, gera graph em `graphify-out/`. Nós = arquivos/funções, arestas = imports/chamadas.
+Runs static analysis and generates a graph in `graphify-out/`. Nodes = files/functions, edges = imports/calls.
 
 ## Common questions
 
-**Q: Funciona em qualquer linguagem?**
-Principais: TS/JS, Python, Go, Rust, Java. Outros: best-effort.
+**Q: Does it work in any language?**
+Main ones: TS/JS, Python, Go, Rust, Java. Others: best-effort.
 
-**Q: Atualiza sozinho?**
-Re-ride `/graphify` após mudanças grandes.
+**Q: Does it update by itself?**
+Re-run `/graphify` after big changes.
 
 ## It's working if
 
-`graphify-out/graph.json` existe e tem > 50 nós.
+`graphify-out/graph.json` exists and has > 50 nodes.

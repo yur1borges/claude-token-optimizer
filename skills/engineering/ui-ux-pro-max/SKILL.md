@@ -5,31 +5,31 @@ description: "UI/UX design intelligence for web, mobile, and desktop. This skill
 
 # UI/UX Pro Max
 
-Design intelligence (79 styles, 192 palettes). UI/UX, acessibilidade.
+Design intelligence (79 styles, 192 palettes). UI/UX, accessibility.
 
 ## Trigger
 
-User-invoked. "ui-ux-pro-max" ou "design review" em componentes/UI.
+User-invoked. "ui-ux-pro-max" or "design review" on components/UI.
 
 ## When to reach for it
 
 - Design system audit
-- Acessibilidade (WCAG AA/AAA)
+- Accessibility (WCAG AA/AAA)
 - Design tokens, themes
 - Component library review
 
 ## What it does
 
-Aplica 79 style patterns + 192 color palettes. Checa: contrast, focus order, touch targets, motion, dark mode, RTL. Gera relatório com fixes.
+Aplica 79 style patterns + 192 color palettes. Checa: contrast, focus order, touch targets, motion, dark mode, RTL. Generates a report with fixes.
 
 ## Common questions
 
-**Q: Só para web?**
-Principalmente web. Mobile: principios similares.
+**Q: Web only?**
+Mainly web. Mobile: similar principles.
 
-**Q: Precisa de Figma?**
-Não. Analisa código renderizado.
+**Q: Does it need Figma?**
+No. It analyzes rendered code.
 
 ## It's working if
 
-0 violações WCAG AA. Design tokens consistentes.
+0 WCAG AA violations. Consistent design tokens.

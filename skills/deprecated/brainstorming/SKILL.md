@@ -5,7 +5,7 @@ description: "You MUST use this before any creative work - creating features, bu
 
 # Brainstorming
 
-Pré-requisito para trabalho criativo. Use antes de criar features, componentes, ou tomar decisões de design.
+Prerequisite for creative work. Use it before creating features or components, or making design decisions.
 
 ## Trigger
 

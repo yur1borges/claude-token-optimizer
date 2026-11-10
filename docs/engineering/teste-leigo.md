@@ -1,42 +1,42 @@
 # teste-leigo
 
-**Resumo:** testa meus apps desktop como um usuário leigo e impaciente: cliques aleatórios, entradas erradas, duplo clique, janela redimensionada. Acha o que quebra.
+**Summary:** tests my desktop apps as a lay, impatient user would: random clicks, wrong inputs, double clicks, resized window. Finds what breaks.
 
-## O que faz
+## What it does
 
-É uma skill **escrita por mim**. Ela usa um "macaco" (`macaco.py`) que controla o app de verdade, sem conhecer o código:
+It is a skill **written by me**. It uses a "monkey" (`macaco.py`) that drives the real app without knowing the code:
 
-- clica em lugares aleatórios e em botões fora de ordem;
-- digita texto em campo de número, campos vazios, valores enormes, caracteres especiais;
-- dá duplo clique onde se espera clique simples, clica de novo antes de terminar;
-- redimensiona, maximiza e minimiza a janela no meio de uma operação.
+- clicks random places and buttons out of order;
+- types text into a number field, empty fields, huge values, special characters;
+- double-clicks where a single click is expected, clicks again before the operation finishes;
+- resizes, maximizes and minimizes the window in the middle of an operation.
 
-Cada app tem um adaptador (`adaptadores.py` e um por app) que diz onde ficam as janelas e quais telas existem. Há versões para app web (`macaco_web.py`) e Electron (`macaco_electron.js`). A skill tem regras de segurança (não apagar dados reais, trabalhar em cópia) e tira capturas de tela das falhas.
+Each app has an adapter (`adaptadores.py` plus one per app) that says where the windows are and which screens exist. There are versions for web apps (`macaco_web.py`) and Electron (`macaco_electron.js`). The skill has safety rules (do not delete real data, work on a copy) and takes screenshots of the failures.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Automática** quando peço para testar um app desktop meu. Também uso antes de entregar uma versão nova.
+**Automatic** when I ask to test one of my desktop apps. I also use it before delivering a new version.
 
-## Quando usar
+## When to use
 
-- Antes de entregar uma versão de um app com interface gráfica.
-- Depois de mexer em formulários, diálogos ou fluxo de telas.
+- Before delivering a version of an app with a graphical interface.
+- After changing forms, dialogs or screen flow.
 
-## Quando não usar
+## When not to use
 
-- Para testar lógica de cálculo: aí servem os testes unitários.
-- Em app sem adaptador, até escrever um.
+- To test calculation logic: unit tests are the right tool there.
+- On an app without an adapter, until one is written.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: uma linha.
-- Quando chamada: ~2,2 KB (uns 550 tokens). O macaco roda como script e devolve só o relatório de falhas, não o log inteiro.
+- In the listing: one line.
+- When called: ~2.2 KB (about 550 tokens). The monkey runs as a script and returns only the failure report, not the whole log.
 
-## Por que está no setup
+## Why it is in the setup
 
-Nenhuma skill pública testa app desktop desse jeito. Testes unitários verificam a lógica; o macaco pega o que só aparece com um humano mexendo: travamento com duplo clique, erro com campo vazio, layout que quebra ao redimensionar. Encontrar isso antes poupa um ciclo de "o usuário achou, eu reabro a sessão, o modelo relê tudo".
+No public skill tests desktop apps this way. Unit tests verify the logic; the monkey catches what only shows up with a human poking at it: a freeze on double click, an error with an empty field, a layout that breaks on resize. Finding this beforehand saves a cycle of "the user found it, I reopen the session, the model rereads everything".
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- Sai um relatório com cada falha, o passo que a causou e a captura de tela.
-- As falhas encontradas viram testes ou correções.
+- A report comes out with each failure, the step that caused it and the screenshot.
+- The failures found become tests or fixes.

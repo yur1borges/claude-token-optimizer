@@ -1,55 +1,55 @@
 # ui-ux-pro-max
 
-**Resumo:** a skill de interface padrão do setup. Base de dados de estilos, paletas, fontes e regras de usabilidade, consultada por busca, para web, mobile e desktop.
+**Summary:** the setup's default interface skill. A database of styles, palettes, fonts and usability rules, queried by search, for web, mobile and desktop.
 
-## O que faz
+## What it does
 
-Em vez de colocar todo o conhecimento de design no texto da skill, ela traz uma **base de dados em CSV** (cores, fontes, ícones, gráficos, tipos de página, interface de app, guias por tecnologia) e um script de busca. O modelo consulta só o que precisa para a tela em questão.
+Instead of putting all the design knowledge in the skill text, it ships a **CSV database** (colors, fonts, icons, charts, page types, app interface, per-technology guides) and a search script. The model queries only what it needs for the screen at hand.
 
-O fluxo:
+The flow:
 
-1. **Analisar o pedido:** tipo de produto, público, estilo, tecnologia (React, Flutter, PyQt etc.).
-2. **Gerar um design system** para páginas ou projetos novos: paleta, tipografia, espaçamentos, componentes. Pode salvar como um arquivo mestre com exceções por página, para manter a consistência entre sessões.
-3. **Buscas complementares** quando precisa de algo específico: um tipo de gráfico, uma paleta para um setor, um padrão de formulário.
-4. **Guia da tecnologia:** regras específicas da biblioteca usada.
+1. **Analyze the request:** product type, audience, style, technology (React, Flutter, PyQt etc.).
+2. **Generate a design system** for new pages or projects: palette, typography, spacing, components. It can save this as a master file with per-page exceptions, to keep consistency across sessions.
+3. **Complementary searches** when it needs something specific: a chart type, a palette for an industry, a form pattern.
+4. **Technology guide:** rules specific to the library in use.
 
-As regras são ordenadas por prioridade: acessibilidade e contraste primeiro, depois áreas de toque, desempenho, layout, tipografia, animação, gráficos.
+The rules are ordered by priority: accessibility and contrast first, then touch targets, performance, layout, typography, animation, charts.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Automática.** O CLAUDE.md global manda chamar em qualquer trabalho de interface. O agente `design` também a usa.
+**Automatic.** The global CLAUDE.md says to call it on any interface work. The `design` agent also uses it.
 
-## Quando usar
+## When to use
 
-- Criar ou revisar tela, página, componente, dashboard.
-- Corrigir problema de contraste, alinhamento, hierarquia visual.
-- Escolher cores, fontes e tipo de gráfico para dados.
-- Interfaces dos meus apps desktop em PyQt.
+- Creating or reviewing a screen, page, component, dashboard.
+- Fixing a contrast, alignment or visual hierarchy problem.
+- Choosing colors, fonts and chart type for data.
+- The interfaces of my PyQt desktop apps.
 
-## Quando não usar
+## When not to use
 
-- Código sem interface (backend, cálculo, script).
-- Página web de vitrine em que eu quero um resultado visual mais autoral: aí chamo `/taste-skill` ou `/impeccable`.
+- Code without an interface (backend, calculation, script).
+- A showcase web page where I want a more distinctive visual result: then I call `/taste-skill` or `/impeccable`.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: uma linha.
-- Quando chamada: ~15,6 KB de instruções (uns 3.900 tokens). A base de dados **não** entra no contexto; só os resultados de cada busca, que são pequenos.
+- In the listing: one line.
+- When called: ~15.6 KB of instructions (about 3,900 tokens). The database does **not** enter the context; only the results of each search, which are small.
 
-## Por que esta e não as outras
+## Why this one and not the others
 
-Eu tinha três skills de design (ui-ux-pro-max, impeccable e taste-skill), cada uma com a própria opinião sobre a mesma tela. Com as três visíveis, o modelo às vezes carregava duas e tentava satisfazer as duas, gastando o dobro e produzindo um resultado menos coerente.
+I had three design skills (ui-ux-pro-max, impeccable and taste-skill), each with its own opinion on the same screen. With all three visible, the model sometimes loaded two and tried to satisfy both, spending double and producing a less coherent result.
 
-Fiquei com esta como padrão porque:
+I kept this one as the default because:
 
-- **Cobre desktop.** Meus programas são PyQt; as outras duas são focadas em web.
-- **Consulta em vez de despejar.** O conhecimento fica na base de dados e só entra o trecho buscado. As outras colocam tudo no texto da skill.
-- **Começa pela acessibilidade**, que é o que mais quebra em interface feita às pressas.
+- **It covers desktop.** My programs are PyQt; the other two are web-focused.
+- **It queries instead of dumping.** The knowledge stays in the database and only the searched excerpt enters. The others put everything in the skill text.
+- **It starts with accessibility**, which is what breaks most in hastily built interfaces.
 
-As outras duas continuam instaladas, mas só com `/nome`.
+The other two stay installed, but only via `/name`.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- A resposta cita a paleta, as fontes e as regras aplicadas, vindas da busca.
-- O resultado passa nos critérios de contraste e não tem elementos pequenos demais para clicar.
-- Telas diferentes do mesmo app mantêm o mesmo design system.
+- The answer cites the palette, fonts and rules applied, coming from the search.
+- The result passes the contrast criteria and has no elements too small to click.
+- Different screens of the same app keep the same design system.

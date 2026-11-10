@@ -1,34 +1,34 @@
 ---
 name: find-skills
-description: "Use para descobrir e instalar skills quando o Yuri perguntar como fazer algo."
+description: "Use to discover and install skills when Yuri asks how to do something."
 ---
 
 # Find Skills
 
-Descobrir e instalar skills do marketplace. Use quando não souber como fazer algo.
+Discover and install skills from the marketplace. Use when you do not know how to do something.
 
 ## Trigger
 
-User-invoked. Type "find skill" ou "como fazer X".
+User-invoked. Type "find skill" or "how to do X".
 
 ## When to reach for it
 
-- Precisa de uma skill para tarefa específica
-- Quer explorar marketplaces disponíveis
-- Não sabe qual skill usar
+- Need a skill for a specific task
+- Want to explore the available marketplaces
+- Do not know which skill to use
 
 ## What it does
 
-Busca nos marketplaces configurados (claude-plugins-official, ponytail, caveman, ecc, mattpocock, etc.) e mostra skills relevantes com triggers e descrições.
+Searches the configured marketplaces (claude-plugins-official, ponytail, caveman, ecc, mattpocock, etc.) and shows relevant skills with triggers and descriptions.
 
 ## Common questions
 
-**Q: Busca apenas skills instaladas?**
-Não. Busca nos marketplaces remotos também.
+**Q: Does it search only installed skills?**
+No. It also searches the remote marketplaces.
 
-**Q: Instala automaticamente?**
-Mostra comando de instalação. Você executa.
+**Q: Does it install automatically?**
+It shows the install command. You run it.
 
 ## It's working if
 
-Você encontra a skill certa em < 30 segundos.
+You find the right skill in < 30 seconds.

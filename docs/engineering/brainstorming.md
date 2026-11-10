@@ -1,15 +1,15 @@
-# brainstorming (desligada)
+# brainstorming (disabled)
 
-**Status:** fora do setup. O código está em [skills/deprecated/brainstorming](../../skills/deprecated/brainstorming/SKILL.md) e no meu PC fica em `~/.claude/skills_desligadas/`.
+**Status:** out of the setup. The code is in [skills/deprecated/brainstorming](../../skills/deprecated/brainstorming/SKILL.md) and on my PC it sits in `~/.claude/skills_desligadas/`.
 
-## O que fazia
+## What it did
 
-Sessão de ideias obrigatória antes de qualquer trabalho criativo ou recurso novo, com perguntas, alternativas e um documento de design antes do código.
+A mandatory ideas session before any creative work or new feature, with questions, alternatives and a design document before the code.
 
-## Por que saiu
+## Why it left
 
-A descrição dela dizia "use antes de qualquer trabalho criativo", então disparava em quase toda tarefa. Para mudanças de 1 a 3 arquivos, a conversa de ideias custava mais tokens que a própria tarefa.
+Its description said "use before any creative work", so it fired on almost every task. For changes touching 1 to 3 files, the ideas conversation cost more tokens than the task itself.
 
-## Como voltar
+## How to bring it back
 
-Mover a pasta de volta para `~/.claude/skills/` e tirar a entrada `"brainstorming": "off"` de `skillOverrides`.
+Move the folder back to `~/.claude/skills/` and remove the `"brainstorming": "off"` entry from `skillOverrides`.

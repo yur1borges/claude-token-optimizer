@@ -5,31 +5,31 @@ description: "tasteskill v2, the anti-slop frontend skill. Art direction for web
 
 # Taste Skill
 
-Design frontend anti-slop. Landing pages, marketing sites com gosto.
+Anti-slop frontend design. Landing pages and marketing sites with taste.
 
 ## Trigger
 
-User-invoked. "taste this" ou quando precisar de design com personalidade.
+User-invoked. "taste this" or when you need design with personality.
 
 ## When to reach for it
 
 - Landing pages
 - Marketing sites
 - Portfolio
-- Qualquer página pública
+- Any public page
 
 ## What it does
 
-Aplica princípios de "taste": tipografia expressiva, cor intencional, whitespace generoso, motion sutil. Anti-template, anti-generic.
+Applies "taste" principles: expressive typography, intentional color, generous whitespace, subtle motion. Anti-template, anti-generic.
 
 ## Common questions
 
-**Q: Diferente de impeccable?**
-impeccable = production-ready polish. taste = personalidade, opinião, alma.
+**Q: Different from impeccable?**
+impeccable = production-ready polish. taste = personality, opinion, soul.
 
-**Q: Funciona com design system existente?**
-Adapta. Não quebra.
+**Q: Does it work with an existing design system?**
+It adapts. It does not break it.
 
 ## It's working if
 
-Página tem "voice" distinta. Não parece template.
+The page has a distinct "voice". It does not look like a template.

@@ -5,30 +5,30 @@ description: "Monitors task execution for skill improvement opportunities: logs 
 
 # Task Observer
 
-Monitora execução de tarefas multi-step para melhorar skills.
+Monitors multi-step task execution to improve skills.
 
 ## Trigger
 
-Auto-invoked em tarefas > 3 passos. Ou user-invoked: "observe this task".
+Auto-invoked on tasks with > 3 steps. Or user-invoked: "observe this task".
 
 ## When to reach for it
 
-- Workflows complexos
-- Debug de skills
-- Otimização de processos
+- Complex workflows
+- Debugging skills
+- Process optimization
 
 ## What it does
 
-Registra: passos, ferramentas usadas, tempo, erros, decisões. Gera relatório no fim com padrões e sugestões de skills.
+Records: steps, tools used, time, errors, decisions. Generates a report at the end with patterns and skill suggestions.
 
 ## Common questions
 
-**Q: Salva dados sensíveis?**
-Não. Só metadados de execução.
+**Q: Does it save sensitive data?**
+No. Only execution metadata.
 
-**Q: Onde fica o relatório?**
-`.claude/task-observer/` no projeto.
+**Q: Where is the report?**
+`.claude/task-observer/` in the project.
 
 ## It's working if
 
-Relatório gerado com > 3 insights acionáveis.
+Report generated with > 3 actionable insights.

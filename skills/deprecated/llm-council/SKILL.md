@@ -1,35 +1,35 @@
 ---
 name: llm-council
-description: "Use quando pedirem conselho ou decisao ('council this'): 5 advisors debatem."
+description: "Use when asked for advice or a decision ('council this'): 5 advisors debate."
 ---
 
 # LLM Council
 
-Conselho de 5 advisors com perspectivas diferentes. Para decisões difíceis.
+Council of 5 advisors with different perspectives. For hard decisions.
 
 ## Trigger
 
-User-invoked. "council this" ou "llm council".
+User-invoked. "council this" or "llm council".
 
 ## When to reach for it
 
-- Decisões arquiteturais
-- Trade-offs complexos
-- Code review controverso
-- Escolha de tech stack
+- Architectural decisions
+- Complex trade-offs
+- Controversial code review
+- Tech stack choice
 
 ## What it does
 
-Invoca 5 personas: Pragmatist, Architect, Security, Performance, User Advocate. Cada uma dá parecer. Síntese final com recomendação.
+Invokes 5 personas: Pragmatist, Architect, Security, Performance, User Advocate. Each gives an opinion. Final synthesis with a recommendation.
 
 ## Common questions
 
-**Q: Demora muito?**
-~30-60s. Vale para decisões irreversíveis.
+**Q: Does it take long?**
+~30-60s. Worth it for irreversible decisions.
 
-**Q: Modelos diferentes?**
-Todos usam mesmo modelo, prompts diferentes.
+**Q: Different models?**
+All use the same model, different prompts.
 
 ## It's working if
 
-Decisão documentada com rationale de cada advisor.
+Decision documented with each advisor's rationale.

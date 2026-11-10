@@ -1,41 +1,41 @@
 # humanizer
 
-**Resumo:** tira os padrões de escrita de IA de um texto para que soe escrito por uma pessoa, sem mudar o conteúdo.
+**Summary:** removes AI writing patterns from a text so it sounds written by a person, without changing the content.
 
-## O que faz
+## What it does
 
-A skill começa explicando por que texto de IA soa como soa, e depois ataca os padrões um por um, por exemplo:
+The skill starts by explaining why AI text sounds the way it does, then attacks the patterns one by one, for example:
 
-- **encenar em vez de dizer:** frases que anunciam o que vem ("Vamos mergulhar...") em vez de dizer;
-- hesitações e ressalvas em excesso;
-- listas de três itens por hábito, frases todas do mesmo tamanho;
-- vocabulário típico de IA e conclusões que repetem o que já foi dito.
+- **staging instead of saying:** sentences that announce what is coming ("Let's dive into...") instead of saying it;
+- excessive hesitation and hedging;
+- lists of three items out of habit, sentences all the same length;
+- typical AI vocabulary and conclusions that repeat what was already said.
 
-Ela devolve o texto reescrito na voz pedida. As referências por tipo de padrão só carregam quando preciso.
+It returns the text rewritten in the requested voice. The references by pattern type load only when I need them.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Só com `/humanizer`** (`user-invocable-only`).
+**Only with `/humanizer`** (`user-invocable-only`).
 
-## Quando usar
+## When to use
 
-- E-mail, relatório, post ou texto acadêmico que vai para outras pessoas.
-- Texto que já está correto mas "tem cara de IA".
+- Email, report, post or academic text that goes to other people.
+- Text that is already correct but "looks like AI".
 
-## Quando não usar
+## When not to use
 
-- Código, comentários técnicos, respostas no terminal.
-- Texto em que a precisão técnica importa mais que o estilo, sem revisão minha depois.
+- Code, technical comments, terminal replies.
+- Text where technical accuracy matters more than style, without my review afterwards.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: zero (escondida).
-- Quando chamada: ~5,1 KB (uns 1.300 tokens).
+- In the listing: zero (hidden).
+- When called: ~5.1 KB (about 1,300 tokens).
 
-## Por que está no setup e por que escondida
+## Why it is in the setup and why hidden
 
-Uso com frequência em textos para fora, mas nunca no código. Visível, ela competiria com o caveman (que quer respostas curtas) a cada resposta. Escondida, não custa nada até eu precisar.
+I use it often on text meant for others, but never on code. Visible, it would compete with caveman (which wants short answers) on every reply. Hidden, it costs nothing until I need it.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- O texto reescrito diz a mesma coisa, mais direto, sem as aberturas e fechamentos genéricos.
+- The rewritten text says the same thing, more directly, without the generic openings and closings.

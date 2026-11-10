@@ -1,79 +1,79 @@
 # claude-token-optimizer
 
-O conjunto de skills, plugins, hooks e settings que uso no Claude Code para **gastar menos tokens sem perder qualidade**. Não é uma coleção grande de skills: é uma seleção pequena e de propósito, com o motivo de cada peça e de cada coisa que ficou de fora.
+The set of skills, plugins, hooks and settings I use in Claude Code to **spend fewer tokens without losing quality**. It is not a large collection of skills: it is a small, deliberate selection, with the reason for each piece and for each thing that was left out.
 
-Estado de novembro de 2026. O setup completo, com cada setting e hook explicado, está em [docs/setup](./docs/setup/README.md).
+State as of November 2026. The full setup, with every setting and hook explained, is in [docs/setup](./docs/setup/README.md).
 
-## Por que tão poucas skills
+## Why so few skills
 
-Instalar skills é fácil; cada uma parece grátis. Não é. Mantive só 13 (11 de engenharia e 2 de produtividade) por quatro motivos:
+Installing skills is easy; each one looks free. It is not. I kept only 13 (11 engineering and 2 productivity) for four reasons:
 
-1. **Toda skill visível é cobrada em toda sessão.** O nome e a descrição de cada skill entram na listagem do início, que faz parte do prefixo de todo turno. 100 skills com descrição de 150 caracteres são ~15 mil caracteres (uns 4 mil tokens) pagos antes de qualquer pergunta, mesmo que nenhuma seja usada.
-2. **Muitas skills confundem a escolha.** Com dezenas de descrições parecidas ("design", "frontend", "UI"), o modelo chama a errada, chama duas, ou não chama nenhuma. Com uma skill por tipo de tarefa, o gatilho é claro: bug chama `systematic-debugging`, interface chama `ui-ux-pro-max`.
-3. **Skills sobrepostas brigam.** Três guias de design ou dois modos de "resposta curta" dão instruções diferentes para a mesma coisa. O resultado é texto mais longo (o modelo tenta satisfazer as duas) e menos consistente.
-4. **Rituais custam mais que economizam.** Skills que exigem um processo longo antes de toda tarefa (brainstorming, plano formal, conselho de 5 modelos) fazem sentido em projeto grande e novo. No dia a dia, com tarefas de 1 a 3 arquivos, elas gastam mais tokens do que poupam em retrabalho.
+1. **Every visible skill is charged in every session.** The name and description of each skill go into the listing at the start, which is part of the prefix of every turn. 100 skills with 150-character descriptions are ~15 thousand characters (about 4 thousand tokens) paid before any question, even if none is used.
+2. **Too many skills confuse the choice.** With dozens of similar descriptions ("design", "frontend", "UI"), the model calls the wrong one, calls two, or calls none. With one skill per type of task, the trigger is clear: a bug calls `systematic-debugging`, an interface calls `ui-ux-pro-max`.
+3. **Overlapping skills fight each other.** Three design guides or two "short answer" modes give different instructions for the same thing. The result is longer text (the model tries to satisfy both) and less consistency.
+4. **Rituals cost more than they save.** Skills that require a long process before every task (brainstorming, formal plan, 5-model council) make sense in a large, new project. Day to day, with tasks of 1 to 3 files, they spend more tokens than they save in rework.
 
-A regra que sobra: **uma skill entra só se eu uso toda semana, se não há outra fazendo o mesmo, e se ela economiza mais do que custa na listagem.** O resto fica desligado (movido para `~/.claude/skills_desligadas/`, sem apagar) e volta com um `mv` quando preciso.
+The rule that remains: **a skill gets in only if I use it every week, if no other does the same thing, and if it saves more than it costs in the listing.** The rest stays off (moved to `~/.claude/skills_desligadas/`, not deleted) and comes back with a `mv` when I need it.
 
-## As skills e por que cada uma
+## The skills and why each one
 
-### Engenharia: `skills/engineering/`
+### Engineering: `skills/engineering/`
 
-| Skill | O que faz | Por que esta e não outra |
+| Skill | What it does | Why this one and not another |
 |---|---|---|
-| [systematic-debugging](./skills/engineering/systematic-debugging/SKILL.md) | acha a causa raiz antes de propor correção | evita o ciclo "tenta, erra, tenta", que é o maior desperdício de tokens em bug. Ganhou do `diagnosing-bugs` (mattpocock) por ser mais curta |
-| [verification-before-completion](./skills/engineering/verification-before-completion/SKILL.md) | obriga a rodar o teste e ver a saída antes de dizer "pronto" | um "pronto" falso custa uma sessão inteira de volta. Barata e sempre útil |
-| [test-driven-development](./skills/engineering/test-driven-development/SKILL.md) | escreve o teste antes do código | `user-invocable-only`: útil em lógica nova, caro demais se dispara em toda edição |
-| [ui-ux-pro-max](./skills/engineering/ui-ux-pro-max/SKILL.md) | guia de interface (layout, cor, tipografia, acessibilidade) | a **única** de design chamada sozinha. Cobre web e desktop (meus apps são PyQt), o que as outras não fazem |
-| [impeccable](./skills/engineering/impeccable/SKILL.md) | polimento fino de frontend web | só sob `/impeccable`: boa para página web caprichada, redundante com ui-ux-pro-max no resto |
-| [taste-skill](./skills/engineering/taste-skill/SKILL.md) | direção de arte "anti-genérico" para sites | só sob demanda, pelo mesmo motivo. Mantida porque dá um resultado visual diferente quando quero |
-| [teste-leigo](./skills/engineering/teste-leigo/SKILL.md) | testa app desktop como usuário impaciente | escrita por mim; nenhuma skill pública testa GUI desktop assim |
-| [graphify](./skills/engineering/graphify/SKILL.md) | grafo de arquivos e chamadas do código | só para **localizar** arquivos em repo grande; ler o grafo inteiro custaria mais do que um grep |
-| [humanizer](./skills/engineering/humanizer/SKILL.md) | tira padrões de texto de IA | só sob demanda, para textos que vão para pessoas (e-mail, relatório) |
-| [find-skills](./skills/engineering/find-skills/SKILL.md) | procura e instala skill quando falta uma | evita instalar pacotes grandes "por garantia": busco a skill na hora que preciso |
-| [task-observer](./skills/engineering/task-observer/SKILL.md) | anota correções e padrões para melhorar as skills | `user-invocable-only`: a descrição original pede para rodar em toda sessão, o que seria caro |
+| [systematic-debugging](./skills/engineering/systematic-debugging/SKILL.md) | finds the root cause before proposing a fix | avoids the "try, fail, try" cycle, which is the biggest waste of tokens in a bug. Beat `diagnosing-bugs` (mattpocock) for being shorter |
+| [verification-before-completion](./skills/engineering/verification-before-completion/SKILL.md) | forces running the test and seeing the output before saying "done" | a false "done" costs a whole session back. Cheap and always useful |
+| [test-driven-development](./skills/engineering/test-driven-development/SKILL.md) | writes the test before the code | `user-invocable-only`: useful for new logic, too expensive if it fires on every edit |
+| [ui-ux-pro-max](./skills/engineering/ui-ux-pro-max/SKILL.md) | interface guide (layout, color, typography, accessibility) | the **only** design skill called automatically. Covers web and desktop (my apps are PyQt), which the others do not |
+| [impeccable](./skills/engineering/impeccable/SKILL.md) | fine polish for web frontend | only under `/impeccable`: good for a carefully made web page, redundant with ui-ux-pro-max otherwise |
+| [taste-skill](./skills/engineering/taste-skill/SKILL.md) | "anti-generic" art direction for websites | on demand only, for the same reason. Kept because it gives a different visual result when I want it |
+| [teste-leigo](./skills/engineering/teste-leigo/SKILL.md) | tests a desktop app like an impatient user | written by me; no public skill tests a desktop GUI like this |
+| [graphify](./skills/engineering/graphify/SKILL.md) | graph of the code's files and calls | only to **locate** files in a large repo; reading the whole graph would cost more than a grep |
+| [humanizer](./skills/engineering/humanizer/SKILL.md) | removes AI text patterns | on demand only, for texts that go to people (email, report) |
+| [find-skills](./skills/engineering/find-skills/SKILL.md) | searches for and installs a skill when one is missing | avoids installing large packages "just in case": I look for the skill when I need it |
+| [task-observer](./skills/engineering/task-observer/SKILL.md) | records corrections and patterns to improve the skills | `user-invocable-only`: the original description asks to run in every session, which would be expensive |
 
-### Produtividade: `skills/productivity/`
+### Productivity: `skills/productivity/`
 
-| Skill | O que faz | Por que |
+| Skill | What it does | Why |
 |---|---|---|
-| [caveman](./skills/productivity/caveman/SKILL.md) | respostas tersas, sem cerimônia, todo fato técnico mantido | saída é o token mais caro; corta 40 a 60% do texto. Venceu o `token-diet`, que fazia o mesmo e mais coisas que eu não queria |
-| [ponytail](./skills/productivity/ponytail/SKILL.md) | menor mudança que resolve a tarefa inteira | menos código escrito é menos saída, menos revisão e menos bug. Substituiu `mattpocock-skills` e `andrej-karpathy-skills`, que davam conselhos parecidos em mais texto |
+| [caveman](./skills/productivity/caveman/SKILL.md) | terse answers, no ceremony, every technical fact kept | output is the most expensive token; cuts 40 to 60% of the text. Beat `token-diet`, which did the same and more things I did not want |
+| [ponytail](./skills/productivity/ponytail/SKILL.md) | smallest change that solves the whole task | less code written means less output, less review and fewer bugs. Replaced `mattpocock-skills` and `andrej-karpathy-skills`, which gave similar advice in more text |
 
-As duas rodam por hook no início da sessão. Por isso ficam `user-invocable-only`: já estão ativas e não precisam ocupar a listagem.
+Both run by hook at session start. That is why they are `user-invocable-only`: they are already active and do not need to take up space in the listing.
 
-### Desligadas: `skills/deprecated/`
+### Disabled: `skills/deprecated/`
 
-| Skill | Por que saiu |
+| Skill | Why it left |
 |---|---|
-| [brainstorming](./skills/deprecated/brainstorming/SKILL.md) | exigia sessão de ideias antes de qualquer tarefa criativa; caro e quase sempre desnecessário |
-| [writing-plans](./skills/deprecated/writing-plans/SKILL.md) | plano formal longo; trocado por um plano curto em arquivo só quando a tarefa tem mais de 3 passos |
-| [llm-council](./skills/deprecated/llm-council/SKILL.md) | 5 "conselheiros" por decisão multiplicam o custo por 5 |
+| [brainstorming](./skills/deprecated/brainstorming/SKILL.md) | required an ideas session before any creative task; expensive and almost always unnecessary |
+| [writing-plans](./skills/deprecated/writing-plans/SKILL.md) | long formal plan; replaced by a short plan in a file only when the task has more than 3 steps |
+| [llm-council](./skills/deprecated/llm-council/SKILL.md) | 5 "advisors" per decision multiply the cost by 5 |
 
-## Como o repo é organizado
+## How the repo is organized
 
 ```
 skills/
-  engineering/    uso diário em código (promovidas: vão para ~/.claude/skills)
-  productivity/   modo de trabalho, fora do código (promovidas)
-  misc/           guardadas, uso raro, não instaladas
-  in-progress/    em teste, não instaladas
-  deprecated/     desligadas, mantidas como referência
+  engineering/    daily use on code (promoted: go to ~/.claude/skills)
+  productivity/   way of working, outside code (promoted)
+  misc/           stored, rare use, not installed
+  in-progress/    under test, not installed
+  deprecated/     disabled, kept as reference
 docs/
-  engineering/    uma página por skill: o que faz, quando usar, por que está aqui
+  engineering/    one page per skill: what it does, when to use it, why it is here
   productivity/
-  setup/          meu setup real: settings, hooks, agentes, MCPs, com o porquê
-.agents/          regras para quem edita o repo e decisões registradas (ADRs)
-scripts/          instalação (link-skills.sh) e checagem (check.sh)
+  setup/          my real setup: settings, hooks, agents, MCPs, with the why
+.agents/          rules for whoever edits the repo and recorded decisions (ADRs)
+scripts/          installation (link-skills.sh) and checking (check.sh)
 ```
 
-**Por que buckets:** separar "promovida" de "guardada" deixa claro o que entra no contexto. Só `engineering/` e `productivity/` são instaladas; tirar uma skill do setup é movê-la de pasta, sem perder o histórico.
+**Why buckets:** separating "promoted" from "stored" makes it clear what goes into the context. Only `engineering/` and `productivity/` are installed; removing a skill from the setup is moving it to another folder, without losing history.
 
-**Por que skill e doc separadas:** o `SKILL.md` é lido pelo modelo e precisa ser curto. A página em `docs/` é para pessoas e pode explicar o contexto sem custar tokens.
+**Why skill and doc separate:** `SKILL.md` is read by the model and must be short. The page in `docs/` is for people and can explain the context without costing tokens.
 
-**O que não está aqui:** skills pessoais (meus softwares de pesquisa, Lattes, DRX, DEM) e configurações com caminhos e chaves. Veja [SCOPE.md](./SCOPE.md).
+**What is not here:** personal skills (my research software, Lattes, XRD, DEM) and configurations with paths and keys. See [SCOPE.md](./SCOPE.md).
 
-## Instalação
+## Installation
 
 ```bash
 git clone https://github.com/yur1borges/claude-token-optimizer
@@ -81,12 +81,12 @@ cd claude-token-optimizer
 bash scripts/link-skills.sh
 ```
 
-Cria links de cada skill promovida em `~/.claude/skills` e `~/.agents/skills` (serve para Claude Code e Codex). Rode de novo depois de `git pull`.
+Creates links for each promoted skill in `~/.claude/skills` and `~/.agents/skills` (works for Claude Code and Codex). Run again after `git pull`.
 
-Checagem (frontmatter, links, travessões): `bash scripts/check.sh`
+Check (frontmatter, links, em dashes): `bash scripts/check.sh`
 
-## Mais
+## More
 
-- [docs/setup](./docs/setup/README.md): settings, plugins, hooks, subagentes e MCPs, com o porquê de cada um
-- [AGENTS.md](./AGENTS.md): subagentes e quando delegar
-- [CONTRIBUTING.md](./CONTRIBUTING.md): como adicionar ou aposentar uma skill
+- [docs/setup](./docs/setup/README.md): settings, plugins, hooks, subagents and MCPs, with the why of each one
+- [AGENTS.md](./AGENTS.md): subagents and when to delegate
+- [CONTRIBUTING.md](./CONTRIBUTING.md): how to add or retire a skill

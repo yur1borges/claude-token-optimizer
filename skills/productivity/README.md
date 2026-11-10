@@ -1,8 +1,8 @@
 # Productivity Skills
 
-Modo de trabalho, fora do código. As duas atacam o custo de saída, que é o token mais caro.
+Way of working, outside code. Both attack output cost, which is the most expensive token.
 
-- [caveman](./caveman/SKILL.md): respostas tersas, todo fato técnico mantido
-- [ponytail](./ponytail/SKILL.md): menor mudança que resolve a tarefa inteira
+- [caveman](./caveman/SKILL.md): terse answers, every technical fact kept
+- [ponytail](./ponytail/SKILL.md): smallest change that solves the whole task
 
-Rodam por hook no início da sessão, por isso ficam `user-invocable-only` (não ocupam a listagem).
+They run by hook at session start, so they are `user-invocable-only` (they do not take up the listing).

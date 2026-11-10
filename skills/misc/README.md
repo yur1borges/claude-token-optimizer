@@ -1,5 +1,5 @@
 # Misc Skills
 
-Guardadas, de uso raro. Não são instaladas, então não custam nada na listagem.
+Stored, rare use. Not installed, so they cost nothing in the listing.
 
-(nenhuma no momento)
+(none at the moment)

@@ -1,46 +1,46 @@
 # taste-skill
 
-**Resumo:** direção de arte para sites, contra o visual genérico de template. Baseada no estudo de 247 sites de galerias de design.
+**Summary:** art direction for websites, against the generic template look. Based on a study of 247 sites from design galleries.
 
-## O que faz
+## What it does
 
-A taste-skill trata a página como um projeto de direção de arte, não como montagem de componentes. O fluxo tem dez passos:
+taste-skill treats the page as an art direction project, not an assembly of components. The flow has ten steps:
 
-1. Ler o pedido e o projeto existente.
-2. Escrever o argumento: o que a página precisa convencer.
-3. Escolher uma direção visual numa biblioteca de direções pesquisadas (ideia, composição, tipografia, paleta, fotografia, estrutura das seções).
-4. Achar a ideia central da página.
-5. Escrever os textos.
-6. Construir.
-7. Passar por um portão de qualidade com regras rígidas contra o visual genérico.
-8. Olhar o resultado renderizado.
-9. Ajustar o movimento.
-10. Relatar o que foi feito.
+1. Read the request and the existing project.
+2. Write the argument: what the page needs to convince people of.
+3. Choose a visual direction from a library of researched directions (idea, composition, typography, palette, photography, section structure).
+4. Find the page's central idea.
+5. Write the copy.
+6. Build.
+7. Pass a quality gate with strict rules against the generic look.
+8. Look at the rendered result.
+9. Adjust the motion.
+10. Report what was done.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Só com `/taste-skill`** (`user-invocable-only`). O plugin `taste-skill@taste-skill` está **desligado**; fica só a cópia local.
+**Only with `/taste-skill`** (`user-invocable-only`). The `taste-skill@taste-skill` plugin is **disabled**; only the local copy remains.
 
-## Quando usar
+## When to use
 
-- Página de apresentação, portfólio, site de projeto, em que a identidade visual importa.
-- Quando o resultado do ui-ux-pro-max ficou correto mas sem personalidade.
+- A presentation page, portfolio or project site where visual identity matters.
+- When the ui-ux-pro-max result came out correct but without personality.
 
-## Quando não usar
+## When not to use
 
-- Interface de trabalho (formulário, tabela, dashboard): aí clareza vale mais que personalidade.
-- App desktop.
+- Working interface (form, table, dashboard): there clarity is worth more than personality.
+- Desktop app.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: zero (escondida).
-- Quando chamada: ~34 KB (uns 8.500 tokens), a mais longa do setup, mais a biblioteca de direções. É o principal motivo de ficar escondida.
+- In the listing: zero (hidden).
+- When called: ~34 KB (about 8,500 tokens), the longest in the setup, plus the directions library. This is the main reason it stays hidden.
 
-## Por que está no setup e por que escondida
+## Why it is in the setup and why hidden
 
-Ela dá um resultado que as outras não dão: uma página com cara própria. Mas é cara e tem opiniões fortes, que brigam com as do ui-ux-pro-max. Fica guardada para quando o objetivo é justamente esse.
+It gives a result the others do not: a page with its own character. But it is expensive and has strong opinions that clash with those of ui-ux-pro-max. It is kept for when that is exactly the goal.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- A resposta começa pelo argumento e pela direção escolhida, não pelo código.
-- O resultado não parece um template genérico de landing page.
+- The answer starts with the argument and the chosen direction, not with code.
+- The result does not look like a generic landing page template.

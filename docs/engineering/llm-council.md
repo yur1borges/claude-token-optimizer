@@ -1,15 +1,15 @@
-# llm-council (desligada)
+# llm-council (disabled)
 
-**Status:** fora do setup. O código está em [skills/deprecated/llm-council](../../skills/deprecated/llm-council/SKILL.md) e no meu PC fica em `~/.claude/skills_desligadas/`.
+**Status:** out of the setup. The code is in [skills/deprecated/llm-council](../../skills/deprecated/llm-council/SKILL.md) and on my PC it sits in `~/.claude/skills_desligadas/`.
 
-## O que fazia
+## What it did
 
-Cinco "conselheiros" com pontos de vista diferentes debatem uma decisão e um juiz consolida.
+Five "advisors" with different points of view debate a decision and a judge consolidates.
 
-## Por que saiu
+## Why it left
 
-Cada decisão custava cerca de cinco vezes uma resposta normal. Para as decisões que eu tomo, uma recomendação direta do modelo com os prós e contras basta.
+Each decision cost about five times a normal answer. For the decisions I make, a direct recommendation from the model with the pros and cons is enough.
 
-## Como voltar
+## How to bring it back
 
-Mover a pasta de volta para `~/.claude/skills/` e tirar a entrada `"llm-council": "off"` de `skillOverrides`.
+Move the folder back to `~/.claude/skills/` and remove the `"llm-council": "off"` entry from `skillOverrides`.

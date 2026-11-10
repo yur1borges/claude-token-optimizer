@@ -1,22 +1,22 @@
 # Engineering Skills
 
-Uso diário em código. São instaladas em `~/.claude/skills` pelo `scripts/link-skills.sh`.
+Daily use on code. Installed in `~/.claude/skills` by `scripts/link-skills.sh`.
 
-Critério para estar aqui: uso toda semana, nenhuma outra faz o mesmo, e economiza mais do que custa na listagem. O porquê de cada uma está no [README principal](../../README.md).
+Criterion to be here: I use it every week, no other does the same, and it saves more than it costs in the listing. The why of each one is in the [main README](../../README.md).
 
-## Chamadas pelo modelo (por tipo de tarefa)
+## Called by the model (by type of task)
 
-- [systematic-debugging](./systematic-debugging/SKILL.md): bug, teste falhando ou comportamento estranho
-- [verification-before-completion](./verification-before-completion/SKILL.md): antes de dizer que está pronto
-- [ui-ux-pro-max](./ui-ux-pro-max/SKILL.md): qualquer interface
-- [teste-leigo](./teste-leigo/SKILL.md): testar app desktop como usuário leigo
-- [find-skills](./find-skills/SKILL.md): quando falta uma skill
+- [systematic-debugging](./systematic-debugging/SKILL.md): bug, failing test or strange behavior
+- [verification-before-completion](./verification-before-completion/SKILL.md): before saying it is done
+- [ui-ux-pro-max](./ui-ux-pro-max/SKILL.md): any interface
+- [teste-leigo](./teste-leigo/SKILL.md): test a desktop app as a lay user
+- [find-skills](./find-skills/SKILL.md): when a skill is missing
 
-## Só com `/nome` (user-invocable-only)
+## Only with `/name` (user-invocable-only)
 
-- [test-driven-development](./test-driven-development/SKILL.md): teste antes do código, em lógica nova
-- [impeccable](./impeccable/SKILL.md): polimento fino de página web
-- [taste-skill](./taste-skill/SKILL.md): direção de arte anti-genérico
-- [graphify](./graphify/SKILL.md): localizar arquivos em repo grande
-- [humanizer](./humanizer/SKILL.md): texto para pessoas
-- [task-observer](./task-observer/SKILL.md): revisar e melhorar as skills
+- [test-driven-development](./test-driven-development/SKILL.md): test before code, in new logic
+- [impeccable](./impeccable/SKILL.md): fine polish for a web page
+- [taste-skill](./taste-skill/SKILL.md): anti-generic art direction
+- [graphify](./graphify/SKILL.md): locate files in a large repo
+- [humanizer](./humanizer/SKILL.md): text for people
+- [task-observer](./task-observer/SKILL.md): review and improve the skills

@@ -1,45 +1,45 @@
 # impeccable
 
-**Resumo:** polimento fino de interface web: hierarquia, espaçamento, cor, movimento, texto da interface. Tem vários modos (criar, criticar, auditar, polir, simplificar, animar).
+**Summary:** fine polish for web interfaces: hierarchy, spacing, color, motion, interface text. It has several modes (create, critique, audit, polish, simplify, animate).
 
-## O que faz
+## What it does
 
-É uma skill de design para frontend com vários modos de trabalho, cada um com um objetivo:
+It is a frontend design skill with several working modes, each with its own goal:
 
-- **criar ou redesenhar** uma tela;
-- **criticar** ou **auditar**: lista o que está fraco e por quê;
-- **polir**: os detalhes finos de espaçamento, alinhamento e tipografia;
-- **simplificar**: tirar elementos que poluem;
-- **endurecer**: estados vazios, erros, carregamento, textos longos;
-- **animar**: movimento com propósito, respeitando quem pede menos animação.
+- **create or redesign** a screen;
+- **critique** or **audit**: lists what is weak and why;
+- **polish**: the fine details of spacing, alignment and typography;
+- **simplify**: remove elements that clutter;
+- **harden**: empty states, errors, loading, long texts;
+- **animate**: purposeful motion, respecting users who ask for less animation.
 
-Também documenta design systems (`DESIGN.md`, tokens) para que a próxima sessão siga o mesmo padrão. As referências e scripts da pasta só carregam no modo que precisa.
+It also documents design systems (`DESIGN.md`, tokens) so the next session follows the same standard. The references and scripts in the folder load only in the mode that needs them.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Só com `/impeccable`** (`user-invocable-only`). O plugin `impeccable@impeccable` está **desligado**: fica só a cópia em `~/.claude/skills/`, para não ter duas versões da mesma skill.
+**Only with `/impeccable`** (`user-invocable-only`). The `impeccable@impeccable` plugin is **disabled**: only the copy in `~/.claude/skills/` remains, to avoid two versions of the same skill.
 
-## Quando usar
+## When to use
 
-- Página web que vai ser vista por muita gente e precisa de acabamento.
-- Revisar uma interface pronta que "parece amadora" e descobrir o porquê.
-- Fechar os estados de borda (vazio, erro, carregando) antes de entregar.
+- A web page that many people will see and that needs finish.
+- Reviewing a finished interface that "looks amateur" and finding out why.
+- Closing the edge states (empty, error, loading) before delivering.
 
-## Quando não usar
+## When not to use
 
-- Interface de app desktop do dia a dia: o ui-ux-pro-max cobre.
-- Qualquer coisa sem interface.
+- Everyday desktop app interface: ui-ux-pro-max covers it.
+- Anything without an interface.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: zero (escondida). A descrição original tem mais de 600 caracteres; visível, seria uma das mais caras da listagem.
-- Quando chamada: ~12 KB (uns 3.000 tokens), mais as referências do modo escolhido.
+- In the listing: zero (hidden). The original description is over 600 characters; visible, it would be one of the most expensive in the listing.
+- When called: ~12 KB (about 3,000 tokens), plus the references of the chosen mode.
 
-## Por que está no setup e por que escondida
+## Why it is in the setup and why hidden
 
-No acabamento de página web ela vai mais longe que o ui-ux-pro-max. Mas no resto as duas se sobrepõem, e ter duas skills de design chamadas sozinhas gera instruções conflitantes. Escondida, ela não custa nada até eu chamar.
+For web page finish it goes further than ui-ux-pro-max. But otherwise the two overlap, and having two auto-called design skills produces conflicting instructions. Hidden, it costs nothing until I call it.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- A resposta diz qual modo usou e lista o que mudou e por quê.
-- Estados vazios, de erro e de carregamento aparecem tratados.
+- The answer says which mode it used and lists what changed and why.
+- Empty, error and loading states show up handled.

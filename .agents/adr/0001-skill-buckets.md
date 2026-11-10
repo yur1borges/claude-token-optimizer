@@ -1,17 +1,17 @@
-# ADR 0001: Organização em buckets
+# ADR 0001: Bucket organization
 
-## Decisão
+## Decision
 
-Skills ficam em `skills/<bucket>/`:
+Skills live in `skills/<bucket>/`:
 
-- `engineering/`: uso diário em código (instaladas)
-- `productivity/`: modo de trabalho (instaladas)
-- `misc/`: uso raro (não instaladas)
-- `in-progress/`: em teste (não instaladas)
-- `deprecated/`: desligadas, mantidas como referência
+- `engineering/`: daily use on code (installed)
+- `productivity/`: way of working (installed)
+- `misc/`: rare use (not installed)
+- `in-progress/`: under test (not installed)
+- `deprecated/`: disabled, kept as reference
 
-## Por quê
+## Why
 
-Toda skill instalada entra na listagem de cada sessão e custa tokens. O bucket diz, só pelo caminho, se a skill está no contexto ou não. Aposentar é mover de pasta: o histórico fica, e voltar é um `git mv`.
+Every installed skill goes into each session's listing and costs tokens. The bucket says, from the path alone, whether the skill is in the context or not. Retiring is moving to another folder: the history stays, and coming back is a `git mv`.
 
-Buckets promovidos (`engineering/`, `productivity/`) precisam estar no README principal.
+Promoted buckets (`engineering/`, `productivity/`) must be in the main README.

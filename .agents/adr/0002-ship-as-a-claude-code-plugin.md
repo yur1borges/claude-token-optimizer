@@ -1,9 +1,9 @@
-# ADR 0002: Instalar por links, plugin depois
+# ADR 0002: Install by links, plugin later
 
-## Decisão
+## Decision
 
-Hoje a instalação é por links simbólicos (`scripts/link-skills.sh`) em `~/.claude/skills` e `~/.agents/skills`. Empacotar como plugin do Claude Code fica para depois.
+Today installation is by symbolic links (`scripts/link-skills.sh`) in `~/.claude/skills` and `~/.agents/skills`. Packaging as a Claude Code plugin is left for later.
 
-## Por quê
+## Why
 
-Com links, editar a skill no repo muda a instalada na hora, sem republicar. Plugin só compensa se outras pessoas forem instalar. Se virar plugin, o manifesto deve listar exatamente o conjunto promovido, validado com `claude plugin validate . --strict`.
+With links, editing the skill in the repo changes the installed one immediately, without republishing. A plugin only pays off if other people will install it. If it becomes a plugin, the manifest must list exactly the promoted set, validated with `claude plugin validate . --strict`.

@@ -1,48 +1,48 @@
 # ponytail
 
-**Resumo:** "dev sênior preguiçoso": a menor mudança que resolve a tarefa inteira. Menos código escrito é menos saída, menos revisão e menos bug.
+**Summary:** "lazy senior dev": the smallest change that solves the whole task. Less code written means less output, less review and fewer bugs.
 
-## O que faz
+## What it does
 
-Antes de escrever código, a skill faz uma escada de perguntas e para no primeiro degrau que resolve:
+Before writing code, the skill goes through a ladder of questions and stops at the first rung that solves it:
 
-1. Isso precisa existir? Recurso, opção ou flexibilidade que ninguém pediu fica de fora.
-2. Já existe neste projeto? Usar o helper, o componente ou o padrão que já está lá.
-3. A biblioteca padrão ou a plataforma resolve?
-4. Uma dependência já instalada resolve? Nunca adicionar dependência por poucas linhas.
-5. Cabe numa linha que se entende de cara?
-6. Só então, o mínimo de código que funciona.
+1. Does it need to exist? Any feature, option or flexibility nobody asked for stays out.
+2. Does it already exist in this project? Use the helper, component or pattern that is already there.
+3. Does the standard library or the platform solve it?
+4. Does an already installed dependency solve it? Never add a dependency for a few lines.
+5. Does it fit in one line that is understood at a glance?
+6. Only then, the minimum code that works.
 
-Ela é preguiçosa na solução, **nunca na mudança**: termina tudo o que a tarefa exige, incluindo quem chama a função, os testes e os dados de teste que a mudança afeta. Em correção de bug, manda procurar todos os pontos que chamam a função e corrigir uma vez, na origem. Lógica nova não trivial deixa um teste curto.
+It is lazy about the solution, **never about the change**: it finishes everything the task requires, including the callers of the function, the tests and the test data the change affects. For bug fixes, it says to find every place that calls the function and fix it once, at the source. Non-trivial new logic leaves a short test.
 
-Nunca corta: validação de entrada de fonte externa, tratamento de erro que evita perda de dados, segurança, acessibilidade.
+It never cuts: validation of input from external sources, error handling that prevents data loss, security, accessibility.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Sempre ligada, no nível `full`.** O plugin `ponytail@ponytail` injeta o modo por hook no início de cada sessão. A skill fica `user-invocable-only`, assim como `ponytail-audit` (auditoria de repositório inteiro, que chamo quando quero).
+**Always on, at the `full` level.** The `ponytail@ponytail` plugin injects the mode through a hook at the start of each session. The skill is `user-invocable-only`, as is `ponytail-audit` (a whole-repository audit, which I call when I want it).
 
-## Quando usar
+## When to use
 
-- Toda tarefa de código.
+- Every coding task.
 
-## Quando não usar
+## When not to use
 
-- Quando eu peço explicitamente algo completo ou extensível; o pedido explícito vence.
+- When I explicitly ask for something complete or extensible; the explicit request wins.
 
-## Custo em tokens
+## Token cost
 
-- Custo fixo: o texto do modo injetado pelo hook a cada sessão, que fica no cache.
-- Economia: diffs menores, menos arquivos criados, menos rodadas de revisão. Não medi em número.
+- Fixed cost: the mode text injected by the hook each session, which stays in the cache.
+- Savings: smaller diffs, fewer files created, fewer review rounds. I have not measured it in numbers.
 
-## Por que está no setup
+## Why it is in the setup
 
-**Alternativas descartadas:**
-- `mattpocock-skills` e `andrej-karpathy-skills`: davam conselhos parecidos (simplicidade, não abstrair cedo) em muito mais texto, e somavam milhares de tokens fixos por sessão. Os dois plugins ficaram desligados.
-- `ecc` (everything-claude-code): tinha regras próprias de qualidade, mas o pacote todo era pesado demais.
+**Discarded alternatives:**
+- `mattpocock-skills` and `andrej-karpathy-skills`: gave similar advice (simplicity, do not abstract early) in much more text, and added thousands of fixed tokens per session. Both plugins were turned off.
+- `ecc` (everything-claude-code): had its own quality rules, but the whole package was too heavy.
 
-Junto com o caveman, cobre os dois lados da saída: o caveman encurta o texto e o ponytail encurta o código.
+Together with caveman, it covers both sides of the output: caveman shortens the text and ponytail shortens the code.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- O diff é menor que a solução óbvia e não traz código "para depois".
-- No fim da resposta, uma ou duas linhas dizem o que foi pulado e o risco que fica.
+- The diff is smaller than the obvious solution and carries no "for later" code.
+- At the end of the reply, one or two lines say what was skipped and what risk remains.

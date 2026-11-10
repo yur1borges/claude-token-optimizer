@@ -1,49 +1,49 @@
 # verification-before-completion
 
-**Resumo:** proibido dizer "pronto", "corrigido" ou "passou" sem ter rodado a verificação agora e mostrado a saída.
+**Summary:** forbidden to say "done", "fixed" or "passed" without having run the verification now and shown the output.
 
-## O que faz
+## What it does
 
-A regra central: **nenhuma afirmação de conclusão sem evidência nova de verificação**. "Nova" quer dizer rodada nesta mensagem; um teste que passou meia hora atrás, antes da última edição, não conta.
+The core rule: **no completion claim without fresh verification evidence**. "Fresh" means run in this message; a test that passed half an hour ago, before the last edit, does not count.
 
-Antes de qualquer frase de sucesso, a skill manda passar por um portão:
+Before any success statement, the skill sends you through a gate:
 
-1. Qual comando prova o que vou afirmar?
-2. Rodar esse comando completo, agora.
-3. Ler a saída inteira e o código de saída.
-4. A saída confirma a afirmação? Se não, dizer o estado real, com a evidência.
-5. Só então afirmar.
+1. Which command proves what I am about to claim?
+2. Run that command in full, now.
+3. Read the whole output and the exit code.
+4. Does the output confirm the claim? If not, state the real status, with the evidence.
+5. Only then make the claim.
 
-Ela lista as falhas comuns ("deve funcionar agora", "o linter passou, então compila", confiar no relatório de um subagente sem conferir) e as desculpas que o modelo costuma dar para pular a verificação, já com a resposta para cada uma.
+It lists the common failures ("it should work now", "the linter passed, so it compiles", trusting a subagent's report without checking) and the excuses the model usually gives to skip verification, each already with its answer.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Automática.** O CLAUDE.md global manda chamar antes de afirmar que algo está completo, corrigido ou passando, e antes de commit ou PR.
+**Automatic.** The global CLAUDE.md says to call it before claiming something is complete, fixed or passing, and before a commit or PR.
 
-## Quando usar
+## When to use
 
-- Antes de encerrar qualquer tarefa de código.
-- Antes de commit e push.
-- Ao receber o resultado de um subagente: o "terminei" dele também precisa de evidência.
-- Em tarefa fora de código: a evidência é o arquivo criado, o processo rodando, o número medido.
+- Before closing any code task.
+- Before commit and push.
+- When receiving a subagent's result: its "I am done" also needs evidence.
+- In non-code tasks: the evidence is the file created, the process running, the number measured.
 
-## Quando não usar
+## When not to use
 
-- Pergunta que não termina com uma afirmação de "funciona" (explicação, pesquisa).
+- A question that does not end with a "it works" claim (explanation, research).
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: uma linha.
-- Quando chamada: ~3,6 KB (uns 900 tokens). Sem referências extras.
-- O custo real é uma execução de teste a mais por tarefa. Com o hook `filtra-testes.py`, essa execução devolve só o resumo ou as falhas, então sai barata.
+- In the listing: one line.
+- When called: ~3.6 KB (about 900 tokens). No extra references.
+- The real cost is one extra test run per task. With the `filtra-testes.py` hook, that run returns only the summary or the failures, so it is cheap.
 
-## Por que está no setup
+## Why it is in the setup
 
-Um "pronto" falso é o erro mais caro que existe no meu fluxo. Eu descubro o problema depois, abro outra sessão, o modelo relê tudo do zero e refaz. Uma verificação de poucos segundos antes evita a sessão inteira de retrabalho.
+A false "done" is the most expensive error in my workflow. I find the problem later, open another session, the model rereads everything from scratch and redoes it. A verification of a few seconds beforehand avoids a whole session of rework.
 
-**Alternativas descartadas:** escrever só "sempre teste" no CLAUDE.md. Funciona mal, porque a regra solta não lista as desculpas que o modelo usa para pular a verificação; a skill lista e responde cada uma.
+**Discarded alternatives:** just writing "always test" in CLAUDE.md. It works poorly, because a loose rule does not list the excuses the model uses to skip verification; the skill lists them and answers each one.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- Toda resposta final de código traz o comando que rodou e a saída (por exemplo "34 passed").
-- Quando algo falha, a resposta diz que falhou e mostra a saída, em vez de suavizar.
+- Every final code answer carries the command that was run and the output (for example "34 passed").
+- When something fails, the answer says it failed and shows the output, instead of softening it.

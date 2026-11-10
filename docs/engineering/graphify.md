@@ -1,36 +1,36 @@
 # graphify
 
-**Resumo:** monta um grafo do código (arquivos, funções, imports, chamadas) em `graphify-out/`. No meu setup serve só para localizar arquivos.
+**Summary:** builds a graph of the code (files, functions, imports, calls) in `graphify-out/`. In my setup it is used only to locate files.
 
-## O que faz
+## What it does
 
-Analisa o código estaticamente e gera um grafo: os nós são arquivos e funções, as arestas são imports e chamadas. Com o grafo pronto, dá para perguntar "quem chama esta função?" ou "quais arquivos dependem deste módulo?" sem abrir os arquivos um a um.
+It statically analyzes the code and generates a graph: nodes are files and functions, edges are imports and calls. With the graph ready, I can ask "who calls this function?" or "which files depend on this module?" without opening files one by one.
 
-O resultado fica em `graphify-out/` no projeto. As referências da skill só carregam no passo que pede.
+The output lives in `graphify-out/` inside the project. The skill's references load only in the step that asks for them.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Só com `/graphify`** (`user-invocable-only`). A regra no CLAUDE.md global é explícita: "graphify só localiza arquivos". Depois de achar o arquivo, leio por faixa ou com grep.
+**Only with `/graphify`** (`user-invocable-only`). The rule in the global CLAUDE.md is explicit: "graphify only locates files". After finding the file, I read by range or with grep.
 
-## Quando usar
+## When to use
 
-- Repositório grande, em que não sei onde está uma função ou quem depende dela.
-- Antes de uma refatoração que atravessa vários arquivos, para saber o tamanho do impacto.
+- A large repository, where I do not know where a function is or who depends on it.
+- Before a refactor that spans several files, to gauge the size of the impact.
 
-## Quando não usar
+## When not to use
 
-- Para entender o código: ler o grafo inteiro custa mais que um grep certeiro.
-- Repositório pequeno, em que um grep resolve.
+- To understand the code: reading the whole graph costs more than a precise grep.
+- A small repository, where a grep is enough.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: zero (escondida).
-- Quando chamada: ~5,3 KB (uns 1.300 tokens). O grafo em si pode ser grande; por isso consulto só o trecho necessário.
+- In the listing: zero (hidden).
+- When called: ~5.3 KB (about 1,300 tokens). The graph itself can be large; that is why I query only the needed slice.
 
-## Por que está no setup e por que limitada
+## Why it is in the setup and why limited
 
-Em repositório grande, achar o arquivo certo de primeira economiza várias leituras erradas. Mas o grafo vira armadilha se o modelo tenta lê-lo inteiro "para entender a arquitetura". Limitar o uso a localizar mantém o ganho e corta o risco.
+In a large repository, finding the right file on the first try saves several wrong reads. But the graph becomes a trap if the model tries to read all of it "to understand the architecture". Limiting use to locating keeps the gain and cuts the risk.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- A resposta usa o grafo para apontar arquivo e linha, e depois lê só esse trecho.
+- The answer uses the graph to point to a file and line, then reads only that excerpt.

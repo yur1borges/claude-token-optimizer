@@ -5,31 +5,31 @@ description: "Use when you have a spec or requirements for a multi-step task, be
 
 # Writing Plans
 
-Planos de implementação para tarefas multi-step.
+Implementation plans for multi-step tasks.
 
 ## Trigger
 
-User-invoked. "plan this" ou "write plan" antes de tarefa complexa.
+User-invoked. "plan this" or "write plan" before a complex task.
 
 ## When to reach for it
 
-- Features > 3 arquivos
-- Refatoração cross-cutting
-- Migração
-- Qualquer tarefa com dependências
+- Features touching > 3 files
+- Cross-cutting refactoring
+- Migration
+- Any task with dependencies
 
 ## What it does
 
-Gera plano: objetivo, passos ordenados, arquivos afetados, riscos, testes, rollback. Formato: markdown com checkboxes.
+Generates a plan: goal, ordered steps, affected files, risks, tests, rollback. Format: markdown with checkboxes.
 
 ## Common questions
 
-**Q: O modelo segue o plano?**
-Deve. Desvio = novo plano.
+**Q: Does the model follow the plan?**
+It should. Deviation = new plan.
 
-**Q: Detalhe excessivo?**
-Nível: arquivo + função. Não linha.
+**Q: Too much detail?**
+Level: file + function. Not line.
 
 ## It's working if
 
-Plano existe antes do código. Execução segue plano ou documenta desvio.
+The plan exists before the code. Execution follows the plan or documents the deviation.

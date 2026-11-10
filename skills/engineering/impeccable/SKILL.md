@@ -5,31 +5,31 @@ description: "Use when the user wants to design, redesign, shape, critique, audi
 
 # Impeccable
 
-Design/frontend de alto nível. Landing pages, dashboards, componentes polidos.
+High-level design/frontend. Landing pages, dashboards, polished components.
 
 ## Trigger
 
-User-invoked. "impeccable this" ou quando precisar de UI production-ready.
+User-invoked. "impeccable this" or when you need production-ready UI.
 
 ## When to reach for it
 
 - Landing pages
-- Dashboards admin
-- Componentes de design system
-- Qualquer UI que usuário final vê
+- Admin dashboards
+- Design system components
+- Any UI the end user sees
 
 ## What it does
 
-Aplica princípios de design: hierarchy, spacing, color, motion, accessibility. Gera React/TSX + Tailwind production-ready.
+Applies design principles: hierarchy, spacing, color, motion, accessibility. Generates production-ready React/TSX + Tailwind.
 
 ## Common questions
 
-**Q: Precisa de design system?**
-Não. Cria do zero se não tiver.
+**Q: Does it need a design system?**
+No. It creates one from scratch if there is none.
 
-**Q: Funciona com shadcn/ui?**
-Sim. Usa se detectar.
+**Q: Does it work with shadcn/ui?**
+Yes. It uses it if detected.
 
 ## It's working if
 
-Componente passa checklist: responsive, accessible, dark mode, motion reduced, 0 console errors.
+Component passes the checklist: responsive, accessible, dark mode, motion reduced, 0 console errors.

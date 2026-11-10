@@ -1,48 +1,48 @@
 # test-driven-development
 
-**Resumo:** escrever o teste antes do código, ver o teste falhar, escrever o mínimo para passar, depois limpar.
+**Summary:** write the test before the code, watch the test fail, write the minimum to pass, then clean up.
 
-## O que faz
+## What it does
 
-A regra central: **nenhum código de produção sem um teste falhando antes**. Se o código foi escrito antes do teste, a skill manda apagar e recomeçar pelo teste.
+The core rule: **no production code without a failing test first**. If the code was written before the test, the skill says to delete it and start over from the test.
 
-O ciclo tem três passos, com verificação em cada um:
+The cycle has three steps, with a check at each:
 
-1. **Vermelho.** Escrever um teste pequeno para um comportamento só, com nome claro. Rodar e **ver falhar pelo motivo certo** (a função não existe ou devolve o valor errado, e não um erro de digitação no teste).
-2. **Verde.** Escrever o código mais simples que faz o teste passar. Nada de opções ou recursos a mais. Rodar e ver passar, junto com os outros testes.
-3. **Refatorar.** Tirar duplicação e melhorar nomes, mantendo tudo verde.
+1. **Red.** Write a small test for a single behavior, with a clear name. Run it and **watch it fail for the right reason** (the function does not exist or returns the wrong value, not a typo in the test).
+2. **Green.** Write the simplest code that makes the test pass. No extra options or features. Run it and watch it pass, along with the other tests.
+3. **Refactor.** Remove duplication and improve names, keeping everything green.
 
-A skill também ensina como é um bom teste (um comportamento, nome que descreve, código real em vez de mock sempre que possível) e responde às desculpas comuns ("é simples demais para testar", "testo depois"). A referência `writing-good-tests.md` só carrega quando preciso.
+The skill also teaches what a good test looks like (one behavior, a descriptive name, real code instead of a mock whenever possible) and answers the usual excuses ("too simple to test", "I will test later"). The `writing-good-tests.md` reference loads only when I need it.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Só com `/test-driven-development`** (`user-invocable-only` em `skillOverrides`). O modelo não a vê na listagem e não a chama sozinho.
+**Only with `/test-driven-development`** (`user-invocable-only` in `skillOverrides`). The model does not see it in the listing and does not call it on its own.
 
-## Quando usar
+## When to use
 
-- Lógica nova com regra clara: parser, conversão de unidades, cálculo, validação.
-- Bug que precisa de um teste de regressão.
-- Refatoração de código sem testes: primeiro teste de caracterização, depois mexer.
+- New logic with a clear rule: parser, unit conversion, calculation, validation.
+- A bug that needs a regression test.
+- Refactoring code without tests: characterization test first, then change.
 
-## Quando não usar
+## When not to use
 
-- Ajuste visual em interface, texto, configuração.
-- Script descartável de uma vez só.
-- Edição de uma linha em código já coberto por teste.
+- Visual tweak in an interface, text, configuration.
+- A throwaway one-off script.
+- A one-line edit in code already covered by a test.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: zero (escondida).
-- Quando chamada: ~9,6 KB (uns 2.400 tokens). É uma das mais longas, outro motivo para não disparar sozinha.
+- In the listing: zero (hidden).
+- When called: ~9.6 KB (about 2,400 tokens). It is one of the longest, another reason not to fire on its own.
 
-## Por que está no setup e por que escondida
+## Why it is in the setup and why hidden
 
-TDD evita a pior forma de retrabalho: código que "parece certo" e quebra depois. Mas a descrição original dela diz "use ao implementar qualquer recurso ou correção". Se ficasse visível, o modelo carregaria 2.400 tokens e escreveria testes até para trocar uma cor de botão. Escondida, eu ligo nos casos em que vale.
+TDD avoids the worst kind of rework: code that "looks right" and breaks later. But its original description says "use when implementing any feature or fix". If it stayed visible, the model would load 2,400 tokens and write tests even to change a button color. Hidden, I turn it on in the cases where it is worth it.
 
-O ponytail já cobre o caso pequeno: lógica nova não trivial deixa um teste curto ou uma autoverificação, sem o ritual completo.
+ponytail already covers the small case: non-trivial new logic leaves a short test or a self-check, without the full ritual.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- A primeira edição da tarefa é um arquivo de teste.
-- A resposta mostra o teste falhando e depois passando.
-- O código novo não tem nada que o teste não exija.
+- The first edit of the task is a test file.
+- The answer shows the test failing and then passing.
+- The new code has nothing the test does not require.

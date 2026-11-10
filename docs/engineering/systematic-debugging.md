@@ -1,52 +1,52 @@
 # systematic-debugging
 
-**Resumo:** antes de corrigir qualquer bug, achar a causa raiz. Nada de "tentar uma coisa e ver se resolve".
+**Summary:** before fixing any bug, find the root cause. No "try something and see if it works".
 
-## O que faz
+## What it does
 
-A skill impõe uma regra central, chamada de "lei de ferro": **nenhuma correção sem investigar a causa raiz primeiro**. Corrigir o sintoma conta como falha, mesmo em bug simples.
+The skill enforces one core rule, called the "iron law": **no fix without investigating the root cause first**. Fixing the symptom counts as a failure, even on a simple bug.
 
-O trabalho segue quatro fases, sem pular nenhuma:
+The work follows four phases, none skipped:
 
-1. **Causa raiz.** Ler a mensagem de erro inteira, reproduzir o problema de forma confiável, ver o que mudou recentemente (git diff, dependências, configuração) e rastrear de onde vem o valor errado, voltando pela pilha de chamadas até a origem.
-2. **Padrão.** Procurar no próprio código um caso parecido que funciona e comparar com o que quebra. A diferença costuma ser a causa.
-3. **Hipótese.** Escrever uma hipótese só ("X causa o erro porque Y") e testar com a menor mudança possível. Uma variável por vez.
-4. **Correção.** Criar um teste que reproduz o bug, corrigir na origem (não no ponto onde o erro aparece) e confirmar que o teste passa e nada mais quebrou.
+1. **Root cause.** Read the whole error message, reproduce the problem reliably, check what changed recently (git diff, dependencies, configuration) and trace where the wrong value comes from, going back up the call stack to the origin.
+2. **Pattern.** Look in the codebase for a similar case that works and compare it with the one that breaks. The difference is often the cause.
+3. **Hypothesis.** Write a single hypothesis ("X causes the error because Y") and test it with the smallest possible change. One variable at a time.
+4. **Fix.** Create a test that reproduces the bug, fix at the source (not where the error shows up) and confirm the test passes and nothing else broke.
 
-Também traz uma lista de sinais de alerta que mandam voltar à fase 1, como "vou só tentar isso rapidinho" ou a terceira correção seguida que não funcionou. A partir da terceira tentativa falha, a skill manda questionar a arquitetura em vez de insistir.
+It also carries a list of warning signs that send you back to phase 1, such as "I will just try this quickly" or the third failed fix in a row. From the third failed attempt on, the skill says to question the architecture instead of insisting.
 
-A pasta da skill traz referências que só carregam quando a fase pede: rastreamento de causa raiz, defesa em profundidade, espera por condição (para testes instáveis por tempo) e um script para achar qual teste polui o estado dos outros.
+The skill's folder has references that load only when a phase asks for them: root cause tracing, defense in depth, condition-based waiting (for timing-flaky tests) and a script to find which test pollutes the state of the others.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Automática.** O CLAUDE.md global manda chamar sozinho em qualquer bug, teste falhando ou comportamento inesperado, antes de propor correção. Os subagentes recebem a mesma regra em `regras_agentes.md`.
+**Automatic.** The global CLAUDE.md says to call it on its own for any bug, failing test or unexpected behavior, before proposing a fix. Subagents get the same rule in `regras_agentes.md`.
 
-## Quando usar
+## When to use
 
-- Teste falhando, exceção, crash.
-- Resultado numérico estranho em cálculo (energia que não converge, espectro deslocado).
-- Comportamento que "às vezes" acontece.
-- Sempre que já houve uma tentativa de correção que não resolveu.
+- Failing test, exception, crash.
+- Strange numerical result in a calculation (energy that does not converge, shifted spectrum).
+- Behavior that happens "sometimes".
+- Whenever a fix attempt has already failed.
 
-## Quando não usar
+## When not to use
 
-- Erro de digitação óbvio, com a linha e a causa já na mensagem. Mesmo aí a fase 1 é rápida, então na prática a skill roda e termina em segundos.
+- An obvious typo, with the line and cause already in the message. Even then phase 1 is quick, so in practice the skill runs and finishes in seconds.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: uma linha de descrição.
-- Quando chamada: ~2,2 KB de texto (uns 550 tokens). As referências só entram se a fase precisar.
+- In the listing: a one-line description.
+- When called: ~2.2 KB of text (about 550 tokens). The references enter only if a phase needs them.
 
-## Por que está no setup
+## Why it is in the setup
 
-Bug é onde mais se desperdiça token. Cada tentativa errada custa uma edição, uma execução de teste e uma leitura de log, e o contexto vai enchendo de tentativas mortas. Exigir a causa raiz antes troca várias rodadas baratas e erradas por uma investigação certa.
+Bugs are where the most tokens are wasted. Each wrong attempt costs an edit, a test run and a log read, and the context fills up with dead attempts. Requiring the root cause first swaps several cheap, wrong rounds for one correct investigation.
 
-**Alternativas descartadas:**
-- `mattpocock-skills:diagnosing-bugs`: mesma ideia, texto mais longo e com mais cerimônia. O plugin inteiro ficou desligado.
-- Sem skill nenhuma: o modelo tende a propor correção na primeira resposta, antes de reproduzir o erro.
+**Discarded alternatives:**
+- `mattpocock-skills:diagnosing-bugs`: same idea, longer text and more ceremony. The whole plugin was left disabled.
+- No skill at all: the model tends to propose a fix in its first answer, before reproducing the error.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- A resposta começa reproduzindo o erro e mostrando a causa, com arquivo e linha, antes de qualquer edição.
-- A correção vem com um teste que falhava antes e passa depois.
-- Não aparecem três correções seguidas no mesmo ponto.
+- The answer starts by reproducing the error and showing the cause, with file and line, before any edit.
+- The fix comes with a test that failed before and passes after.
+- Three fixes in a row at the same spot do not appear.

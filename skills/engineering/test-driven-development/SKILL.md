@@ -5,30 +5,30 @@ description: "Use when implementing any feature or bugfix, before writing implem
 
 # Test Driven Development
 
-TDD obrigatório. Red → Green → Refactor para features, bugfixes, refactor.
+Mandatory TDD. Red → Green → Refactor for features, bugfixes, refactoring.
 
 ## Trigger
 
-User-invoked. "tdd this" antes de escrever código de produção.
+User-invoked. "tdd this" before writing production code.
 
 ## When to reach for it
 
-- Nova feature
-- Bugfix (teste de regressão primeiro)
-- Refatoração (testes existentes passam)
+- New feature
+- Bugfix (regression test first)
+- Refactoring (existing tests pass)
 
 ## What it does
 
-Força ciclo: teste falha → código mínimo passa → refatorar. Não escreve código de produção sem teste falhando antes.
+Forces the cycle: test fails → minimal code passes → refactor. Does not write production code without a failing test first.
 
 ## Common questions
 
-**Q: Para código legacy sem testes?**
-Escreve teste de caracterização primeiro.
+**Q: What about legacy code without tests?**
+It writes a characterization test first.
 
-**Q: Integração vs unitário?**
-Começa unitário. Integração se precisar.
+**Q: Integration vs unit?**
+Starts with unit. Integration if needed.
 
 ## It's working if
 
-Coverage > 80% no código novo. Zero testes comentados.
+Coverage > 80% on new code. Zero commented-out tests.

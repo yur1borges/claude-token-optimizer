@@ -30,7 +30,7 @@ def textos(content):
 
 def escrever_handoff(dados):
     cwd = dados.get("cwd") or os.getcwd()
-    # nao grava na home nem em nada abaixo de ~/.claude (nao sao projetos)
+    # do not write to home or anything under ~/.claude (they are not projects)
     norm = lambda x: os.path.normcase(os.path.abspath(os.path.expanduser(x)))
     aqui, home, cfg = norm(cwd), norm("~"), norm("~/.claude")
     if aqui == home or aqui == cfg or aqui.startswith(cfg + os.sep):
@@ -59,15 +59,15 @@ def escrever_handoff(dados):
                         ultima = c["text"].strip()
     corpo = [
         f"# HANDOFF ({datetime.now():%Y-%m-%d %H:%M})",
-        "Sessao nova: ler este arquivo primeiro e continuar do proximo passo.",
+        "New session: read this file first and continue from the next step.",
         "",
-        "## Trabalho em andamento (ultimos pedidos do Yuri)",
+        "## Work in progress (Yuri's latest requests)",
         *[f"- {p}" for p in pedidos[-5:]],
         "",
-        "## Arquivos alterados",
+        "## Changed files",
         *[f"- {a}" for a in arquivos[-30:]],
         "",
-        "## Decisoes, becos sem saida e proximo passo (ultima resposta do Claude)",
+        "## Decisions, dead ends and next step (Claude's last reply)",
         ultima[:3000],
         "",
     ]
@@ -78,6 +78,6 @@ def escrever_handoff(dados):
 try:
     escrever_handoff(json.load(sys.stdin))
 except Exception:
-    pass  # handoff e extra; nunca bloquear a compactacao
+    pass  # handoff is an extra; never block compaction
 
-print(GUIDANCE)  # stdout do PreCompact entra como instrucao de compactacao (texto puro, nao JSON)
+print(GUIDANCE)  # PreCompact stdout becomes the compaction instruction (plain text, not JSON)

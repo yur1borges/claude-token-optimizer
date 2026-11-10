@@ -1,34 +1,34 @@
 ---
 name: humanizer
-description: "Use para tirar padroes de escrita de IA de textos a humanizar."
+description: "Use to remove AI writing patterns from texts that need humanizing."
 ---
 
 # Humanizer
 
-Remove padrões de escrita de IA. Deixa texto com voz humana.
+Removes AI writing patterns. Leaves the text with a human voice.
 
 ## Trigger
 
-User-invoked. Passe o texto: "humanize this" ou cole o texto e diga "humanize".
+User-invoked. Pass the text: "humanize this" or paste the text and say "humanize".
 
 ## When to reach for it
 
 - Docs, READMEs, posts
-- Comentários de código
-- Qualquer texto que será lido por humanos
+- Code comments
+- Any text that will be read by humans
 
 ## What it does
 
-Substitui hedging ("I think", "it seems"), remove estrutura robotic, varia sentence length, injeta personalidade.
+Replaces hedging ("I think", "it seems"), removes robotic structure, varies sentence length, injects personality.
 
 ## Common questions
 
-**Q: Muda o significado?**
-Não. Só o estilo.
+**Q: Does it change the meaning?**
+No. Only the style.
 
-**Q: Funciona em pt-BR?**
-Sim. Treinado em português.
+**Q: Does it work in pt-BR?**
+Yes. Trained on Portuguese.
 
 ## It's working if
 
-Texto passa detector de IA (GPTZero, etc.) como humano.
+Text passes an AI detector (GPTZero, etc.) as human.

@@ -1,149 +1,149 @@
-# Meu setup do Claude Code (estado de novembro de 2026)
+# My Claude Code setup (state as of November 2026)
 
-Retrato real e sem dados pessoais do meu `~/.claude`. O objetivo de tudo aqui é gastar menos tokens por sessão sem perder qualidade. Cada item diz **o que é**, **por que está** e, quando foi tirado, **por que saiu**.
+A real snapshot, without personal data, of my `~/.claude`. The goal of everything here is to spend fewer tokens per session without losing quality. Each item says **what it is**, **why it is here** and, when it was removed, **why it left**.
 
-Máquina: notebook Windows 11, 7,6 GB de RAM, VS Code + Claude Code. Isso pesa em várias escolhas (pouca RAM, um processo pesado por vez).
+Machine: Windows 11 laptop, 7.6 GB of RAM, VS Code + Claude Code. This weighs on several choices (little RAM, one heavy process at a time).
 
-## Visão geral: de onde vem o custo
+## Overview: where the cost comes from
 
-Uma sessão paga tokens em quatro lugares. Cada camada do setup ataca um deles:
+A session pays tokens in four places. Each layer of the setup attacks one of them:
 
-| Custo | O que gera | O que uso contra |
+| Cost | What generates it | What I use against it |
 |---|---|---|
-| Prefixo fixo (todo turno) | lista de skills, plugins, MCPs, CLAUDE.md | poucas skills visíveis, plugins desligados, sem MCP global |
-| Entrada de ferramentas | saída de comandos, testes, arquivos lidos | rtk, `filtra-testes.py`, `bashOutputMaxChars`, ler por faixa |
-| Saída do modelo | texto das respostas, thinking | caveman, ponytail, `effortLevel: low`, thinking desligado |
-| Repetição | releituras, loops de erro, contexto velho | cache de 1 h, `loop-edicao.py`, compactação guiada, `/clear` por assunto |
+| Fixed prefix (every turn) | list of skills, plugins, MCPs, CLAUDE.md | few visible skills, plugins off, no global MCP |
+| Tool input | output of commands, tests, files read | rtk, `filtra-testes.py`, `bashOutputMaxChars`, reading by range |
+| Model output | text of the answers, thinking | caveman, ponytail, `effortLevel: low`, thinking off |
+| Repetition | rereads, error loops, stale context | 1 h cache, `loop-edicao.py`, guided compaction, `/clear` per topic |
 
-## 1. Skills: poucas visíveis, o resto escondido
+## 1. Skills: few visible, the rest hidden
 
-Toda skill visível entra na listagem do início de cada sessão. Por isso:
+Every visible skill goes into the listing at the start of each session. Therefore:
 
-| Onde | O que | Efeito |
+| Where | What | Effect |
 |---|---|---|
-| `~/.claude/skills/` | ~24 skills que uso de fato | listadas |
-| `~/.claude/skills_desligadas/` | 26 skills fora de uso (Maestri, engenharia reversa, brainstorming, llm-council, writing-plans etc.) | não carregam; volto com um `mv` |
-| `skillOverrides` | skills de plugin em `user-invocable-only` ou `off` (~55 entradas) | só com `/nome` explícito |
-| `skillListingMaxDescChars: 150` | corta cada descrição | listagem menor |
-| `skillListingBudgetFraction: 0.002` | teto da listagem no contexto | limite rígido |
+| `~/.claude/skills/` | ~24 skills I actually use | listed |
+| `~/.claude/skills_desligadas/` | 26 skills out of use (Maestri, reverse engineering, brainstorming, llm-council, writing-plans etc.) | not loaded; I bring them back with a `mv` |
+| `skillOverrides` | plugin skills set to `user-invocable-only` or `off` (~55 entries) | only with an explicit `/name` |
+| `skillListingMaxDescChars: 150` | truncates each description | smaller listing |
+| `skillListingBudgetFraction: 0.002` | cap of the listing in the context | hard limit |
 
-Regras das skills:
-- Descrição de uma linha, começando com "Use when ...", sem exemplos. Texto longo vai para `references/` dentro da skill e só carrega quando preciso.
-- `user-invocable-only` quando a skill é útil mas não deve disparar sozinha (caveman, ponytail, graphify, humanizer, TDD). `off` quando não uso mais.
-- Desligar é mover para `skills_desligadas/`, nunca apagar. Volta fácil e não perde o trabalho.
-- Skills pessoais (TriboDEM, DA, DRX, Lattes, meus apps) não entram neste repo; veja [SCOPE](../../SCOPE.md).
+Rules for skills:
+- One-line description, starting with "Use when ...", no examples. Long text goes to `references/` inside the skill and only loads when needed.
+- `user-invocable-only` when the skill is useful but should not fire on its own (caveman, ponytail, graphify, humanizer, TDD). `off` when I no longer use it.
+- Disabling is moving to `skills_desligadas/`, never deleting. It comes back easily and the work is not lost.
+- Personal skills (TriboDEM, DA, XRD, Lattes, my apps) do not go in this repo; see [SCOPE](../../SCOPE.md).
 
-Quais o modelo chama sozinho, por tipo de tarefa (regra no CLAUDE.md global):
+Which ones the model calls on its own, by type of task (rule in the global CLAUDE.md):
 
-| Tarefa | Skill |
+| Task | Skill |
 |---|---|
 | bug | systematic-debugging |
-| review | code-review (nativa) |
-| antes de dizer "pronto" | verification-before-completion |
+| review | code-review (native) |
+| before saying "done" | verification-before-completion |
 | interface | ui-ux-pro-max |
-| página/Artifact | artifact-design (nativa) |
-| pesquisa ampla | deep-research (nativa) |
-| testar app desktop como leigo | teste-leigo |
+| page/Artifact | artifact-design (native) |
+| broad research | deep-research (native) |
+| test a desktop app as a lay user | teste-leigo |
 
-**Por que saíram:**
-- `brainstorming`, `writing-plans`, `llm-council`: ritual longo antes de cada tarefa. Gastavam mais tokens do que economizavam em tarefas do dia a dia. Plano curto vai em `~/.claude/planos/` só se tiver mais de 3 passos.
-- Maestri (7 skills) e `orca-cli`: orquestração externa que parei de usar. Arquivadas, não apagadas.
-- Skills de engenharia reversa: uso raro; ficam desligadas e religo quando preciso.
-- `impeccable` e `taste-skill` como plugin: duplicavam as versões em `~/.claude/skills/`. Ficou a cópia local em `user-invocable-only`, e `ui-ux-pro-max` é a padrão para interface (uma só, para não carregar três guias de design).
+**Why they left:**
+- `brainstorming`, `writing-plans`, `llm-council`: long ritual before every task. They spent more tokens than they saved in day-to-day tasks. A short plan goes in `~/.claude/planos/` only if there are more than 3 steps.
+- Maestri (7 skills) and `orca-cli`: external orchestration I stopped using. Archived, not deleted.
+- Reverse engineering skills: rare use; they stay off and I turn them on when needed.
+- `impeccable` and `taste-skill` as a plugin: duplicated the versions in `~/.claude/skills/`. The local copy stayed in `user-invocable-only`, and `ui-ux-pro-max` is the default for interfaces (just one, so as not to load three design guides).
 
-## 2. Plugins: só os que encurtam a saída
+## 2. Plugins: only the ones that shorten the output
 
-Ligados:
-- **caveman**: respostas tersas (fragmentos, sem cerimônia). Corta a saída, que é o token mais caro. Uso no nível `ultracave`.
-- **ponytail**: "dev sênior preguiçoso", o menor diff que resolve. Menos código escrito é menos saída e menos revisão.
+On:
+- **caveman**: terse answers (fragments, no ceremony). Cuts the output, which is the most expensive token. I use the `ultracave` level.
+- **ponytail**: "lazy senior dev", the smallest diff that solves it. Less code written means less output and less review.
 
-Os dois rodam por hook de `SessionStart`, por isso as skills deles ficam `user-invocable-only` (já estão ativas, não precisam aparecer na listagem).
+Both run by `SessionStart` hook, so their skills are `user-invocable-only` (already active, they do not need to appear in the listing).
 
-Registrados em `extraKnownMarketplaces` mas `false` (ligo para uma tarefa e desligo depois):
+Registered in `extraKnownMarketplaces` but `false` (I turn one on for a task and off afterwards):
 
-| Plugin | Por que está desligado |
+| Plugin | Why it is off |
 |---|---|
-| `ecc` (everything-claude-code) | pesado: ~87 skills e o GateGuard, que forçava texto extra antes de agir |
-| `context-mode` | texto de início grande, servidor MCP junto e compressor de Bash que duplicava o rtk |
-| `context-optimizer` (cco) | redundante com rtk + compactação guiada |
-| `mattpocock-skills`, `andrej-karpathy-skills` | redundantes com ponytail/caveman; tiravam uns 5 a 10 mil tokens fixos (estimativa, não medida) |
-| `sentry-skills`, `cloudflare` | só servem para esses serviços, que não uso no dia a dia |
-| `impeccable`, `taste-skill` | duplicavam as cópias locais (ver seção 1) |
-| `setup-token-savings`, `context-engineering` | testados; o que tinham de útil já está nos meus settings e hooks |
+| `ecc` (everything-claude-code) | heavy: ~87 skills and the GateGuard, which forced extra text before acting |
+| `context-mode` | large start-up text, an MCP server along with it and a Bash compressor that duplicated rtk |
+| `context-optimizer` (cco) | redundant with rtk + guided compaction |
+| `mattpocock-skills`, `andrej-karpathy-skills` | redundant with ponytail/caveman; they took about 5 to 10 thousand fixed tokens (estimate, not measured) |
+| `sentry-skills`, `cloudflare` | only useful for those services, which I do not use day to day |
+| `impeccable`, `taste-skill` | duplicated the local copies (see section 1) |
+| `setup-token-savings`, `context-engineering` | tested; what was useful in them is already in my settings and hooks |
 
-Também nego em `permissions.deny` os subagentes `caveman:cavecrew-*` (Haiku): eram chamados sem eu pedir e o retorno era fraco para o meu tipo de trabalho. Uso o `triage` próprio no lugar (seção 5).
+I also deny the `caveman:cavecrew-*` subagents (Haiku) in `permissions.deny`: they were called without my asking and the return was weak for my kind of work. I use my own `triage` instead (section 5).
 
 ## 3. Hooks
 
-| Hook | Evento | Por que |
+| Hook | Event | Why |
 |---|---|---|
-| `rtk hook claude` (via `filtra-testes.py`) | `PreToolUse` Bash | [rtk](https://github.com/rtk-ai/rtk) condensa a saída de comandos antes de entrar no contexto |
-| [`filtra-testes.py`](hooks/filtra-testes.py) | `PreToolUse` Bash | comando de teste: roda uma vez, salva o log e devolve só falhas (traceback com `-A 15`) + resumo. Passou, devolve só o fim |
-| [`loop-edicao.py`](hooks/loop-edicao.py) | `PostToolUse` Edit/Write/Bash/PowerShell | 5 edições no mesmo arquivo sem rodar teste: avisa o agente. Evita loop de "edita, erra, edita" que queima tokens |
-| [`pre-compact.py`](hooks/pre-compact.py) | `PreCompact` | diz à compactação o que GUARDAR (pedidos literais, decisões, arquivos, números) e o que JOGAR FORA (logs, tentativas mortas). Resumo até ~800 palavras. Também grava `HANDOFF.md` no projeto para uma sessão nova retomar lendo só ele |
-| `troca-assunto.py` (pessoal, não incluído) | `UserPromptSubmit` + `SessionStart` | detecta troca de projeto no prompt (TriboDEM, DA etc.), sugere `/clear` e, depois do `/clear`, reexecuta o pedido sozinho. Contexto de um projeto não contamina o outro |
-| watchdog do Remote Control (pessoal) | `SessionStart` | reconecta o Remote Control quando a internet volta |
-| Orca e Codenotch (pessoais) | vários | status e notificações no desktop; não afetam tokens |
+| `rtk hook claude` (via `filtra-testes.py`) | `PreToolUse` Bash | [rtk](https://github.com/rtk-ai/rtk) condenses command output before it enters the context |
+| [`filtra-testes.py`](hooks/filtra-testes.py) | `PreToolUse` Bash | test command: runs once, saves the log and returns only failures (traceback with `-A 15`) + summary. If it passed, returns only the tail |
+| [`loop-edicao.py`](hooks/loop-edicao.py) | `PostToolUse` Edit/Write/Bash/PowerShell | 5 edits to the same file without running a test: warns the agent. Avoids the "edit, fail, edit" loop that burns tokens |
+| [`pre-compact.py`](hooks/pre-compact.py) | `PreCompact` | tells the compaction what to KEEP (literal requests, decisions, files, numbers) and what to DISCARD (logs, dead attempts). Summary up to ~800 words. Also writes `HANDOFF.md` in the project so a new session can resume by reading only it |
+| `troca-assunto.py` (personal, not included) | `UserPromptSubmit` + `SessionStart` | detects a project switch in the prompt (TriboDEM, DA etc.), suggests `/clear` and, after the `/clear`, reruns the request by itself. One project's context does not contaminate the other |
+| Remote Control watchdog (personal) | `SessionStart` | reconnects Remote Control when the internet returns |
+| Orca and Codenotch (personal) | various | desktop status and notifications; they do not affect tokens |
 
-**Por que saíram** (ficam em `hooks/_arquivados/`, não apagados):
-- `laya-gate.mjs`: filtro de thinking. Carregava um modelo ONNX a cada prompt e custava ~35 tokens por turno; com thinking desligado e effort `low`, não compensava.
-- `context-mode-cache-heal.mjs`: só existia por causa do plugin context-mode, que desliguei.
-- `autoclear.ps1`: limpava sozinho; trocado pelo `troca-assunto.py`, que pergunta antes e não perde o pedido.
-- `caveman-statusline.ps1`, `start_orchestrator.ps1`, `erros_softwares.py`: substituídos pela statusline do Orca ou sem uso.
+**Why they left** (they stay in `hooks/_arquivados/`, not deleted):
+- `laya-gate.mjs`: thinking filter. It loaded an ONNX model on every prompt and cost ~35 tokens per turn; with thinking off and effort `low`, it was not worth it.
+- `context-mode-cache-heal.mjs`: only existed because of the context-mode plugin, which I turned off.
+- `autoclear.ps1`: cleared on its own; replaced by `troca-assunto.py`, which asks first and does not lose the request.
+- `caveman-statusline.ps1`, `start_orchestrator.ps1`, `erros_softwares.py`: replaced by Orca's statusline or unused.
 
-## 4. Settings que economizam
+## 4. Settings that save
 
-Veja [`settings.example.json`](settings.example.json).
+See [`settings.example.json`](settings.example.json).
 
-| Setting | Por que |
+| Setting | Why |
 |---|---|
-| `model: opus` + `effortLevel: low` em todos os modelos | modelo forte, raciocínio curto por padrão; subo o effort só quando a tarefa pede |
-| `alwaysThinkingEnabled: false`, `showThinkingSummaries: false` | thinking é saída paga; desligado por padrão |
-| `promptCacheTtl: "1h"` | cache sobrevive a pausas longas; o prefixo fixo é cobrado barato |
-| `autoCompactWindow: 200000` + `precomputeCompactionEnabled` | compacta antes de estourar, já com o resumo pré-calculado |
-| `bashOutputMaxChars: 10000` | teto para saída de ferramenta |
-| `includeGitInstructions: false` | tira o texto de git embutido no prompt |
-| `promptSuggestionEnabled`, `awaySummaryEnabled`, `autoMemoryEnabled: false` | cada um gera chamadas ou contexto extra que não uso |
-| `disableClaudeAiConnectors`, `syncClaudeAiPlugins: false` | conectores do claude.ai viram MCPs no prefixo; desligados |
-| `CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0` | sem check-in periódico automático |
+| `model: opus` + `effortLevel: low` on all models | strong model, short reasoning by default; I raise the effort only when the task asks for it |
+| `alwaysThinkingEnabled: false`, `showThinkingSummaries: false` | thinking is paid output; off by default |
+| `promptCacheTtl: "1h"` | cache survives long pauses; the fixed prefix is billed cheaply |
+| `autoCompactWindow: 200000` + `precomputeCompactionEnabled` | compacts before overflowing, with the summary already precomputed |
+| `bashOutputMaxChars: 10000` | cap for tool output |
+| `includeGitInstructions: false` | removes the git text embedded in the prompt |
+| `promptSuggestionEnabled`, `awaySummaryEnabled`, `autoMemoryEnabled: false` | each one generates extra calls or context that I do not use |
+| `disableClaudeAiConnectors`, `syncClaudeAiPlugins: false` | claude.ai connectors become MCPs in the prefix; turned off |
+| `CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0` | no automatic periodic check-in |
 
-**Por que não uso** `CLAUDE_CODE_SUBAGENT_MODEL` global (usava antes): cada agente agora declara o próprio `model` no frontmatter (seção 5), o que é mais preciso.
+**Why I do not use** a global `CLAUDE_CODE_SUBAGENT_MODEL` (I used to): each agent now declares its own `model` in the frontmatter (section 5), which is more precise.
 
-## 5. Subagentes
+## 5. Subagents
 
-Regra: delegar só leitura grande (mais de ~5 arquivos ou logs grandes), pesquisa web, ou quando eu peço. Cada subagente começa do zero e relê contexto, então tarefa pequena faz direto.
+Rule: delegate only large reads (more than ~5 files or large logs), web research, or when I ask. Each subagent starts from zero and rereads context, so a small task is done directly.
 
-| Agente | Modelo | Para quê |
+| Agent | Model | What for |
 |---|---|---|
-| `triage` ([exemplo](agents/triage.md)) | Haiku | busca barata: arquivo, símbolo, config, erro. Resposta em até 120 tokens |
-| `programador`, `design`, `documentador`, `teste` | Sonnet, effort low, `maxTurns: 50` | implementar, UI, docs, rodar testes |
-| `revisor` ([exemplo](agents/revisor.md)) | Sonnet | revisa diff sem editar |
-| `pesquisador`, `fisico` | Sonnet + WebSearch | literatura e análise numérica |
-| `Explore` | Sonnet | varredura só leitura |
+| `triage` ([example](agents/triage.md)) | Haiku | cheap lookup: file, symbol, config, error. Answer in up to 120 tokens |
+| `programador`, `design`, `documentador`, `teste` | Sonnet, effort low, `maxTurns: 50` | implement, UI, docs, run tests |
+| `revisor` ([example](agents/revisor.md)) | Sonnet | reviews a diff without editing |
+| `pesquisador`, `fisico` | Sonnet + WebSearch | literature and numerical analysis |
+| `Explore` | Sonnet | read-only sweep |
 
-- Todos leem `~/.claude/regras_agentes.md` (regras comuns: pt-BR, não apagar dados, processo longo em segundo plano, entregar com evidência). Fica num arquivo só para não repetir em cada agente.
-- Pergunta estreita com formato de saída fixo.
-- Retorno avaliado: BOM, ACEITÁVEL ou RUIM. RUIM volta uma vez com prompt mais detalhado; se continuar ruim, faço sozinho.
+- All read `~/.claude/regras_agentes.md` (common rules: pt-BR, do not delete data, long process in background, deliver with evidence). It lives in a single file so as not to repeat it in each agent.
+- Narrow question with a fixed output format.
+- Return graded: BOM, ACEITÁVEL or RUIM. RUIM goes back once with a more detailed prompt; if it is still bad, I do it myself.
 
-## 6. Hábitos do CLAUDE.md global
+## 6. Habits from the global CLAUDE.md
 
-- Regras curtas e imperativas: idioma, autonomia, git, tokens, skills, subagentes.
-- Ler arquivo por faixa ou grep, nunca inteiro sem precisar. Saída grande vai para log em disco e leio com `grep -A 15 -E 'ERROR|FAIL|Traceback'` + `head`.
-- Mudou de assunto ou voltou depois de mais de 1 h: `/clear` (com `/rename`). `/compact` só no fim de fase.
-- **Prefixo estável**: não trocar modelo, MCPs, skills ou CLAUDE.md no meio da sessão. Qualquer troca invalida o cache e o prefixo inteiro é cobrado de novo.
-- Commit e push uma vez por mês (menos ruído e menos turnos gastos em git).
+- Short, imperative rules: language, autonomy, git, tokens, skills, subagents.
+- Read a file by range or grep, never whole unless needed. Large output goes to a log on disk and I read it with `grep -A 15 -E 'ERROR|FAIL|Traceback'` + `head`.
+- Changed topic or came back after more than 1 h: `/clear` (with `/rename`). `/compact` only at the end of a phase.
+- **Stable prefix**: do not change model, MCPs, skills or CLAUDE.md mid-session. Any change invalidates the cache and the whole prefix is billed again.
+- Commit and push once a month (less noise and fewer turns spent on git).
 
 ## 7. MCPs
 
-Nenhum MCP global. Os conectores do claude.ai estão desligados e o único MCP fica no escopo de um projeto específico. **Por quê:** cada MCP põe a descrição de todas as ferramentas no prefixo de toda sessão. Ferramentas de navegador e afins entram como "deferred" (só o nome aparece) e carrego com `ToolSearch` quando preciso.
+No global MCP. The claude.ai connectors are off and the only MCP lives in the scope of one specific project. **Why:** each MCP puts the description of all its tools in the prefix of every session. Browser tools and the like come in as "deferred" (only the name appears) and I load them with `ToolSearch` when needed.
 
-## 8. Projetos relacionados
+## 8. Related projects
 
-| Projeto | Ideia | Situação |
+| Project | Idea | Status |
 |---|---|---|
-| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | voz terse | em uso |
-| [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | menor diff | em uso |
-| [rtk-ai/rtk](https://github.com/rtk-ai/rtk) | condensa saída de comandos | em uso (v1.1.0) |
-| [Kulaxyz/token-diet](https://github.com/Kulaxyz/token-diet) | skill sempre ligada de respostas curtas | sobrepõe caveman + ponytail; não instalado |
-| [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | reescreve prompts para acertar de primeira | candidato sob demanda |
-| [foryourhealth111-pixel/Vibe-Skills](https://github.com/foryourhealth111-pixel/Vibe-Skills) | roteia entre ~195 skills | pesado; minha solução é ter menos skills visíveis |
+| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | terse voice | in use |
+| [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | smallest diff | in use |
+| [rtk-ai/rtk](https://github.com/rtk-ai/rtk) | condenses command output | in use (v1.1.0) |
+| [Kulaxyz/token-diet](https://github.com/Kulaxyz/token-diet) | always-on skill for short answers | overlaps caveman + ponytail; not installed |
+| [nidhinjs/prompt-master](https://github.com/nidhinjs/prompt-master) | rewrites prompts to get it right the first time | on-demand candidate |
+| [foryourhealth111-pixel/Vibe-Skills](https://github.com/foryourhealth111-pixel/Vibe-Skills) | routes among ~195 skills | heavy; my solution is to have fewer visible skills |

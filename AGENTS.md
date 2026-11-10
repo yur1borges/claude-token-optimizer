@@ -1,36 +1,36 @@
 # AGENTS.md
 
-Subagentes que uso hoje (`~/.claude/agents/`). O porquê de cada escolha está em [docs/setup](./docs/setup/README.md), seção 5.
+Subagents I use today (`~/.claude/agents/`). The reasoning behind each choice is in [docs/setup](./docs/setup/README.md), section 5.
 
-## Agentes próprios
+## Own agents
 
-| Agente | Modelo | Effort | Ferramentas | Uso |
+| Agent | Model | Effort | Tools | Use |
 |---|---|---|---|---|
-| triage | Haiku | padrão | Read, Grep, Glob | busca barata: arquivo, símbolo, config, erro (até 120 tokens) |
-| programador | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash, Skill | implementar e corrigir código, lançar testes/lotes |
-| design | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash, Skill | interface, cores, ícones, layout |
-| documentador | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash | notas, docs, relatórios |
-| teste | Sonnet | low | Read, Grep, Glob, Bash, Skill | rodar suítes e relatar pass/fail |
-| revisor | Sonnet | low | Read, Grep, Glob, Bash | revisar diff sem editar |
-| pesquisador | Sonnet | low | + WebSearch, WebFetch | literatura e dados na web |
-| fisico | Sonnet | low | + WebSearch, WebFetch | análise física/numérica de resultados |
-| Explore | Sonnet | low | Read, Grep, Glob, Bash | varredura só leitura |
+| triage | Haiku | default | Read, Grep, Glob | cheap lookup: file, symbol, config, error (up to 120 tokens) |
+| programador | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash, Skill | implement and fix code, launch tests/batches |
+| design | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash, Skill | interface, colors, icons, layout |
+| documentador | Sonnet | low | Read, Write, Edit, Grep, Glob, Bash | notes, docs, reports |
+| teste | Sonnet | low | Read, Grep, Glob, Bash, Skill | run suites and report pass/fail |
+| revisor | Sonnet | low | Read, Grep, Glob, Bash | review a diff without editing |
+| pesquisador | Sonnet | low | + WebSearch, WebFetch | literature and data on the web |
+| fisico | Sonnet | low | + WebSearch, WebFetch | physical/numerical analysis of results |
+| Explore | Sonnet | low | Read, Grep, Glob, Bash | read-only sweep |
 
-Todos com `maxTurns: 50` (menos o triage e o Explore) e todos leem `~/.claude/regras_agentes.md` antes de começar.
+All with `maxTurns: 50` (except triage and Explore) and all read `~/.claude/regras_agentes.md` before starting.
 
-## Nativos usados
+## Native ones used
 
 `general-purpose`, `Plan`, `claude-code-guide`, `statusline-setup`.
 
-## Removidos e por quê
+## Removed and why
 
-- `caveman:cavecrew-builder/investigator/reviewer`: negados em `permissions.deny`; disparavam sem pedido e o retorno era fraco. O `triage` cobre a busca barata.
-- `especialista` (Opus), `seguranca`, `devops`, `testador`: sobrepunham com a sessão principal (já em Opus) e com `teste`/`revisor`.
-- Roteamento por combos do proxy (`combo/programacao` etc.): fora deste repo; cada agente declara o modelo no frontmatter.
+- `caveman:cavecrew-builder/investigator/reviewer`: denied in `permissions.deny`; they fired without being asked and the return was weak. `triage` covers cheap lookup.
+- `especialista` (Opus), `seguranca`, `devops`, `testador`: overlapped with the main session (already on Opus) and with `teste`/`revisor`.
+- Routing by proxy combos (`combo/programacao` etc.): outside this repo; each agent declares its model in the frontmatter.
 
-## Regras
+## Rules
 
-- Delegar só leitura grande (mais de ~5 arquivos ou logs grandes), pesquisa web, ou quando pedido.
-- Pergunta estreita, formato de saída fixo.
-- Retorno avaliado: BOM, ACEITÁVEL ou RUIM; RUIM volta uma vez com prompt mais detalhado.
-- Skills: `disable-model-invocation: true` para as só do usuário. Veja `.agents/invocation.md`.
+- Delegate only large reads (more than ~5 files or large logs), web research, or when asked.
+- Narrow question, fixed output format.
+- Return graded: BOM, ACEITÁVEL or RUIM; RUIM goes back once with a more detailed prompt.
+- Skills: `disable-model-invocation: true` for user-only ones. See `.agents/invocation.md`.

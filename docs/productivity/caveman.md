@@ -1,51 +1,51 @@
 # caveman
 
-**Resumo:** respostas tersas, sem cerimônia, mantendo todo fato técnico. É a skill que mais economiza no setup, porque ataca a saída do modelo.
+**Summary:** terse replies, no ceremony, keeping every technical fact. It is the skill that saves the most in the setup, because it attacks the model's output.
 
-## O que faz
+## What it does
 
-Corta tudo o que não carrega informação:
+Cuts everything that carries no information:
 
-- **some:** saudações, "claro, vou ajudar", ressalvas, resumo no fim repetindo o que foi dito, oferta de ajuda extra;
-- **fica:** código, comandos, caminhos, números com unidade, mensagens de erro exatas, negações (não, nunca, só, exceto).
+- **goes away:** greetings, "sure, I'll help", caveats, a closing summary repeating what was said, offers of extra help;
+- **stays:** code, commands, paths, numbers with units, exact error messages, negations (not, never, only, except).
 
-Tem níveis:
+It has levels:
 
-| Nível | Comando | Estilo |
+| Level | Command | Style |
 |---|---|---|
-| normal | `/caveman` | frases curtas, gramática inteira |
-| ultra | `/ultracave` | fragmentos, só o conteúdo |
-| mega | `/megacave` | compressão máxima |
+| normal | `/caveman` | short sentences, full grammar |
+| ultra | `/ultracave` | fragments, content only |
+| mega | `/megacave` | maximum compression |
 
-Algumas coisas sempre saem em texto normal, mesmo no nível máximo: avisos de segurança, confirmação antes de ação irreversível, qualquer frase com dois sentidos possíveis e tudo o que é salvo fora do chat (código, commits, documentos).
+Some things always come out as normal text, even at the highest level: security warnings, confirmation before an irreversible action, any sentence with two possible meanings, and everything saved outside the chat (code, commits, documents).
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Sempre ligada, no nível `ultracave`.** O plugin `caveman@caveman` injeta o modo por hook no início de cada sessão e reforça a cada mensagem. Por isso a skill fica `user-invocable-only`: já está ativa e não precisa ocupar a listagem. `caveman-commit` fica desligada (os commits seguem minha regra de uma vez por mês).
+**Always on, at the `ultracave` level.** The `caveman@caveman` plugin injects the mode through a hook at the start of each session and reinforces it on every message. That is why the skill is `user-invocable-only`: it is already active and does not need to take up space in the listing. `caveman-commit` is turned off (my commits follow my once-a-month rule).
 
-Os subagentes do plugin (`caveman:cavecrew-*`) estão **negados** em `permissions.deny`: eram chamados sem eu pedir e devolviam resultados fracos para meu tipo de trabalho.
+The plugin's subagents (`caveman:cavecrew-*`) are **denied** in `permissions.deny`: they were called without my asking and returned weak results for my kind of work.
 
-## Quando usar
+## When to use
 
-- Sempre, no terminal.
+- Always, in the terminal.
 
-## Quando não usar
+## When not to use
 
-- Texto para outras pessoas (o modo já sai sozinho nesses casos).
-- Quando eu estou confuso com uma resposta: aí peço explicação normal.
+- Text for other people (the mode already turns itself off in those cases).
+- When I am confused by an answer: then I ask for a normal explanation.
 
-## Custo em tokens
+## Token cost
 
-- Custo fixo: o texto do modo injetado pelo hook a cada sessão (algumas centenas de tokens), que fica no cache.
-- Economia: o próprio projeto diz que a saída cai de 40 a 60%. Não medi no meu uso. A saída é o token mais caro, então essa troca compensa.
+- Fixed cost: the mode text injected by the hook each session (a few hundred tokens), which stays in the cache.
+- Savings: the project itself says output drops by 40 to 60%. I have not measured it in my use. Output is the most expensive token, so the trade pays off.
 
-## Por que está no setup
+## Why it is in the setup
 
-**Alternativas descartadas:**
-- `Kulaxyz/token-diet`: faz o mesmo e soma outras regras (ler pouco, testar pouco) que já cubro com o ponytail e os hooks. Teria sobreposição.
-- Só uma regra "seja breve" no CLAUDE.md: o modelo esquece depois de algumas respostas. O hook reforça a cada mensagem.
+**Discarded alternatives:**
+- `Kulaxyz/token-diet`: does the same and adds other rules (read little, test little) that I already cover with ponytail and the hooks. It would overlap.
+- Just a "be brief" rule in CLAUDE.md: the model forgets after a few replies. The hook reinforces it on every message.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- As respostas vêm direto ao ponto, sem abertura nem fechamento.
-- Comandos, caminhos e erros aparecem exatos.
+- Replies get straight to the point, with no opening or closing.
+- Commands, paths and errors appear exactly.

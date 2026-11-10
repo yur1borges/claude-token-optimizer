@@ -1,40 +1,40 @@
 # task-observer
 
-**Resumo:** observa as tarefas e anota correções minhas, padrões repetidos e métodos que valem guardar, para depois virarem melhorias nas skills.
+**Summary:** watches tasks and records my corrections, repeated patterns and methods worth keeping, so they can later become improvements to the skills.
 
-## O que faz
+## What it does
 
-Durante o trabalho, a skill registra num log do workspace:
+During the work, the skill records in a workspace log:
 
-- correções que eu faço no comportamento do modelo;
-- trabalho que se repete e poderia virar uma skill nova;
-- métodos que funcionaram e valem ser preservados.
+- corrections I make to the model's behavior;
+- repeated work that could become a new skill;
+- methods that worked and are worth preserving.
 
-Numa revisão periódica, transforma essas anotações em propostas de mudança nas skills e arquiva o que já foi tratado. Tem uma taxonomia para classificar cada observação e um protocolo para decidir quando mostrar uma sugestão.
+In a periodic review, it turns these notes into proposed changes to the skills and archives what has already been handled. It has a taxonomy to classify each observation and a protocol to decide when to show a suggestion.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Só com `/task-observer`** (`user-invocable-only`).
+**Only with `/task-observer`** (`user-invocable-only`).
 
-## Quando usar
+## When to use
 
-- Numa sessão longa de trabalho, quando quero que os acertos e as correções virem melhorias nas skills.
-- Na revisão das skills, para ver o que foi anotado.
+- In a long work session, when I want the hits and corrections to become improvements to the skills.
+- In the skills review, to see what was noted.
 
-## Quando não usar
+## When not to use
 
-- No dia a dia comum. É justamente por isso que fica escondida.
+- In ordinary day-to-day work. That is exactly why it stays hidden.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: zero (escondida). A descrição original tem mais de 1.000 caracteres e pede para ser chamada antes da primeira ferramenta de **toda** sessão.
-- Quando chamada: ~33 KB (uns 8.000 tokens), mais as escritas no log.
+- In the listing: zero (hidden). The original description is over 1,000 characters and asks to be called before the first tool of **every** session.
+- When called: ~33 KB (about 8,000 tokens), plus the log writes.
 
-## Por que está no setup e por que escondida
+## Why it is in the setup and why hidden
 
-A ideia é boa: o setup melhora com o uso. Mas, do jeito que vem, ela rodaria em toda sessão e gastaria milhares de tokens antes de qualquer trabalho. Escondida, eu ligo nas sessões em que quero colher aprendizado.
+The idea is good: the setup improves with use. But as shipped, it would run in every session and spend thousands of tokens before any work. Hidden, I turn it on in the sessions where I want to harvest learning.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- O log de observações ganha entradas com o contexto e a sugestão.
-- Na revisão, as entradas viram mudanças concretas em skills.
+- The observation log gains entries with the context and the suggestion.
+- In the review, the entries become concrete changes to skills.

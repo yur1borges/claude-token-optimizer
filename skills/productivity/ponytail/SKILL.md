@@ -5,46 +5,46 @@ description: "Lazy senior dev mode: the smallest change that fully solves the ta
 
 # Ponytail
 
-Lazy senior developer. Menor código que resolve o problema todo.
+Lazy senior developer. Least code that solves the whole problem.
 
 ## Trigger
 
-`/ponytail` ou `/ponytail full`. Persiste até "stop ponytail".
+`/ponytail` or `/ponytail full`. Persists until "stop ponytail".
 
 ## When to reach for it
 
-- Qualquer tarefa de código
-- Quer solução minimal, correta
-- Evita over-engineering
+- Any coding task
+- Want a minimal, correct solution
+- Avoids over-engineering
 
 ## What it does
 
-Pergunta: "Precisa existir?" → usa existente → stdlib → dependency → one-liner → mínimo que funciona. Deleta > adiciona. Finish callers, tests, fixtures.
+Asks: "Does it need to exist?" → use what exists → stdlib → dependency → one-liner → minimum that works. Delete > add. Finish callers, tests, fixtures.
 
 ## Sub-skills
 
-- `ponytail-audit` — auditoria código
-- `ponytail-debt` — dívida técnica
-- `ponytail-gain` — ganhos (o que economizou)
-- `ponytail-help` — ajuda ponytail
-- `ponytail-review` — review lazy senior
+- `ponytail-audit` : code audit
+- `ponytail-debt` : technical debt
+- `ponytail-gain` : gains (what it saved)
+- `ponytail-help` : ponytail help
+- `ponytail-review` : lazy senior review
 
 ## Levels
 
 | Level | Behavior |
 |-------|----------|
-| lite | Regras básicas |
-| full | Default. Regras completas |
-| ultra | Extremo. Nada que não seja pedido |
+| lite | Basic rules |
+| full | Default. Full rules |
+| ultra | Extreme. Nothing that was not asked for |
 
 ## Common questions
 
-**Q: Pula validação?**
-Nunca. Validação em trust boundaries é obrigatória.
+**Q: Does it skip validation?**
+Never. Validation at trust boundaries is mandatory.
 
-**Q: Funciona para features novas?**
-Sim. Menor versão que faz o core job.
+**Q: Does it work for new features?**
+Yes. Smallest version that does the core job.
 
 ## It's working if
 
-Diff menor que alternativa óbvia. Zero código "para depois". Callers/tests/fixtures ok.
+Diff smaller than the obvious alternative. Zero "for later" code. Callers/tests/fixtures ok.

@@ -5,31 +5,31 @@ description: "Use when encountering any bug, test failure, or unexpected behavio
 
 # Systematic Debugging
 
-Debug sistemático (root cause first). Para qualquer bug/falha.
+Systematic debugging (root cause first). For any bug/failure.
 
 ## Trigger
 
-User-invoked. "debug this" ou "systematic debugging" ao encontrar bug.
+User-invoked. "debug this" or "systematic debugging" when you hit a bug.
 
 ## When to reach for it
 
-- Testes falhando
-- Comportamento inesperado
+- Failing tests
+- Unexpected behavior
 - Crash/exception
 - Performance degradation
 
 ## What it does
 
-Processo: reproduce → isolate → hypothesize → test hypothesis → fix → verify → prevent regression. Não pula etapas.
+Processo: reproduce → isolate → hypothesize → test hypothesis → fix → verify → prevent regression. Does not skip steps.
 
 ## Common questions
 
-**Q: Funciona para bugs de produção?**
-Sim. Mesmo processo, mais cuidado com dados.
+**Q: Does it work for production bugs?**
+Yes. Same process, more care with data.
 
-**Q: Precisa de testes?**
-Cria teste de regressão se não existir.
+**Q: Does it need tests?**
+It creates a regression test if none exists.
 
 ## It's working if
 
-Root cause identificado, fix minimal, teste de regressão passando.
+Root cause identified, minimal fix, regression test passing.

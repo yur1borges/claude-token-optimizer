@@ -5,28 +5,28 @@ description: "Use when about to claim work is complete, fixed, or passing, befor
 
 # Verification Before Completion
 
-Evidência antes de claims. "complete", "fixed", "passing" requerem prova.
+Evidence before claims. "complete", "fixed", "passing" require proof.
 
 ## Trigger
 
-Auto-invoked quando agente diz "done", "fixed", "complete", "passing".
+Auto-invoked when the agent says "done", "fixed", "complete", "passing".
 
 ## When to reach for it
 
-- Sempre. É guardrail obrigatório.
+- Always. It is a mandatory guardrail.
 
 ## What it does
 
-Bloqueia claim sem evidência: test output, build log, screenshot, diff. Força: "tests pass: [output]" não "tests pass".
+Blocks claims without evidence: test output, build log, screenshot, diff. Forces: "tests pass: [output]", not "tests pass".
 
 ## Common questions
 
-**Q: Para tarefas não-código?**
-Sim. Evidência = output relevante (arquivo criado, comando rodou, etc.)
+**Q: For non-code tasks?**
+Yes. Evidence = relevant output (file created, command ran, etc.)
 
-**Q: Pode ser desativado?**
-Não. Hard rule no CLAUDE.md.
+**Q: Can it be turned off?**
+No. Hard rule in CLAUDE.md.
 
 ## It's working if
 
-Zero claims sem evidência no histórico.
+Zero claims without evidence in the history.

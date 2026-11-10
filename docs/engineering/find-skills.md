@@ -1,40 +1,40 @@
 # find-skills
 
-**Resumo:** quando falta uma skill para uma tarefa, procura no catálogo público, confere a qualidade e mostra as opções antes de instalar.
+**Summary:** when a skill is missing for a task, it searches the public catalog, checks quality and shows the options before installing.
 
-## O que faz
+## What it does
 
-Usa o CLI de skills e o ranking de skills mais usadas para achar candidatas. O fluxo:
+It uses the skills CLI and the ranking of most-used skills to find candidates. The flow:
 
-1. Entender o que eu preciso.
-2. Ver primeiro o ranking (as mais usadas costumam ser as mais confiáveis).
-3. Buscar pelo termo da tarefa.
-4. **Conferir a qualidade antes de recomendar:** quem mantém, quando foi atualizada, se a descrição bate com o conteúdo.
-5. Mostrar as opções com o porquê.
-6. Instalar só se eu aceitar.
+1. Understand what I need.
+2. Check the ranking first (the most used are usually the most trustworthy).
+3. Search by the task's keyword.
+4. **Check quality before recommending:** who maintains it, when it was last updated, whether the description matches the content.
+5. Show the options with the reasoning.
+6. Install only if I accept.
 
-## Como é acionada no meu setup
+## How it is triggered in my setup
 
-**Automática** quando pergunto como fazer algo para o qual talvez exista uma skill.
+**Automatic** when I ask how to do something for which a skill may exist.
 
-## Quando usar
+## When to use
 
-- Tarefa nova e recorrente, que talvez já tenha uma skill pronta.
-- Antes de escrever uma skill do zero.
+- A new, recurring task that may already have a ready-made skill.
+- Before writing a skill from scratch.
 
-## Quando não usar
+## When not to use
 
-- Tarefa de uma vez só: resolver direto sai mais barato que instalar uma skill.
+- A one-off task: solving it directly is cheaper than installing a skill.
 
-## Custo em tokens
+## Token cost
 
-- Na listagem: uma linha.
-- Quando chamada: ~5,2 KB (uns 1.300 tokens).
+- In the listing: one line.
+- When called: ~5.2 KB (about 1,300 tokens).
 
-## Por que está no setup
+## Why it is in the setup
 
-É o que permite manter a lista pequena. Em vez de instalar pacotes grandes "por garantia" (o `ecc` sozinho trazia ~87 skills), procuro a skill certa na hora em que ela faz falta. Cada candidata ainda passa pelo filtro do [CONTRIBUTING](../../CONTRIBUTING.md): uso semanal, sem duplicar outra, e economia maior que o custo.
+It is what lets me keep the list small. Instead of installing large packages "just in case" (`ecc` alone brought ~87 skills), I look for the right skill at the moment it is needed. Each candidate still goes through the [CONTRIBUTING](../../CONTRIBUTING.md) filter: weekly use, no overlap with another skill, and savings greater than the cost.
 
-## Como saber que está funcionando
+## How to tell it is working
 
-- A resposta mostra 1 a 3 opções com fonte e motivo, e não instala nada sem eu aceitar.
+- The answer shows 1 to 3 options with source and reason, and installs nothing until I accept.

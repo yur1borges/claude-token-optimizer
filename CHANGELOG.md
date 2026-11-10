@@ -5,14 +5,14 @@ All notable changes to this skills repository.
 ## [Unreleased]
 
 ### Changed (2026-11-10)
-- docs/setup reescrito em pt-BR com o setup atual e o porquê de cada item, do que saiu e de cada troca
-- settings.example.json: Opus + effort low, cache 1 h, compactação pré-calculada, plugins desligados listados, deny dos cavecrew
-- Hooks de exemplo novos: filtra-testes.py e loop-edicao.py; pre-compact.py atualizado (HANDOFF.md, ~800 palavras)
-- Agentes de exemplo: triage (Haiku) e revisor
-- AGENTS.md reflete os agentes atuais
+- docs/setup rewritten with the current setup and the why of each item, of what was removed and of each swap
+- settings.example.json: Opus + effort low, 1 h cache, precomputed compaction, disabled plugins listed, cavecrew deny
+- New example hooks: filtra-testes.py and loop-edicao.py; pre-compact.py updated (HANDOFF.md, ~800 words)
+- Example agents: triage (Haiku) and revisor
+- AGENTS.md reflects the current agents
 
 ### Deprecated
-- brainstorming, llm-council, writing-plans movidas para skills/deprecated
+- brainstorming, llm-council, writing-plans moved to skills/deprecated
 
 ### Added
 - docs/setup: sanitized snapshot of skills layout, hooks (PreCompact, rtk) and token-saving settings

@@ -2,6 +2,6 @@
 
 No longer used. Kept for reference.
 
-- [brainstorming](./brainstorming/SKILL.md): ritual de ideias antes de cada tarefa; custava mais do que economizava
-- [llm-council](./llm-council/SKILL.md): 5 conselheiros por decisão; caro demais para o dia a dia
-- [writing-plans](./writing-plans/SKILL.md): plano formal; trocado por plano curto em `~/.claude/planos/` só para tarefas com mais de 3 passos
+- [brainstorming](./brainstorming/SKILL.md): ideas ritual before every task; cost more than it saved
+- [llm-council](./llm-council/SKILL.md): 5 advisors per decision; too expensive for day to day
+- [writing-plans](./writing-plans/SKILL.md): formal plan; replaced by a short plan in `~/.claude/planos/` only for tasks with more than 3 steps

@@ -1,34 +1,34 @@
 ---
 name: teste-leigo
-description: "Use para testar apps desktop do Yuri como usuario leigo e impaciente (cliques aleatorios, entradas erradas, duplo clique, redimensionar) e achar quebras."
+description: "Use to test Yuri's desktop apps as a layperson and impatient user (random clicks, wrong inputs, double click, resizing) and find breakages."
 ---
 
 # Teste Leigo
 
-Teste como usuário leigo/impaciente. Para apps desktop.
+Test as a layperson/impatient user. For desktop apps.
 
 ## Trigger
 
-User-invoked. "teste leigo" ou "layman test" antes de ship.
+User-invoked. "teste leigo" or "layman test" before shipping.
 
 ## When to reach for it
 
 - Desktop apps (Tauri, Electron, WPF)
-- Fluxos críticos de usuário
-- Antes de release
+- Critical user flows
+- Before a release
 
 ## What it does
 
-Simula usuário que: não lê instruções, clica errado, impaciente, não sabe atalhos. Encontra UX bugs que devs não veem.
+Simulates a user who: does not read instructions, clicks the wrong thing, is impatient, does not know shortcuts. Finds UX bugs that devs do not see.
 
 ## Common questions
 
-**Q: Substitui testes automatizados?**
-Não. Complementa. Pega UX, não logic bugs.
+**Q: Does it replace automated tests?**
+No. It complements them. It catches UX, not logic bugs.
 
-**Q: Quanto tempo?**
-15-30 min por fluxo principal.
+**Q: How long does it take?**
+15-30 min per main flow.
 
 ## It's working if
 
-Encontra > 3 UX issues por fluxo testado.
+Finds > 3 UX issues per tested flow.
