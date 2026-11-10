@@ -15,6 +15,12 @@ Installing skills is easy; each one looks free. It is not. I kept only 13 (11 en
 
 The rule that remains: **a skill gets in only if I use it every week, if no other does the same thing, and if it saves more than it costs in the listing.** The rest stays off (moved to `~/.claude/skills_desligadas/`, not deleted) and comes back with a `mv` when I need it.
 
+## Why parts of plugins, not whole plugins
+
+Plugins such as `superpowers`, `mattpocock-skills` or `ecc` are bundles: every skill in them enters the listing, they often add a SessionStart hook that runs in every session, they overlap with each other, and they turn on long rituals (brainstorm, formal plan, one subagent per task) together with the few short rules that are actually useful. So I copy only the skills that pass the filter and keep the plugin off. From `superpowers`, for example, I kept `systematic-debugging`, `verification-before-completion` and `test-driven-development`, and left out its routing hook, `brainstorming`, `writing-plans` and the subagent-per-task flow.
+
+The only plugins enabled are `caveman` and `ponytail`, because their value is the hook itself (terse replies and minimal code, every turn). Full reasoning and a table of every plugin and why it is on or off: [ADR 0003](./.agents/adr/0003-cherry-pick-skills-not-whole-plugins.md).
+
 ## The skills and why each one
 
 ### Engineering: `skills/engineering/`
