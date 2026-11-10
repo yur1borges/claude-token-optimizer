@@ -26,6 +26,7 @@
   "env": { "CLAUDE_CODE_GOAL_CHECKIN_MINUTES": "0", "RTK_SUPPRESS_HOOK_WARNING": "1" },
   "permissions": {
     "deny": [
+      "Artifact",
       "Agent(caveman:cavecrew-builder)",
       "Agent(caveman:cavecrew-investigator)",
       "Agent(caveman:cavecrew-reviewer)"

@@ -5,6 +5,7 @@ All notable changes to this skills repository.
 ## [Unreleased]
 
 ### Changed (2026-11-10)
+- docs/setup section 8: measured prefix (35.7k tokens), `Artifact` tool denied (minus 12.2k per session), 1 h cache confirmed, compact instructions, and what was evaluated and not adopted
 - docs/setup rewritten with the current setup and the why of each item, of what was removed and of each swap
 - settings.example.json: Opus + effort low, 1 h cache, precomputed compaction, disabled plugins listed, cavecrew deny
 - New example hooks: filtra-testes.py and loop-edicao.py; pre-compact.py updated (HANDOFF.md, ~800 words)

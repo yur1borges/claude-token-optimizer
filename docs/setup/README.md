@@ -137,7 +137,40 @@ Rule: delegate only large reads (more than ~5 files or large logs), web research
 
 No global MCP. The claude.ai connectors are off and the only MCP lives in the scope of one specific project. **Why:** each MCP puts the description of all its tools in the prefix of every session. Browser tools and the like come in as "deferred" (only the name appears) and I load them with `ToolSearch` when needed.
 
-## 8. Related projects
+## 8. Measured in November 2026: what the numbers say
+
+A research pass over official docs, GitHub, and English, Chinese and Russian sources, followed by measurements on this setup. Method: `claude -p "hi" --model haiku --output-format json`, reading `usage.cache_creation_input_tokens`, and `claude -p "/context"`.
+
+**The fixed prefix is mostly built-in tool schemas, not skills.** A fresh session cost about 35.7k tokens before any question: system tools 23.4k, system prompt 2.7k, skills 1.5k, CLAUDE.md 1.1k, agents 0.75k. The 13-skill discipline keeps skills at 4% of the prefix; the remaining lever is the tools.
+
+**Denying the `Artifact` tool removes about 12.2k tokens (34%) from every session.** Measured: 35,656 tokens without the rule, 23,455 with `"Artifact"` in `permissions.deny`. I rarely publish pages, so it is denied; when I need one, I remove the line for that session. Denying `ScheduleWakeup`, `ReportFindings`, `ReadNotifications` and `ListAgents` as well saved only 2.9k more, so they stay.
+
+**The 1 hour cache is confirmed.** The same call reports `ephemeral_1h_input_tokens` equal to the whole prefix and `ephemeral_5m_input_tokens: 0`. Subagents default to 5 minutes (`subagentPromptCacheTtl`); left as is, because the 1 hour write price was not verified.
+
+**Added to the global CLAUDE.md:**
+
+- A `# Compact instructions` section (keep touched paths, verbatim errors, decisions, test commands and results, next step). It is the documented way to steer compaction.
+- "Do not re-read an unchanged file": since Claude Code 2.1.317 the Read tool returns the full content again instead of a short "unchanged" stub.
+- Suggest `/rewind` instead of compacting when a path went wrong: it keeps the cache.
+
+**Looked at and not changed, with the reason:**
+
+| Item | Why not |
+|---|---|
+| RTK | A JetBrains benchmark (July 2026, read through a TechTimes summary) found no measurable saving and +7.6% median cost at low effort, because Read and Grep bypass the hook and cached re-reads dominate the bill. Different model and version from mine. Kept until I run my own paired test. |
+| caveman | The same benchmark measured about 8.5% less output in agentic work, far from the advertised 65%. Still positive and cheap, so it stays. The 40 to 60% figure elsewhere in this repo is the project's own claim. |
+| caveman and ponytail `SubagentStart` hooks | They inject the full mode text into every subagent. No switch exists; removing it means patching the plugin cache, which an update would undo. |
+| `idleCompaction: false` | Idle compaction shrinks a large context before a cold cache is re-sent. Turning it off looked more likely to cost than to save. |
+| `opusplan` | Every plan-mode toggle changes the model and misses the cache. Worth an A/B test against one model with effort per task; not decided. |
+| `CLAUDE_CODE_SUBAGENT_MODEL` | Precedence over each agent's own `model:` was not verified, and it could override the Haiku triage agent. |
+| `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` | Conflicting reports that it is ignored. |
+| context-mode, token-savior, claude-mem, token-optimizer-mcp, RTK clones | Savings come only from the authors; they add MCP tools or change the prefix. |
+| claude-code-router and proxy chains | They reduce price, not tokens, and each agent already declares its model. |
+| Serena, LSP plugins | Pay off only in large repositories; no independent number. |
+
+**Ideas from other tools** (Cursor writing long outputs to files, Codex `tool_output_token_limit` and `compact_prompt`, Qwen `/compress-fast`, Kimi replacing old tool outputs with markers, JetBrains observation masking) all point to the same two levers already used here: cap tool output and keep the prefix stable. Chinese and Russian sources mostly repeat the English tips; coverage of Zhihu, Juejin, vc.ru, Reddit and HN was partial.
+
+## 9. Related projects
 
 | Project | Idea | Status |
 |---|---|---|
