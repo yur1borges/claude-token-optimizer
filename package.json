@@ -1,7 +1,7 @@
 {
-  "name": "skills",
+  "name": "claude-token-optimizer",
   "version": "1.0.0",
-  "description": "Agent skills for real engineers - not vibe coding",
+  "description": "Claude Code setup for spending fewer tokens: skills, hooks, settings, measured",
   "private": true,
   "scripts": {
     "link": "bash scripts/link-skills.sh",

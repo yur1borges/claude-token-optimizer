@@ -4,6 +4,25 @@ The set of skills, plugins, hooks and settings I use in Claude Code to **spend f
 
 State as of November 2026. The full setup, with every setting and hook explained, is in [docs/setup](./docs/setup/README.md).
 
+## Measured results
+
+Numbers from my own machine (method in [docs/setup, section 8](./docs/setup/README.md#8-measured-in-november-2026-what-the-numbers-say)), not the authors' claims:
+
+| Change | Effect |
+|---|---|
+| `"Artifact"` in `permissions.deny` | fixed prefix of every session: 35.7k to 23.4k tokens (**-34%**) |
+| 13 skills instead of whole plugins | skills are 1.5k tokens, 4% of the prefix |
+| `promptCacheTtl: "1h"` | whole prefix cached for 1 h, confirmed in `usage` |
+| caveman | about 8.5% less output in agentic work (independent benchmark) |
+| RTK on short outputs | **no measurable gain** (A/B, 4 runs each); kept for long outputs |
+
+## Quick start (5 minutes)
+
+1. Copy the parts you want from [settings.example.json](./docs/setup/settings.example.json) into `~/.claude/settings.json`. The biggest win is one line: `"Artifact"` in `permissions.deny`.
+2. Install the skills: see [Installation](#installation).
+3. Optional: the [hooks](./docs/setup/hooks/) (test output filter, edit-loop warning, guided compaction, cost in the status line).
+4. Check your own prefix: `claude -p "/context"`.
+
 ## Why so few skills
 
 Installing skills is easy; each one looks free. It is not. I kept only 13 (11 engineering and 2 productivity) for four reasons:
