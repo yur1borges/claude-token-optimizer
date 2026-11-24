@@ -6,7 +6,7 @@ State as of November 2026. The full setup, with every setting and hook explained
 
 ## Measured results
 
-Numbers from my own machine (method in [docs/setup, section 8](./docs/setup/README.md#8-measured-in-november-2026-what-the-numbers-say)), not the authors' claims:
+Numbers from my own machine (method in [docs/setup, section 8](./docs/setup/README.md)), not the authors' claims:
 
 | Change | Effect |
 |---|---|
