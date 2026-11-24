@@ -4,6 +4,9 @@ All notable changes to this skills repository.
 
 ## [Unreleased]
 
+### Changed (2026-11-23)
+- docs/setup: statusline.py example hook (model, cost, context %), extra `permissions.deny` entries, git rule now commit+push per task, close-after-check habit, browser extension cost note
+
 ### Changed (2026-11-10)
 - docs/setup section 8: measured prefix (35.7k tokens), `Artifact` tool denied (minus 12.2k per session), 1 h cache confirmed, compact instructions, and what was evaluated and not adopted
 - docs/setup rewritten with the current setup and the why of each item, of what was removed and of each swap

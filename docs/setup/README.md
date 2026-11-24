@@ -82,6 +82,7 @@ I also deny the `caveman:cavecrew-*` subagents (Haiku) in `permissions.deny`: th
 | [`loop-edicao.py`](hooks/loop-edicao.py) | `PostToolUse` Edit/Write/Bash/PowerShell | 5 edits to the same file without running a test: warns the agent. Avoids the "edit, fail, edit" loop that burns tokens |
 | [`pre-compact.py`](hooks/pre-compact.py) | `PreCompact` | tells the compaction what to KEEP (literal requests, decisions, files, numbers) and what to DISCARD (logs, dead attempts). Summary up to ~800 words. Also writes `HANDOFF.md` in the project so a new session can resume by reading only it |
 | `troca-assunto.py` (personal, not included) | `UserPromptSubmit` + `SessionStart` | detects a project switch in the prompt (TriboDEM, DA etc.), suggests `/clear` and, after the `/clear`, reruns the request by itself. One project's context does not contaminate the other |
+| [`statusline.py`](hooks/statusline.py) | `statusLine` | shows model, session cost (US$) and context % at the bottom; I see the spend live and `/clear` before the context grows |
 | Remote Control watchdog (personal) | `SessionStart` | reconnects Remote Control when the internet returns |
 | Orca and Codenotch (personal) | various | desktop status and notifications; they do not affect tokens |
 
@@ -106,6 +107,7 @@ See [`settings.example.json`](settings.example.json).
 | `promptSuggestionEnabled`, `awaySummaryEnabled`, `autoMemoryEnabled: false` | each one generates extra calls or context that I do not use |
 | `disableClaudeAiConnectors`, `syncClaudeAiPlugins: false` | claude.ai connectors become MCPs in the prefix; turned off |
 | `CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0` | no automatic periodic check-in |
+| `permissions.deny`: `AskUserQuestion`, `Read` of `node_modules`, `__pycache__`, `.git/objects` | one less tool in the prefix; no accidental read of huge generated files |
 
 **Why I do not use** a global `CLAUDE_CODE_SUBAGENT_MODEL` (I used to): each agent now declares its own `model` in the frontmatter (section 5), which is more precise.
 
@@ -131,11 +133,12 @@ Rule: delegate only large reads (more than ~5 files or large logs), web research
 - Read a file by range or grep, never whole unless needed. Large output goes to a log on disk and I read it with `grep -A 15 -E 'ERROR|FAIL|Traceback'` + `head`.
 - Changed topic or came back after more than 1 h: `/clear` (with `/rename`). `/compact` only at the end of a phase.
 - **Stable prefix**: do not change model, MCPs, skills or CLAUDE.md mid-session. Any change invalidates the cache and the whole prefix is billed again.
-- Commit and push once a month (less noise and fewer turns spent on git).
+- Test, commit and push at the end of every task, without asking (changed in November 2026 from once a month: small commits are easier to review and to revert, and the cost is one short turn).
+- When a check is done, close what was opened for it (test app, server, browser). Frees RAM on a small machine; only processes the session itself opened.
 
 ## 7. MCPs
 
-No global MCP. The claude.ai connectors are off and the only MCP lives in the scope of one specific project. **Why:** each MCP puts the description of all its tools in the prefix of every session. Browser tools and the like come in as "deferred" (only the name appears) and I load them with `ToolSearch` when needed.
+No global MCP. The claude.ai connectors are off and the only MCP lives in the scope of one specific project. **Why:** each MCP puts the description of all its tools in the prefix of every session. Browser tools and the like come in as "deferred" (only the name appears) and I load them with `ToolSearch` when needed. The Claude in Chrome extension works this way: connected, it costs only the tool names; the real cost comes from using it (screenshots and page text), so I prefer reading the DOM or the accessibility tree to screenshots.
 
 ## 8. Measured in November 2026: what the numbers say
 

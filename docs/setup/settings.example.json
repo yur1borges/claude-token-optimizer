@@ -29,9 +29,14 @@
       "Artifact",
       "Agent(caveman:cavecrew-builder)",
       "Agent(caveman:cavecrew-investigator)",
-      "Agent(caveman:cavecrew-reviewer)"
+      "Agent(caveman:cavecrew-reviewer)",
+      "AskUserQuestion",
+      "Read(**/node_modules/**)",
+      "Read(**/__pycache__/**)",
+      "Read(**/.git/objects/**)"
     ]
   },
+  "statusLine": { "type": "command", "command": "python -I ~/.claude/hooks/statusline.py" },
   "skillOverrides": {
     "caveman:caveman": "user-invocable-only",
     "caveman:caveman-commit": "off",
