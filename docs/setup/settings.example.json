@@ -27,6 +27,14 @@
   "permissions": {
     "deny": [
       "Artifact",
+      "NotebookEdit",
+      "ScheduleWakeup",
+      "ReportFindings",
+      "ListAgents",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "RemoteTrigger",
       "Agent(caveman:cavecrew-builder)",
       "Agent(caveman:cavecrew-investigator)",
       "Agent(caveman:cavecrew-reviewer)",

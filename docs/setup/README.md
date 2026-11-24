@@ -184,6 +184,8 @@ A research pass over official docs, GitHub, and English, Chinese and Russian sou
 
 **Before and after (2026-11-23).** Fresh Claude Code (empty `CLAUDE_CONFIG_DIR`) against this setup, Sonnet, 3 runs each. Session start: 47.7k to 23.7k tokens (-50%), US$ 0.0825 to 0.0275 with a warm cache (-67%). One-line bug fix plus pytest (5 turns): 147k to 73k tokens (-50%), US$ 0.098 to 0.045 (-54%), tests passing in every run. Output fell only 11%; the prefix is the lever.
 
+**Second round (2026-11-24).** Denied `NotebookEdit`, `ScheduleWakeup`, `ReportFindings`, `ListAgents`, `Cron*` and `RemoteTrigger`: session start 23,676 to 23,073 tokens (-2.5%), far from the 2.9k measured on 2026-11-10; most of these tools now load deferred. Kept, since it costs nothing. Subagent effort went back from `medium` to `low`. The caveman per-turn reminder (about 90 tokens per prompt) stays: the plugin has no switch for it, and patching the plugin cache is undone by every update.
+
 ## 9. Related projects
 
 | Project | Idea | Status |
