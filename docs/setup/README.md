@@ -182,6 +182,8 @@ A research pass over official docs, GitHub, and English, Chinese and Russian sou
 
 **Codex (same machine):** the fixed prefix is about 21k tokens. Disabling the bundled plugins (`visualize`, `computer-use`) changed it by less than 60 tokens. Hiding 60 rare skills with `policy: allow_implicit_invocation: false` in each `agents/openai.yaml` (the Codex equivalent of `user-invocable-only`) saved only 278 tokens, because Codex already caps the skill catalog; kept anyway, so the model picks among fewer similar skills. `tool_output_token_limit=3000` made no difference: Codex already truncates long outputs. The Codex desktop shell tool is `exec`, so the RTK `PreToolUse` hook (matcher `Bash`) did not fire in the sessions checked. `AGENTS.md` now carries the same rules as the Claude `CLAUDE.md`.
 
+**Before and after (2026-11-23).** Fresh Claude Code (empty `CLAUDE_CONFIG_DIR`) against this setup, Sonnet, 3 runs each. Session start: 47.7k to 23.7k tokens (-50%), US$ 0.0825 to 0.0275 with a warm cache (-67%). One-line bug fix plus pytest (5 turns): 147k to 73k tokens (-50%), US$ 0.098 to 0.045 (-54%), tests passing in every run. Output fell only 11%; the prefix is the lever.
+
 ## 9. Related projects
 
 | Project | Idea | Status |

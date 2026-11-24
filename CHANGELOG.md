@@ -4,6 +4,9 @@ All notable changes to this skills repository.
 
 ## [Unreleased]
 
+### Added (2026-11-23)
+- Before/after benchmark: -50% tokens, -54% cost per task, -67% per session start
+
 ### Changed (2026-11-23)
 - docs/setup: statusline.py example hook (model, cost, context %), extra `permissions.deny` entries, git rule now commit+push per task, close-after-check habit, browser extension cost note
 

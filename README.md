@@ -8,6 +8,20 @@ State as of November 2026. The full setup, with every setting and hook explained
 
 Numbers from my own machine (method in [docs/setup, section 8](./docs/setup/README.md)), not the authors' claims:
 
+**Before and after, same task, same model.** "Before" is a fresh Claude Code (empty config dir, no skills, plugins, hooks or CLAUDE.md); "after" is this setup. Claude Code 2.1.318, Sonnet, `claude -p --output-format json`, 3 runs each, November 2026. Task: fix a one-line bug in a small Python file and run pytest (passed in all 6 runs, 5 turns each).
+
+| | Before | After | Saving |
+|---|---|---|---|
+| Session start (`hi`): tokens | 47,662 | 23,676 | **-50%** |
+| Session start: cost, warm cache | US$ 0.0825 | US$ 0.0275 | **-67%** |
+| Bug-fix task: tokens | 147,245 | 73,214 | **-50%** |
+| Bug-fix task: cost | US$ 0.0984 | US$ 0.0453 | **-54%** |
+| Bug-fix task: output tokens | 696 | 622 | -11% |
+
+Almost all of the saving is the smaller prefix, which is re-read on every turn: a task with more turns saves more. Small sample (3 runs), one task type, Sonnet; Opus prices scale the US$ but not the percentages.
+
+Where the saving comes from:
+
 | Change | Effect |
 |---|---|
 | `"Artifact"` in `permissions.deny` | fixed prefix of every session: 35.7k to 23.4k tokens (**-34%**) |
